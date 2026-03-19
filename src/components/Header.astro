@@ -1,0 +1,70 @@
+---
+import { Image } from 'astro:assets';
+import logoPlaceholder from '../assets/logo-placeholder.svg';
+
+const contact = {
+	phoneLabel: 'Call: +1 (000) 000-0000',
+	phoneHref: 'tel:+10000000000',
+};
+
+const navigation = [
+	{
+		label: 'About',
+		href: '#about',
+		subheaders: [
+			{ label: 'Our Story', href: '#about-story' },
+			{ label: 'Team', href: '#about-team' },
+		],
+	},
+	{
+		label: 'Services',
+		href: '#services',
+		subheaders: [
+			{ label: 'Strategy', href: '#services-strategy' },
+			{ label: 'Execution', href: '#services-execution' },
+		],
+	},
+	{
+		label: 'Consultation',
+		href: '#consultation',
+		subheaders: [
+			{ label: 'Book a Call', href: '#consultation-book' },
+			{ label: 'FAQ', href: '#consultation-faq' },
+		],
+	},
+];
+---
+
+<header class="sticky top-0 z-40 border-b border-(--color-line) bg-[rgba(249,247,242,0.92)] backdrop-blur">
+	<div class="mx-auto flex w-full max-w-6xl items-center justify-between gap-6 px-6 py-4 lg:px-10">
+		<a class="shrink-0" href="/" aria-label="Morning Tide home">
+			<Image src={logoPlaceholder} alt="Morning Tide logo" width={180} height={60} class="h-auto w-37.5 lg:w-45" />
+		</a>
+
+		<nav aria-label="Primary" class="hidden items-center gap-2 md:flex">
+			{navigation.map((item) => (
+				<div class="group relative">
+					<a class="rounded-full px-4 py-2 text-sm font-semibold text-(--color-muted) transition hover:bg-(--color-surface) hover:text-(--color-ink)" href={item.href}>
+						{item.label}
+					</a>
+					<div class="pointer-events-none absolute left-0 top-full mt-2 hidden min-w-52 rounded-2xl border border-(--color-line) bg-(--color-surface) p-3 shadow-[0_14px_40px_rgba(26,43,44,0.12)] group-hover:block">
+						<p class="mb-2 text-[11px] uppercase tracking-[0.18em] text-(--color-muted)">Subheaders</p>
+						<ul class="space-y-2">
+							{item.subheaders.map((subheader) => (
+								<li>
+									<a class="block rounded-lg px-2 py-1 text-sm text-(--color-muted) transition hover:bg-(--color-page) hover:text-(--color-ink)" href={subheader.href}>
+										{subheader.label}
+									</a>
+								</li>
+							))}
+						</ul>
+					</div>
+				</div>
+			))}
+		</nav>
+
+		<a class="rounded-full border border-(--color-line) bg-(--color-surface) px-4 py-2 text-sm font-semibold text-(--color-ink) transition hover:-translate-y-0.5" href={contact.phoneHref}>
+			{contact.phoneLabel}
+		</a>
+	</div>
+</header>
