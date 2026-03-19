@@ -19,6 +19,25 @@ const {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
+		<script is:inline>
+			(() => {
+				const storageKey = 'morningtide-theme';
+				const root = document.documentElement;
+
+				const getStoredTheme = () => {
+					try {
+						const storedTheme = localStorage.getItem(storageKey);
+						return storedTheme === 'light' || storedTheme === 'dark' ? storedTheme : null;
+					} catch {
+						return null;
+					}
+				};
+
+				const preferredTheme = getStoredTheme() ?? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+				root.dataset.theme = preferredTheme;
+				root.style.colorScheme = preferredTheme;
+			})();
+		</script>
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
@@ -31,5 +50,66 @@ const {
 		<slot />
 
 		<Footer />
+
+		<script is:inline>
+			(() => {
+				const storageKey = 'morningtide-theme';
+				const root = document.documentElement;
+				const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+				const getStoredTheme = () => {
+					try {
+						const storedTheme = localStorage.getItem(storageKey);
+						return storedTheme === 'light' || storedTheme === 'dark' ? storedTheme : null;
+					} catch {
+						return null;
+					}
+				};
+
+				const getPreferredTheme = () => getStoredTheme() ?? (mediaQuery.matches ? 'dark' : 'light');
+
+				const updateToggleLabels = (theme) => {
+					for (const toggle of document.querySelectorAll('[data-theme-toggle]')) {
+						const label = toggle.querySelector('[data-theme-label]');
+						const nextLabel = theme === 'dark' ? 'Light mode' : 'Dark mode';
+
+						toggle.setAttribute('aria-pressed', String(theme === 'dark'));
+						toggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+
+						if (label) {
+							label.textContent = nextLabel;
+						}
+					}
+				};
+
+				const applyTheme = (theme, persist = true) => {
+					root.dataset.theme = theme;
+					root.style.colorScheme = theme;
+					updateToggleLabels(theme);
+
+					if (persist) {
+						try {
+							localStorage.setItem(storageKey, theme);
+						} catch {
+							// Ignore storage failures and keep the in-memory theme.
+						}
+					}
+				};
+
+				for (const toggle of document.querySelectorAll('[data-theme-toggle]')) {
+					toggle.addEventListener('click', () => {
+						applyTheme(root.dataset.theme === 'dark' ? 'light' : 'dark');
+					});
+				}
+
+				mediaQuery.addEventListener('change', (event) => {
+					if (!getStoredTheme()) {
+						applyTheme(event.matches ? 'dark' : 'light', false);
+					}
+				});
+
+				applyTheme(getPreferredTheme(), false);
+			})();
+		</script>
 	</body>
 </html>
