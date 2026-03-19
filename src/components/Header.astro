@@ -48,7 +48,7 @@ const navigation = [
 					<a class="rounded-full px-4 py-2 text-sm font-semibold text-(--color-muted) transition hover:bg-(--color-surface) hover:text-(--color-ink)" href={item.href}>
 						{item.label}
 					</a>
-					<div class="pointer-events-none absolute left-0 top-full mt-2 hidden min-w-52 rounded-2xl border border-(--color-line) bg-(--color-surface) p-3 shadow-[var(--shadow-medium)] group-hover:block">
+					<div class="pointer-events-none absolute left-0 top-full mt-2 hidden min-w-52 rounded-2xl border border-(--color-line) bg-(--color-surface) p-3 shadow-(--shadow-medium) group-hover:block">
 						<p class="mb-2 text-[11px] uppercase tracking-[0.18em] text-(--color-muted)">Subheaders</p>
 						<ul class="space-y-2">
 							{item.subheaders.map((subheader) => (
@@ -76,6 +76,7 @@ const navigation = [
 					<path class="theme-toggle__bulb" d="M9 18h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
 					<path class="theme-toggle__bulb" d="M10 21h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
 					<path class="theme-toggle__bulb" d="M8.5 14.5c-.9-.98-1.5-2.33-1.5-3.84A5 5 0 0 1 12 5.66a5 5 0 0 1 5 5c0 1.51-.6 2.86-1.5 3.84-.69.75-1.5 1.66-1.5 2.84h-4c0-1.18-.81-2.09-1.5-2.84Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+					<path class="theme-toggle__filament" d="M10.45 11.1a1.55 1.55 0 1 1 3.1 0c0 .68-.31 1.08-.64 1.42-.36.37-.76.77-.9 1.42h-1.02c-.14-.65-.54-1.05-.9-1.42-.33-.34-.64-.74-.64-1.42Z" />
 					<g class="theme-toggle__rays">
 						<path d="M12 2.75v1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
 						<path d="m5.81 5.81 1.06 1.06" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
