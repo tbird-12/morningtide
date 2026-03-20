@@ -78,68 +78,19 @@ const navigation: NavItem[] = [
 ];
 ---
 
-<header class="sticky top-0 z-40 border-b border-(--color-line) bg-(--color-header-bg) backdrop-blur">
-	<div class="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:gap-6 sm:px-6 sm:py-4 lg:px-10">
+<!-- No hard lines anywhere. Visual zones are separated by gradient backgrounds,
+     diffuse shadows, and a brand-coloured underline indicator on active nav items. -->
+<header class="sticky top-0 z-40 bg-(--color-header-bg) backdrop-blur-md [box-shadow:var(--shadow-soft)]">
+
+	<!-- ── DESKTOP: Row 1 — prominent centered logo, utilities float right ── -->
+	<div class="relative hidden items-center justify-center px-6 py-5 md:flex lg:px-10">
 		<a class="shrink-0" href="/" aria-label="Morning Tide home">
-			<Image src={logoPlaceholder} alt="Morning Tide logo" width={180} height={60} class="site-logo h-auto w-28 sm:w-37.5 lg:w-45" />
+			<Image src={logoPlaceholder} alt="Morning Tide logo" width={200} height={67} class="site-logo h-auto w-44 lg:w-52" />
 		</a>
-
-		<nav aria-label="Primary" class="hidden items-center gap-2 md:flex">
-			{navigation.map((item) => (
-				<div class="group relative">
-					<a class="rounded-full px-4 py-2 text-sm font-semibold text-(--color-muted) transition hover:bg-(--color-surface) hover:text-(--color-ink)" href={item.href}>
-						{item.label}
-					</a>
-					{item.groups ? (
-						<div class="pointer-events-none invisible absolute left-0 top-full z-20 min-w-120 pt-2 opacity-0 transition duration-150 group-hover:visible group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100 group-focus-within:pointer-events-auto">
-							<div class="rounded-2xl border border-(--color-line) bg-(--color-surface) p-4 shadow-(--shadow-medium)">
-								<div class="grid grid-cols-3 gap-x-4 gap-y-2">
-									{item.groups.map((group) => (
-										<div>
-											{group.href ? (
-												<a class="mb-2 block text-[11px] font-semibold uppercase tracking-[0.18em] text-(--color-brand) hover:underline" href={group.href}>
-													{group.heading}
-												</a>
-											) : (
-												<p class="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-(--color-muted)">{group.heading}</p>
-											)}
-											<ul class="space-y-1">
-												{group.items.map((link) => (
-													<li>
-														<a class="block rounded-lg px-2 py-1 text-sm text-(--color-muted) transition hover:bg-(--color-page) hover:text-(--color-ink)" href={link.href}>
-															{link.label}
-														</a>
-													</li>
-												))}
-											</ul>
-										</div>
-									))}
-								</div>
-							</div>
-						</div>
-					) : (
-						<div class="pointer-events-none invisible absolute left-0 top-full z-20 min-w-52 pt-2 opacity-0 transition duration-150 group-hover:visible group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100 group-focus-within:pointer-events-auto">
-							<div class="rounded-2xl border border-(--color-line) bg-(--color-surface) p-3 shadow-(--shadow-medium)">
-								<ul class="space-y-2">
-									{item.subheaders.map((subheader) => (
-										<li>
-											<a class="block rounded-lg px-2 py-1 text-sm text-(--color-muted) transition hover:bg-(--color-page) hover:text-(--color-ink)" href={subheader.href}>
-												{subheader.label}
-											</a>
-										</li>
-									))}
-								</ul>
-							</div>
-						</div>
-					)}
-				</div>
-			))}
-		</nav>
-
-		<div class="flex shrink-0 items-center gap-2 sm:gap-3">
+		<div class="absolute right-6 flex items-center gap-2.5 lg:right-10">
 			<button
 				type="button"
-				class="theme-toggle inline-flex h-10 w-10 items-center justify-center rounded-full border border-(--color-line) bg-(--color-surface) p-0 text-(--color-ink) transition hover:-translate-y-0.5 hover:bg-(--color-surface-strong) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
+				class="theme-toggle inline-flex h-9 w-9 items-center justify-center rounded-full bg-(--color-surface) p-0 text-(--color-muted) shadow-sm transition hover:-translate-y-0.5 hover:text-(--color-ink) hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
 				data-theme-toggle
 				aria-label="Switch to dark mode"
 				aria-pressed="false"
@@ -159,11 +110,194 @@ const navigation: NavItem[] = [
 				</svg>
 				<span class="sr-only" data-theme-label>Dark mode</span>
 			</button>
-
-			<a class="inline-flex items-center rounded-full border border-(--color-line) bg-(--color-surface) px-3 py-2 text-sm font-semibold text-(--color-ink) transition hover:-translate-y-0.5 sm:px-4" href={contact.phoneHref}>
-				<span class="sm:hidden">{contact.shortLabel}</span>
-				<span class="hidden sm:inline">{contact.phoneLabel}</span>
+			<a
+				class="inline-flex items-center rounded-full bg-(--color-brand) px-4 py-2 text-sm font-semibold text-(--color-on-brand) shadow-sm transition hover:-translate-y-0.5 hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
+				href={contact.phoneHref}
+			>
+				{contact.phoneLabel}
 			</a>
 		</div>
 	</div>
+
+	<!-- ── DESKTOP: Row 2 — nav tabs spread full width.
+	     A gradient background shifts the tone subtly to signal a new zone,
+	     and a brand-coloured underline grows in on hover instead of a box highlight. ── -->
+	<nav
+		aria-label="Primary"
+		class="hidden md:flex"
+		style="background: linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 52%, transparent), color-mix(in srgb, var(--color-surface) 22%, transparent));"
+	>
+		<div class="mx-auto flex w-full max-w-6xl items-stretch px-6 lg:px-10">
+			{navigation.map((item) => (
+				<div class="group relative flex flex-1 justify-center">
+					<a
+						class="relative flex w-full items-center justify-center gap-1 px-3 py-3 text-sm font-semibold text-(--color-muted) transition-colors duration-150 hover:text-(--color-ink)"
+						href={item.href}
+					>
+						{item.label}
+						<svg class="h-3 w-3 shrink-0 opacity-40 transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+							<path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</a>
+					<!-- brand underline indicator — grows in on hover, no boxy background -->
+					<span class="pointer-events-none absolute bottom-0 left-1/2 h-0.5 w-0 -translate-x-1/2 rounded-full bg-(--color-brand) transition-all duration-200 group-hover:w-4/5 group-focus-within:w-4/5" aria-hidden="true"></span>
+
+					{item.groups ? (
+						<div class="pointer-events-none invisible absolute left-0 top-full z-20 min-w-120 pt-3 opacity-0 transition duration-150 group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100">
+							<div class="rounded-2xl bg-(--color-surface) p-5 [box-shadow:var(--shadow-medium)]">
+								<div class="grid grid-cols-3 gap-x-6 gap-y-2">
+									{item.groups.map((group) => (
+										<div>
+											{group.href ? (
+												<a class="mb-2 block text-[11px] font-semibold uppercase tracking-[0.18em] text-(--color-brand) hover:underline" href={group.href}>
+													{group.heading}
+												</a>
+											) : (
+												<p class="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-(--color-muted)">{group.heading}</p>
+											)}
+											<ul class="space-y-1">
+												{group.items.map((link) => (
+													<li>
+														<a class="block rounded-lg px-2 py-1.5 text-sm text-(--color-muted) transition hover:bg-(--color-surface-strong) hover:text-(--color-ink)" href={link.href}>
+															{link.label}
+														</a>
+													</li>
+												))}
+											</ul>
+										</div>
+									))}
+								</div>
+							</div>
+						</div>
+					) : (
+						<div class="pointer-events-none invisible absolute left-0 top-full z-20 min-w-52 pt-3 opacity-0 transition duration-150 group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100">
+							<div class="rounded-2xl bg-(--color-surface) p-3 [box-shadow:var(--shadow-medium)]">
+								<ul class="space-y-1">
+									{item.subheaders.map((subheader) => (
+										<li>
+											<a class="block rounded-lg px-3 py-1.5 text-sm text-(--color-muted) transition hover:bg-(--color-surface-strong) hover:text-(--color-ink)" href={subheader.href}>
+												{subheader.label}
+											</a>
+										</li>
+									))}
+								</ul>
+							</div>
+						</div>
+					)}
+				</div>
+			))}
+		</div>
+	</nav>
+
+	<!-- ── MOBILE: single bar — logo left, call pill + hamburger right ── -->
+	<div class="flex items-center justify-between px-4 py-3.5 md:hidden">
+		<a class="shrink-0" href="/" aria-label="Morning Tide home">
+			<Image src={logoPlaceholder} alt="Morning Tide logo" width={140} height={47} class="site-logo h-auto w-28" />
+		</a>
+		<div class="flex items-center gap-2">
+			<a
+				class="inline-flex items-center rounded-full bg-(--color-brand) px-4 py-2 text-sm font-semibold text-(--color-on-brand) shadow-sm transition hover:shadow"
+				href={contact.phoneHref}
+			>
+				{contact.shortLabel}
+			</a>
+			<button
+				id="mobile-menu-toggle"
+				type="button"
+				class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-(--color-surface) text-(--color-muted) shadow-sm transition hover:text-(--color-ink) hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
+				aria-label="Open menu"
+				aria-expanded="false"
+				aria-controls="mobile-menu"
+			>
+				<svg id="icon-hamburger" class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+					<path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+				</svg>
+				<svg id="icon-close" class="hidden h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+					<path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+				</svg>
+			</button>
+		</div>
+	</div>
+
+	<!-- ── MOBILE: drawer — no hard lines, gradient bg, spacing-only hierarchy ── -->
+	<div
+		id="mobile-menu"
+		class="hidden md:hidden"
+		style="background: linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 72%, transparent), var(--color-header-bg));"
+		aria-hidden="true"
+	>
+		<div class="px-5 pt-2 pb-4 space-y-1">
+			{navigation.map((item) => (
+				<div class="py-2">
+					<a class="block px-2 py-1 text-sm font-bold tracking-wide text-(--color-ink)" href={item.href}>
+						{item.label}
+					</a>
+					{item.groups ? (
+						<ul class="mt-1.5 ml-4 space-y-0.5">
+							{item.groups.flatMap((g) => g.items).map((link) => (
+								<li>
+									<a class="block rounded-lg px-2 py-1.5 text-sm text-(--color-muted) transition hover:bg-(--color-surface-strong) hover:text-(--color-ink)" href={link.href}>
+										{link.label}
+									</a>
+								</li>
+							))}
+						</ul>
+					) : (
+						<ul class="mt-1.5 ml-4 space-y-0.5">
+							{item.subheaders.map((sub) => (
+								<li>
+									<a class="block rounded-lg px-2 py-1.5 text-sm text-(--color-muted) transition hover:bg-(--color-surface-strong) hover:text-(--color-ink)" href={sub.href}>
+										{sub.label}
+									</a>
+								</li>
+							))}
+						</ul>
+					)}
+				</div>
+			))}
+		</div>
+		<div class="flex items-center justify-between px-6 py-3" style="background: color-mix(in srgb, var(--color-surface) 30%, transparent);">
+			<span class="text-sm font-semibold text-(--color-muted)">Appearance</span>
+			<button
+				type="button"
+				class="theme-toggle inline-flex h-9 w-9 items-center justify-center rounded-full bg-(--color-surface) p-0 text-(--color-muted) shadow-sm transition hover:text-(--color-ink) hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
+				data-theme-toggle
+				aria-label="Switch to dark mode"
+				aria-pressed="false"
+			>
+				<svg class="theme-toggle__icon h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+					<path class="theme-toggle__bulb" d="M9 18h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+					<path class="theme-toggle__bulb" d="M10 21h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+					<path class="theme-toggle__bulb" d="M8.5 14.5c-.9-.98-1.5-2.33-1.5-3.84A5 5 0 0 1 12 5.66a5 5 0 0 1 5 5c0 1.51-.6 2.86-1.5 3.84-.69.75-1.5 1.66-1.5 2.84h-4c0-1.18-.81-2.09-1.5-2.84Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+					<path class="theme-toggle__filament" d="M10.45 11.1a1.55 1.55 0 1 1 3.1 0c0 .68-.31 1.08-.64 1.42-.36.37-.76.77-.9 1.42h-1.02c-.14-.65-.54-1.05-.9-1.42-.33-.34-.64-.74-.64-1.42Z" />
+					<g class="theme-toggle__rays">
+						<path d="M12 2.75v1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+						<path d="m5.81 5.81 1.06 1.06" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+						<path d="M3 12h1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+						<path d="m17.13 6.87 1.06-1.06" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+						<path d="M19.5 12H21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+					</g>
+				</svg>
+				<span class="sr-only" data-theme-label>Dark mode</span>
+			</button>
+		</div>
+	</div>
+
 </header>
+
+<script>
+	const menuToggle = document.getElementById('mobile-menu-toggle');
+	const mobileMenu = document.getElementById('mobile-menu');
+	const iconHamburger = document.getElementById('icon-hamburger');
+	const iconClose = document.getElementById('icon-close');
+
+	if (menuToggle && mobileMenu) {
+		menuToggle.addEventListener('click', () => {
+			const isClosed = mobileMenu.classList.toggle('hidden');
+			mobileMenu.setAttribute('aria-hidden', String(isClosed));
+			menuToggle.setAttribute('aria-expanded', String(!isClosed));
+			iconHamburger?.classList.toggle('hidden', !isClosed);
+			iconClose?.classList.toggle('hidden', isClosed);
+		});
+	}
+</script>
