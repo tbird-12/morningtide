@@ -1,0 +1,35 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+const categories = [
+	{ label: 'ADHD Testing', href: '/services/psychological-evaluations/adhd' },
+	{ label: 'Autism Testing', href: '/services/psychological-evaluations/autism' },
+	{ label: 'Personality Disorders', href: '/services/psychological-evaluations/personality-disorders' },
+];
+---
+
+<Layout
+	title="Psychological Evaluations | Morning Tide"
+	description="Stub overview page for psychological evaluation categories."
+>
+	<main class="min-h-screen px-6 py-16 lg:px-10">
+		<section class="mx-auto max-w-4xl space-y-6">
+			<p class="text-sm font-semibold uppercase tracking-[0.28em] text-(--color-brand)">Services</p>
+			<h1 class="text-4xl leading-tight text-(--color-ink) sm:text-5xl">Psychological Evaluations</h1>
+			<p class="text-lg leading-8 text-(--color-muted)">
+				This page can introduce your evaluation philosophy, referral process, and report structure before clients choose a specific evaluation type.
+			</p>
+		</section>
+
+		<section class="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-2">
+			{categories.map((category) => (
+				<a
+					class="rounded-3xl border border-(--color-line) bg-(--color-surface) px-5 py-4 text-base font-semibold text-(--color-ink) shadow-(--shadow-soft) transition hover:-translate-y-0.5"
+					href={category.href}
+				>
+					{category.label}
+				</a>
+			))}
+		</section>
+	</main>
+</Layout>

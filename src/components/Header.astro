@@ -8,7 +8,14 @@ const contact = {
 	phoneHref: 'tel:+10000000000',
 };
 
-const navigation = [
+type SubheaderItem = { label: string; href: string };
+type GroupItem = { label: string; href: string };
+type Group = { heading: string; href?: string; items: GroupItem[] };
+type FlatNavItem = { label: string; href: string; subheaders: SubheaderItem[]; groups?: never };
+type GroupedNavItem = { label: string; href: string; groups: Group[]; subheaders?: never };
+type NavItem = FlatNavItem | GroupedNavItem;
+
+const navigation: NavItem[] = [
 	{
 		label: 'About',
 		href: '#about',
@@ -19,18 +26,53 @@ const navigation = [
 	},
 	{
 		label: 'Services',
-		href: '#services',
-		subheaders: [
-			{ label: 'Strategy', href: '#services-strategy' },
-			{ label: 'Execution', href: '#services-execution' },
+		href: '/services',
+		groups: [
+			{
+				heading: 'Psychological Evaluations',
+				href: '/services/psychological-evaluations',
+				items: [
+					{ label: 'ADHD Testing', href: '/services/psychological-evaluations/adhd' },
+					{ label: 'Autism Testing', href: '/services/psychological-evaluations/autism' },
+					{ label: 'Personality Disorders', href: '/services/psychological-evaluations/personality-disorders' },
+				],
+			},
+			{
+				heading: 'Psychoeducational Testing',
+				href: '/services/psychoeducational-testing',
+				items: [
+					{ label: 'Dyslexia Testing', href: '/services/psychoeducational-testing/dyslexia' },
+					{ label: 'Learning Disorders', href: '/services/psychoeducational-testing/learning-disorders' },
+					{ label: 'Giftedness', href: '/services/psychoeducational-testing/giftedness' },
+					{ label: 'Academic Achievement', href: '/services/psychoeducational-testing/academic-achievement' },
+					{ label: '2E Testing', href: '/services/psychoeducational-testing/2e-testing' },
+				],
+			},
+		],
+	},
+	{
+		label: 'CEU Trainings',
+		href: '/services/ceu-trainings',
+		groups: [
+			{
+				heading: 'CEU Trainings',
+				href: '/services/ceu-trainings',
+				items: [
+					{ label: 'All CEU Trainings', href: '/services/ceu-trainings' },
+					{ label: 'ADHD Training', href: '/services/ceu-trainings/adhd-training' },
+					{ label: 'Autism Testing Training', href: '/services/ceu-trainings/autism-testing-training' },
+				],
+			},
 		],
 	},
 	{
 		label: 'Consultation',
-		href: '#consultation',
+		href: '/services/billing-and-credentialing-consultation',
 		subheaders: [
-			{ label: 'Book a Call', href: '#consultation-book' },
-			{ label: 'FAQ', href: '#consultation-faq' },
+			{ label: 'Consultation Overview', href: '/services/billing-and-credentialing-consultation' },
+			{ label: 'Billing & Credentialing', href: '/services/billing-and-credentialing-consultation' },
+			{ label: 'Book a Call', href: '/services/billing-and-credentialing-consultation#book-a-call' },
+			{ label: 'Frequently Asked Questions', href: '/services/billing-and-credentialing-consultation#faq' },
 		],
 	},
 ];
@@ -48,18 +90,48 @@ const navigation = [
 					<a class="rounded-full px-4 py-2 text-sm font-semibold text-(--color-muted) transition hover:bg-(--color-surface) hover:text-(--color-ink)" href={item.href}>
 						{item.label}
 					</a>
-					<div class="pointer-events-none absolute left-0 top-full mt-2 hidden min-w-52 rounded-2xl border border-(--color-line) bg-(--color-surface) p-3 shadow-(--shadow-medium) group-hover:block">
-						<p class="mb-2 text-[11px] uppercase tracking-[0.18em] text-(--color-muted)">Subheaders</p>
-						<ul class="space-y-2">
-							{item.subheaders.map((subheader) => (
-								<li>
-									<a class="block rounded-lg px-2 py-1 text-sm text-(--color-muted) transition hover:bg-(--color-page) hover:text-(--color-ink)" href={subheader.href}>
-										{subheader.label}
-									</a>
-								</li>
-							))}
-						</ul>
-					</div>
+					{item.groups ? (
+						<div class="pointer-events-none invisible absolute left-0 top-full z-20 min-w-120 pt-2 opacity-0 transition duration-150 group-hover:visible group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100 group-focus-within:pointer-events-auto">
+							<div class="rounded-2xl border border-(--color-line) bg-(--color-surface) p-4 shadow-(--shadow-medium)">
+								<div class="grid grid-cols-3 gap-x-4 gap-y-2">
+									{item.groups.map((group) => (
+										<div>
+											{group.href ? (
+												<a class="mb-2 block text-[11px] font-semibold uppercase tracking-[0.18em] text-(--color-brand) hover:underline" href={group.href}>
+													{group.heading}
+												</a>
+											) : (
+												<p class="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-(--color-muted)">{group.heading}</p>
+											)}
+											<ul class="space-y-1">
+												{group.items.map((link) => (
+													<li>
+														<a class="block rounded-lg px-2 py-1 text-sm text-(--color-muted) transition hover:bg-(--color-page) hover:text-(--color-ink)" href={link.href}>
+															{link.label}
+														</a>
+													</li>
+												))}
+											</ul>
+										</div>
+									))}
+								</div>
+							</div>
+						</div>
+					) : (
+						<div class="pointer-events-none invisible absolute left-0 top-full z-20 min-w-52 pt-2 opacity-0 transition duration-150 group-hover:visible group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100 group-focus-within:pointer-events-auto">
+							<div class="rounded-2xl border border-(--color-line) bg-(--color-surface) p-3 shadow-(--shadow-medium)">
+								<ul class="space-y-2">
+									{item.subheaders.map((subheader) => (
+										<li>
+											<a class="block rounded-lg px-2 py-1 text-sm text-(--color-muted) transition hover:bg-(--color-page) hover:text-(--color-ink)" href={subheader.href}>
+												{subheader.label}
+											</a>
+										</li>
+									))}
+								</ul>
+							</div>
+						</div>
+					)}
 				</div>
 			))}
 		</nav>

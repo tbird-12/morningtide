@@ -1,0 +1,37 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+const categories = [
+	{ label: 'Dyslexia Testing', href: '/services/psychoeducational-testing/dyslexia' },
+	{ label: 'Learning Disorders', href: '/services/psychoeducational-testing/learning-disorders' },
+	{ label: 'Giftedness', href: '/services/psychoeducational-testing/giftedness' },
+	{ label: 'Academic Achievement Testing', href: '/services/psychoeducational-testing/academic-achievement' },
+	{ label: '2E Testing', href: '/services/psychoeducational-testing/2e-testing' },
+];
+---
+
+<Layout
+	title="Psychoeducational Testing | Morning Tide"
+	description="Overview of psychoeducational testing services including dyslexia, learning disorders, giftedness, academic achievement, and 2E testing."
+>
+	<main class="min-h-screen px-6 py-16 lg:px-10">
+		<section class="mx-auto max-w-4xl space-y-6">
+			<p class="text-sm font-semibold uppercase tracking-[0.28em] text-(--color-brand)">Services</p>
+			<h1 class="text-4xl leading-tight text-(--color-ink) sm:text-5xl">Psychoeducational Testing</h1>
+			<p class="text-lg leading-8 text-(--color-muted)">
+				Replace this section with an overview of your psychoeducational testing approach, who it is designed for, and what families will receive in their report.
+			</p>
+		</section>
+
+		<section class="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-2">
+			{categories.map((category) => (
+				<a
+					class="rounded-3xl border border-(--color-line) bg-(--color-surface) px-5 py-4 text-base font-semibold text-(--color-ink) shadow-(--shadow-soft) transition hover:-translate-y-0.5"
+					href={category.href}
+				>
+					{category.label}
+				</a>
+			))}
+		</section>
+	</main>
+</Layout>

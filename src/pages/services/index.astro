@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const services = [
+	{ label: 'Psychological Evaluations', href: '/services/psychological-evaluations' },
+	{ label: 'Psychoeducational Testing', href: '/services/psychoeducational-testing' },
+	{ label: 'CEU Trainings', href: '/services/ceu-trainings' },
+	{ label: 'Billing and Credentialing Consultation', href: '/services/billing-and-credentialing-consultation' },
+];
+---
+
+<Layout
+	title="Services | Morning Tide"
+	description="Overview of services including psychological testing, psychoeducational testing, CEU trainings, and provider consultation."
+>
+	<main class="min-h-screen px-6 py-16 lg:px-10">
+		<section class="mx-auto max-w-4xl space-y-8">
+			<p class="text-sm font-semibold uppercase tracking-[0.28em] text-(--color-brand)">Services</p>
+			<h1 class="text-4xl leading-tight text-(--color-ink) sm:text-5xl">Service Overview</h1>
+			<p class="text-lg leading-8 text-(--color-muted)">
+				Use this page as your top-level services overview. You can replace these short descriptions with your full offerings and approach.
+			</p>
+		</section>
+
+		<section class="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-2">
+			{services.map((service) => (
+				<a
+					class="rounded-3xl border border-(--color-line) bg-(--color-surface) px-5 py-4 text-base font-semibold text-(--color-ink) shadow-(--shadow-soft) transition hover:-translate-y-0.5"
+					href={service.href}
+				>
+					{service.label}
+				</a>
+			))}
+		</section>
+	</main>
+</Layout>

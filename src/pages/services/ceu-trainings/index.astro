@@ -1,0 +1,34 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+const trainings = [
+	{ label: 'ADHD Training', href: '/services/ceu-trainings/adhd-training' },
+	{ label: 'Autism Testing Training', href: '/services/ceu-trainings/autism-testing-training' },
+];
+---
+
+<Layout
+	title="CEU Trainings | Morning Tide"
+	description="Continuing education trainings for mental health providers, including ADHD training and autism testing training."
+>
+	<main class="min-h-screen px-6 py-16 lg:px-10">
+		<section class="mx-auto max-w-4xl space-y-6">
+			<p class="text-sm font-semibold uppercase tracking-[0.28em] text-(--color-brand)">CEU Trainings</p>
+			<h1 class="text-4xl leading-tight text-(--color-ink) sm:text-5xl">CEU Trainings</h1>
+			<p class="text-lg leading-8 text-(--color-muted)">
+				Add your CEU training topics, learning objectives, format options, and booking details for agencies, group practices, or organizations.
+			</p>
+		</section>
+
+		<section class="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-2">
+			{trainings.map((training) => (
+				<a
+					class="rounded-3xl border border-(--color-line) bg-(--color-surface) px-5 py-4 text-base font-semibold text-(--color-ink) shadow-(--shadow-soft) transition hover:-translate-y-0.5"
+					href={training.href}
+				>
+					{training.label}
+				</a>
+			))}
+		</section>
+	</main>
+</Layout>
