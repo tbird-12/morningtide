@@ -2,30 +2,65 @@
 import Layout from '../../../layouts/Layout.astro';
 
 const referralQuestions = [
-	'Complex presentations where the current diagnosis does not feel complete',
-	'Questions about overlapping symptoms, comorbidity, or competing explanations',
-	'Need for a concise, actionable report on a fast timeline',
+	'Complex presentations where the current diagnosis does not fully explain the experience',
+	'Overlapping symptoms across anxiety, depression, bipolar disorder, PTSD, and neurodevelopmental conditions',
+	'Need to distinguish between conditions that share surface-level features but require different treatment approaches',
+	'Need for a clear, actionable report that guides treatment planning and clinical decision-making',
+];
+
+const areas = [
+	{
+		title: 'Mood & Anxiety Disorders',
+		description: 'Distinguishing between complex presentations of anxiety, depression, bipolar disorder, and PTSD.',
+	},
+	{
+		title: 'Neurodevelopmental Overlap',
+		description: 'Clarifying whether ADHD, autism, or both better explain a person\'s experience — especially in high-masking individuals.',
+	},
+	{
+		title: 'Psychotic Features',
+		description: 'Evaluating for schizophrenia spectrum conditions, brief psychotic episodes, and psychosis-like features in other disorders.',
+	},
+	{
+		title: 'Treatment Planning',
+		description: 'Providing the clinical documentation needed for specialized therapy, medication adjustments, or workplace and academic accommodations.',
+	},
 ];
 
 const facts = [
 	{ label: 'Format', value: 'Remote evaluation' },
-	{ label: 'Reach', value: '43+ states via PSYPACT' },
-	{ label: 'Turnaround', value: 'Evaluation and report within one week' },
+	{ label: 'Scope', value: 'Multi-condition differential analysis' },
+	{ label: 'Turnaround', value: 'Report within one week' },
 	{ label: 'Rate', value: '$1,500 private-pay' },
 ];
 ---
 
 <Layout
 	title="Diagnostic Clarification | Morning Tide Consulting and Collective"
-	description="Remote diagnostic clarification evaluations across 43+ PSYPACT states with a polished report typically completed within one week."
+	description="Remote diagnostic clarification evaluations for complex or unclear clinical pictures. Specializing in overlapping diagnoses, comorbidity, and treatment planning across 40+ PSYPACT states."
 >
 	<main class="px-6 py-16 lg:px-10 lg:py-20">
 		<section class="mx-auto max-w-6xl space-y-8">
 			<p class="eyebrow">Psychological Evaluations</p>
 			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Diagnostic clarification for complex or unclear clinical pictures.</h1>
 			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
-				When the clinical picture feels complex, MCC provides remote diagnostic clarification across 43+ PSYPACT states with a report typically completed within one week.
+				When symptoms overlap and answers are unclear, a structured evaluation provides the evidence-based lens needed to move forward. Dr. Cornett spent her graduate training specializing in severe and persistent mental illness — including borderline personality disorder, bipolar disorder, and schizophrenia spectrum conditions — giving her the clinical depth to untangle complex presentations where prior diagnoses have not fully fit.
 			</p>
+		</section>
+
+		<section class="mx-auto mt-12 max-w-6xl space-y-6">
+			<div class="section-shell rounded-[2rem] p-8 lg:p-10">
+				<p class="eyebrow">Areas of Clarification</p>
+				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">When the clinical picture needs sharper focus.</h2>
+				<div class="mt-8 grid gap-4 sm:grid-cols-2">
+					{areas.map((item) => (
+						<div class="rounded-2xl border border-(--color-line-soft) bg-(--color-surface) p-5">
+							<p class="text-sm font-semibold text-(--color-ink)">{item.title}</p>
+							<p class="mt-2 text-sm leading-6 text-(--color-muted)">{item.description}</p>
+						</div>
+					))}
+				</div>
+			</div>
 		</section>
 
 		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[1fr_0.95fr]">
@@ -59,11 +94,11 @@ const facts = [
 			<div class="grid gap-8 lg:grid-cols-3">
 				<div>
 					<p class="eyebrow">Private-Pay Only</p>
-					<p class="mt-4 text-base leading-8 text-(--color-muted)">MCC does not accept insurance for evaluations. The evaluation rate is $1,500.</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Insurance is not accepted. Self-pay ensures the assessment is driven by clinical need — not by what a payer will authorize.</p>
 				</div>
 				<div>
 					<p class="eyebrow">Privacy</p>
-					<p class="mt-4 text-base leading-8 text-(--color-muted)">Private-pay evaluations keep mental health information private and allow the assessment to stay focused on clinical clarity.</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Private-pay evaluations keep sensitive diagnostic information between you and your evaluator — critical for complex and personal clinical questions.</p>
 				</div>
 				<div>
 					<p class="eyebrow">Next Step</p>

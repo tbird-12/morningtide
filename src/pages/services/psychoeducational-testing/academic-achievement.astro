@@ -1,56 +1,78 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 
+const assessmentAreas = [
+	{ title: 'Reading', desc: 'Word reading, reading fluency, and reading comprehension — from basic decoding through inferential understanding.' },
+	{ title: 'Mathematics', desc: 'Math computation, problem-solving, and numerical reasoning across grade-appropriate content.' },
+	{ title: 'Written Language', desc: 'Spelling, sentence composition, essay writing, and the ability to organize and produce written text efficiently.' },
+	{ title: 'Oral Language', desc: 'Listening comprehension, oral expression, and the ability to process and communicate verbal information.' },
+];
+
 const referralQuestions = [
-	'Need to understand current academic performance across core domains',
-	'Need for formal documentation to support school planning and recommendations',
-	'Need for a premium but efficient evaluation process that does not drag on for weeks',
+	'Where does my child\'s academic performance stand relative to grade-level expectations?',
+	'Are there specific academic domains where support, accommodations, or intervention is needed?',
+	'Do we have the formal documentation needed for school planning, IEP eligibility, or 504 requests?',
+	'Is academic underperformance a skill issue, a processing issue, or both?',
 ];
 
 const facts = [
 	{ label: 'Format', value: 'Remote evaluation' },
-	{ label: 'Reach', value: '43+ states via PSYPACT' },
-	{ label: 'Turnaround', value: 'Evaluation and report within one week' },
+	{ label: 'Domains', value: 'Reading, math, writing & oral language' },
+	{ label: 'Turnaround', value: 'Report within one week' },
 	{ label: 'Rate', value: '$1,500 private-pay' },
 ];
 ---
 
 <Layout
 	title="Academic Achievement Testing | Morning Tide Consulting and Collective"
-	description="Remote academic achievement testing across 43+ PSYPACT states with a polished report typically completed within one week."
+	description="Remote academic achievement testing across reading, math, writing, and oral language. Formal documentation for school planning with reports delivered within one week."
 >
 	<main class="px-6 py-16 lg:px-10 lg:py-20">
 		<section class="mx-auto max-w-6xl space-y-8">
 			<p class="eyebrow">Psychoeducational Evaluations</p>
-			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Academic achievement testing with clear reporting.</h1>
+			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Academic achievement testing that gives families and schools a clear baseline.</h1>
 			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
-				A clearer picture of academic performance through a remote process that is easy to access and typically finished with a full report within one week.
+				Standardized achievement testing across reading, math, writing, and oral language — providing the formal data families and schools need to understand current performance, identify gaps, and build effective academic support plans.
 			</p>
 		</section>
 
-		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[1fr_0.95fr]">
+		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-2">
 			<div class="section-shell rounded-[2rem] p-8">
-				<p class="eyebrow">Common Referral Questions</p>
-				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">A straightforward route to meaningful academic data.</h2>
-				<ul class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
-					{referralQuestions.map((item) => (
-						<li class="flex gap-3">
-							<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span>
-							<span>{item}</span>
-						</li>
-					))}
-				</ul>
-			</div>
-
-			<div class="rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
-				<p class="eyebrow">At a Glance</p>
-				<div class="mt-6 grid gap-4 sm:grid-cols-2">
-					{facts.map((fact) => (
-						<div class="premium-card rounded-[1.5rem] p-5">
-							<p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-(--color-brand)">{fact.label}</p>
-							<p class="mt-3 text-base font-semibold text-(--color-ink)">{fact.value}</p>
+				<p class="eyebrow">What We Assess</p>
+				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">Performance data across every core academic domain.</h2>
+				<div class="mt-6 grid gap-4">
+					{assessmentAreas.map((area) => (
+						<div class="premium-card rounded-[1.5rem] p-4">
+							<p class="text-sm font-semibold text-(--color-ink)">{area.title}</p>
+							<p class="mt-1 text-sm leading-6 text-(--color-muted)">{area.desc}</p>
 						</div>
 					))}
+				</div>
+			</div>
+
+			<div class="space-y-6">
+				<div class="rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+					<p class="eyebrow">Common Referral Questions</p>
+					<ul class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
+						{referralQuestions.map((item) => (
+							<li class="flex gap-3">
+								<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span>
+								<span>{item}</span>
+							</li>
+						))}
+					</ul>
+				</div>
+
+				<div class="rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+					<p class="eyebrow">At a Glance</p>
+					<div class="mt-6 grid gap-4 sm:grid-cols-2">
+						{facts.map((fact) => (
+							<div class="premium-card rounded-[1.5rem] p-5">
+								<p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-(--color-brand)">{fact.label}</p>
+								<p class="mt-3 text-base font-semibold text-(--color-ink)">{fact.value}</p>
+							</div>
+						))}
+					</div>
 				</div>
 			</div>
 		</section>
@@ -59,11 +81,11 @@ const facts = [
 			<div class="grid gap-8 lg:grid-cols-3">
 				<div>
 					<p class="eyebrow">Private-Pay Only</p>
-					<p class="mt-4 text-base leading-8 text-(--color-muted)">MCC does not accept insurance for evaluations. The evaluation rate is $1,500.</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Insurance typically does not cover academic achievement testing. Self-pay makes scheduling simple — no pre-approval and no limits on which domains are assessed. HSA/FSA accepted; superbills provided.</p>
 				</div>
 				<div>
-					<p class="eyebrow">Privacy</p>
-					<p class="mt-4 text-base leading-8 text-(--color-muted)">Private-pay evaluations keep educational and mental health records private while helping the process move efficiently.</p>
+					<p class="eyebrow">Actionable Results</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Reports include grade-equivalent scores, percentile rankings, and specific recommendations for teachers, tutors, and special education teams.</p>
 				</div>
 				<div>
 					<p class="eyebrow">Next Step</p>

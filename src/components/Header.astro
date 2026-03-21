@@ -1,6 +1,16 @@
 ---
 const navigation = [
 	{
+		label: 'About',
+		href: '/about-clinician',
+		children: [
+			{ label: 'Clinician', href: '/about-clinician' },
+			{ label: 'FAQ', href: '/faq' },
+			{ label: 'Investment', href: '/services/investment' },
+			{ label: 'Locations', href: '/locations' },	
+		],
+	},
+	{
 		label: 'Evaluations',
 		href: '/services',
 		children: [
@@ -10,15 +20,7 @@ const navigation = [
 	},
 	{ label: 'Consultations', href: '/services/billing-and-credentialing-consultation' },
 	{ label: 'Education', href: '/services/ceu-trainings' },
-	{
-		label: 'About',
-		href: '/about-clinician',
-		children: [
-			{ label: 'Investment', href: '/services/investment' },
-			{ label: 'Locations', href: '/locations' },
-			{ label: 'Clinician', href: '/about-clinician' },
-		],
-	},
+	
 ];
 ---
 

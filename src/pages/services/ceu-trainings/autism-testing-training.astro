@@ -1,21 +1,82 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+
+const objectives = [
+	'Administer and score the ADOS-2 and interpret results within a broader diagnostic framework',
+	'Understand the MIGDAS-2 and its role in capturing qualitative, real-world autistic experience',
+	'Identify autism presentations in women, girls, and high-masking individuals who may not meet stereotypical criteria',
+	'Differentiate autism from social anxiety, ADHD, complex PTSD, and other conditions with overlapping features',
+	'Apply neuro-affirming language and frameworks in diagnostic writing and feedback sessions',
+	'Develop comprehensive, strengths-based reports that inform treatment planning and self-understanding',
+];
+
+const facts = [
+	{ label: 'Audience', value: 'Psychologists, LPAs, LPCAs, therapists' },
+	{ label: 'Format', value: 'Live virtual or on-site' },
+	{ label: 'Focus', value: 'Autism evaluation & gold-standard tools' },
+	{ label: 'Presenter', value: 'Dr. Heather Cornett, Ph.D.' },
+];
 ---
 
 <Layout
 	title="Autism Testing Training | Morning Tide Consulting and Collective"
-	description="CEU training on autism assessment and evaluation for mental health providers."
+	description="Continuing education training on autism assessment for clinicians, covering ADOS-2, MIGDAS-2, high-masking presentations, and neuro-affirming diagnostic practices. Led by Dr. Heather Cornett."
 >
-	<main class="min-h-screen px-6 py-16 lg:px-10">
-		<section class="mx-auto max-w-3xl space-y-6">
-			<p class="text-sm font-semibold uppercase tracking-[0.28em] text-(--color-brand)">CEU Trainings</p>
-			<h1 class="text-4xl leading-tight text-(--color-ink) sm:text-5xl">Autism Testing Training</h1>
-			<p class="text-lg leading-8 text-(--color-muted)">
-				Replace this section with your autism testing training content, learning objectives, CE credit hours, format, and registration details for mental health providers.
+	<main class="px-6 py-16 lg:px-10 lg:py-20">
+		<section class="mx-auto max-w-6xl space-y-8">
+			<p class="eyebrow">Continuing Education</p>
+			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Autism evaluation training that centers the people behind the diagnosis.</h1>
+			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
+				A comprehensive training for clinicians who want to move beyond surface-level autism screening. This course covers gold-standard assessment tools like the ADOS-2 and MIGDAS-2, and specifically addresses high-masking presentations in women, girls, and adults who were missed in childhood.
 			</p>
-			<a class="inline-flex rounded-full border border-(--color-line) bg-(--color-surface) px-5 py-2 text-sm font-semibold text-(--color-ink)" href="/services/ceu-trainings">
-				Back to CEU Trainings
-			</a>
+		</section>
+
+		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[1fr_0.95fr]">
+			<div class="section-shell rounded-[2rem] p-8">
+				<p class="eyebrow">Learning Objectives</p>
+				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">What you will learn.</h2>
+				<ul class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
+					{objectives.map((item) => (
+						<li class="flex gap-3">
+							<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span>
+							<span>{item}</span>
+						</li>
+					))}
+				</ul>
+			</div>
+
+			<div class="rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+				<p class="eyebrow">Training Details</p>
+				<div class="mt-6 grid gap-4 sm:grid-cols-2">
+					{facts.map((fact) => (
+						<div class="premium-card rounded-[1.5rem] p-5">
+							<p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-(--color-brand)">{fact.label}</p>
+							<p class="mt-3 text-base font-semibold text-(--color-ink)">{fact.value}</p>
+						</div>
+					))}
+				</div>
+				<div class="mt-6 rounded-2xl border border-(--color-line-soft) bg-(--color-section-tint) p-5">
+					<p class="text-sm font-semibold text-(--color-ink)">Neuro-Affirming Approach</p>
+					<p class="mt-2 text-sm leading-6 text-(--color-muted)">Dr. Cornett's trainings emphasize viewing autism as a neurological difference — not a deficit. Clinicians learn to write reports that validate identity, highlight strengths, and support self-advocacy alongside clinical recommendations.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="mx-auto mt-10 max-w-6xl rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+			<div class="grid gap-8 lg:grid-cols-3">
+				<div>
+					<p class="eyebrow">Who This Is For</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Clinicians who conduct or plan to conduct autism evaluations — especially those working with adults, women, and individuals whose autism has gone unrecognized.</p>
+				</div>
+				<div>
+					<p class="eyebrow">What You Get</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Hands-on training with gold-standard tools, case consultation examples, and a neuro-affirming framework you can integrate into your practice immediately.</p>
+				</div>
+				<div>
+					<p class="eyebrow">Inquire</p>
+					<a class="mt-4 inline-flex rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-white shadow-(--shadow-brand)" href="/#contact">Request autism testing training</a>
+				</div>
+			</div>
 		</section>
 	</main>
 </Layout>

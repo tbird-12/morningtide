@@ -2,29 +2,38 @@
 import Layout from '../../layouts/Layout.astro';
 
 const investmentRows = [
-	{ service: 'Psychological Evaluations', rate: '$1,500', note: 'Private-pay only' },
-	{ service: 'Psychoeducational Evaluations', rate: '$1,500', note: 'Private-pay only' },
+	{ service: 'Psychological Evaluations', rate: '$1,500', note: 'ADHD, autism, diagnostic clarification, learning disorders, personality' },
+	{ service: 'Psychoeducational Evaluations', rate: '$1,500', note: 'Dyslexia, learning disorders, giftedness, 2E, academic achievement' },
+	{ service: 'Clinician Consultation', rate: 'By inquiry', note: 'Billing, credentialing, practice operations' },
+	{ service: 'CEU Trainings', rate: 'By inquiry', note: 'ADHD assessment, autism evaluation, custom topics' },
+];
+
+const paymentMethods = [
+	'Credit and debit cards',
+	'HSA and FSA cards accepted',
+	'Zelle',
+	'Venmo',
 ];
 ---
 
 <Layout
 	title="Investment | Morning Tide Consulting and Collective"
-	description="Service investment details for MCC evaluations, consultations, and education offerings."
+	description="Transparent pricing for psychological and psychoeducational evaluations, clinician consultations, and continuing education trainings. Self-pay only — no insurance."
 >
 	<main class="px-6 py-16 lg:px-10 lg:py-20">
 		<section class="mx-auto max-w-6xl space-y-8">
 			<p class="eyebrow">Investment</p>
-			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Transparent pricing for evaluation services.</h1>
+			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Transparent pricing. No insurance. No surprises.</h1>
 			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
-				MCC maintains transparent pricing and a private-pay model to support privacy, quality control, and efficient delivery timelines.
+				Morning Tide operates as a private-pay practice. This model protects your privacy, eliminates insurance-driven limitations on evaluation scope, and allows reports to be completed within one week rather than months.
 			</p>
 		</section>
 
-		<section class="mx-auto mt-12 max-w-6xl rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
-			<p class="eyebrow">Evaluation Investment</p>
+		<section class="mx-auto mt-12 max-w-6xl rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+			<p class="eyebrow">Service Investment</p>
 			<div class="mt-6 grid gap-4">
 				{investmentRows.map((row) => (
-					<div class="premium-card rounded-3xl p-5 sm:grid sm:grid-cols-[1fr_auto_auto] sm:items-center sm:gap-4">
+					<div class="premium-card rounded-[1.5rem] p-5 sm:grid sm:grid-cols-[1fr_auto_1fr] sm:items-center sm:gap-4">
 						<p class="text-base font-semibold text-(--color-ink)">{row.service}</p>
 						<p class="text-base font-semibold text-(--color-accent)">{row.rate}</p>
 						<p class="text-sm text-(--color-muted)">{row.note}</p>
@@ -33,19 +42,49 @@ const investmentRows = [
 			</div>
 		</section>
 
-		<section class="mx-auto mt-10 max-w-6xl rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+		<section class="mx-auto mt-10 grid max-w-6xl gap-6 lg:grid-cols-2">
+			<div class="section-shell rounded-[2rem] p-8">
+				<p class="eyebrow">Why Private-Pay</p>
+				<h2 class="mt-4 text-3xl leading-none text-(--color-ink)">Better evaluations, faster results, complete privacy.</h2>
+				<ul class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
+					<li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span><span>No insurance company dictating what gets tested or how the report reads</span></li>
+					<li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span><span>Sensitive diagnostic information stays out of insurance databases</span></li>
+					<li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span><span>Reports are completed within one week — not months</span></li>
+					<li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span><span>HSA and FSA cards are accepted, making evaluations reimbursable through pre-tax funds</span></li>
+				</ul>
+			</div>
+
+			<div class="rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+				<p class="eyebrow">Payment Methods</p>
+				<h2 class="mt-4 text-3xl leading-none text-(--color-ink)">Flexible payment options.</h2>
+				<ul class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
+					{paymentMethods.map((method) => (
+						<li class="flex gap-3">
+							<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span>
+							<span>{method}</span>
+						</li>
+					))}
+				</ul>
+				<div class="mt-6 rounded-2xl border border-(--color-line-soft) bg-(--color-section-tint) p-5">
+					<p class="text-sm font-semibold text-(--color-ink)">Payment Plans</p>
+					<p class="mt-2 text-sm leading-6 text-(--color-muted)">Payment plans may be available on a case-by-case basis. Contact us to discuss options before your evaluation.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="mx-auto mt-10 max-w-6xl rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
 			<div class="grid gap-8 lg:grid-cols-3">
 				<div>
-					<p class="eyebrow">Insurance</p>
-					<p class="mt-4 text-base leading-8 text-(--color-muted)">MCC does not accept insurance for evaluations.</p>
+					<p class="eyebrow">Superbills</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">A superbill with CPT codes and diagnostic information is provided after each evaluation. Many clients submit these to their insurance for partial out-of-network reimbursement.</p>
 				</div>
 				<div>
-					<p class="eyebrow">Privacy</p>
-					<p class="mt-4 text-base leading-8 text-(--color-muted)">Private-pay supports greater privacy around sensitive mental health information.</p>
+					<p class="eyebrow">What Is Included</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Each evaluation includes a clinical intake, comprehensive testing session, a detailed written report, and a feedback session to review findings and recommendations.</p>
 				</div>
 				<div>
-					<p class="eyebrow">Consultations and Education</p>
-					<p class="mt-4 text-base leading-8 text-(--color-muted)">Use this section to add current consultation and education rates or package structures.</p>
+					<p class="eyebrow">Questions</p>
+					<a class="mt-4 inline-flex rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-white shadow-(--shadow-brand)" href="/#contact">Ask about pricing</a>
 				</div>
 			</div>
 		</section>

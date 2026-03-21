@@ -4,12 +4,12 @@ import Layout from '../layouts/Layout.astro';
 const pillars = [
 	{
 		title: 'Psychological Evaluations',
-		description: 'Remote assessment for diagnostic clarification, attention concerns, emotional functioning, and complex presentations — with reports typically ready within one week.',
+		description: 'In-depth remote evaluations for ADHD, Autism, personality disorders, diagnostic clarification, and complex clinical presentations — led by a psychologist who specializes in high-masking and late-identified individuals.',
 		href: '/services/psychological-evaluations',
 	},
 	{
 		title: 'Psychoeducational Evaluations',
-		description: 'Remote testing that clarifies learning profiles, academic strengths, and the recommendations families and schools need to move forward.',
+		description: 'Remote testing for dyslexia, learning disorders, giftedness, twice-exceptional profiles, and academic achievement — with clear, school-ready recommendations delivered on a rapid timeline.',
 		href: '/services/psychoeducational-testing',
 	},
 ];
@@ -17,12 +17,12 @@ const pillars = [
 const clinicianOffers = [
 	{
 		title: 'Consultations',
-		description: 'Guidance for clinicians navigating insurance billing, credentialing, and the operational side of practice.',
+		description: 'One-on-one guidance for clinicians navigating insurance billing, credentialing, paneling strategy, and the operational side of building a sustainable practice.',
 		href: '/services/billing-and-credentialing-consultation',
 	},
 	{
 		title: 'Education',
-		description: 'Continuing education for agencies, group practices, and clinicians who want training grounded in real clinical work.',
+		description: 'Continuing education for agencies, group practices, and clinicians who want substantive, practice-grounded training in ADHD assessment, autism evaluation, and testing best practices.',
 		href: '/services/ceu-trainings',
 	},
 ];
@@ -30,42 +30,48 @@ const clinicianOffers = [
 const process = [
 	{
 		step: '01',
-		title: 'Initial Consultation',
-		text: 'We begin with the referral question, relevant history, PSYPACT eligibility when applicable, and the decisions the evaluation needs to support.',
+		title: 'Clinical Intake',
+		text: 'A deep dive into the referral question, developmental history, relevant records, and the decisions the evaluation needs to support — along with PSYPACT eligibility confirmation.',
 	},
 	{
 		step: '02',
-		title: 'Comprehensive Assessment',
-		text: 'Testing, interviews, record review, and case conceptualization — selected based on your referral question, not a fixed template.',
+		title: 'Comprehensive Testing',
+		text: 'A tailored battery of cognitive, executive functioning, and adaptive assessments — including gold-standard tools like ADOS-2, MIGDAS-2, and continuous performance testing when indicated.',
 	},
 	{
 		step: '03',
 		title: 'Integrated Report',
-		text: 'Findings are written into a clear report with thoughtful interpretation and practical recommendations, typically within one week.',
+		text: 'Findings are synthesized into a detailed report with integrated clinical interpretation, differential diagnosis, and practical, actionable recommendations — delivered on a rapid timeline.',
 	},
 	{
 		step: '04',
-		title: 'Feedback and Next Steps',
-		text: 'A feedback session ensures results are understandable, actionable, and aligned with the client’s next decisions.',
+		title: 'Feedback Session',
+		text: 'A dedicated feedback session to review results, answer questions, and ensure the diagnosis and recommendations are understood, actionable, and aligned with next steps.',
 	},
 ];
 
 ---
 
 <Layout
-	title="Morning Tide Consulting and Collective | MCC"
-	description="MCC offers premium remote psychological and psychoeducational evaluations across 43+ PSYPACT states, often completed with a polished report within one week."
+	title="Morning Tide Consulting and Collective | Premium Remote Psychological Evaluations"
+	description="MCC offers premium self-pay psychological and psychoeducational evaluations across 40+ PSYPACT states — specializing in ADHD, Autism, learning disorders, and complex diagnostic cases. Reports within one week."
 >
 	<main class="snap-y snap-mandatory">
 		<section class="relative flex min-h-screen snap-start items-center overflow-hidden px-6 py-20 lg:px-10">
 			<div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,var(--color-brand-soft),transparent_32%),radial-gradient(circle_at_85%_12%,var(--color-accent-soft),transparent_24%)]"></div>
 			<div class="mx-auto flex max-w-4xl flex-col items-center text-center">
+				<!-- IMAGE PLACEHOLDER: Hero/brand image — replace src with actual image path -->
+				<div class="mb-8 w-28 overflow-hidden rounded-3xl border border-(--color-line-soft) bg-(--color-section-tint) shadow-(--shadow-soft)">
+					<div class="flex aspect-square items-center justify-center text-center text-xs text-(--color-muted)">
+						<p>Logo or<br />brand image</p>
+					</div>
+				</div>
 				<p class="eyebrow">Morning Tide Consulting and Collective</p>
 				<h1 class="mt-8 text-wrap-balance text-5xl leading-none text-(--color-ink) sm:text-6xl lg:text-7xl">
-					Thorough evaluations, delivered remotely across 43+ states.
+					Premium evaluations for neurodivergent individuals, delivered remotely across 40+ states.
 				</h1>
 				<p class="mt-8 max-w-2xl text-lg leading-8 text-(--color-muted) sm:text-xl">
-					Remote psychological and psychoeducational evaluations with reports typically finished within one week — across 43+ PSYPACT states.
+					Self-pay psychological and psychoeducational evaluations specializing in ADHD, Autism, learning disorders, and complex diagnostic clarification — with reports typically completed within one week.
 				</p>
 				<div class="mt-10 flex flex-wrap justify-center gap-4">
 					<a class="inline-flex items-center rounded-full bg-(--color-accent) px-6 py-3 text-sm font-semibold text-white shadow-(--shadow-brand) hover:-translate-y-0.5" href="/services">
@@ -84,7 +90,7 @@ const process = [
 					<p class="eyebrow">Signature Services</p>
 					<h2 class="text-4xl leading-none text-(--color-ink) sm:text-5xl">Evaluations are the core of this practice.</h2>
 					<p class="text-lg leading-8 text-(--color-muted)">
-						Psychological and psychoeducational evaluations — remote, available across 43+ PSYPACT states, and typically completed with a report within one week.
+						A self-pay evaluation practice built around clinical depth, not volume. Every assessment is personally conducted by Dr. Heather Cornett — a licensed psychologist specializing in neurodivergent individuals whose needs have gone unrecognized or whose diagnoses have never fully fit.
 					</p>
 				</div>
 				<div class="grid gap-6 lg:grid-cols-2">
@@ -108,7 +114,7 @@ const process = [
 					<p class="eyebrow">For Clinicians</p>
 					<h2 class="text-4xl leading-none text-(--color-ink) sm:text-5xl">Consulting and training for fellow clinicians.</h2>
 					<p class="text-lg leading-8 text-(--color-muted)">
-						Beyond evaluations, MCC supports clinicians with hands-on consulting and continuing education grounded in practice.
+						Beyond evaluations, MCC supports clinicians with hands-on consulting and continuing education — grounded in real-world practice experience running a multi-state psychological testing practice.
 					</p>
 				</div>
 				<div class="grid gap-6 lg:grid-cols-2">
@@ -130,7 +136,7 @@ const process = [
 					<p class="eyebrow">The Process</p>
 					<h2 class="text-4xl leading-none text-(--color-ink) sm:text-5xl">A clear process from start to finish.</h2>
 					<p class="text-lg leading-8 text-(--color-muted)">
-						Here’s how evaluations typically work, from the first conversation to your final report.
+						Every evaluation follows a structured four-step process — from intake through a detailed feedback session. No assembly lines, no cookie-cutter reports.
 					</p>
 				</div>
 				<div class="mt-12 grid gap-5 lg:grid-cols-4">
@@ -145,6 +151,25 @@ const process = [
 			</div>
 		</section>
 
+		<section class="flex snap-start items-center px-6 py-20 lg:px-10">
+			<div class="mx-auto max-w-6xl rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft) sm:p-10">
+				<div class="grid gap-8 lg:grid-cols-3">
+					<div>
+						<p class="eyebrow">Self-Pay Practice</p>
+						<p class="mt-4 text-base leading-8 text-(--color-muted)">MCC is a private-pay practice. Insurance is not accepted. This model ensures faster turnaround, greater privacy, and undivided clinical attention for every client.</p>
+					</div>
+					<div>
+						<p class="eyebrow">Why Private-Pay</p>
+						<p class="mt-4 text-base leading-8 text-(--color-muted)">Without insurance constraints, evaluations are driven entirely by clinical need — not by what a payer will authorize. Sensitive diagnostic information remains between you and your evaluator.</p>
+					</div>
+					<div>
+						<p class="eyebrow">Expedited Timeline</p>
+						<p class="mt-4 text-base leading-8 text-(--color-muted)">Self-pay clients receive polished reports days after testing — not the months-long waits common with insurance-based practices.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<section id="contact" class="flex min-h-screen snap-start items-center px-6 py-20 lg:px-10">
 			<div class="section-shell mx-auto max-w-6xl rounded-4xl px-8 py-10 sm:px-10 sm:py-12">
 				<div class="grid gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-center">
@@ -152,17 +177,17 @@ const process = [
 						<p class="eyebrow">Get in Touch</p>
 						<h2 class="text-4xl leading-none text-(--color-ink) sm:text-5xl">Ready to get started?</h2>
 						<p class="max-w-2xl text-lg leading-8 text-(--color-muted)">
-							Whether you’re looking for an evaluation, a consultation, or continuing education, we’d like to hear from you.
+							Whether you need a comprehensive evaluation, a clinician consultation, or continuing education — we'd like to hear from you.
 						</p>
 					</div>
 					<div class="rounded-[1.75rem] border border-(--color-line-soft) bg-(--color-surface) p-6 shadow-(--shadow-soft)">
-						<p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-(--color-brand)">A few things to consider</p>
+						<p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-(--color-brand)">Before you reach out</p>
 						<ul class="mt-5 space-y-3 text-sm leading-7 text-(--color-muted)">
 							<li>What questions are you hoping the evaluation will answer?</li>
 							<li>Who will be using the report and recommendations?</li>
-							<li>Are you located in one of the 43+ PSYPACT states served remotely?</li>
+							<li>Are you located in one of the 40+ PSYPACT states served remotely?</li>
 							<li>Are there academic, diagnostic, or treatment planning deadlines?</li>
-							<li>If you are a clinician, what billing, insurance, or training support are you looking for?</li>
+							<li>MCC is a self-pay practice — insurance is not accepted for evaluations.</li>
 						</ul>
 						<a class="mt-6 inline-flex rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-white shadow-(--shadow-brand)" href="/services">
 							View services

@@ -1,54 +1,102 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 
+const giftednessAreas = [
+	{ title: 'Cognitive Ability (IQ)', desc: 'Full-scale and domain-specific intelligence testing to identify overall ability level and cognitive profile.' },
+	{ title: 'Verbal Reasoning', desc: 'Language-based reasoning, vocabulary knowledge, and the ability to think conceptually with words.' },
+	{ title: 'Nonverbal / Fluid Reasoning', desc: 'Pattern recognition, abstract logic, and problem-solving with novel information — independent of language skills.' },
+	{ title: 'Processing Speed & Working Memory', desc: 'Cognitive efficiency measures that help explain how quickly and effectively a student processes and retains information.' },
+];
+
+const twiceExceptionalAreas = [
+	{ title: 'Academic Achievement', desc: 'Standardized achievement testing to identify specific underperformance areas that a high IQ may be masking.' },
+	{ title: 'Processing Skills', desc: 'Working memory, processing speed, and executive functioning to explain the gap between potential and output.' },
+	{ title: 'Profile Integration', desc: 'Clinical analysis of how giftedness and learning differences interact — and how one can camouflage the other.' },
+];
+
 const referralQuestions = [
-	'Questions about gifted identification or advanced academic placement',
-	'Need to clarify whether high ability is present alongside learning challenges',
-	'Need for a concise, polished report for school decision-making',
+	'Does my child qualify for gifted programming or advanced academic placement?',
+	'Is high ability present alongside learning or attention difficulties that mask true potential?',
+	'Why is my child gifted but still struggling in school?',
+	'Is there a learning disability hiding behind strong compensatory skills?',
+	'What does a school plan look like when a child needs both enrichment and support?',
+	"How does my child's cognitive profile compare to age-level expectations?",
 ];
 
 const facts = [
 	{ label: 'Format', value: 'Remote evaluation' },
-	{ label: 'Reach', value: '43+ states via PSYPACT' },
-	{ label: 'Turnaround', value: 'Evaluation and report within one week' },
+	{ label: 'Focus', value: 'Full-scale cognitive profile (IQ)' },
+	{ label: 'Turnaround', value: 'Report within one week' },
 	{ label: 'Rate', value: '$1,500 private-pay' },
 ];
 ---
 
 <Layout
-	title="Giftedness Testing | Morning Tide Consulting and Collective"
-	description="Remote giftedness evaluations across 43+ PSYPACT states with a polished report typically completed within one week."
+	title="Giftedness & Twice-Exceptional (2E) Testing | Morning Tide Consulting and Collective"
+	description="Remote giftedness and twice-exceptional evaluations with full cognitive ability testing, achievement analysis, and school-ready reports delivered within one week across 40+ PSYPACT states."
 >
 	<main class="px-6 py-16 lg:px-10 lg:py-20">
 		<section class="mx-auto max-w-6xl space-y-8">
 			<p class="eyebrow">Psychoeducational Evaluations</p>
-			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Giftedness evaluations with fast delivery and school-ready results.</h1>
+			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Giftedness and twice-exceptional evaluations that capture the full cognitive picture.</h1>
 			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
-				For families who want an evaluation that is easy to navigate, remote across 43+ PSYPACT states, and typically completed with a report within one week.
+				Gifted identification is more than a single IQ number. These evaluations examine verbal reasoning, nonverbal ability, processing speed, and working memory to give families and schools a complete cognitive profile. When giftedness co-occurs with a learning difference — what clinicians call "twice-exceptional" or 2E — the evaluation extends to disentangle both sides so nothing is missed.
 			</p>
 		</section>
 
-		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[1fr_0.95fr]">
+		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-2">
 			<div class="section-shell rounded-[2rem] p-8">
-				<p class="eyebrow">Common Referral Questions</p>
-				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">A faster route to educational clarity for advanced learners.</h2>
-				<ul class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
-					{referralQuestions.map((item) => (
-						<li class="flex gap-3">
-							<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span>
-							<span>{item}</span>
-						</li>
+				<p class="eyebrow">Cognitive Assessment</p>
+				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">A cognitive profile, not just a cutoff score.</h2>
+				<div class="mt-6 grid gap-4">
+					{giftednessAreas.map((area) => (
+						<div class="premium-card rounded-[1.5rem] p-4">
+							<p class="text-sm font-semibold text-(--color-ink)">{area.title}</p>
+							<p class="mt-1 text-sm leading-6 text-(--color-muted)">{area.desc}</p>
+						</div>
 					))}
-				</ul>
+				</div>
 			</div>
 
-			<div class="rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
-				<p class="eyebrow">At a Glance</p>
-				<div class="mt-6 grid gap-4 sm:grid-cols-2">
-					{facts.map((fact) => (
-						<div class="premium-card rounded-[1.5rem] p-5">
-							<p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-(--color-brand)">{fact.label}</p>
-							<p class="mt-3 text-base font-semibold text-(--color-ink)">{fact.value}</p>
+			<div class="space-y-6">
+				<div class="rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+					<p class="eyebrow">Common Referral Questions</p>
+					<ul class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
+						{referralQuestions.map((item) => (
+							<li class="flex gap-3">
+								<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span>
+								<span>{item}</span>
+							</li>
+						))}
+					</ul>
+				</div>
+
+				<div class="rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+					<p class="eyebrow">At a Glance</p>
+					<div class="mt-6 grid gap-4 sm:grid-cols-2">
+						{facts.map((fact) => (
+							<div class="premium-card rounded-[1.5rem] p-5">
+								<p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-(--color-brand)">{fact.label}</p>
+								<p class="mt-3 text-base font-semibold text-(--color-ink)">{fact.value}</p>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="mx-auto mt-12 max-w-6xl space-y-6">
+			<div class="section-shell rounded-[2rem] p-8 lg:p-10">
+				<p class="eyebrow">Twice-Exceptional (2E) Assessment</p>
+				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">Disentangling giftedness from learning difference.</h2>
+				<p class="mt-5 max-w-3xl text-base leading-8 text-(--color-muted)">
+					Twice-exceptional students are among the most misunderstood learners. Their giftedness can mask learning disabilities, and their learning disabilities can suppress the expression of their giftedness. 2E students often test "average" — because their gifts pull scores up while their disabilities pull scores down. This evaluation captures the full range so families and schools can support the whole profile.
+				</p>
+				<div class="mt-8 grid gap-4 sm:grid-cols-3">
+					{twiceExceptionalAreas.map((area) => (
+						<div class="rounded-2xl border border-(--color-line-soft) bg-(--color-surface) p-5">
+							<p class="text-sm font-semibold text-(--color-ink)">{area.title}</p>
+							<p class="mt-2 text-sm leading-6 text-(--color-muted)">{area.desc}</p>
 						</div>
 					))}
 				</div>
@@ -59,15 +107,15 @@ const facts = [
 			<div class="grid gap-8 lg:grid-cols-3">
 				<div>
 					<p class="eyebrow">Private-Pay Only</p>
-					<p class="mt-4 text-base leading-8 text-(--color-muted)">MCC does not accept insurance for evaluations. The evaluation rate is $1,500.</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Gifted and 2E evaluations are rarely covered by insurance, and 2E testing requires both gifted and disability assessment — a scope insurers rarely authorize. Self-pay removes those barriers. HSA/FSA accepted; superbills provided.</p>
 				</div>
 				<div>
-					<p class="eyebrow">Privacy</p>
-					<p class="mt-4 text-base leading-8 text-(--color-muted)">Private-pay evaluations keep sensitive academic and mental health information private while keeping the process straightforward.</p>
+					<p class="eyebrow">Beyond the Number</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Reports explain the cognitive profile in context — what the scores mean for learning, engagement, and educational planning — so families and schools can make informed decisions.</p>
 				</div>
 				<div>
 					<p class="eyebrow">Next Step</p>
-					<a class="mt-4 inline-flex rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-white shadow-(--shadow-brand)" href="/#contact">Request a giftedness evaluation</a>
+					<a class="mt-4 inline-flex rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-white shadow-(--shadow-brand)" href="/#contact">Request a giftedness or 2E evaluation</a>
 				</div>
 			</div>
 		</section>

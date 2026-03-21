@@ -1,44 +1,85 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 
-const referralQuestions = [
-	'Questions about autism in adolescents or adults',
-	'Need for diagnostic clarification when prior explanations have not fit',
-	'Need for a clear written report to support treatment and next-step planning',
+const diagnosticApproach = [
+	{
+		title: 'ADOS-2',
+		description: 'The gold-standard behavioral observation tool used widely for traditional autism presentations.',
+	},
+	{
+		title: 'MIGDAS-2',
+		description: 'A sensory-based, neuro-affirming interview style ideal for high-masking individuals who may not present typically on traditional measures.',
+	},
+	{
+		title: 'Cognitive & Adaptive Assessment',
+		description: 'Comprehensive cognitive, executive functioning, and adaptive functioning assessment to capture the full clinical picture.',
+	},
+	{
+		title: 'Clinical Interview & History',
+		description: 'A deep dive into developmental milestones, medical history, and lived experiences — the foundation of every evaluation.',
+	},
 ];
 
 const facts = [
 	{ label: 'Format', value: 'Remote evaluation' },
-	{ label: 'Reach', value: '43+ states via PSYPACT' },
-	{ label: 'Turnaround', value: 'Evaluation and report within one week' },
+	{ label: 'Reach', value: '40+ states via PSYPACT' },
+	{ label: 'Testing Duration', value: '3–4 hours of comprehensive testing' },
 	{ label: 'Rate', value: '$1,500 private-pay' },
 ];
 ---
 
 <Layout
 	title="Autism Evaluations | Morning Tide Consulting and Collective"
-	description="Remote autism evaluations across 43+ PSYPACT states with a polished report typically completed within one week."
+	description="Premium self-pay remote autism evaluations specializing in high-masking adults, women, and late-identified individuals. Neuro-affirming diagnostic approach with reports within one week."
 >
 	<main class="px-6 py-16 lg:px-10 lg:py-20">
 		<section class="mx-auto max-w-6xl space-y-8">
 			<p class="eyebrow">Psychological Evaluations</p>
-			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Autism evaluations — remote, thoughtful, and efficiently delivered.</h1>
+			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Autism evaluations — neuro-affirming, thorough, and built for clarity.</h1>
 			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
-				For clients seeking a careful autism evaluation: remote access across 43+ PSYPACT states, a calm and organized process, and a report typically completed within one week.
+				Autism Spectrum Disorder is a developmental condition where the brain processes information differently. At MCC, we recognize that autism is not a mental illness — it is a vital part of a person's identity. We specialize in identifying individuals who have learned to mask their traits, ensuring they finally feel heard and understood.
 			</p>
+		</section>
+
+		<section class="mx-auto mt-12 max-w-6xl space-y-6">
+			<div class="section-shell rounded-[2rem] p-8 lg:p-10">
+				<p class="eyebrow">Diagnostic Approach</p>
+				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">A diagnosis should never rely on a single test.</h2>
+				<p class="mt-5 max-w-3xl text-base leading-8 text-(--color-muted)">
+					We provide a holistic view using gold-standard tools tailored to your needs — with particular expertise in high-masking individuals, women and girls, and adults seeking answers for the first time.
+				</p>
+				<div class="mt-8 grid gap-4 sm:grid-cols-2">
+					{diagnosticApproach.map((item) => (
+						<div class="rounded-2xl border border-(--color-line-soft) bg-(--color-surface) p-5">
+							<p class="text-sm font-semibold text-(--color-ink)">{item.title}</p>
+							<p class="mt-2 text-sm leading-6 text-(--color-muted)">{item.description}</p>
+						</div>
+					))}
+				</div>
+			</div>
 		</section>
 
 		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[1fr_0.95fr]">
 			<div class="section-shell rounded-[2rem] p-8">
-				<p class="eyebrow">Common Referral Questions</p>
-				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">Diagnostic clarity without a complicated process.</h2>
-				<ul class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
-					{referralQuestions.map((item) => (
-						<li class="flex gap-3">
-							<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span>
-							<span>{item}</span>
-						</li>
-					))}
+				<p class="eyebrow">The Testing Process</p>
+				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">Four steps to diagnostic clarity.</h2>
+				<ul class="mt-6 space-y-4 text-sm leading-7 text-(--color-muted)">
+					<li class="flex gap-3">
+						<span class="shrink-0 text-sm font-semibold text-(--color-brand)">01</span>
+						<span><strong class="text-(--color-ink)">Clinical Intake</strong> — A deep dive into developmental milestones, medical history, and lived experiences.</span>
+					</li>
+					<li class="flex gap-3">
+						<span class="shrink-0 text-sm font-semibold text-(--color-brand)">02</span>
+						<span><strong class="text-(--color-ink)">Comprehensive Testing</strong> — A 3–4 hour battery assessing cognitive, executive, and adaptive functioning.</span>
+					</li>
+					<li class="flex gap-3">
+						<span class="shrink-0 text-sm font-semibold text-(--color-brand)">03</span>
+						<span><strong class="text-(--color-ink)">Clinical Observation</strong> — Evidence-based tools including ADOS-2 and MIGDAS-2 for nuanced assessment.</span>
+					</li>
+					<li class="flex gap-3">
+						<span class="shrink-0 text-sm font-semibold text-(--color-brand)">04</span>
+						<span><strong class="text-(--color-ink)">Feedback & Report</strong> — A detailed diagnostic report with tailored recommendations for support.</span>
+					</li>
 				</ul>
 			</div>
 
@@ -52,6 +93,9 @@ const facts = [
 						</div>
 					))}
 				</div>
+				<blockquote class="mt-6 border-l-2 border-(--color-brand) pl-4 text-sm italic leading-7 text-(--color-muted)">
+					"Early identification is critical for optimizing quality of life. We ensure you don't have to wait years for answers."
+				</blockquote>
 			</div>
 		</section>
 
@@ -59,11 +103,11 @@ const facts = [
 			<div class="grid gap-8 lg:grid-cols-3">
 				<div>
 					<p class="eyebrow">Private-Pay Only</p>
-					<p class="mt-4 text-base leading-8 text-(--color-muted)">MCC does not accept insurance for evaluations. The evaluation rate is $1,500.</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">MCC does not accept insurance. Self-pay ensures faster turnaround, complete clinical autonomy, and full privacy protection for every client.</p>
 				</div>
 				<div>
-					<p class="eyebrow">Privacy</p>
-					<p class="mt-4 text-base leading-8 text-(--color-muted)">Private-pay evaluations keep sensitive mental health information between you and your evaluator, while making the process more responsive.</p>
+					<p class="eyebrow">Report Timeline</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Full reports are typically completed within one week of testing — compared to months-long wait times common with insurance-based evaluations.</p>
 				</div>
 				<div>
 					<p class="eyebrow">Next Step</p>

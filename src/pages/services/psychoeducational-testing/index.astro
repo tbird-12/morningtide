@@ -2,39 +2,38 @@
 import Layout from '../../../layouts/Layout.astro';
 
 const categories = [
-	{ label: 'Dyslexia Evaluations', href: '/services/psychoeducational-testing/dyslexia' },
-	{ label: 'Learning Disorders', href: '/services/psychoeducational-testing/learning-disorders' },
-	{ label: 'Giftedness', href: '/services/psychoeducational-testing/giftedness' },
-	{ label: 'Academic Achievement', href: '/services/psychoeducational-testing/academic-achievement' },
-	{ label: 'Twice-Exceptional Profiles', href: '/services/psychoeducational-testing/2e-testing' },
+	{ label: 'Learning Disorders & Dyslexia', href: '/services/psychoeducational-testing/learning-disorders', desc: 'SLD diagnosis, reading fluency, decoding, and cognitive-achievement analysis' },
+	{ label: 'Giftedness & Twice-Exceptional (2E)', href: '/services/psychoeducational-testing/giftedness', desc: 'Cognitive ability, gifted identification, and 2E profiles' },
+	{ label: 'Academic Achievement', href: '/services/psychoeducational-testing/academic-achievement', desc: 'Performance across core academic domains' },
 ];
 
 const valuePoints = [
-	'Remote evaluations available across 43+ PSYPACT states',
-	'Reports are typically completed within one week',
-	'Clarifies patterns in learning, processing, and academic performance',
-	'Helps families and schools move from uncertainty to strategy',
-	'Produces recommendations that are readable, specific, and usable',
+	'Standardized cognitive and achievement measures normed for remote administration',
+	'Reports that translate scores into plain-language recommendations for families and schools',
+	'Evaluation of processing speed, working memory, and other cognitive factors — not just achievement scores',
+	'Identification of specific learning disabilities with DSM-5 diagnostic precision',
+	'Reports completed promptly — ready for IEP meetings, 504 plans, and school conferences',
+	'Self-pay model ensures evaluation scope is driven by the referral question, not insurance limits',
 ];
 ---
 
 <Layout
 	title="Psychoeducational Evaluations | Morning Tide Consulting and Collective"
-	description="Remote psychoeducational evaluations across 43+ PSYPACT states for dyslexia, learning disorders, giftedness, academic achievement, and twice-exceptional profiles."
+	description="Remote psychoeducational evaluations across 40+ PSYPACT states for dyslexia, learning disorders, giftedness, academic achievement, and twice-exceptional profiles. Reports within one week."
 >
 	<main class="px-6 py-16 lg:px-10 lg:py-20">
 		<section class="mx-auto max-w-6xl space-y-8">
 			<p class="eyebrow">Psychoeducational Evaluations</p>
-			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Clarity for learning, school planning, and academic questions — with remote convenience.</h1>
+			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">In-depth learning evaluations that go beyond the score sheet.</h1>
 			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
-				These evaluations are for families and referral sources who want more than scores. The focus is on expert interpretation, clear recommendations, and a report that helps guide educational decisions — without a drawn-out process.
+				These evaluations combine cognitive testing, academic achievement measures, and clinical interpretation to answer the question families and schools actually need answered: <em>why</em> is this student struggling — and what will help? Reports are detailed, school-ready, and delivered promptly after testing.
 			</p>
 		</section>
 
 		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[0.92fr_1.08fr]">
-			<div class="section-shell rounded-4xl p-8">
-				<p class="eyebrow">What sets this apart</p>
-				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">An evaluation experience that is easy to access and efficient to complete.</h2>
+			<div class="section-shell rounded-[2rem] p-8">
+				<p class="eyebrow">What Sets This Apart</p>
+				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">Depth, speed, and clinical precision — in a single evaluation.</h2>
 				<ul class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
 					{valuePoints.map((item) => (
 						<li class="flex gap-3">
@@ -45,30 +44,28 @@ const valuePoints = [
 				</ul>
 			</div>
 
-			<div class="rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+			<div class="rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
 				<p class="eyebrow">Areas of Focus</p>
-				<div class="mt-6 grid gap-4 sm:grid-cols-2">
-			{categories.map((category) => (
-				<a
-					class="premium-card rounded-3xl px-5 py-5 text-base font-semibold text-(--color-ink)"
-					href={category.href}
-				>
-					{category.label}
-				</a>
-			))}
+				<div class="mt-6 grid gap-4">
+					{categories.map((category) => (
+						<a class="premium-card rounded-[1.5rem] px-5 py-4 block" href={category.href}>
+							<p class="text-base font-semibold text-(--color-ink)">{category.label}</p>
+							<p class="mt-1 text-sm text-(--color-muted)">{category.desc}</p>
+						</a>
+					))}
 				</div>
 			</div>
 		</section>
 
-		<section class="mx-auto mt-14 max-w-6xl rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+		<section class="mx-auto mt-10 max-w-6xl rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
 			<div class="grid gap-8 lg:grid-cols-3">
 				<div>
-					<p class="eyebrow">Who this helps</p>
-					<p class="mt-4 text-base leading-8 text-(--color-muted)">Families looking for a deeper understanding of academic strengths, challenges, and the supports most likely to help.</p>
+					<p class="eyebrow">Who This Helps</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Families seeking clarity around academic struggles, giftedness, or complex learning profiles — and schools that need diagnostic data to build meaningful support plans.</p>
 				</div>
 				<div>
-					<p class="eyebrow">What they receive</p>
-					<p class="mt-4 text-base leading-8 text-(--color-muted)">A cohesive explanation of the learning profile plus recommendations for school, home, and treatment planning — typically delivered within one week.</p>
+					<p class="eyebrow">What They Receive</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">A thorough evaluation with cognitive and achievement testing, a detailed written report with DSM-5 diagnoses where applicable, and a feedback session to review findings.</p>
 				</div>
 				<div>
 					<p class="eyebrow">Next Step</p>

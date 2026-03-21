@@ -1,44 +1,73 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 
-const referralQuestions = [
-	'Attention, organization, and follow-through concerns across settings',
-	'Questions about whether ADHD best explains the current presentation',
-	'Need for a clear report that supports treatment, school, or workplace planning',
+const whatWeMeasure = [
+	{
+		title: 'Executive Functioning',
+		description: 'Analyzing working memory, task initiation, emotional regulation, and sustained attention — beyond just "distractibility."',
+	},
+	{
+		title: 'Differential Diagnosis',
+		description: 'Carefully distinguishing ADHD from anxiety, PTSD, sensory processing differences, and mood disorders that can mimic attention difficulties.',
+	},
+	{
+		title: 'Adult & Late Diagnosis',
+		description: 'Specialized focus on high-masking adults who have navigated life without support — individuals often labeled "lazy" or "unmotivated" when they are actually struggling with an undiagnosed neuro-type.',
+	},
+	{
+		title: 'Holistic Recommendations',
+		description: 'Detailed roadmaps for workplace accommodations, educational supports, therapy planning, and treatment considerations.',
+	},
 ];
 
 const facts = [
 	{ label: 'Format', value: 'Remote evaluation' },
-	{ label: 'Reach', value: '43+ states via PSYPACT' },
-	{ label: 'Turnaround', value: 'Evaluation and report within one week' },
+	{ label: 'Reach', value: '40+ states via PSYPACT' },
+	{ label: 'Testing Duration', value: '2–4 hours of direct testing' },
 	{ label: 'Rate', value: '$1,500 private-pay' },
 ];
 ---
 
 <Layout
 	title="ADHD Evaluations | Morning Tide Consulting and Collective"
-	description="Remote ADHD evaluations across 43+ PSYPACT states with a polished report typically completed within one week."
+	description="Premium self-pay remote ADHD evaluations specializing in high-masking adults and complex presentations. Comprehensive testing with reports within one week across 40+ PSYPACT states."
 >
 	<main class="px-6 py-16 lg:px-10 lg:py-20">
 		<section class="mx-auto max-w-6xl space-y-8">
 			<p class="eyebrow">Psychological Evaluations</p>
-			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">ADHD evaluations — remote, thorough, and efficient.</h1>
+			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">ADHD evaluations — comprehensive, remote, and built for clarity.</h1>
 			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
-				For clients who want a clear answer about ADHD without a drawn-out process. MCC completes remote ADHD evaluations across 43+ PSYPACT states and typically delivers the report within one week.
+				ADHD is more than just "hyperactivity" or "distractibility." It is a complex neurological difference in how the brain manages executive functions. MCC performs thorough evaluations that identify unique cognitive strengths and rule out other conditions — not just check a box for ADHD.
 			</p>
+		</section>
+
+		<section class="mx-auto mt-12 max-w-6xl space-y-6">
+			<div class="section-shell rounded-[2rem] p-8 lg:p-10">
+				<p class="eyebrow">What We Measure</p>
+				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">A multi-dimensional approach to attention and executive functioning.</h2>
+				<div class="mt-8 grid gap-4 sm:grid-cols-2">
+					{whatWeMeasure.map((item) => (
+						<div class="rounded-2xl border border-(--color-line-soft) bg-(--color-surface) p-5">
+							<p class="text-sm font-semibold text-(--color-ink)">{item.title}</p>
+							<p class="mt-2 text-sm leading-6 text-(--color-muted)">{item.description}</p>
+						</div>
+					))}
+				</div>
+			</div>
 		</section>
 
 		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[1fr_0.95fr]">
 			<div class="section-shell rounded-[2rem] p-8">
-				<p class="eyebrow">Common Referral Questions</p>
-				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">Clarity without unnecessary friction.</h2>
-				<ul class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
-					{referralQuestions.map((item) => (
-						<li class="flex gap-3">
-							<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span>
-							<span>{item}</span>
-						</li>
-					))}
+				<p class="eyebrow">The Assessment Battery</p>
+				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">Evidence-based tools selected for your presentation.</h2>
+				<p class="mt-5 text-base leading-8 text-(--color-muted)">
+					We use a multi-informant approach to ensure accuracy. Depending on your needs, the evaluation may include:
+				</p>
+				<ul class="mt-4 space-y-3 text-sm leading-7 text-(--color-muted)">
+					<li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span><span>Standardized rating scales (Brown, Conners, and others)</span></li>
+					<li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span><span>Continuous Performance Tests (CPT) for objective attention data</span></li>
+					<li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span><span>Cognitive assessment (IQ) to rule out learning differences</span></li>
+					<li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span><span>In-depth developmental and clinical interviews</span></li>
 				</ul>
 			</div>
 
@@ -59,11 +88,11 @@ const facts = [
 			<div class="grid gap-8 lg:grid-cols-3">
 				<div>
 					<p class="eyebrow">Private-Pay Only</p>
-					<p class="mt-4 text-base leading-8 text-(--color-muted)">MCC does not accept insurance for evaluations. The evaluation rate is $1,500.</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">MCC does not accept insurance. Self-pay keeps the process fast, private, and focused entirely on clinical need — not what a payer will authorize.</p>
 				</div>
 				<div>
-					<p class="eyebrow">Privacy</p>
-					<p class="mt-4 text-base leading-8 text-(--color-muted)">Keeping evaluations private-pay means sensitive mental health information stays between you and your evaluator.</p>
+					<p class="eyebrow">Report Timeline</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Polished reports are delivered promptly after testing — a fraction of the timeline clients experience with insurance-based providers.</p>
 				</div>
 				<div>
 					<p class="eyebrow">Next Step</p>

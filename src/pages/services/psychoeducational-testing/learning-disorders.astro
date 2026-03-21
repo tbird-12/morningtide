@@ -1,54 +1,103 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 
+const assessmentAreas = [
+	{ title: 'Cognitive Ability', desc: 'Intelligence testing to identify cognitive strengths, weaknesses, and the processing patterns that underlie academic performance.' },
+	{ title: 'Academic Achievement', desc: 'Standardized achievement measures in reading, writing, and math to pinpoint specific areas of underperformance.' },
+	{ title: 'Processing Skills', desc: 'Working memory, processing speed, and executive functioning — the cognitive engine behind learning.' },
+	{ title: 'Aptitude-Achievement Analysis', desc: 'Pattern analysis comparing cognitive ability to academic output to identify specific learning disabilities under DSM-5 criteria.' },
+];
+
+const dyslexiaAreas = [
+	{ title: 'Phonological Processing', desc: 'The ability to detect, segment, and manipulate the sounds of language — critical for decoding and spelling.' },
+	{ title: 'Reading Fluency & Accuracy', desc: 'Timed and untimed measures of word reading, pseudoword decoding, and oral reading fluency.' },
+	{ title: 'Reading Comprehension', desc: 'Understanding of connected text at sentence and passage level, including inferential reasoning.' },
+	{ title: 'Written Expression', desc: 'Spelling, sentence composition, and the ability to organize and produce written language.' },
+];
+
 const referralQuestions = [
-	'Questions about specific learning disorders and academic underperformance',
-	'Need for recommendations that support accommodations, services, or school planning',
-	'Need for a polished report on a fast and manageable timeline',
+	'Why is my child underperforming despite appearing capable?',
+	'Does my child have a specific learning disability in reading, writing, or math?',
+	'Is my child dyslexic, or is something else affecting their reading?',
+	'Are processing speed or working memory weaknesses contributing to academic difficulty?',
+	'Are cognitive or psychological factors contributing to learning difficulties?',
+	'What accommodations or services would be most effective for school planning?',
 ];
 
 const facts = [
 	{ label: 'Format', value: 'Remote evaluation' },
-	{ label: 'Reach', value: '43+ states via PSYPACT' },
-	{ label: 'Turnaround', value: 'Evaluation and report within one week' },
+	{ label: 'Scope', value: 'Cognitive-achievement comparison' },
+	{ label: 'Turnaround', value: 'Report within one week' },
 	{ label: 'Rate', value: '$1,500 private-pay' },
 ];
 ---
 
 <Layout
-	title="Learning Disorders | Morning Tide Consulting and Collective"
-	description="Remote learning disorder evaluations across 43+ PSYPACT states with a polished report typically completed within one week."
+	title="Learning Disorder & Dyslexia Evaluations | Morning Tide Consulting and Collective"
+	description="Remote evaluations for learning disorders and dyslexia — covering cognitive ability, academic achievement, reading fluency, processing skills, and DSM-5 diagnosis. Reports within one week across 40+ PSYPACT states."
 >
 	<main class="px-6 py-16 lg:px-10 lg:py-20">
 		<section class="mx-auto max-w-6xl space-y-8">
 			<p class="eyebrow">Psychoeducational Evaluations</p>
-			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Learning disorder evaluations with clear, school-ready recommendations.</h1>
+			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Learning disorder and dyslexia evaluations that find the root cause.</h1>
 			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
-				Remote learning disorder evaluations across 43+ PSYPACT states for families who want a manageable timeline and a report typically completed within one week.
+				When a student is struggling, the question is rarely <em>whether</em> there is a problem — the question is <em>what</em> is driving it. These evaluations combine cognitive and achievement testing, processing skill analysis, and aptitude-achievement comparison to deliver a precise learning profile and DSM-5 diagnosis where warranted. When the referral question centers on reading, a dedicated dyslexia battery maps the specific reading profile so families and schools know exactly where to intervene.
 			</p>
 		</section>
 
-		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[1fr_0.95fr]">
+		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-2">
 			<div class="section-shell rounded-[2rem] p-8">
-				<p class="eyebrow">Common Referral Questions</p>
-				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">Clear answers for educational planning without a long wait.</h2>
-				<ul class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
-					{referralQuestions.map((item) => (
-						<li class="flex gap-3">
-							<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span>
-							<span>{item}</span>
-						</li>
+				<p class="eyebrow">What We Assess</p>
+				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">Cognitive ability, achievement, and the processing in between.</h2>
+				<div class="mt-6 grid gap-4">
+					{assessmentAreas.map((area) => (
+						<div class="premium-card rounded-[1.5rem] p-4">
+							<p class="text-sm font-semibold text-(--color-ink)">{area.title}</p>
+							<p class="mt-1 text-sm leading-6 text-(--color-muted)">{area.desc}</p>
+						</div>
 					))}
-				</ul>
+				</div>
 			</div>
 
-			<div class="rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
-				<p class="eyebrow">At a Glance</p>
-				<div class="mt-6 grid gap-4 sm:grid-cols-2">
-					{facts.map((fact) => (
-						<div class="premium-card rounded-[1.5rem] p-5">
-							<p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-(--color-brand)">{fact.label}</p>
-							<p class="mt-3 text-base font-semibold text-(--color-ink)">{fact.value}</p>
+			<div class="space-y-6">
+				<div class="rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+					<p class="eyebrow">Common Referral Questions</p>
+					<ul class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
+						{referralQuestions.map((item) => (
+							<li class="flex gap-3">
+								<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span>
+								<span>{item}</span>
+							</li>
+						))}
+					</ul>
+				</div>
+
+				<div class="rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+					<p class="eyebrow">At a Glance</p>
+					<div class="mt-6 grid gap-4 sm:grid-cols-2">
+						{facts.map((fact) => (
+							<div class="premium-card rounded-[1.5rem] p-5">
+								<p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-(--color-brand)">{fact.label}</p>
+								<p class="mt-3 text-base font-semibold text-(--color-ink)">{fact.value}</p>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="mx-auto mt-12 max-w-6xl space-y-6">
+			<div class="section-shell rounded-[2rem] p-8 lg:p-10">
+				<p class="eyebrow">Dyslexia-Specific Testing</p>
+				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">A detailed look at reading from every angle.</h2>
+				<p class="mt-5 max-w-3xl text-base leading-8 text-(--color-muted)">
+					When the referral question centers on reading, the evaluation includes a targeted dyslexia battery — measuring phonological processing, fluency, decoding, comprehension, and written expression. The goal is not just to confirm or rule out dyslexia — it is to map the specific reading profile so intervention can be precisely targeted.
+				</p>
+				<div class="mt-8 grid gap-4 sm:grid-cols-2">
+					{dyslexiaAreas.map((area) => (
+						<div class="rounded-2xl border border-(--color-line-soft) bg-(--color-surface) p-5">
+							<p class="text-sm font-semibold text-(--color-ink)">{area.title}</p>
+							<p class="mt-2 text-sm leading-6 text-(--color-muted)">{area.desc}</p>
 						</div>
 					))}
 				</div>
@@ -59,11 +108,11 @@ const facts = [
 			<div class="grid gap-8 lg:grid-cols-3">
 				<div>
 					<p class="eyebrow">Private-Pay Only</p>
-					<p class="mt-4 text-base leading-8 text-(--color-muted)">MCC does not accept insurance for evaluations. The evaluation rate is $1,500.</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Insurance often limits testing to a narrow set of measures. Private-pay allows a full cognitive-achievement comparison without scope restrictions. HSA/FSA accepted; superbills provided.</p>
 				</div>
 				<div>
-					<p class="eyebrow">Privacy</p>
-					<p class="mt-4 text-base leading-8 text-(--color-muted)">Private-pay evaluations keep sensitive learning and mental health information private while keeping the process streamlined.</p>
+					<p class="eyebrow">School-Ready Report</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Reports include IEP- and 504-compatible recommendations with enough detail for school psychologists, reading specialists, special education teams, and outside providers to act on immediately.</p>
 				</div>
 				<div>
 					<p class="eyebrow">Next Step</p>

@@ -2,36 +2,42 @@
 import Layout from '../../../layouts/Layout.astro';
 
 const trainings = [
-	{ label: 'ADHD Training', href: '/services/ceu-trainings/adhd-training' },
-	{ label: 'Autism Testing Training', href: '/services/ceu-trainings/autism-testing-training' },
+	{ label: 'ADHD Assessment Training', href: '/services/ceu-trainings/adhd-training' },
+	{ label: 'Autism Evaluation Training', href: '/services/ceu-trainings/autism-testing-training' },
 ];
 ---
 
 <Layout
-	title="Education | Morning Tide Consulting and Collective"
-	description="Continuing education trainings for mental health providers through Morning Tide Consulting and Collective."
+	title="Continuing Education | Morning Tide Consulting and Collective"
+	description="Continuing education trainings for mental health providers — ADHD assessment, autism evaluation, and testing best practices grounded in real clinical work."
 >
 	<main class="px-6 py-16 lg:px-10 lg:py-20">
 		<section class="mx-auto max-w-6xl space-y-8">
-			<p class="eyebrow">Education</p>
-			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Continuing education for clinicians who want relevant, practice-grounded training.</h1>
+			<p class="eyebrow">Continuing Education</p>
+			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Practice-grounded training for clinicians who want more than slides and theory.</h1>
 			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
-				Trainings for agencies, group practices, and individual clinicians — substantive, practical, and immediately useful in clinical work.
+				Continuing education built from real-world experience conducting thousands of evaluations. These trainings cover the clinical nuance, assessment selection, and diagnostic reasoning that matter most in practice — not just textbook overviews.
 			</p>
 		</section>
 
 		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[0.95fr_1.05fr]">
 			<div class="section-shell rounded-[2rem] p-8">
 				<p class="eyebrow">Our Approach</p>
-				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">Training that reflects the same standards as the rest of the practice.</h2>
+				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">Training that reflects the same clinical standards as our evaluations.</h2>
 				<p class="mt-5 text-base leading-8 text-(--color-muted)">
-					Use this page to present learning objectives, training formats, and booking details.
+					Dr. Cornett brings experience from over three years as an Assistant Professor of Psychology combined with an active, multi-state evaluation practice. Trainings are designed to be immediately applicable — covering real assessment batteries, scoring interpretation, differential diagnosis, and report writing from a neuro-affirming perspective.
 				</p>
+				<ul class="mt-5 space-y-3 text-sm leading-7 text-(--color-muted)">
+					<li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span><span>Evidence-based assessment tool selection and administration</span></li>
+					<li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span><span>Differential diagnosis for complex and overlapping presentations</span></li>
+					<li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span><span>Neuro-affirming clinical frameworks and culturally sensitive practices</span></li>
+					<li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span><span>Report writing that is actionable and meaningful to clients</span></li>
+				</ul>
 			</div>
 
 			<div class="rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
 				<p class="eyebrow">Current Training Topics</p>
-				<div class="mt-6 grid gap-4 sm:grid-cols-2">
+				<div class="mt-6 grid gap-4 sm:grid-cols-1">
 			{trainings.map((training) => (
 				<a
 					class="premium-card rounded-[1.5rem] px-5 py-5 text-base font-semibold text-(--color-ink)"
@@ -41,6 +47,10 @@ const trainings = [
 				</a>
 			))}
 				</div>
+				<div class="mt-8 rounded-2xl border border-(--color-line-soft) bg-(--color-section-tint) p-5">
+					<p class="text-sm font-semibold text-(--color-ink)">Custom Trainings Available</p>
+					<p class="mt-2 text-sm leading-6 text-(--color-muted)">Organizations, agencies, and group practices can request custom training topics tailored to their team's clinical needs and populations served.</p>
+				</div>
 			</div>
 		</section>
 
@@ -48,11 +58,11 @@ const trainings = [
 			<div class="grid gap-8 lg:grid-cols-3">
 				<div>
 					<p class="eyebrow">Formats</p>
-					<p class="mt-4 text-base leading-8 text-(--color-muted)">Use this section for live training, organization workshops, or tailored education events.</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Available as live virtual sessions, on-site workshops for organizations, or tailored training engagements for group practices and agencies.</p>
 				</div>
 				<div>
 					<p class="eyebrow">Audience</p>
-					<p class="mt-4 text-base leading-8 text-(--color-muted)">Clinicians, agencies, and teams looking for practical continuing education with clinical depth.</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Psychologists, LPAs, LPCAs, therapists, and clinical teams looking to deepen their assessment skills with practice-relevant continuing education.</p>
 				</div>
 				<div>
 					<p class="eyebrow">Booking</p>

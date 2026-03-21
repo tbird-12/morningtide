@@ -3,33 +3,176 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-	title="About Clinician | Morning Tide Consulting and Collective"
-	description="Learn about the clinician behind MCC, including evaluation philosophy, scope, and approach to premium care."
+	title="About the Clinician | Morning Tide Consulting and Collective"
+	description="Meet Dr. Heather Cornett, Ph.D. — licensed psychologist specializing in comprehensive psychological evaluations for high-masking neurodivergent individuals, learning disorders, and complex diagnostic clarification."
 >
 	<main class="px-6 py-16 lg:px-10 lg:py-20">
-		<section class="mx-auto max-w-6xl space-y-8">
-			<p class="eyebrow">About Clinician</p>
-			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">A clinician-led practice built on careful work and clear communication.</h1>
-			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
-				Use this page to introduce your credentials, licensure, and professional background.
-			</p>
+		<!-- Hero -->
+		<section class="mx-auto max-w-6xl space-y-8 lg:grid lg:grid-cols-[1fr_auto] lg:items-start lg:gap-12 lg:space-y-0">
+			<div class="space-y-8">
+				<p class="eyebrow">About the Clinician</p>
+				<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">A clinician-led practice built on careful work and clear communication.</h1>
+				<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
+					Morning Tide Consulting and Collective is founded and led by Dr. Heather Cornett — a licensed psychologist whose clinical expertise centers on individuals who have been overlooked, misdiagnosed, or who have learned to mask behaviors to fit into neurotypical environments.
+				</p>
+			</div>
+			<!-- IMAGE PLACEHOLDER: Dr. Cornett headshot — replace src with actual image path -->
+			<div class="mx-auto w-56 shrink-0 overflow-hidden rounded-4xl border border-(--color-line-soft) bg-(--color-section-tint) shadow-(--shadow-soft) lg:mx-0 lg:w-64">
+				<div class="flex aspect-[3/4] items-center justify-center text-center text-sm text-(--color-muted)">
+					<p>Headshot<br />image here</p>
+				</div>
+			</div>
 		</section>
 
+		<!-- Intro & Philosophy -->
+		<section class="mx-auto mt-16 max-w-6xl space-y-10">
+			<div class="section-shell rounded-4xl p-8 lg:p-10">
+				<p class="eyebrow">Heather Cornett, Ph.D., LP</p>
+				<h2 class="mt-4 text-4xl leading-none text-(--color-ink) sm:text-5xl">A neuro-affirming approach to clarity.</h2>
+				<div class="mt-6 max-w-3xl space-y-5 text-base leading-8 text-(--color-muted)">
+					<p>
+						Whether you are an adult seeking answers about Autism or ADHD for the first time, or a parent navigating a complex learning profile, Dr. Cornett provides a thorough, evidence-based, and compassionate evaluation process. Her philosophy is rooted in the belief that a diagnosis is not a deficit — it is a vital piece of identity that provides the roadmap for profound purpose and fulfillment.
+					</p>
+					<p>
+						Dr. Cornett spent both her master's and doctoral programs specializing in severe and persistent mental illness (SPMI) — including borderline personality disorder, bipolar disorder, and schizophrenia spectrum conditions. This deep clinical foundation in complex psychopathology shapes every evaluation she conducts and informs her ability to distinguish between overlapping presentations that others may miss.
+					</p>
+					<blockquote class="border-l-2 border-(--color-brand) pl-5 italic text-(--color-ink)">
+						"We don't just test using a checklist of concerns; we test with an intention to understand the person beyond the measures. My goal is to ensure you feel heard, understood, and empowered during our sessions."
+					</blockquote>
+					<p>
+						Dr. Cornett approaches her work with a neuroaffirmative and culturally sensitive perspective. She is a dedicated BIPOC and LGBTQ+ ally and brings particular skill to working with high-masking individuals and complex testing cases. In addition to her evaluation practice, she maintains a limited therapy caseload and supervises six clinicians at a separate group practice — keeping her grounded in real-world clinical work and current treatment trends.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Credentials & Education -->
 		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[1fr_1fr]">
 			<div class="section-shell rounded-4xl p-8">
-				<p class="eyebrow">Clinical Orientation</p>
+				<p class="eyebrow">Education & Training</p>
+				<ul class="mt-4 space-y-4 text-base leading-8 text-(--color-muted)">
+					<li>
+						<span class="block text-sm font-semibold text-(--color-ink)">Ph.D. in Counseling Psychology</span>
+						Texas Woman's University
+					</li>
+					<li>
+						<span class="block text-sm font-semibold text-(--color-ink)">M.S. in Counseling Psychology</span>
+						University of Kentucky
+					</li>
+					<li>
+						<span class="block text-sm font-semibold text-(--color-ink)">APA-Accredited Internship</span>
+						Wichita Collaborative Psychology Internship Program (WCPIP)
+					</li>
+					<li>
+						<span class="block text-sm font-semibold text-(--color-ink)">Certificate in Dialectical Behavior Therapy (DBT)</span>
+						Specialized training in evidence-based treatment for emotion dysregulation and complex presentations
+					</li>
+					<li>
+						<span class="block text-sm font-semibold text-(--color-ink)">Graduate Focus: Severe &amp; Persistent Mental Illness</span>
+						Master's and doctoral training centered on BPD, bipolar disorder, and schizophrenia spectrum conditions
+					</li>
+					<li>
+						<span class="block text-sm font-semibold text-(--color-ink)">Former Assistant Professor of Psychology</span>
+						Three years of academic teaching experience
+					</li>
+				</ul>
+			</div>
+			<div class="rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+				<p class="eyebrow">Licensure & Authorization</p>
+				<ul class="mt-4 space-y-4 text-base leading-8 text-(--color-muted)">
+					<li>
+						<span class="block text-sm font-semibold text-(--color-ink)">Licensed Psychologist</span>
+						Kentucky &amp; New Mexico
+					</li>
+					<li>
+						<span class="block text-sm font-semibold text-(--color-ink)">PSYPACT Certificate</span>
+						Authorized to provide telehealth psychological services across 40+ states
+					</li>
+					<li>
+						<span class="block text-sm font-semibold text-(--color-ink)">Clinical Supervisor</span>
+						Supervises six clinicians at a separate group practice, plus T-LP, T-LPA, and LPA professionals
+					</li>
+					<li>
+						<span class="block text-sm font-semibold text-(--color-ink)">Limited Therapy Caseload</span>
+						Maintains a small number of therapy clients alongside evaluation work
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<!-- Specialties -->
+		<section class="mx-auto mt-12 max-w-6xl space-y-6">
+			<div class="section-shell rounded-4xl p-8 lg:p-10">
+				<p class="eyebrow">Areas of Specialization</p>
+				<h2 class="mt-4 text-4xl leading-none text-(--color-ink) sm:text-5xl">Thorough evaluations for complex presentations.</h2>
+				<p class="mt-6 max-w-3xl text-base leading-8 text-(--color-muted)">
+					Dr. Cornett offers psychological evaluations for individuals aged 2 and above — with particular expertise in cases that require nuanced clinical judgment.
+				</p>
+				<div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+					<div class="rounded-2xl border border-(--color-line-soft) bg-(--color-surface) p-5">
+						<p class="text-sm font-semibold text-(--color-ink)">High-Masking Autism & ADHD</p>
+						<p class="mt-2 text-sm leading-6 text-(--color-muted)">Evaluations for individuals who have gone undiagnosed or learned to mask neurodivergent traits.</p>
+					</div>
+					<div class="rounded-2xl border border-(--color-line-soft) bg-(--color-surface) p-5">
+						<p class="text-sm font-semibold text-(--color-ink)">Learning Disability Evaluations</p>
+						<p class="mt-2 text-sm leading-6 text-(--color-muted)">Testing for dyslexia, academic achievement gaps, and educational accommodations.</p>
+					</div>
+					<div class="rounded-2xl border border-(--color-line-soft) bg-(--color-surface) p-5">
+						<p class="text-sm font-semibold text-(--color-ink)">Personality Disorders</p>
+						<p class="mt-2 text-sm leading-6 text-(--color-muted)">Diagnostic clarification for complex personality presentations and co-occurring conditions.</p>
+					</div>
+					<div class="rounded-2xl border border-(--color-line-soft) bg-(--color-surface) p-5">
+						<p class="text-sm font-semibold text-(--color-ink)">Guardianship & Disability Claims</p>
+						<p class="mt-2 text-sm leading-6 text-(--color-muted)">Evaluations supporting guardianship determinations and disability accommodation requests.</p>
+					</div>
+					<div class="rounded-2xl border border-(--color-line-soft) bg-(--color-surface) p-5">
+						<p class="text-sm font-semibold text-(--color-ink)">Diagnostic Clarification &amp; SPMI</p>
+						<p class="mt-2 text-sm leading-6 text-(--color-muted)">Complex cases involving bipolar disorder, schizophrenia spectrum conditions, BPD, mood disorders, and overlapping diagnoses — informed by graduate-level SPMI specialization.</p>
+					</div>
+					<div class="rounded-2xl border border-(--color-line-soft) bg-(--color-surface) p-5">
+						<p class="text-sm font-semibold text-(--color-ink)">PSYPACT Telehealth</p>
+						<p class="mt-2 text-sm leading-6 text-(--color-muted)">Remote evaluations available to clients across 40+ participating states.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Clinical Approach -->
+		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[1fr_1fr]">
+			<div class="section-shell rounded-4xl p-8">
+				<p class="eyebrow">Clinical Approach</p>
+				<h3 class="mt-4 text-3xl leading-none text-(--color-ink)">Grounded in evidence, guided by empathy.</h3>
 				<p class="mt-4 text-base leading-8 text-(--color-muted)">
-					Add your treatment and assessment orientation here, including populations served, typical referral questions, and your approach to balancing efficiency with depth.
+					Dr. Cornett's clinical training is rooted in Cognitive Behavioral Therapy (CBT), Dialectical Behavior Therapy (DBT) — for which she holds a dedicated certificate — and Feminist theory. She applies these evidence-based frameworks to both therapy and assessment, ensuring that every evaluation is clinically grounded and individually tailored rather than following a rigid checklist.
 				</p>
 			</div>
 			<div class="rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
-				<p class="eyebrow">Professional Profile</p>
+				<p class="eyebrow">Populations Served</p>
 				<ul class="mt-4 space-y-3 text-sm leading-7 text-(--color-muted)">
-					<li>Credentials and training</li>
-					<li>PSYPACT authorization and multi-state reach</li>
-					<li>Primary service specialties</li>
-					<li>Report style and delivery standards</li>
+					<li>Children (ages 2+), preteens, and teens</li>
+					<li>Adults and older adults (65+)</li>
+					<li>High-masking and late-identified neurodivergent individuals</li>
+					<li>BIPOC and LGBTQ+ individuals</li>
+					<li>Families navigating complex learning and developmental profiles</li>
 				</ul>
+			</div>
+		</section>
+
+		<!-- Outside the Clinic -->
+		<section class="mx-auto mt-12 max-w-6xl">
+			<div class="rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft) lg:grid lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10 lg:p-10">
+				<div>
+					<p class="eyebrow">Outside the Clinic</p>
+					<p class="mt-4 max-w-3xl text-base leading-8 text-(--color-muted)">
+						When she's not in the office, you'll likely find Dr. Cornett diving into a true crime documentary, playing video games, or spending time with her large orange tabby cat.
+					</p>
+				</div>
+				<!-- IMAGE PLACEHOLDER: Personal/casual photo — replace src with actual image path -->
+				<div class="mt-6 w-40 shrink-0 overflow-hidden rounded-3xl border border-(--color-line-soft) bg-(--color-section-tint) lg:mt-0 lg:w-48">
+					<div class="flex aspect-square items-center justify-center text-center text-sm text-(--color-muted)">
+						<p>Personal<br />photo here</p>
+					</div>
+				</div>
 			</div>
 		</section>
 	</main>

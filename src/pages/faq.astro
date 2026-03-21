@@ -1,0 +1,169 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const generalFaqs = [
+	{
+		q: 'What is MCC?',
+		a: 'Morning Tide Consulting and Collective (MCC) is a private-pay psychological evaluation practice founded by Dr. Heather Cornett. We specialize in remote psychological and psychoeducational evaluations for individuals across 40+ PSYPACT states.',
+	},
+	{
+		q: 'Who conducts the evaluations?',
+		a: 'Every evaluation is personally conducted by Dr. Heather Cornett, a licensed psychologist with specialized training in neurodivergent populations, complex diagnostic presentations, and severe and persistent mental illness.',
+	},
+	{
+		q: 'What ages do you serve?',
+		a: 'Dr. Cornett provides evaluations for individuals aged 2 and above — including children, adolescents, adults, and older adults (65+).',
+	},
+	{
+		q: 'Do you accept insurance?',
+		a: 'No. MCC is a private-pay practice. This model protects your privacy, allows the clinician to determine the scope of evaluation without insurer limitations, and ensures rapid report delivery. HSA and FSA cards are accepted, and superbills are provided for clients who wish to submit for out-of-network reimbursement.',
+	},
+	{
+		q: 'How much do evaluations cost?',
+		a: 'Psychological and psychoeducational evaluations are $1,500. This includes a clinical intake, testing session, written report, and feedback session. Payment plans may be available on a case-by-case basis.',
+	},
+	{
+		q: 'What payment methods do you accept?',
+		a: 'Credit and debit cards, HSA/FSA cards, Zelle, and Venmo.',
+	},
+];
+
+const evaluationFaqs = [
+	{
+		q: 'How are evaluations conducted remotely?',
+		a: 'All sessions are conducted via secure, HIPAA-compliant video. Standardized testing is administered through validated telehealth platforms. Intake, testing, report delivery, and the feedback session all happen remotely.',
+	},
+	{
+		q: 'What is the difference between a psychological evaluation and a psychoeducational evaluation?',
+		a: 'Psychological evaluations focus on diagnostic questions — ADHD, autism, personality disorders, mood disorders, and complex clinical presentations. Psychoeducational evaluations focus on academic and learning questions — learning disorders, dyslexia, giftedness, and academic achievement. Both produce a detailed written report with actionable recommendations.',
+	},
+	{
+		q: 'How long does the testing take?',
+		a: 'Direct testing typically takes 2–4 hours depending on the evaluation type and the referral question. The clinical intake is scheduled separately.',
+	},
+	{
+		q: 'How quickly will I receive my report?',
+		a: 'Reports are typically completed within one week of testing — significantly faster than the months-long timelines common with insurance-based practices.',
+	},
+	{
+		q: 'What tools and assessments does Dr. Cornett use?',
+		a: 'The assessment battery is tailored to each client. Common tools include the ADOS-2 and MIGDAS-2 for autism, continuous performance tests (CPTs) and standardized rating scales for ADHD, cognitive batteries (IQ testing), academic achievement measures, and personality inventories. The specific battery depends on the referral question.',
+	},
+	{
+		q: 'Can you evaluate for more than one condition at a time?',
+		a: 'Yes. Many evaluations involve differential diagnosis — distinguishing between overlapping conditions like ADHD and anxiety, autism and social anxiety, or giftedness masking a learning disability. Dr. Cornett\u0027s training in complex presentations is well-suited for these nuanced clinical questions.',
+	},
+	{
+		q: 'Will my report be accepted by schools or other providers?',
+		a: 'Yes. Reports are written with detailed, actionable recommendations that schools, therapists, psychiatrists, and other professionals can use directly — including language suitable for IEP and 504 planning.',
+	},
+];
+
+const logisticsFaqs = [
+	{
+		q: 'What is PSYPACT and how does it work?',
+		a: 'PSYPACT is an interstate compact that allows licensed psychologists to practice telepsychology across participating states without obtaining separate licenses. Dr. Cornett holds a PSYPACT Authority to Practice Interjurisdictional Telepsychology (APIT), covering 40+ states and territories.',
+	},
+	{
+		q: 'How do I know if my state is covered?',
+		a: 'Visit our Locations page for a full list of PSYPACT-participating jurisdictions. If your state is not listed, contact us — new states join regularly.',
+	},
+	{
+		q: 'What is a superbill?',
+		a: 'A superbill is a detailed receipt that includes CPT codes, diagnostic information, and provider credentials. You can submit it to your insurance company for potential out-of-network reimbursement. MCC provides a superbill after every evaluation.',
+	},
+	{
+		q: 'How do I get started?',
+		a: 'Use the contact form on our site to submit an inquiry. Include the referral question you are hoping the evaluation will answer, who will be using the report, and any relevant deadlines. We will follow up to discuss fit and schedule an intake.',
+	},
+	{
+		q: 'Does Dr. Cornett provide therapy?',
+		a: 'Dr. Cornett maintains a limited therapy caseload alongside her evaluation work. Therapy inquiries can be discussed during the initial contact.',
+	},
+];
+---
+
+<Layout
+	title="Frequently Asked Questions | Morning Tide Consulting and Collective"
+	description="Answers to common questions about MCC's remote psychological and psychoeducational evaluations, pricing, insurance, PSYPACT coverage, and the evaluation process."
+>
+	<main class="px-6 py-16 lg:px-10 lg:py-20">
+		<section class="mx-auto max-w-6xl space-y-8">
+			<p class="eyebrow">FAQ</p>
+			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Frequently asked questions.</h1>
+			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
+				Answers to the most common questions about our practice, the evaluation process, pricing, and logistics.
+			</p>
+		</section>
+
+		<section class="mx-auto mt-12 max-w-6xl space-y-10">
+			<div class="section-shell rounded-[2rem] p-8 lg:p-10">
+				<p class="eyebrow">General</p>
+				<div class="mt-6 divide-y divide-(--color-line-soft)">
+					{generalFaqs.map((faq) => (
+						<details class="group py-5 first:pt-0 last:pb-0">
+							<summary class="flex cursor-pointer items-start gap-3 text-base font-semibold text-(--color-ink) [&::-webkit-details-marker]:hidden">
+								<svg class="mt-1 h-4 w-4 shrink-0 text-(--color-brand) transition-transform group-open:rotate-90" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+									<path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+								</svg>
+								{faq.q}
+							</summary>
+							<p class="mt-3 pl-7 text-sm leading-7 text-(--color-muted)">{faq.a}</p>
+						</details>
+					))}
+				</div>
+			</div>
+
+			<div class="section-shell rounded-[2rem] p-8 lg:p-10">
+				<p class="eyebrow">Evaluations</p>
+				<div class="mt-6 divide-y divide-(--color-line-soft)">
+					{evaluationFaqs.map((faq) => (
+						<details class="group py-5 first:pt-0 last:pb-0">
+							<summary class="flex cursor-pointer items-start gap-3 text-base font-semibold text-(--color-ink) [&::-webkit-details-marker]:hidden">
+								<svg class="mt-1 h-4 w-4 shrink-0 text-(--color-brand) transition-transform group-open:rotate-90" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+									<path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+								</svg>
+								{faq.q}
+							</summary>
+							<p class="mt-3 pl-7 text-sm leading-7 text-(--color-muted)">{faq.a}</p>
+						</details>
+					))}
+				</div>
+			</div>
+
+			<div class="section-shell rounded-[2rem] p-8 lg:p-10">
+				<p class="eyebrow">Logistics & Getting Started</p>
+				<div class="mt-6 divide-y divide-(--color-line-soft)">
+					{logisticsFaqs.map((faq) => (
+						<details class="group py-5 first:pt-0 last:pb-0">
+							<summary class="flex cursor-pointer items-start gap-3 text-base font-semibold text-(--color-ink) [&::-webkit-details-marker]:hidden">
+								<svg class="mt-1 h-4 w-4 shrink-0 text-(--color-brand) transition-transform group-open:rotate-90" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+									<path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+								</svg>
+								{faq.q}
+							</summary>
+							<p class="mt-3 pl-7 text-sm leading-7 text-(--color-muted)">{faq.a}</p>
+						</details>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section class="mx-auto mt-10 max-w-6xl rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+			<div class="grid gap-8 lg:grid-cols-3">
+				<div>
+					<p class="eyebrow">Still Have Questions?</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">If something is not covered here, reach out directly. We are happy to answer questions about fit, process, or your specific referral question.</p>
+				</div>
+				<div>
+					<p class="eyebrow">Ready to Start?</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">If you already know what you need, skip straight to the inquiry form and we will follow up to discuss scheduling.</p>
+				</div>
+				<div>
+					<p class="eyebrow">Get in Touch</p>
+					<a class="mt-4 inline-flex rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-white shadow-(--shadow-brand)" href="/#contact">Submit an inquiry</a>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>

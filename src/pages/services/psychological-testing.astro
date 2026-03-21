@@ -4,17 +4,30 @@ import Layout from '../../layouts/Layout.astro';
 
 <Layout
 	title="Psychological Testing | Morning Tide Consulting and Collective"
-	description="Stub page for psychological testing services."
+	description="Comprehensive psychological testing services including ADHD, autism, diagnostic clarification, learning disorders, and personality evaluations."
 >
-	<main class="min-h-screen px-6 py-16 lg:px-10">
-		<section class="mx-auto max-w-3xl space-y-6">
-			<p class="text-sm font-semibold uppercase tracking-[0.28em] text-(--color-brand)">Services</p>
-			<h1 class="text-4xl leading-tight text-(--color-ink) sm:text-5xl">Psychological Testing</h1>
-			<p class="text-lg leading-8 text-(--color-muted)">
-				Replace this section with your full psychological testing service description, testing process, timelines, and referral details.
+	<main class="px-6 py-16 lg:px-10 lg:py-20">
+		<section class="mx-auto max-w-6xl space-y-8">
+			<p class="eyebrow">Psychological Testing</p>
+			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">In-depth psychological testing for adults and adolescents.</h1>
+			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
+				Morning Tide offers two categories of evaluation services: psychological evaluations for diagnostic questions and psychoeducational evaluations for academic and learning questions. Both are available remotely across 40+ PSYPACT states with rapid report delivery.
 			</p>
-			<a class="inline-flex rounded-full border border-(--color-line) bg-(--color-surface) px-5 py-2 text-sm font-semibold text-(--color-ink)" href="/services">
-				Back to all services
+		</section>
+
+		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-2">
+			<a class="section-shell rounded-4xl p-8 block" href="/services/psychological-evaluations">
+				<p class="eyebrow">Psychological Evaluations</p>
+				<h2 class="mt-4 text-3xl leading-none text-(--color-ink)">Diagnostic clarity for complex clinical presentations.</h2>
+				<p class="mt-4 text-sm leading-7 text-(--color-muted)">ADHD, autism, diagnostic clarification, learning disorders, and personality assessments using gold-standard tools like the ADOS-2 and MIGDAS-2.</p>
+				<span class="mt-6 inline-flex rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-white shadow-(--shadow-brand)">View psychological evaluations</span>
+			</a>
+
+			<a class="rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft) block" href="/services/psychoeducational-testing">
+				<p class="eyebrow">Psychoeducational Evaluations</p>
+				<h2 class="mt-4 text-3xl leading-none text-(--color-ink)">Answers for learning, school planning, and academic questions.</h2>
+				<p class="mt-4 text-sm leading-7 text-(--color-muted)">Dyslexia, learning disorders, giftedness, academic achievement, and twice-exceptional (2E) testing with school-ready reports and actionable recommendations.</p>
+				<span class="mt-6 inline-flex rounded-full border border-(--color-line) bg-(--color-surface) px-5 py-3 text-sm font-semibold text-(--color-ink)">View psychoeducational evaluations</span>
 			</a>
 		</section>
 	</main>

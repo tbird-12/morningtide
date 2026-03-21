@@ -1,21 +1,81 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+
+const objectives = [
+	'Understand the neurological basis of ADHD and how executive functioning impacts daily life across the lifespan',
+	'Select and administer appropriate ADHD assessment tools including standardized rating scales, CPTs, and cognitive measures',
+	'Differentiate ADHD from anxiety, PTSD, mood disorders, and sensory processing differences that mimic attention difficulties',
+	'Recognize high-masking ADHD presentations in adults, women, and individuals with compensatory strategies',
+	'Write clinically meaningful reports with actionable recommendations for treatment, accommodations, and next steps',
+];
+
+const facts = [
+	{ label: 'Audience', value: 'Psychologists, LPAs, LPCAs, therapists' },
+	{ label: 'Format', value: 'Live virtual or on-site' },
+	{ label: 'Focus', value: 'ADHD assessment & differential diagnosis' },
+	{ label: 'Presenter', value: 'Dr. Heather Cornett, Ph.D.' },
+];
 ---
 
 <Layout
-	title="ADHD Training | Morning Tide Consulting and Collective"
-	description="CEU training on ADHD assessment and treatment for mental health providers."
+	title="ADHD Assessment Training | Morning Tide Consulting and Collective"
+	description="Continuing education training on comprehensive ADHD assessment, differential diagnosis, and report writing for mental health providers. Led by Dr. Heather Cornett."
 >
-	<main class="min-h-screen px-6 py-16 lg:px-10">
-		<section class="mx-auto max-w-3xl space-y-6">
-			<p class="text-sm font-semibold uppercase tracking-[0.28em] text-(--color-brand)">CEU Trainings</p>
-			<h1 class="text-4xl leading-tight text-(--color-ink) sm:text-5xl">ADHD Training</h1>
-			<p class="text-lg leading-8 text-(--color-muted)">
-				Replace this section with your ADHD training content, learning objectives, CE credit hours, format, and registration details for mental health providers.
+	<main class="px-6 py-16 lg:px-10 lg:py-20">
+		<section class="mx-auto max-w-6xl space-y-8">
+			<p class="eyebrow">Continuing Education</p>
+			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">ADHD assessment training for clinicians who want depth, not checklists.</h1>
+			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
+				This training goes beyond the basics of ADHD screening. Built from experience conducting thousands of ADHD evaluations, it covers assessment battery selection, differential diagnosis for complex presentations, and how to identify ADHD in high-masking adults who have navigated life without a diagnosis.
 			</p>
-			<a class="inline-flex rounded-full border border-(--color-line) bg-(--color-surface) px-5 py-2 text-sm font-semibold text-(--color-ink)" href="/services/ceu-trainings">
-				Back to CEU Trainings
-			</a>
+		</section>
+
+		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[1fr_0.95fr]">
+			<div class="section-shell rounded-[2rem] p-8">
+				<p class="eyebrow">Learning Objectives</p>
+				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">What you will learn.</h2>
+				<ul class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
+					{objectives.map((item) => (
+						<li class="flex gap-3">
+							<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span>
+							<span>{item}</span>
+						</li>
+					))}
+				</ul>
+			</div>
+
+			<div class="rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+				<p class="eyebrow">Training Details</p>
+				<div class="mt-6 grid gap-4 sm:grid-cols-2">
+					{facts.map((fact) => (
+						<div class="premium-card rounded-[1.5rem] p-5">
+							<p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-(--color-brand)">{fact.label}</p>
+							<p class="mt-3 text-base font-semibold text-(--color-ink)">{fact.value}</p>
+						</div>
+					))}
+				</div>
+				<div class="mt-6 rounded-2xl border border-(--color-line-soft) bg-(--color-section-tint) p-5">
+					<p class="text-sm font-semibold text-(--color-ink)">Clinical Expertise</p>
+					<p class="mt-2 text-sm leading-6 text-(--color-muted)">Led by Dr. Cornett, who holds a PSYPACT certificate and has provided ADHD diagnoses for clients across 40+ states — with particular expertise in executive functioning analysis and adult late-diagnosis.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="mx-auto mt-10 max-w-6xl rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+			<div class="grid gap-8 lg:grid-cols-3">
+				<div>
+					<p class="eyebrow">Who This Is For</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Clinicians who administer or want to begin administering ADHD assessments — and who want to go beyond surface-level screening into rigorous differential diagnosis.</p>
+				</div>
+				<div>
+					<p class="eyebrow">What You Get</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Practical, case-based training that you can apply in your next evaluation — not abstract theory that gathers dust after the CE certificate prints.</p>
+				</div>
+				<div>
+					<p class="eyebrow">Inquire</p>
+					<a class="mt-4 inline-flex rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-white shadow-(--shadow-brand)" href="/#contact">Request ADHD training</a>
+				</div>
+			</div>
 		</section>
 	</main>
 </Layout>
