@@ -2,34 +2,77 @@
 import Layout from '../../../layouts/Layout.astro';
 
 const categories = [
-	{ label: 'ADHD Testing', href: '/services/psychological-evaluations/adhd' },
-	{ label: 'Autism Testing', href: '/services/psychological-evaluations/autism' },
-	{ label: 'Personality Disorders', href: '/services/psychological-evaluations/personality-disorders' },
+	{ label: 'ADHD Evaluations', href: '/services/psychological-evaluations/adhd' },
+	{ label: 'Autism Evaluations', href: '/services/psychological-evaluations/autism' },
+	{ label: 'Diagnostic Clarification', href: '/services/psychological-evaluations/diagnostic-clarification' },
+	{ label: 'Learning Disorders', href: '/services/psychological-evaluations/learning-disorders' },
+	{ label: 'Personality Assessment', href: '/services/psychological-evaluations/personality-disorders' },
+];
+
+const highlights = [
+	'Assessment planning matched to the actual referral question',
+	'Integrated interpretation rather than disconnected test scores',
+	'Clear written reports designed for treatment and decision-making',
 ];
 ---
 
 <Layout
 	title="Psychological Evaluations | Morning Tide"
-	description="Stub overview page for psychological evaluation categories."
+	description="Psychological evaluations for diagnostic clarification, attention concerns, autism, personality assessment, and complex clinical questions."
 >
-	<main class="min-h-screen px-6 py-16 lg:px-10">
-		<section class="mx-auto max-w-4xl space-y-6">
-			<p class="text-sm font-semibold uppercase tracking-[0.28em] text-(--color-brand)">Services</p>
-			<h1 class="text-4xl leading-tight text-(--color-ink) sm:text-5xl">Psychological Evaluations</h1>
-			<p class="text-lg leading-8 text-(--color-muted)">
-				This page can introduce your evaluation philosophy, referral process, and report structure before clients choose a specific evaluation type.
+	<main class="px-6 py-16 lg:px-10 lg:py-20">
+		<section class="mx-auto max-w-6xl space-y-8">
+			<p class="eyebrow">Psychological Evaluations</p>
+			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Comprehensive assessment for clients who need nuanced diagnostic clarity.</h1>
+			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
+				This service line is ideal for referral questions that require careful formulation, broad differential thinking, and a report that can support treatment planning, personal understanding, and professional collaboration.
 			</p>
 		</section>
 
-		<section class="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-2">
+		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+			<div class="section-shell rounded-[2rem] p-8">
+				<p class="eyebrow">What this communicates</p>
+				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">A selective, high-touch evaluation offering.</h2>
+				<ul class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
+					{highlights.map((item) => (
+						<li class="flex gap-3">
+							<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span>
+							<span>{item}</span>
+						</li>
+					))}
+				</ul>
+			</div>
+
+			<div class="rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+				<p class="eyebrow">Areas of Focus</p>
+				<div class="mt-6 grid gap-4 sm:grid-cols-2">
 			{categories.map((category) => (
 				<a
-					class="rounded-3xl border border-(--color-line) bg-(--color-surface) px-5 py-4 text-base font-semibold text-(--color-ink) shadow-(--shadow-soft) transition hover:-translate-y-0.5"
+					class="premium-card rounded-[1.5rem] px-5 py-5 text-base font-semibold text-(--color-ink)"
 					href={category.href}
 				>
 					{category.label}
 				</a>
 			))}
+				</div>
+			</div>
+		</section>
+
+		<section class="mx-auto mt-14 max-w-6xl rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+			<div class="grid gap-8 lg:grid-cols-3">
+				<div>
+					<p class="eyebrow">Best Fit</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Clients seeking a careful, polished evaluation experience rather than a high-volume testing model.</p>
+				</div>
+				<div>
+					<p class="eyebrow">Typical Outcome</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">A clear understanding of the clinical picture and recommendations that support next-step decisions.</p>
+				</div>
+				<div>
+					<p class="eyebrow">Next Step</p>
+					<a class="mt-4 inline-flex rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-white shadow-(--shadow-brand)" href="/#contact">Request a consultation</a>
+				</div>
+			</div>
 		</section>
 	</main>
 </Layout>

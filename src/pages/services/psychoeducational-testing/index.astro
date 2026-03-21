@@ -2,36 +2,77 @@
 import Layout from '../../../layouts/Layout.astro';
 
 const categories = [
-	{ label: 'Dyslexia Testing', href: '/services/psychoeducational-testing/dyslexia' },
+	{ label: 'Dyslexia Evaluations', href: '/services/psychoeducational-testing/dyslexia' },
 	{ label: 'Learning Disorders', href: '/services/psychoeducational-testing/learning-disorders' },
 	{ label: 'Giftedness', href: '/services/psychoeducational-testing/giftedness' },
-	{ label: 'Academic Achievement Testing', href: '/services/psychoeducational-testing/academic-achievement' },
-	{ label: '2E Testing', href: '/services/psychoeducational-testing/2e-testing' },
+	{ label: 'Academic Achievement', href: '/services/psychoeducational-testing/academic-achievement' },
+	{ label: 'Twice-Exceptional Profiles', href: '/services/psychoeducational-testing/2e-testing' },
+];
+
+const valuePoints = [
+	'Clarifies patterns in learning, processing, and academic performance',
+	'Helps families and schools move from uncertainty to strategy',
+	'Produces recommendations that are readable, specific, and usable',
 ];
 ---
 
 <Layout
-	title="Psychoeducational Testing | Morning Tide"
-	description="Overview of psychoeducational testing services including dyslexia, learning disorders, giftedness, academic achievement, and 2E testing."
+	title="Psychoeducational Evaluations | Morning Tide"
+	description="Psychoeducational evaluations for dyslexia, learning disorders, giftedness, academic achievement, and twice-exceptional profiles."
 >
-	<main class="min-h-screen px-6 py-16 lg:px-10">
-		<section class="mx-auto max-w-4xl space-y-6">
-			<p class="text-sm font-semibold uppercase tracking-[0.28em] text-(--color-brand)">Services</p>
-			<h1 class="text-4xl leading-tight text-(--color-ink) sm:text-5xl">Psychoeducational Testing</h1>
-			<p class="text-lg leading-8 text-(--color-muted)">
-				Replace this section with an overview of your psychoeducational testing approach, who it is designed for, and what families will receive in their report.
+	<main class="px-6 py-16 lg:px-10 lg:py-20">
+		<section class="mx-auto max-w-6xl space-y-8">
+			<p class="eyebrow">Psychoeducational Evaluations</p>
+			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Clarity for learning, school planning, and complex academic questions.</h1>
+			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
+				This offering is framed for families and referral sources who want more than scores. The message emphasizes expert interpretation, sophisticated recommendations, and a report that helps guide educational decisions with confidence.
 			</p>
 		</section>
 
-		<section class="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-2">
+		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[0.92fr_1.08fr]">
+			<div class="section-shell rounded-[2rem] p-8">
+				<p class="eyebrow">Value Proposition</p>
+				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">An elevated evaluation experience for families making important decisions.</h2>
+				<ul class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
+					{valuePoints.map((item) => (
+						<li class="flex gap-3">
+							<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span>
+							<span>{item}</span>
+						</li>
+					))}
+				</ul>
+			</div>
+
+			<div class="rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+				<p class="eyebrow">Areas of Focus</p>
+				<div class="mt-6 grid gap-4 sm:grid-cols-2">
 			{categories.map((category) => (
 				<a
-					class="rounded-3xl border border-(--color-line) bg-(--color-surface) px-5 py-4 text-base font-semibold text-(--color-ink) shadow-(--shadow-soft) transition hover:-translate-y-0.5"
+					class="premium-card rounded-[1.5rem] px-5 py-5 text-base font-semibold text-(--color-ink)"
 					href={category.href}
 				>
 					{category.label}
 				</a>
 			))}
+				</div>
+			</div>
+		</section>
+
+		<section class="mx-auto mt-14 max-w-6xl rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+			<div class="grid gap-8 lg:grid-cols-3">
+				<div>
+					<p class="eyebrow">Who this helps</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Families seeking a deeper understanding of academic strengths, challenges, and the supports most likely to help.</p>
+				</div>
+				<div>
+					<p class="eyebrow">What they receive</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">A cohesive explanation of the learning profile plus recommendations suitable for school, home, and treatment planning conversations.</p>
+				</div>
+				<div>
+					<p class="eyebrow">Next Step</p>
+					<a class="mt-4 inline-flex rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-white shadow-(--shadow-brand)" href="/#contact">Discuss your referral question</a>
+				</div>
+			</div>
 		</section>
 	</main>
 </Layout>

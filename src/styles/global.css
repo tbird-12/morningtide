@@ -1,58 +1,58 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 :root {
-	--color-page: #f9f7f2;
-	--color-surface: #fdfbf8;
-	--color-surface-strong: #f0ebe3;
-	--color-brand: #c4a484;
-	--color-brand-soft: #dcceb8;
-	--color-accent: #c4a484;
-	--color-accent-soft: #e8dcc8;
-	--color-ink: #1a2b2c;
-	--color-muted: #6b705c;
-	--color-line: #d9d4c8;
-	--color-line-soft: rgba(26, 43, 44, 0.08);
-	--color-header-bg: rgba(249, 247, 242, 0.92);
-	--color-panel: rgba(255, 250, 243, 0.82);
-	--color-section-tint: rgba(255, 250, 243, 0.72);
+	--color-page: #f4eee4;
+	--color-surface: #fbf7f1;
+	--color-surface-strong: #ece2d2;
+	--color-brand: #9f7a4f;
+	--color-brand-soft: #d7c2a2;
+	--color-accent: #26413f;
+	--color-accent-soft: #c7d5d0;
+	--color-ink: #172624;
+	--color-muted: #5f6762;
+	--color-line: #d7ccbb;
+	--color-line-soft: rgba(23, 38, 36, 0.08);
+	--color-header-bg: rgba(244, 238, 228, 0.86);
+	--color-panel: rgba(251, 247, 241, 0.86);
+	--color-section-tint: rgba(255, 252, 247, 0.72);
 	--color-on-brand: #ffffff;
 	--color-on-brand-muted: rgba(255, 255, 255, 0.72);
-	--body-glow-brand: rgba(196, 164, 132, 0.12);
-	--body-glow-muted: rgba(107, 112, 92, 0.08);
-	--shadow-soft: 0 12px 30px rgba(31, 41, 51, 0.06);
-	--shadow-medium: 0 14px 40px rgba(26, 43, 44, 0.12);
-	--shadow-strong: 0 30px 80px rgba(31, 41, 51, 0.14);
-	--shadow-brand: 0 16px 40px rgba(31, 111, 120, 0.28);
+	--body-glow-brand: rgba(159, 122, 79, 0.16);
+	--body-glow-muted: rgba(38, 65, 63, 0.08);
+	--shadow-soft: 0 14px 32px rgba(26, 30, 31, 0.07);
+	--shadow-medium: 0 18px 48px rgba(23, 38, 36, 0.12);
+	--shadow-strong: 0 40px 100px rgba(23, 38, 36, 0.16);
+	--shadow-brand: 0 18px 42px rgba(159, 122, 79, 0.2);
 	--logo-filter: none;
 	--theme-toggle-glow: transparent;
-	--font-body: 'Inter', 'Segoe UI', sans-serif;
-	--font-display: 'Playfair Display', Georgia, serif;
+	--font-body: 'Manrope', 'Segoe UI', sans-serif;
+	--font-display: 'Cormorant Garamond', Georgia, serif;
 }
 
 :root[data-theme='dark'] {
-	--color-page: #11181b;
-	--color-surface: #182126;
-	--color-surface-strong: #24313a;
-	--color-brand: #d2b18a;
-	--color-brand-soft: #4a3a2a;
-	--color-accent: #8db3a7;
-	--color-accent-soft: #213a39;
-	--color-ink: #edf1ec;
-	--color-muted: #adbbb6;
-	--color-line: #314049;
+	--color-page: #0f1618;
+	--color-surface: #162022;
+	--color-surface-strong: #223032;
+	--color-brand: #d0b089;
+	--color-brand-soft: #4b3825;
+	--color-accent: #8eb0a7;
+	--color-accent-soft: #213634;
+	--color-ink: #eef1eb;
+	--color-muted: #b0bbb5;
+	--color-line: #2f3d40;
 	--color-line-soft: rgba(237, 241, 236, 0.12);
-	--color-header-bg: rgba(17, 24, 27, 0.9);
-	--color-panel: rgba(24, 33, 38, 0.82);
-	--color-section-tint: rgba(20, 29, 34, 0.78);
+	--color-header-bg: rgba(15, 22, 24, 0.86);
+	--color-panel: rgba(22, 32, 34, 0.84);
+	--color-section-tint: rgba(19, 29, 31, 0.74);
 	--color-on-brand: #0f1517;
 	--color-on-brand-muted: rgba(15, 21, 23, 0.66);
-	--body-glow-brand: rgba(210, 177, 138, 0.12);
-	--body-glow-muted: rgba(141, 179, 167, 0.1);
+	--body-glow-brand: rgba(208, 176, 137, 0.15);
+	--body-glow-muted: rgba(142, 176, 167, 0.12);
 	--shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.3);
 	--shadow-medium: 0 14px 40px rgba(0, 0, 0, 0.38);
 	--shadow-strong: 0 30px 80px rgba(0, 0, 0, 0.48);
-	--shadow-brand: 0 16px 40px rgba(141, 179, 167, 0.16);
+	--shadow-brand: 0 16px 40px rgba(208, 176, 137, 0.16);
 	--logo-filter: saturate(0.92) brightness(0.92) contrast(1.05);
 	--theme-toggle-glow: color-mix(in srgb, var(--color-brand) 28%, transparent);
 }
@@ -83,7 +83,8 @@ body {
 	min-height: 100vh;
 	background:
 		radial-gradient(circle at top left, var(--body-glow-brand), transparent 28%),
-		radial-gradient(circle at top right, var(--body-glow-muted), transparent 26%),
+		radial-gradient(circle at 90% 10%, var(--body-glow-muted), transparent 24%),
+		linear-gradient(180deg, color-mix(in srgb, var(--color-page) 92%, white 8%), var(--color-page)),
 		var(--color-page);
 	color: var(--color-ink);
 	font-family: var(--font-body);
@@ -115,6 +116,16 @@ p {
 a {
 	color: inherit;
 	text-decoration: none;
+}
+
+a,
+button {
+	transition:
+		color 180ms ease,
+		background-color 180ms ease,
+		border-color 180ms ease,
+		box-shadow 180ms ease,
+		transform 180ms ease;
 }
 
 button {
@@ -183,4 +194,56 @@ html[data-theme='dark'] .theme-toggle__rays {
 ::selection {
 	background: var(--color-brand);
 	color: white;
+}
+
+.section-shell {
+	position: relative;
+	overflow: hidden;
+	border: 1px solid var(--color-line-soft);
+	background: linear-gradient(180deg, color-mix(in srgb, var(--color-surface) 92%, transparent), var(--color-panel));
+	box-shadow: var(--shadow-soft);
+	backdrop-filter: blur(18px);
+}
+
+.section-shell::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(135deg, color-mix(in srgb, var(--color-brand-soft) 18%, transparent), transparent 50%, color-mix(in srgb, var(--color-accent-soft) 20%, transparent));
+	opacity: 0.85;
+	pointer-events: none;
+}
+
+.section-shell > * {
+	position: relative;
+	z-index: 1;
+}
+
+.eyebrow {
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.32em;
+	text-transform: uppercase;
+	color: var(--color-brand);
+}
+
+.premium-card {
+	border: 1px solid var(--color-line-soft);
+	background: color-mix(in srgb, var(--color-surface) 86%, transparent);
+	box-shadow: var(--shadow-soft);
+	backdrop-filter: blur(12px);
+}
+
+.premium-card:hover {
+	transform: translateY(-2px);
+	box-shadow: var(--shadow-medium);
+}
+
+.text-wrap-balance {
+	text-wrap: balance;
+}
+
+.fine-rule {
+	height: 1px;
+	background: linear-gradient(90deg, transparent, var(--color-line), transparent);
 }

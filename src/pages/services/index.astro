@@ -1,36 +1,69 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
-const services = [
-	{ label: 'Psychological Evaluations', href: '/services/psychological-evaluations' },
-	{ label: 'Psychoeducational Testing', href: '/services/psychoeducational-testing' },
+const primaryServices = [
+	{
+		label: 'Psychological Evaluations',
+		href: '/services/psychological-evaluations',
+		description: 'Assessment for diagnostic clarification, attention concerns, emotional functioning, and complex clinical presentations.',
+	},
+	{
+		label: 'Psychoeducational Evaluations',
+		href: '/services/psychoeducational-testing',
+		description: 'Testing focused on learning profiles, academic strengths, school planning, and clear educational recommendations.',
+	},
+];
+
+const secondaryServices = [
 	{ label: 'CEU Trainings', href: '/services/ceu-trainings' },
-	{ label: 'Billing and Credentialing Consultation', href: '/services/billing-and-credentialing-consultation' },
+	{ label: 'Professional Consultation', href: '/services/billing-and-credentialing-consultation' },
 ];
 ---
 
 <Layout
 	title="Services | Morning Tide"
-	description="Overview of services including psychological testing, psychoeducational testing, CEU trainings, and provider consultation."
+	description="Overview of Morning Tide Psychology services with premium positioning around psychological and psychoeducational evaluations."
 >
-	<main class="min-h-screen px-6 py-16 lg:px-10">
-		<section class="mx-auto max-w-4xl space-y-8">
-			<p class="text-sm font-semibold uppercase tracking-[0.28em] text-(--color-brand)">Services</p>
-			<h1 class="text-4xl leading-tight text-(--color-ink) sm:text-5xl">Service Overview</h1>
-			<p class="text-lg leading-8 text-(--color-muted)">
-				Use this page as your top-level services overview. You can replace these short descriptions with your full offerings and approach.
+	<main class="px-6 py-16 lg:px-10 lg:py-20">
+		<section class="mx-auto max-w-6xl space-y-8">
+			<p class="eyebrow">Services</p>
+			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">A focused practice centered on premium evaluation work.</h1>
+			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
+				This service architecture puts your strongest clinical offerings first and presents other professional services as secondary. The effect is more selective, more polished, and better aligned with an expertise-driven brand.
 			</p>
 		</section>
 
-		<section class="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-2">
-			{services.map((service) => (
+		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-2">
+			{primaryServices.map((service) => (
 				<a
-					class="rounded-3xl border border-(--color-line) bg-(--color-surface) px-5 py-4 text-base font-semibold text-(--color-ink) shadow-(--shadow-soft) transition hover:-translate-y-0.5"
+					class="section-shell rounded-[2rem] px-7 py-8 hover:-translate-y-1"
 					href={service.href}
 				>
-					{service.label}
+					<p class="eyebrow">Primary Service</p>
+					<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">{service.label}</h2>
+					<p class="mt-5 text-base leading-8 text-(--color-muted)">{service.description}</p>
+					<span class="mt-8 inline-flex text-sm font-semibold text-(--color-accent)">View service details</span>
 				</a>
 			))}
+		</section>
+
+		<section class="mx-auto mt-16 max-w-6xl rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+			<div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+				<div class="space-y-4">
+					<p class="eyebrow">Additional Services</p>
+					<h2 class="text-4xl leading-none text-(--color-ink)">Secondary offerings remain available without competing for attention.</h2>
+					<p class="text-base leading-8 text-(--color-muted)">
+						This keeps the homepage and service hierarchy focused on your evaluation expertise while preserving access to other professional work in the existing site structure.
+					</p>
+				</div>
+				<div class="grid gap-4 sm:grid-cols-2">
+					{secondaryServices.map((service) => (
+						<a class="premium-card rounded-[1.5rem] px-5 py-5 text-base font-semibold text-(--color-ink)" href={service.href}>
+							{service.label}
+						</a>
+					))}
+				</div>
+			</div>
 		</section>
 	</main>
 </Layout>

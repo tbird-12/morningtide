@@ -1,24 +1,29 @@
 ---
 const footer = {
-	brand: 'Morning Tide',
-	copyright: `© ${new Date().getFullYear()} Morning Tide. All rights reserved.`,
+	brand: 'Morning Tide Psychology',
+	tagline: 'Private psychological and psychoeducational evaluations designed for clarity, discernment, and high-quality recommendations.',
+	copyright: `© ${new Date().getFullYear()} Morning Tide Psychology. All rights reserved.`,
 	links: [
-		{ label: 'About', href: '#about' },
-		{ label: 'Services', href: '#services' },
-		{ label: 'Consultation', href: '#consultation' },
+		{ label: 'Psychological Evaluations', href: '/services/psychological-evaluations' },
+		{ label: 'Psychoeducational Evaluations', href: '/services/psychoeducational-testing' },
+		{ label: 'Services Overview', href: '/services' },
+		{ label: 'Consultation Request', href: '/#contact' },
 	],
 };
 ---
 
-<footer class="border-t border-(--color-line) bg-(--color-surface)">
-	<div class="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 py-8 text-sm text-(--color-muted) lg:flex-row lg:items-center lg:justify-between lg:px-10">
-		<div class="flex flex-col gap-1">
-			<p class="font-semibold uppercase tracking-[0.2em] text-(--color-ink)">{footer.brand}</p>
-			<p>{footer.copyright}</p>
+
+<footer class="border-t border-(--color-line-soft) bg-(--color-surface)">
+	<div class="mx-auto grid w-full max-w-6xl gap-10 px-6 py-12 lg:grid-cols-[1.2fr_0.8fr] lg:px-10">
+		<div class="space-y-4">
+			<p class="text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-(--color-brand)">Morning Tide Psychology</p>
+			<h2 class="text-3xl leading-none text-(--color-ink) sm:text-4xl">Evaluation work with polish, depth, and clinical precision.</h2>
+			<p class="max-w-2xl text-base leading-7 text-(--color-muted)">{footer.tagline}</p>
+			<p class="text-sm text-(--color-muted)">{footer.copyright}</p>
 		</div>
-		<nav aria-label="Footer" class="flex flex-wrap items-center gap-4">
+		<nav aria-label="Footer" class="grid gap-3 text-sm">
 			{footer.links.map((link) => (
-				<a class="font-medium text-(--color-muted) transition hover:text-(--color-ink)" href={link.href}>{link.label}</a>
+				<a class="font-semibold text-(--color-muted) transition hover:text-(--color-ink)" href={link.href}>{link.label}</a>
 			))}
 		</nav>
 	</div>

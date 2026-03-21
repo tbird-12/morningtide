@@ -1,93 +1,34 @@
 ---
-import { Image } from 'astro:assets';
-import logoPlaceholder from '../assets/logo-placeholder.svg';
-
-const contact = {
-	phoneLabel: 'Call: +1 (000) 000-0000',
-	shortLabel: 'Call',
-	phoneHref: 'tel:+10000000000',
-};
-
-type SubheaderItem = { label: string; href: string };
-type GroupItem = { label: string; href: string };
-type Group = { heading: string; href?: string; items: GroupItem[] };
-type FlatNavItem = { label: string; href: string; subheaders: SubheaderItem[]; groups?: never };
-type GroupedNavItem = { label: string; href: string; groups: Group[]; subheaders?: never };
-type NavItem = FlatNavItem | GroupedNavItem;
-
-const navigation: NavItem[] = [
-	{
-		label: 'About',
-		href: '#about',
-		subheaders: [
-			{ label: 'Our Story', href: '#about-story' },
-			{ label: 'Team', href: '#about-team' },
-		],
-	},
-	{
-		label: 'Services',
-		href: '/services',
-		groups: [
-			{
-				heading: 'Psychological Evaluations',
-				href: '/services/psychological-evaluations',
-				items: [
-					{ label: 'ADHD Testing', href: '/services/psychological-evaluations/adhd' },
-					{ label: 'Autism Testing', href: '/services/psychological-evaluations/autism' },
-					{ label: 'Personality Disorders', href: '/services/psychological-evaluations/personality-disorders' },
-				],
-			},
-			{
-				heading: 'Psychoeducational Testing',
-				href: '/services/psychoeducational-testing',
-				items: [
-					{ label: 'Dyslexia Testing', href: '/services/psychoeducational-testing/dyslexia' },
-					{ label: 'Learning Disorders', href: '/services/psychoeducational-testing/learning-disorders' },
-					{ label: 'Giftedness', href: '/services/psychoeducational-testing/giftedness' },
-					{ label: 'Academic Achievement', href: '/services/psychoeducational-testing/academic-achievement' },
-					{ label: '2E Testing', href: '/services/psychoeducational-testing/2e-testing' },
-				],
-			},
-		],
-	},
-	{
-		label: 'CEU Trainings',
-		href: '/services/ceu-trainings',
-		groups: [
-			{
-				heading: 'CEU Trainings',
-				href: '/services/ceu-trainings',
-				items: [
-					{ label: 'All CEU Trainings', href: '/services/ceu-trainings' },
-					{ label: 'ADHD Training', href: '/services/ceu-trainings/adhd-training' },
-					{ label: 'Autism Testing Training', href: '/services/ceu-trainings/autism-testing-training' },
-				],
-			},
-		],
-	},
-	{
-		label: 'Consultation',
-		href: '/services/billing-and-credentialing-consultation',
-		subheaders: [
-			{ label: 'Consultation Overview', href: '/services/billing-and-credentialing-consultation' },
-			{ label: 'Billing & Credentialing', href: '/services/billing-and-credentialing-consultation' },
-			{ label: 'Book a Call', href: '/services/billing-and-credentialing-consultation#book-a-call' },
-			{ label: 'Frequently Asked Questions', href: '/services/billing-and-credentialing-consultation#faq' },
-		],
-	},
+const navigation = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Psychological Evaluations', href: '/services/psychological-evaluations' },
+	{ label: 'Psychoeducational Evaluations', href: '/services/psychoeducational-testing' },
+	{ label: 'Process', href: '/#process' },
+	{ label: 'Contact', href: '/#contact' },
 ];
 ---
 
-<!-- No hard lines anywhere. Visual zones are separated by gradient backgrounds,
-     diffuse shadows, and a brand-coloured underline indicator on active nav items. -->
-<header class="sticky top-0 z-40 bg-(--color-header-bg) backdrop-blur-md [box-shadow:var(--shadow-soft)]">
-
-	<!-- ── DESKTOP: Row 1 — prominent centered logo, utilities float right ── -->
-	<div class="relative hidden items-center justify-center px-6 py-5 md:flex lg:px-10">
-		<a class="shrink-0" href="/" aria-label="Morning Tide home">
-			<Image src={logoPlaceholder} alt="Morning Tide logo" width={200} height={67} class="site-logo h-auto w-44 lg:w-52" />
+<header class="sticky top-0 z-40 border-b border-(--color-line-soft) bg-(--color-header-bg) backdrop-blur-xl">
+	<div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 md:px-6 lg:px-10">
+		<a class="group flex items-center gap-4" href="/" aria-label="Morning Tide Psychology home">
+			<div class="flex h-11 w-11 items-center justify-center rounded-full border border-(--color-line) bg-(--color-surface) text-lg font-semibold text-(--color-brand) shadow-(--shadow-soft)">
+				MT
+			</div>
+			<div>
+				<p class="text-[0.68rem] font-semibold uppercase tracking-[0.32em] text-(--color-brand)">Morning Tide</p>
+				<p class="text-lg font-semibold text-(--color-ink) md:text-xl">Psychology</p>
+			</div>
 		</a>
-		<div class="absolute right-6 flex items-center gap-2.5 lg:right-10">
+
+		<nav aria-label="Primary" class="hidden items-center gap-7 md:flex">
+			{navigation.map((item) => (
+				<a class="text-sm font-semibold text-(--color-muted) transition hover:text-(--color-ink)" href={item.href}>
+					{item.label}
+				</a>
+			))}
+		</nav>
+
+		<div class="hidden items-center gap-2.5 md:flex">
 			<button
 				type="button"
 				class="theme-toggle inline-flex h-9 w-9 items-center justify-center rounded-full bg-(--color-surface) p-0 text-(--color-muted) shadow-sm transition hover:-translate-y-0.5 hover:text-(--color-ink) hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
@@ -111,96 +52,17 @@ const navigation: NavItem[] = [
 				<span class="sr-only" data-theme-label>Dark mode</span>
 			</button>
 			<a
-				class="inline-flex items-center rounded-full bg-(--color-brand) px-4 py-2 text-sm font-semibold text-(--color-on-brand) shadow-sm transition hover:-translate-y-0.5 hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
-				href={contact.phoneHref}
+				class="inline-flex items-center rounded-full bg-(--color-accent) px-5 py-2.5 text-sm font-semibold text-white shadow-(--shadow-brand) transition hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
+				href="/#contact"
 			>
-				{contact.phoneLabel}
+				Request Consultation
 			</a>
 		</div>
 	</div>
 
-	<!-- ── DESKTOP: Row 2 — nav tabs spread full width.
-	     A gradient background shifts the tone subtly to signal a new zone,
-	     and a brand-coloured underline grows in on hover instead of a box highlight. ── -->
-	<nav
-		aria-label="Primary"
-		class="hidden md:flex"
-		style="background: linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 52%, transparent), color-mix(in srgb, var(--color-surface) 22%, transparent));"
-	>
-		<div class="mx-auto flex w-full max-w-6xl items-stretch px-6 lg:px-10">
-			{navigation.map((item) => (
-				<div class="group relative flex flex-1 justify-center">
-					<a
-						class="relative flex w-full items-center justify-center gap-1 px-3 py-3 text-sm font-semibold text-(--color-muted) transition-colors duration-150 hover:text-(--color-ink)"
-						href={item.href}
-					>
-						{item.label}
-						<svg class="h-3 w-3 shrink-0 opacity-40 transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-							<path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-						</svg>
-					</a>
-					<!-- brand underline indicator — grows in on hover, no boxy background -->
-					<span class="pointer-events-none absolute bottom-0 left-1/2 h-0.5 w-0 -translate-x-1/2 rounded-full bg-(--color-brand) transition-all duration-200 group-hover:w-4/5 group-focus-within:w-4/5" aria-hidden="true"></span>
-
-					{item.groups ? (
-						<div class="pointer-events-none invisible absolute left-0 top-full z-20 min-w-120 pt-3 opacity-0 transition duration-150 group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100">
-							<div class="rounded-2xl bg-(--color-surface) p-5 [box-shadow:var(--shadow-medium)]">
-								<div class="grid grid-cols-3 gap-x-6 gap-y-2">
-									{item.groups.map((group) => (
-										<div>
-											{group.href ? (
-												<a class="mb-2 block text-[11px] font-semibold uppercase tracking-[0.18em] text-(--color-brand) hover:underline" href={group.href}>
-													{group.heading}
-												</a>
-											) : (
-												<p class="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-(--color-muted)">{group.heading}</p>
-											)}
-											<ul class="space-y-1">
-												{group.items.map((link) => (
-													<li>
-														<a class="block rounded-lg px-2 py-1.5 text-sm text-(--color-muted) transition hover:bg-(--color-surface-strong) hover:text-(--color-ink)" href={link.href}>
-															{link.label}
-														</a>
-													</li>
-												))}
-											</ul>
-										</div>
-									))}
-								</div>
-							</div>
-						</div>
-					) : (
-						<div class="pointer-events-none invisible absolute left-0 top-full z-20 min-w-52 pt-3 opacity-0 transition duration-150 group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100">
-							<div class="rounded-2xl bg-(--color-surface) p-3 [box-shadow:var(--shadow-medium)]">
-								<ul class="space-y-1">
-									{item.subheaders.map((subheader) => (
-										<li>
-											<a class="block rounded-lg px-3 py-1.5 text-sm text-(--color-muted) transition hover:bg-(--color-surface-strong) hover:text-(--color-ink)" href={subheader.href}>
-												{subheader.label}
-											</a>
-										</li>
-									))}
-								</ul>
-							</div>
-						</div>
-					)}
-				</div>
-			))}
-		</div>
-	</nav>
-
-	<!-- ── MOBILE: single bar — logo left, call pill + hamburger right ── -->
-	<div class="flex items-center justify-between px-4 py-3.5 md:hidden">
-		<a class="shrink-0" href="/" aria-label="Morning Tide home">
-			<Image src={logoPlaceholder} alt="Morning Tide logo" width={140} height={47} class="site-logo h-auto w-28" />
-		</a>
+	<div class="flex items-center justify-between border-t border-(--color-line-soft) px-4 py-3 md:hidden">
+		<p class="text-xs font-semibold uppercase tracking-[0.3em] text-(--color-brand)">Private Evaluations</p>
 		<div class="flex items-center gap-2">
-			<a
-				class="inline-flex items-center rounded-full bg-(--color-brand) px-4 py-2 text-sm font-semibold text-(--color-on-brand) shadow-sm transition hover:shadow"
-				href={contact.phoneHref}
-			>
-				{contact.shortLabel}
-			</a>
 			<button
 				id="mobile-menu-toggle"
 				type="button"
@@ -219,42 +81,21 @@ const navigation: NavItem[] = [
 		</div>
 	</div>
 
-	<!-- ── MOBILE: drawer — no hard lines, gradient bg, spacing-only hierarchy ── -->
 	<div
 		id="mobile-menu"
 		class="hidden md:hidden"
-		style="background: linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 72%, transparent), var(--color-header-bg));"
+		style="background: linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 78%, transparent), var(--color-header-bg));"
 		aria-hidden="true"
 	>
-		<div class="px-5 pt-2 pb-4 space-y-1">
+		<div class="space-y-2 px-5 pt-5 pb-5">
 			{navigation.map((item) => (
-				<div class="py-2">
-					<a class="block px-2 py-1 text-sm font-bold tracking-wide text-(--color-ink)" href={item.href}>
+				<a class="block rounded-2xl border border-(--color-line-soft) bg-(--color-surface) px-4 py-3 text-sm font-semibold text-(--color-ink) shadow-(--shadow-soft)" href={item.href}>
 						{item.label}
 					</a>
-					{item.groups ? (
-						<ul class="mt-1.5 ml-4 space-y-0.5">
-							{item.groups.flatMap((g) => g.items).map((link) => (
-								<li>
-									<a class="block rounded-lg px-2 py-1.5 text-sm text-(--color-muted) transition hover:bg-(--color-surface-strong) hover:text-(--color-ink)" href={link.href}>
-										{link.label}
-									</a>
-								</li>
-							))}
-						</ul>
-					) : (
-						<ul class="mt-1.5 ml-4 space-y-0.5">
-							{item.subheaders.map((sub) => (
-								<li>
-									<a class="block rounded-lg px-2 py-1.5 text-sm text-(--color-muted) transition hover:bg-(--color-surface-strong) hover:text-(--color-ink)" href={sub.href}>
-										{sub.label}
-									</a>
-								</li>
-							))}
-						</ul>
-					)}
-				</div>
 			))}
+			<a class="inline-flex w-full items-center justify-center rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-white shadow-(--shadow-brand)" href="/#contact">
+				Request Consultation
+			</a>
 		</div>
 		<div class="flex items-center justify-between px-6 py-3" style="background: color-mix(in srgb, var(--color-surface) 30%, transparent);">
 			<span class="text-sm font-semibold text-(--color-muted)">Appearance</span>
