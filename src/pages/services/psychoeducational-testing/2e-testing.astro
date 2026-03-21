@@ -1,21 +1,75 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+
+const referralQuestions = [
+	'Questions about co-occurring giftedness and learning differences',
+	'Need to understand why a strong student may still struggle in specific areas',
+	'Need for a polished report that captures complexity without becoming difficult to use',
+];
+
+const facts = [
+	{ label: 'Format', value: 'Remote evaluation' },
+	{ label: 'Reach', value: '43+ states via PSYPACT' },
+	{ label: 'Turnaround', value: 'Evaluation and report within one week' },
+	{ label: 'Rate', value: '$1,500 private-pay' },
+];
 ---
 
 <Layout
-	title="2E Testing | Morning Tide"
-	description="Stub page for twice-exceptional (2E) evaluation services."
+	title="2E Testing | Morning Tide Consulting and Collective"
+	description="Remote twice-exceptional evaluations across 43+ PSYPACT states with a polished report typically completed within one week."
 >
-	<main class="min-h-screen px-6 py-16 lg:px-10">
-		<section class="mx-auto max-w-3xl space-y-6">
-			<p class="text-sm font-semibold uppercase tracking-[0.28em] text-(--color-brand)">Psychoeducational Testing</p>
-			<h1 class="text-4xl leading-tight text-(--color-ink) sm:text-5xl">2E Testing</h1>
-			<p class="text-lg leading-8 text-(--color-muted)">
-				Replace this section with your twice-exceptional (2E) evaluation process, how co-occurring giftedness and learning differences are assessed together, and what the report and feedback session look like.
+	<main class="px-6 py-16 lg:px-10 lg:py-20">
+		<section class="mx-auto max-w-6xl space-y-8">
+			<p class="eyebrow">Psychoeducational Evaluations</p>
+			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">2E testing that handles complexity with speed, nuance, and precision.</h1>
+			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
+				This service is for families seeking a sophisticated evaluation of twice-exceptional profiles through a remote process that is accessible across 43+ PSYPACT states and typically completed with a polished report within one week.
 			</p>
-			<a class="inline-flex rounded-full border border-(--color-line) bg-(--color-surface) px-5 py-2 text-sm font-semibold text-(--color-ink)" href="/services/psychoeducational-testing">
-				Back to psychoeducational testing
-			</a>
+		</section>
+
+		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[1fr_0.95fr]">
+			<div class="section-shell rounded-4xl p-8">
+				<p class="eyebrow">Common Referral Questions</p>
+				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">A premium process for more layered learning profiles.</h2>
+				<ul class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
+					{referralQuestions.map((item) => (
+						<li class="flex gap-3">
+							<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span>
+							<span>{item}</span>
+						</li>
+					))}
+				</ul>
+			</div>
+
+			<div class="rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+				<p class="eyebrow">At a Glance</p>
+				<div class="mt-6 grid gap-4 sm:grid-cols-2">
+					{facts.map((fact) => (
+						<div class="premium-card rounded-3xl p-5">
+							<p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-(--color-brand)">{fact.label}</p>
+							<p class="mt-3 text-base font-semibold text-(--color-ink)">{fact.value}</p>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section class="mx-auto mt-10 max-w-6xl rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+			<div class="grid gap-8 lg:grid-cols-3">
+				<div>
+					<p class="eyebrow">Private-Pay Only</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">MCC does not accept insurance for evaluations. The flat evaluation rate is $1,500.</p>
+				</div>
+				<div>
+					<p class="eyebrow">Privacy</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Remaining private-pay helps protect privacy around sensitive mental health and educational information while making the process easier and more efficient.</p>
+				</div>
+				<div>
+					<p class="eyebrow">Next Step</p>
+					<a class="mt-4 inline-flex rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-white shadow-(--shadow-brand)" href="/#contact">Request 2E testing</a>
+				</div>
+			</div>
 		</section>
 	</main>
 </Layout>

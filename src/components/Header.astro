@@ -3,20 +3,21 @@ const navigation = [
 	{ label: 'Home', href: '/' },
 	{ label: 'Psychological Evaluations', href: '/services/psychological-evaluations' },
 	{ label: 'Psychoeducational Evaluations', href: '/services/psychoeducational-testing' },
-	{ label: 'Process', href: '/#process' },
+	{ label: 'Clinician Consultations', href: '/services/billing-and-credentialing-consultation' },
+	{ label: 'CEU Trainings', href: '/services/ceu-trainings' },
 	{ label: 'Contact', href: '/#contact' },
 ];
 ---
 
 <header class="sticky top-0 z-40 border-b border-(--color-line-soft) bg-(--color-header-bg) backdrop-blur-xl">
 	<div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 md:px-6 lg:px-10">
-		<a class="group flex items-center gap-4" href="/" aria-label="Morning Tide Psychology home">
+		<a class="group flex items-center gap-4" href="/" aria-label="Morning Tide Consulting and Collective home">
 			<div class="flex h-11 w-11 items-center justify-center rounded-full border border-(--color-line) bg-(--color-surface) text-lg font-semibold text-(--color-brand) shadow-(--shadow-soft)">
-				MT
+				MCC
 			</div>
 			<div>
-				<p class="text-[0.68rem] font-semibold uppercase tracking-[0.32em] text-(--color-brand)">Morning Tide</p>
-				<p class="text-lg font-semibold text-(--color-ink) md:text-xl">Psychology</p>
+				<p class="text-[0.68rem] font-semibold uppercase tracking-[0.32em] text-(--color-brand)">Morning Tide Consulting</p>
+				<p class="text-lg font-semibold text-(--color-ink) md:text-xl">&amp; Collective</p>
 			</div>
 		</a>
 
@@ -55,13 +56,13 @@ const navigation = [
 				class="inline-flex items-center rounded-full bg-(--color-accent) px-5 py-2.5 text-sm font-semibold text-white shadow-(--shadow-brand) transition hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
 				href="/#contact"
 			>
-				Request Consultation
+				Inquire Now
 			</a>
 		</div>
 	</div>
 
 	<div class="flex items-center justify-between border-t border-(--color-line-soft) px-4 py-3 md:hidden">
-		<p class="text-xs font-semibold uppercase tracking-[0.3em] text-(--color-brand)">Private Evaluations</p>
+		<p class="text-xs font-semibold uppercase tracking-[0.3em] text-(--color-brand)">MCC</p>
 		<div class="flex items-center gap-2">
 			<button
 				id="mobile-menu-toggle"
@@ -94,7 +95,7 @@ const navigation = [
 					</a>
 			))}
 			<a class="inline-flex w-full items-center justify-center rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-white shadow-(--shadow-brand)" href="/#contact">
-				Request Consultation
+				Inquire Now
 			</a>
 		</div>
 		<div class="flex items-center justify-between px-6 py-3" style="background: color-mix(in srgb, var(--color-surface) 30%, transparent);">

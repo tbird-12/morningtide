@@ -8,27 +8,57 @@ const trainings = [
 ---
 
 <Layout
-	title="CEU Trainings | Morning Tide"
-	description="Continuing education trainings for mental health providers, including ADHD training and autism testing training."
+	title="CEU Trainings | Morning Tide Consulting and Collective"
+	description="Continuing education trainings for mental health providers through Morning Tide Consulting and Collective."
 >
-	<main class="min-h-screen px-6 py-16 lg:px-10">
-		<section class="mx-auto max-w-4xl space-y-6">
-			<p class="text-sm font-semibold uppercase tracking-[0.28em] text-(--color-brand)">CEU Trainings</p>
-			<h1 class="text-4xl leading-tight text-(--color-ink) sm:text-5xl">CEU Trainings</h1>
-			<p class="text-lg leading-8 text-(--color-muted)">
-				Add your CEU training topics, learning objectives, format options, and booking details for agencies, group practices, or organizations.
+	<main class="px-6 py-16 lg:px-10 lg:py-20">
+		<section class="mx-auto max-w-6xl space-y-8">
+			<p class="eyebrow">CEU Trainings</p>
+			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Continuing education designed for clinicians who want relevant, practice-facing training.</h1>
+			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
+				These trainings are positioned for agencies, group practices, and clinicians seeking CEU experiences that are polished, substantive, and immediately useful in real-world clinical work.
 			</p>
 		</section>
 
-		<section class="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-2">
+		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+			<div class="section-shell rounded-[2rem] p-8">
+				<p class="eyebrow">Training Positioning</p>
+				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">A CEU offering that matches the rest of the MCC brand.</h2>
+				<p class="mt-5 text-base leading-8 text-(--color-muted)">
+					Use this page to present learning objectives, training formats, and booking details for organizations or clinicians who want higher-quality continuing education.
+				</p>
+			</div>
+
+			<div class="rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+				<p class="eyebrow">Current Training Topics</p>
+				<div class="mt-6 grid gap-4 sm:grid-cols-2">
 			{trainings.map((training) => (
 				<a
-					class="rounded-3xl border border-(--color-line) bg-(--color-surface) px-5 py-4 text-base font-semibold text-(--color-ink) shadow-(--shadow-soft) transition hover:-translate-y-0.5"
+					class="premium-card rounded-[1.5rem] px-5 py-5 text-base font-semibold text-(--color-ink)"
 					href={training.href}
 				>
 					{training.label}
 				</a>
 			))}
+				</div>
+			</div>
+		</section>
+
+		<section class="mx-auto mt-10 max-w-6xl rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+			<div class="grid gap-8 lg:grid-cols-3">
+				<div>
+					<p class="eyebrow">Formats</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Use this section for live training, organization workshops, or tailored education events.</p>
+				</div>
+				<div>
+					<p class="eyebrow">Audience</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Ideal for clinicians, agencies, and teams seeking practical continuing education with clinical depth.</p>
+				</div>
+				<div>
+					<p class="eyebrow">Booking</p>
+					<a class="mt-4 inline-flex rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-white shadow-(--shadow-brand)" href="/#contact">Request a training inquiry</a>
+				</div>
+			</div>
 		</section>
 	</main>
 </Layout>
