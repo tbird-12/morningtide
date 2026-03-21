@@ -18,22 +18,22 @@ const paymentMethods = [
 
 <Layout
 	title="Investment | Morning Tide Consulting and Collective"
-	description="Transparent pricing for psychological and psychoeducational evaluations, clinician consultations, and continuing education trainings. Self-pay only — no insurance."
+	description="Transparent pricing for psychological and psychoeducational evaluations, clinician consultations, and continuing education trainings. Self-pay only — out-of-network with health insurance."
 >
 	<main class="px-6 py-16 lg:px-10 lg:py-20">
 		<section class="mx-auto max-w-6xl space-y-8">
 			<p class="eyebrow">Investment</p>
-			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Transparent pricing. No insurance. No surprises.</h1>
+			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Transparent pricing. Out-of-network. No surprises.</h1>
 			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
 				Morning Tide operates as a private-pay practice. This model protects your privacy, eliminates insurance-driven limitations on evaluation scope, and allows reports to be completed within one week rather than months.
 			</p>
 		</section>
 
-		<section class="mx-auto mt-12 max-w-6xl rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+		<section class="mx-auto mt-12 max-w-6xl rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
 			<p class="eyebrow">Service Investment</p>
 			<div class="mt-6 grid gap-4">
 				{investmentRows.map((row) => (
-					<div class="premium-card rounded-[1.5rem] p-5 sm:grid sm:grid-cols-[1fr_auto_1fr] sm:items-center sm:gap-4">
+					<div class="premium-card rounded-3xl p-5 sm:grid sm:grid-cols-[1fr_auto_1fr] sm:items-center sm:gap-4">
 						<p class="text-base font-semibold text-(--color-ink)">{row.service}</p>
 						<p class="text-base font-semibold text-(--color-accent)">{row.rate}</p>
 						<p class="text-sm text-(--color-muted)">{row.note}</p>
@@ -43,7 +43,7 @@ const paymentMethods = [
 		</section>
 
 		<section class="mx-auto mt-10 grid max-w-6xl gap-6 lg:grid-cols-2">
-			<div class="section-shell rounded-[2rem] p-8">
+			<div class="section-shell rounded-4xl p-8">
 				<p class="eyebrow">Why Private-Pay</p>
 				<h2 class="mt-4 text-3xl leading-none text-(--color-ink)">Better evaluations, faster results, complete privacy.</h2>
 				<ul class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
@@ -54,7 +54,7 @@ const paymentMethods = [
 				</ul>
 			</div>
 
-			<div class="rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+			<div class="rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
 				<p class="eyebrow">Payment Methods</p>
 				<h2 class="mt-4 text-3xl leading-none text-(--color-ink)">Flexible payment options.</h2>
 				<ul class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
@@ -72,7 +72,7 @@ const paymentMethods = [
 			</div>
 		</section>
 
-		<section class="mx-auto mt-10 max-w-6xl rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+		<section class="mx-auto mt-10 max-w-6xl rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
 			<div class="grid gap-8 lg:grid-cols-3">
 				<div>
 					<p class="eyebrow">Superbills</p>
@@ -85,6 +85,50 @@ const paymentMethods = [
 				<div>
 					<p class="eyebrow">Questions</p>
 					<a class="mt-4 inline-flex rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-white shadow-(--shadow-brand)" href="/#contact">Ask about pricing</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="mx-auto mt-10 grid max-w-6xl gap-6 lg:grid-cols-2">
+			<div class="section-shell rounded-4xl p-8">
+				<p class="eyebrow">Insurance Benefit Verification</p>
+				<h2 class="mt-4 text-3xl leading-none text-(--color-ink)">We can check your out-of-network benefits.</h2>
+				<p class="mt-5 text-base leading-8 text-(--color-muted)">
+					Although MCC is out-of-network with health insurance, many plans offer out-of-network benefits that can reimburse a portion of evaluation costs. We are able to verify your insurance benefits and check your out-of-network coverage before your evaluation begins — so you know what to expect.
+				</p>
+				<ul class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
+					<li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span><span>We verify out-of-network benefits on your behalf prior to your evaluation</span></li>
+					<li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span><span>Superbills with CPT codes are provided after every evaluation for reimbursement submission</span></li>
+					<li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span><span>HSA and FSA cards are accepted as payment at the time of service</span></li>
+				</ul>
+			</div>
+
+			<div class="rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+				<p class="eyebrow">Medical Necessity</p>
+				<h2 class="mt-4 text-3xl leading-none text-(--color-ink)">Not all evaluations are covered by health insurance.</h2>
+				<p class="mt-5 text-base leading-8 text-(--color-muted)">
+					Health insurance plans generally only cover services that meet the criteria for <strong>medical necessity</strong> — meaning the evaluation must be required to diagnose or treat a medical or mental health condition. Many evaluations fall outside this scope:
+				</p>
+				<ul class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
+					<li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span><span><strong>Educational purposes</strong> — testing for school accommodations, IEP/504 plans, or giftedness identification is considered educational, not medical</span></li>
+					<li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span><span><strong>Legal or forensic purposes</strong> — evaluations for custody proceedings, disability claims, or court-ordered assessments are not viewed as medically necessary by insurers</span></li>
+					<li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span><span><strong>Workplace or vocational evaluations</strong> — testing requested for employment accommodations or career planning typically falls outside medical coverage</span></li>
+					<li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span><span><strong>Comprehensive or elective testing</strong> — insurers may limit testing to a narrow set of measures and deny broader evaluations that go beyond the minimum diagnostic threshold</span></li>
+				</ul>
+				<p class="mt-5 text-sm leading-7 text-(--color-muted)">Private-pay removes these restrictions entirely, allowing the evaluation scope to be driven by the clinical question — not by what an insurer will authorize.</p>
+			</div>
+		</section>
+
+		<section class="mx-auto mt-10 max-w-6xl rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+			<div class="grid gap-8 lg:grid-cols-[1fr_1.25fr]">
+				<div>
+					<p class="eyebrow">Good Faith Estimate</p>
+					<h2 class="mt-4 text-3xl leading-none text-(--color-ink)">Your right to a cost estimate.</h2>
+				</div>
+				<div class="space-y-4 text-base leading-8 text-(--color-muted)">
+					<p>Under the <strong>No Surprises Act</strong>, health care providers are required to give patients who are uninsured or self-pay a <strong>Good Faith Estimate</strong> of expected charges before services are provided.</p>
+					<p>You have the right to receive a Good Faith Estimate for the total expected cost of any non-emergency health care services, including psychological and psychoeducational evaluations. MCC provides this estimate in advance of every scheduled evaluation.</p>
+					<p>If you receive a bill that is at least $400 more than your Good Faith Estimate, you may dispute the bill. For questions or more information about your right to a Good Faith Estimate, visit <a class="font-semibold text-(--color-accent) underline underline-offset-4" href="https://www.cms.gov/nosurprises" target="_blank" rel="noopener noreferrer">cms.gov/nosurprises</a>.</p>
 				</div>
 			</div>
 		</section>
