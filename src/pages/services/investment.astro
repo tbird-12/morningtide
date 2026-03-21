@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const investmentRows = [
+	{ service: 'Psychological Evaluations', rate: '$1,500', note: 'Private-pay only' },
+	{ service: 'Psychoeducational Evaluations', rate: '$1,500', note: 'Private-pay only' },
+];
+---
+
+<Layout
+	title="Investment | Morning Tide Consulting and Collective"
+	description="Service investment details for MCC evaluations, consultations, and education offerings."
+>
+	<main class="px-6 py-16 lg:px-10 lg:py-20">
+		<section class="mx-auto max-w-6xl space-y-8">
+			<p class="eyebrow">Investment</p>
+			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Transparent pricing for evaluation services.</h1>
+			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
+				MCC maintains transparent pricing and a private-pay model to support privacy, quality control, and efficient delivery timelines.
+			</p>
+		</section>
+
+		<section class="mx-auto mt-12 max-w-6xl rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+			<p class="eyebrow">Evaluation Investment</p>
+			<div class="mt-6 grid gap-4">
+				{investmentRows.map((row) => (
+					<div class="premium-card rounded-3xl p-5 sm:grid sm:grid-cols-[1fr_auto_auto] sm:items-center sm:gap-4">
+						<p class="text-base font-semibold text-(--color-ink)">{row.service}</p>
+						<p class="text-base font-semibold text-(--color-accent)">{row.rate}</p>
+						<p class="text-sm text-(--color-muted)">{row.note}</p>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<section class="mx-auto mt-10 max-w-6xl rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+			<div class="grid gap-8 lg:grid-cols-3">
+				<div>
+					<p class="eyebrow">Insurance</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">MCC does not accept insurance for evaluations.</p>
+				</div>
+				<div>
+					<p class="eyebrow">Privacy</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Private-pay supports greater privacy around sensitive mental health information.</p>
+				</div>
+				<div>
+					<p class="eyebrow">Consultations and Education</p>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">Use this section to add current consultation and education rates or package structures.</p>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>

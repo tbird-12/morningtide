@@ -5,46 +5,46 @@ const primaryServices = [
 	{
 		label: 'Psychological Evaluations',
 		href: '/services/psychological-evaluations',
-		description: 'Remote assessment for diagnostic clarification, attention concerns, emotional functioning, and complex clinical presentations across 43+ PSYPACT states, typically with a one-week report turnaround.',
+		description: 'Remote assessment for diagnostic clarification, attention concerns, emotional functioning, and complex clinical presentations across 43+ PSYPACT states, typically with a report within one week.',
 	},
 	{
 		label: 'Psychoeducational Evaluations',
 		href: '/services/psychoeducational-testing',
-		description: 'Remote testing focused on learning profiles, academic strengths, school planning, and clear educational recommendations, with an efficient one-week reporting timeline.',
+		description: 'Remote testing focused on learning profiles, academic strengths, school planning, and clear educational recommendations — with reports typically ready within one week.',
 	},
 ];
 
 const secondaryServices = [
 	{
-		label: 'Clinician Consultations',
+		label: 'Consultations',
 		href: '/services/billing-and-credentialing-consultation',
-		description: 'Support for mental health clinicians around billing, insurance workflows, credentialing, and practice operations.',
+		description: 'Guidance for clinicians navigating billing, insurance workflows, credentialing, and practice operations.',
 	},
 	{
-		label: 'CEU Trainings',
+		label: 'Education',
 		href: '/services/ceu-trainings',
-		description: 'Continuing education offerings for agencies, group practices, and clinicians seeking substantive, practice-relevant training.',
+		description: 'Continuing education for agencies, group practices, and clinicians who want substantive, practice-relevant training.',
 	},
 ];
 ---
 
 <Layout
 	title="Services | Morning Tide Consulting and Collective"
-	description="Overview of MCC services spanning remote premium evaluations, clinician consultations, and CEU trainings."
+	description="Overview of MCC services spanning remote premium evaluations, consultations, and education offerings."
 >
 	<main class="px-6 py-16 lg:px-10 lg:py-20">
 		<section class="mx-auto max-w-6xl space-y-8">
 			<p class="eyebrow">Services</p>
-			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">A premium service portfolio led by evaluations and extended through clinician support.</h1>
+			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Services led by evaluations, supported by clinician consulting and education.</h1>
 			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
-				This service architecture puts your strongest evaluation offerings first while clearly presenting remote access, PSYPACT reach, and one-week efficiency alongside clinician consultations and CEU trainings.
+				Evaluations are the foundation of the practice, with remote access across 43+ PSYPACT states and reports typically completed within one week. Clinician consulting and continuing education round out the offering.
 			</p>
 		</section>
 
 		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-2">
 			{primaryServices.map((service) => (
 				<a
-					class="section-shell rounded-[2rem] px-7 py-8 hover:-translate-y-1"
+					class="section-shell rounded-4xl px-7 py-8 hover:-translate-y-1"
 					href={service.href}
 				>
 					<p class="eyebrow">Primary Service</p>
@@ -55,18 +55,18 @@ const secondaryServices = [
 			))}
 		</section>
 
-		<section class="mx-auto mt-16 max-w-6xl rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+		<section class="mx-auto mt-16 max-w-6xl rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
 			<div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
 				<div class="space-y-4">
 					<p class="eyebrow">Clinician-Facing Services</p>
-					<h2 class="text-4xl leading-none text-(--color-ink)">Consulting and CEU trainings are visible, credible, and clearly part of MCC.</h2>
+					<h2 class="text-4xl leading-none text-(--color-ink)">Consulting and continuing education for clinicians.</h2>
 					<p class="text-base leading-8 text-(--color-muted)">
-						These offerings are presented with equal polish while preserving the evaluation-first hierarchy of the brand.
+						These offerings support clinicians in building stronger practices and deepening their clinical skills.
 					</p>
 				</div>
 				<div class="grid gap-4 sm:grid-cols-2">
 					{secondaryServices.map((service) => (
-						<a class="premium-card rounded-[1.5rem] px-5 py-5" href={service.href}>
+						<a class="premium-card rounded-3xl px-5 py-5" href={service.href}>
 							<p class="text-base font-semibold text-(--color-ink)">{service.label}</p>
 							<p class="mt-3 text-sm leading-7 text-(--color-muted)">{service.description}</p>
 						</a>

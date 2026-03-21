@@ -1,13 +1,15 @@
 ---
 const footer = {
 	brand: 'Morning Tide Consulting and Collective',
-	tagline: 'Premium evaluations, clinician consultations, and CEU trainings designed for clients and professionals who value depth, discernment, and polished guidance.',
+	tagline: 'Evaluations, consultations, and education for clients and clinicians who value depth and clear communication.',
 	copyright: `© ${new Date().getFullYear()} Morning Tide Consulting and Collective. All rights reserved.`,
 	links: [
-		{ label: 'Psychological Evaluations', href: '/services/psychological-evaluations' },
-		{ label: 'Psychoeducational Evaluations', href: '/services/psychoeducational-testing' },
-		{ label: 'Clinician Consultations', href: '/services/billing-and-credentialing-consultation' },
-		{ label: 'CEU Trainings', href: '/services/ceu-trainings' },
+		{ label: 'Evaluations', href: '/services' },
+		{ label: 'Consultations', href: '/services/billing-and-credentialing-consultation' },
+		{ label: 'Education', href: '/services/ceu-trainings' },
+		{ label: 'Investment', href: '/services/investment' },
+		{ label: 'Locations', href: '/locations' },
+		{ label: 'About Clinician', href: '/about-clinician' },
 		{ label: 'Services Overview', href: '/services' },
 		{ label: 'Inquire', href: '/#contact' },
 	],
@@ -19,7 +21,7 @@ const footer = {
 	<div class="mx-auto grid w-full max-w-6xl gap-10 px-6 py-12 lg:grid-cols-[1.2fr_0.8fr] lg:px-10">
 		<div class="space-y-4">
 			<p class="text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-(--color-brand)">Morning Tide Consulting and Collective</p>
-			<h2 class="text-3xl leading-none text-(--color-ink) sm:text-4xl">MCC brings evaluation, consultation, and training into one premium practice.</h2>
+			<h2 class="text-3xl leading-none text-(--color-ink) sm:text-4xl">Evaluation, consultation, and education — all under one practice.</h2>
 			<p class="max-w-2xl text-base leading-7 text-(--color-muted)">{footer.tagline}</p>
 			<p class="text-sm text-(--color-muted)">{footer.copyright}</p>
 		</div>

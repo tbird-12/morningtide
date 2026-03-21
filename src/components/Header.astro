@@ -1,11 +1,24 @@
 ---
 const navigation = [
-	{ label: 'Home', href: '/' },
-	{ label: 'Psychological Evaluations', href: '/services/psychological-evaluations' },
-	{ label: 'Psychoeducational Evaluations', href: '/services/psychoeducational-testing' },
-	{ label: 'Clinician Consultations', href: '/services/billing-and-credentialing-consultation' },
-	{ label: 'CEU Trainings', href: '/services/ceu-trainings' },
-	{ label: 'Contact', href: '/#contact' },
+	{
+		label: 'Evaluations',
+		href: '/services',
+		children: [
+			{ label: 'Psychological Evaluations', href: '/services/psychological-evaluations' },
+			{ label: 'Psychoeducational Evaluations', href: '/services/psychoeducational-testing' },
+		],
+	},
+	{ label: 'Consultations', href: '/services/billing-and-credentialing-consultation' },
+	{ label: 'Education', href: '/services/ceu-trainings' },
+	{
+		label: 'About',
+		href: '/about-clinician',
+		children: [
+			{ label: 'Investment', href: '/services/investment' },
+			{ label: 'Locations', href: '/locations' },
+			{ label: 'Clinician', href: '/about-clinician' },
+		],
+	},
 ];
 ---
 
@@ -21,11 +34,31 @@ const navigation = [
 			</div>
 		</a>
 
-		<nav aria-label="Primary" class="hidden items-center gap-7 md:flex">
+		<nav aria-label="Primary" class="hidden items-center gap-6 md:flex">
 			{navigation.map((item) => (
-				<a class="text-sm font-semibold text-(--color-muted) transition hover:text-(--color-ink)" href={item.href}>
-					{item.label}
-				</a>
+				item.children ? (
+					<div class="group relative">
+						<a class="inline-flex items-center gap-1 text-sm font-semibold text-(--color-muted) transition hover:text-(--color-ink)" href={item.href}>
+							{item.label}
+							<svg class="h-3 w-3 opacity-60 transition group-hover:rotate-180" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+								<path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</a>
+						<div class="invisible pointer-events-none absolute left-0 top-full z-30 min-w-72 pt-3 opacity-0 transition group-hover:visible group-hover:pointer-events-auto group-hover:opacity-100">
+							<div class="rounded-3xl border border-(--color-line-soft) bg-(--color-surface) p-3 shadow-(--shadow-medium)">
+								{item.children.map((child) => (
+									<a class="block rounded-2xl px-3 py-2 text-sm font-semibold text-(--color-muted) transition hover:bg-(--color-surface-strong) hover:text-(--color-ink)" href={child.href}>
+										{child.label}
+									</a>
+								))}
+							</div>
+						</div>
+					</div>
+				) : (
+					<a class="text-sm font-semibold text-(--color-muted) transition hover:text-(--color-ink)" href={item.href}>
+						{item.label}
+					</a>
+				)
 			))}
 		</nav>
 
@@ -53,7 +86,7 @@ const navigation = [
 				<span class="sr-only" data-theme-label>Dark mode</span>
 			</button>
 			<a
-				class="inline-flex items-center rounded-full bg-(--color-accent) px-5 py-2.5 text-sm font-semibold text-white shadow-(--shadow-brand) transition hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
+				class="inline-flex items-center rounded-full bg-(--color-accent) px-5 py-2.5 text-sm font-semibold text-(--color-accent-soft) shadow-(--shadow-brand) transition hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
 				href="/#contact"
 			>
 				Inquire Now
@@ -90,11 +123,24 @@ const navigation = [
 	>
 		<div class="space-y-2 px-5 pt-5 pb-5">
 			{navigation.map((item) => (
-				<a class="block rounded-2xl border border-(--color-line-soft) bg-(--color-surface) px-4 py-3 text-sm font-semibold text-(--color-ink) shadow-(--shadow-soft)" href={item.href}>
+				item.children ? (
+					<div class="rounded-2xl border border-(--color-line-soft) bg-(--color-surface) p-3 shadow-(--shadow-soft)">
+						<a class="block px-1 py-1 text-sm font-semibold text-(--color-ink)" href={item.href}>{item.label}</a>
+						<div class="mt-2 space-y-1">
+							{item.children.map((child) => (
+								<a class="block rounded-xl px-3 py-2 text-sm font-semibold text-(--color-muted) transition hover:bg-(--color-surface-strong) hover:text-(--color-ink)" href={child.href}>
+									{child.label}
+								</a>
+							))}
+						</div>
+					</div>
+				) : (
+					<a class="block rounded-2xl border border-(--color-line-soft) bg-(--color-surface) px-4 py-3 text-sm font-semibold text-(--color-ink) shadow-(--shadow-soft)" href={item.href}>
 						{item.label}
 					</a>
+				)
 			))}
-			<a class="inline-flex w-full items-center justify-center rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-white shadow-(--shadow-brand)" href="/#contact">
+			<a class="inline-flex w-full items-center justify-center rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-(--color-accent-soft) shadow-(--shadow-brand)" href="/#contact">
 				Inquire Now
 			</a>
 		</div>

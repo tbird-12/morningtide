@@ -4,37 +4,37 @@ import Layout from '../layouts/Layout.astro';
 const pillars = [
 	{
 		title: 'Psychological Evaluations',
-		description: 'Comprehensive remote assessment for diagnostic clarification, emotional functioning, attention concerns, and complex presentations, with reports typically completed within one week.',
+		description: 'Remote assessment for diagnostic clarification, attention concerns, emotional functioning, and complex presentations — with reports typically ready within one week.',
 		href: '/services/psychological-evaluations',
 	},
 	{
 		title: 'Psychoeducational Evaluations',
-		description: 'Thoughtful remote testing that clarifies learning profiles, academic strengths, and the recommendations needed for school and family decision-making, delivered with an efficient one-week report timeline.',
+		description: 'Remote testing that clarifies learning profiles, academic strengths, and the recommendations families and schools need to move forward.',
 		href: '/services/psychoeducational-testing',
 	},
 ];
 
 const clinicianOffers = [
 	{
-		title: 'Clinician Consultations',
-		description: 'Consulting for mental health clinicians who want strategic support with insurance billing, credentialing, and practice systems.',
+		title: 'Consultations',
+		description: 'Guidance for clinicians navigating insurance billing, credentialing, and the operational side of practice.',
 		href: '/services/billing-and-credentialing-consultation',
 	},
 	{
-		title: 'CEU Trainings',
-		description: 'Continuing education experiences designed for agencies, group practices, and clinicians seeking high-quality, practice-relevant training.',
+		title: 'Education',
+		description: 'Continuing education for agencies, group practices, and clinicians who want training grounded in real clinical work.',
 		href: '/services/ceu-trainings',
 	},
 ];
 
 const differentiators = [
-	'Remote evaluation access across 43+ PSYPACT states',
-	'Evaluations and polished reports typically completed within one week',
-	'Strategic assessment plans tailored to the referral question',
-	'Polished written reports built for real-world use',
-	'Recommendations designed for clinicians, families, and schools',
-	'A refined client experience that keeps the process easy, efficient, and premium',
-	'Consultation and CEU offerings that extend the practice beyond direct evaluation work',
+	'Remote evaluations across 43+ PSYPACT states',
+	'Reports typically completed within one week',
+	'Assessment planning tailored to the referral question',
+	'Reports designed for real-world use',
+	'Recommendations written for clinicians, families, and schools',
+	'A straightforward process from start to finish',
+	'Clinician consulting and continuing education',
 ];
 
 const process = [
@@ -46,12 +46,12 @@ const process = [
 	{
 		step: '02',
 		title: 'Comprehensive Assessment',
-		text: 'Testing, interviews, record review, and case formulation are selected with intention rather than by template, all through a streamlined remote process.',
+		text: 'Testing, interviews, record review, and case conceptualization — selected based on your referral question, not a fixed template.',
 	},
 	{
 		step: '03',
 		title: 'Integrated Report',
-		text: 'Findings are translated into a clear, professionally written report with nuanced interpretation and practical recommendations, typically within one week.',
+		text: 'Findings are written into a clear report with thoughtful interpretation and practical recommendations, typically within one week.',
 	},
 	{
 		step: '04',
@@ -71,17 +71,17 @@ const signals = [
 	title="Morning Tide Consulting and Collective | MCC"
 	description="MCC offers premium remote psychological and psychoeducational evaluations across 43+ PSYPACT states, often completed with a polished report within one week."
 >
-	<main>
-		<section class="relative overflow-hidden px-6 pt-10 pb-20 lg:px-10 lg:pt-16">
+	<main class="snap-y snap-mandatory">
+		<section class="relative flex min-h-screen snap-start items-center overflow-hidden px-6 pt-10 pb-20 lg:px-10 lg:pt-16">
 			<div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,var(--color-brand-soft),transparent_32%),radial-gradient(circle_at_85%_12%,var(--color-accent-soft),transparent_24%)]"></div>
 			<div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
 				<div class="space-y-8">
 					<p class="eyebrow">Morning Tide Consulting and Collective</p>
 					<h1 class="max-w-4xl text-wrap-balance text-5xl leading-none text-(--color-ink) sm:text-6xl lg:text-7xl">
-						Remote evaluations across 43+ PSYPACT states, with premium care and reports typically delivered within one week.
+						Thorough evaluations, delivered remotely across 43+ states.
 					</h1>
 					<p class="max-w-2xl text-lg leading-8 text-(--color-muted) sm:text-xl">
-						Morning Tide Consulting and Collective is built for clients and referral partners who want availability, ease of use, and efficiency without compromising clinical depth, polished communication, or premium service.
+						We keep the evaluation process straightforward — remote access across 43+ PSYPACT states, reports typically finished within a week, and the clinical depth that makes those reports genuinely useful.
 					</p>
 					<div class="flex flex-wrap gap-4">
 						<a class="inline-flex items-center rounded-full bg-(--color-accent) px-6 py-3 text-sm font-semibold text-white shadow-(--shadow-brand) hover:-translate-y-0.5" href="/services">
@@ -101,20 +101,17 @@ const signals = [
 					</div>
 				</div>
 
-				<div class="section-shell rounded-[2rem] p-6 sm:p-8">
+				<div class="section-shell rounded-4xl p-6 sm:p-8">
 					<div class="flex items-start justify-between gap-4">
 						<div>
-							<p class="eyebrow">Why clients choose this practice</p>
-							<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">A more elevated assessment experience.</h2>
-						</div>
-						<div class="rounded-full border border-(--color-line) px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-(--color-muted)">
-							MCC Brand Positioning
+							<p class="eyebrow">Our Approach</p>
+							<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">Quality work, clear communication, no unnecessary steps.</h2>
 						</div>
 					</div>
 					<div class="fine-rule my-6"></div>
 					<div class="space-y-5">
 						<p class="text-lg leading-8 text-(--color-muted)">
-							This site is designed to speak to clients who want a thoughtful evaluator, a sophisticated remote process, and work product they can use with confidence on a fast timeline.
+							We focus on getting the evaluation right — careful assessment, a responsive process, and a final report you can actually use.
 						</p>
 						<ul class="space-y-3 text-sm leading-7 text-(--color-muted)">
 							{differentiators.map((item) => (
@@ -124,29 +121,23 @@ const signals = [
 								</li>
 							))}
 						</ul>
-						<div class="rounded-[1.5rem] border border-(--color-line-soft) bg-[color-mix(in_srgb,var(--color-accent)_8%,transparent)] p-5">
-							<p class="text-[0.68rem] font-semibold uppercase tracking-[0.3em] text-(--color-brand)">Positioning Note</p>
-							<p class="mt-3 text-base leading-7 text-(--color-ink)">
-								The language across this site emphasizes discernment, professionalism, and outcomes rather than affordability, helping attract clients who value specialized expertise.
-							</p>
-						</div>
 					</div>
 				</div>
 			</div>
 		</section>
 
-		<section class="px-6 py-20 lg:px-10">
+		<section class="flex min-h-screen snap-start items-center px-6 py-20 lg:px-10">
 			<div class="mx-auto max-w-6xl space-y-10">
 				<div class="max-w-3xl space-y-4">
 					<p class="eyebrow">Signature Services</p>
-					<h2 class="text-4xl leading-none text-(--color-ink) sm:text-5xl">The practice leads with evaluations while still serving clinicians directly.</h2>
+					<h2 class="text-4xl leading-none text-(--color-ink) sm:text-5xl">Evaluations are the core of this practice.</h2>
 					<p class="text-lg leading-8 text-(--color-muted)">
-						The site centers your premium positioning around psychological and psychoeducational evaluations that are remote, accessible across 43+ PSYPACT states, and built for a highly efficient one-week turnaround.
+						Psychological and psychoeducational evaluations — remote, available across 43+ PSYPACT states, and typically completed with a report within one week.
 					</p>
 				</div>
 				<div class="grid gap-6 lg:grid-cols-2">
 					{pillars.map((pillar) => (
-						<a class="section-shell rounded-[2rem] p-8 hover:-translate-y-1" href={pillar.href}>
+						<a class="section-shell rounded-4xl p-8 hover:-translate-y-1" href={pillar.href}>
 							<p class="eyebrow">Primary Service</p>
 							<h3 class="mt-4 text-4xl leading-none text-(--color-ink)">{pillar.title}</h3>
 							<p class="mt-5 max-w-xl text-base leading-8 text-(--color-muted)">{pillar.description}</p>
@@ -159,18 +150,18 @@ const signals = [
 			</div>
 		</section>
 
-		<section class="bg-(--color-section-tint) px-6 py-20 lg:px-10">
+		<section class="flex min-h-screen snap-start items-center bg-(--color-section-tint) px-6 py-20 lg:px-10">
 			<div class="mx-auto max-w-6xl space-y-10">
 				<div class="max-w-3xl space-y-4">
 					<p class="eyebrow">For Clinicians</p>
-					<h2 class="text-4xl leading-none text-(--color-ink) sm:text-5xl">Consulting and training for clinicians building stronger systems and sharper expertise.</h2>
+					<h2 class="text-4xl leading-none text-(--color-ink) sm:text-5xl">Consulting and training for fellow clinicians.</h2>
 					<p class="text-lg leading-8 text-(--color-muted)">
-						MCC is not only client-facing. The practice also supports other clinicians through billing and insurance consultation, as well as CEU trainings that are practical, polished, and immediately useful.
+						Beyond evaluations, MCC supports clinicians with hands-on consulting and continuing education grounded in practice.
 					</p>
 				</div>
 				<div class="grid gap-6 lg:grid-cols-2">
 					{clinicianOffers.map((offer) => (
-						<a class="premium-card rounded-[2rem] p-8 hover:-translate-y-1" href={offer.href}>
+						<a class="premium-card rounded-4xl p-8 hover:-translate-y-1" href={offer.href}>
 							<p class="eyebrow">Clinician Offering</p>
 							<h3 class="mt-4 text-4xl leading-none text-(--color-ink)">{offer.title}</h3>
 							<p class="mt-5 text-base leading-8 text-(--color-muted)">{offer.description}</p>
@@ -181,13 +172,13 @@ const signals = [
 			</div>
 		</section>
 
-		<section id="process" class="bg-(--color-section-tint) px-6 py-20 lg:px-10">
+		<section id="process" class="flex min-h-screen snap-start items-center bg-(--color-section-tint) px-6 py-20 lg:px-10">
 			<div class="mx-auto max-w-6xl">
 				<div class="max-w-3xl space-y-4">
 					<p class="eyebrow">The Process</p>
-					<h2 class="text-4xl leading-none text-(--color-ink) sm:text-5xl">A process that feels calm, easy to navigate, and exceptionally efficient.</h2>
+					<h2 class="text-4xl leading-none text-(--color-ink) sm:text-5xl">A clear process from start to finish.</h2>
 					<p class="text-lg leading-8 text-(--color-muted)">
-						Premium clients respond to structure, responsiveness, and speed. This sequence communicates professionalism without adding friction.
+						Here’s how evaluations typically work, from the first conversation to your final report.
 					</p>
 				</div>
 				<div class="mt-12 grid gap-5 lg:grid-cols-4">
@@ -202,18 +193,18 @@ const signals = [
 			</div>
 		</section>
 
-		<section id="contact" class="px-6 py-20 lg:px-10">
-			<div class="section-shell mx-auto max-w-6xl rounded-[2rem] px-8 py-10 sm:px-10 sm:py-12">
+		<section id="contact" class="flex min-h-screen snap-start items-center px-6 py-20 lg:px-10">
+			<div class="section-shell mx-auto max-w-6xl rounded-4xl px-8 py-10 sm:px-10 sm:py-12">
 				<div class="grid gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-center">
 					<div class="space-y-5">
-						<p class="eyebrow">Inquiry</p>
-						<h2 class="text-4xl leading-none text-(--color-ink) sm:text-5xl">Invite the right clients and clinicians to take the next step.</h2>
+						<p class="eyebrow">Get in Touch</p>
+						<h2 class="text-4xl leading-none text-(--color-ink) sm:text-5xl">Ready to get started?</h2>
 						<p class="max-w-2xl text-lg leading-8 text-(--color-muted)">
-							Use this section for your intake form, scheduling link, or inquiry workflow. The framing now works for remote evaluation referrals, clinician consultations, and training requests.
+							Whether you’re looking for an evaluation, a consultation, or continuing education, we’d like to hear from you.
 						</p>
 					</div>
 					<div class="rounded-[1.75rem] border border-(--color-line-soft) bg-(--color-surface) p-6 shadow-(--shadow-soft)">
-						<p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-(--color-brand)">Suggested inquiry prompts</p>
+						<p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-(--color-brand)">A few things to consider</p>
 						<ul class="mt-5 space-y-3 text-sm leading-7 text-(--color-muted)">
 							<li>What questions are you hoping the evaluation will answer?</li>
 							<li>Who will be using the report and recommendations?</li>
@@ -222,7 +213,7 @@ const signals = [
 							<li>If you are a clinician, what billing, insurance, or training support are you looking for?</li>
 						</ul>
 						<a class="mt-6 inline-flex rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-white shadow-(--shadow-brand)" href="/services">
-							Review services before inquiring
+							View services
 						</a>
 					</div>
 				</div>
@@ -230,3 +221,11 @@ const signals = [
 		</section>
 	</main>
 </Layout>
+
+<style>
+	@media (prefers-reduced-motion: reduce) {
+		main {
+			scroll-snap-type: none;
+		}
+	}
+</style>
