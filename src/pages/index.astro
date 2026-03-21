@@ -27,16 +27,6 @@ const clinicianOffers = [
 	},
 ];
 
-const differentiators = [
-	'Remote evaluations across 43+ PSYPACT states',
-	'Reports typically completed within one week',
-	'Assessment planning tailored to the referral question',
-	'Reports designed for real-world use',
-	'Recommendations written for clinicians, families, and schools',
-	'A straightforward process from start to finish',
-	'Clinician consulting and continuing education',
-];
-
 const process = [
 	{
 		step: '01',
@@ -60,11 +50,6 @@ const process = [
 	},
 ];
 
-const signals = [
-	{ label: 'Access', value: 'Remote across 43+ PSYPACT states' },
-	{ label: 'Turnaround', value: 'Evaluation and report within one week' },
-	{ label: 'Experience', value: 'Easy, efficient, still premium' },
-];
 ---
 
 <Layout
@@ -72,56 +57,23 @@ const signals = [
 	description="MCC offers premium remote psychological and psychoeducational evaluations across 43+ PSYPACT states, often completed with a polished report within one week."
 >
 	<main class="snap-y snap-mandatory">
-		<section class="relative flex min-h-screen snap-start items-center overflow-hidden px-6 pt-10 pb-20 lg:px-10 lg:pt-16">
+		<section class="relative flex min-h-screen snap-start items-center overflow-hidden px-6 py-20 lg:px-10">
 			<div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,var(--color-brand-soft),transparent_32%),radial-gradient(circle_at_85%_12%,var(--color-accent-soft),transparent_24%)]"></div>
-			<div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-				<div class="space-y-8">
-					<p class="eyebrow">Morning Tide Consulting and Collective</p>
-					<h1 class="max-w-4xl text-wrap-balance text-5xl leading-none text-(--color-ink) sm:text-6xl lg:text-7xl">
-						Thorough evaluations, delivered remotely across 43+ states.
-					</h1>
-					<p class="max-w-2xl text-lg leading-8 text-(--color-muted) sm:text-xl">
-						We keep the evaluation process straightforward — remote access across 43+ PSYPACT states, reports typically finished within a week, and the clinical depth that makes those reports genuinely useful.
-					</p>
-					<div class="flex flex-wrap gap-4">
-						<a class="inline-flex items-center rounded-full bg-(--color-accent) px-6 py-3 text-sm font-semibold text-white shadow-(--shadow-brand) hover:-translate-y-0.5" href="/services">
-							Explore Services
-						</a>
-						<a class="inline-flex items-center rounded-full border border-(--color-line) bg-(--color-surface) px-6 py-3 text-sm font-semibold text-(--color-ink) hover:-translate-y-0.5" href="#process">
-							View the Process
-						</a>
-					</div>
-					<div class="grid gap-4 sm:grid-cols-3">
-						{signals.map((signal) => (
-							<div class="premium-card rounded-[1.75rem] p-4">
-								<p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-(--color-brand)">{signal.label}</p>
-								<p class="mt-3 text-base font-semibold text-(--color-ink)">{signal.value}</p>
-							</div>
-						))}
-					</div>
-				</div>
-
-				<div class="section-shell rounded-4xl p-6 sm:p-8">
-					<div class="flex items-start justify-between gap-4">
-						<div>
-							<p class="eyebrow">Our Approach</p>
-							<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">Quality work, clear communication, no unnecessary steps.</h2>
-						</div>
-					</div>
-					<div class="fine-rule my-6"></div>
-					<div class="space-y-5">
-						<p class="text-lg leading-8 text-(--color-muted)">
-							We focus on getting the evaluation right — careful assessment, a responsive process, and a final report you can actually use.
-						</p>
-						<ul class="space-y-3 text-sm leading-7 text-(--color-muted)">
-							{differentiators.map((item) => (
-								<li class="flex gap-3">
-									<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span>
-									<span>{item}</span>
-								</li>
-							))}
-						</ul>
-					</div>
+			<div class="mx-auto flex max-w-4xl flex-col items-center text-center">
+				<p class="eyebrow">Morning Tide Consulting and Collective</p>
+				<h1 class="mt-8 text-wrap-balance text-5xl leading-none text-(--color-ink) sm:text-6xl lg:text-7xl">
+					Thorough evaluations, delivered remotely across 43+ states.
+				</h1>
+				<p class="mt-8 max-w-2xl text-lg leading-8 text-(--color-muted) sm:text-xl">
+					Remote psychological and psychoeducational evaluations with reports typically finished within one week — across 43+ PSYPACT states.
+				</p>
+				<div class="mt-10 flex flex-wrap justify-center gap-4">
+					<a class="inline-flex items-center rounded-full bg-(--color-accent) px-6 py-3 text-sm font-semibold text-white shadow-(--shadow-brand) hover:-translate-y-0.5" href="/services">
+						Explore Services
+					</a>
+					<a class="inline-flex items-center rounded-full border border-(--color-line) bg-(--color-surface) px-6 py-3 text-sm font-semibold text-(--color-ink) hover:-translate-y-0.5" href="#process">
+						View the Process
+					</a>
 				</div>
 			</div>
 		</section>
