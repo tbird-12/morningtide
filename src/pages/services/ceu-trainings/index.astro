@@ -21,7 +21,7 @@ const trainings = [
 		</section>
 
 		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-			<div class="section-shell rounded-[2rem] p-8">
+			<div class="section-shell rounded-4xl p-8">
 				<p class="eyebrow">Our Approach</p>
 				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">Training that reflects the same clinical standards as our evaluations.</h2>
 				<p class="mt-5 text-base leading-8 text-(--color-muted)">
@@ -35,19 +35,19 @@ const trainings = [
 				</ul>
 			</div>
 
-			<div class="premium-card rounded-[2rem] p-8">
+			<div class="premium-card rounded-4xl p-8">
 				<p class="eyebrow">Current Training Topics</p>
 				<div class="mt-6 grid gap-4 sm:grid-cols-1">
 			{trainings.map((training) => (
 				<a
-					class="premium-card rounded-[1.5rem] px-5 py-5 text-base font-semibold text-(--color-ink)"
+					class="premium-card rounded-3xl px-5 py-5 text-base font-semibold text-(--color-ink)"
 					href={training.href}
 				>
 					{training.label}
 				</a>
 			))}
 				</div>
-				<div class="mt-8 rounded-2xl border border-(--color-line-soft) bg-(--color-section-tint) p-5">
+				<div class="mt-8 rounded-4xl border border-(--color-line-soft) bg-(--color-section-tint) p-5">
 					<p class="text-sm font-semibold text-(--color-ink)">Custom Trainings Available</p>
 					<p class="mt-2 text-sm leading-6 text-(--color-muted)">Organizations, agencies, and group practices can request custom training topics tailored to their team's clinical needs and populations served.</p>
 				</div>
