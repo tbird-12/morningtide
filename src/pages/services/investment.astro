@@ -20,16 +20,16 @@ const paymentMethods = [
 	title="Investment | Morning Tide Consulting and Collective"
 	description="Transparent pricing for psychological and psychoeducational evaluations, clinician consultations, and continuing education trainings. Self-pay only — out-of-network with health insurance."
 >
-	<main class="px-6 py-16 lg:px-10 lg:py-20">
-		<section class="mx-auto max-w-6xl space-y-8">
+	<main class="page-main">
+		<section class="hero-shell mx-auto max-w-6xl space-y-8">
 			<p class="eyebrow">Investment</p>
 			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Transparent pricing. Out-of-network. No surprises.</h1>
 			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
-				Morning Tide operates as a private-pay practice. This model protects your privacy, eliminates insurance-driven limitations on evaluation scope, and allows reports to be completed within one week rather than months.
+				Morning Tide is private-pay by design. That means stronger privacy, clinically driven scope, and faster report timelines.
 			</p>
 		</section>
 
-		<section class="mx-auto mt-12 max-w-6xl rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+		<section class="cta-strip mx-auto mt-12 max-w-6xl">
 			<p class="eyebrow">Service Investment</p>
 			<div class="mt-6 grid gap-4">
 				{investmentRows.map((row) => (
@@ -54,7 +54,7 @@ const paymentMethods = [
 				</ul>
 			</div>
 
-			<div class="rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+			<div class="premium-card rounded-4xl p-8">
 				<p class="eyebrow">Payment Methods</p>
 				<h2 class="mt-4 text-3xl leading-none text-(--color-ink)">Flexible payment options.</h2>
 				<ul class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
@@ -72,7 +72,7 @@ const paymentMethods = [
 			</div>
 		</section>
 
-		<section class="mx-auto mt-10 max-w-6xl rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+		<section class="cta-strip mx-auto mt-10 max-w-6xl">
 			<div class="grid gap-8 lg:grid-cols-3">
 				<div>
 					<p class="eyebrow">Superbills</p>
@@ -84,7 +84,7 @@ const paymentMethods = [
 				</div>
 				<div>
 					<p class="eyebrow">Questions</p>
-					<a class="mt-4 inline-flex rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-white shadow-(--shadow-brand)" href="/#contact">Ask about pricing</a>
+					<a class="mt-4 inline-flex rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-(--color-button-ink) shadow-(--shadow-brand)" href="/#contact">Start with an inquiry</a>
 				</div>
 			</div>
 		</section>
@@ -103,7 +103,7 @@ const paymentMethods = [
 				</ul>
 			</div>
 
-			<div class="rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+			<div class="premium-card rounded-4xl p-8">
 				<p class="eyebrow">Medical Necessity</p>
 				<h2 class="mt-4 text-3xl leading-none text-(--color-ink)">Not all evaluations are covered by health insurance.</h2>
 				<p class="mt-5 text-base leading-8 text-(--color-muted)">
@@ -119,7 +119,7 @@ const paymentMethods = [
 			</div>
 		</section>
 
-		<section class="mx-auto mt-10 max-w-6xl rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+		<section class="cta-strip mx-auto mt-10 max-w-6xl">
 			<div class="grid gap-8 lg:grid-cols-[1fr_1.25fr]">
 				<div>
 					<p class="eyebrow">Good Faith Estimate</p>

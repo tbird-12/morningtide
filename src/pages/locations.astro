@@ -18,17 +18,17 @@ const psypactStates = [
 	title="Locations | Morning Tide Consulting and Collective"
 	description="Morning Tide provides remote psychological and psychoeducational evaluations across 40+ PSYPACT states. See the full list of eligible states."
 >
-	<main class="px-6 py-16 lg:px-10 lg:py-20">
-		<section class="mx-auto max-w-6xl space-y-8">
+	<main class="page-main">
+		<section class="hero-shell mx-auto max-w-6xl space-y-8">
 			<p class="eyebrow">Locations</p>
 			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Remote evaluations across {psypactStates.length} PSYPACT jurisdictions.</h1>
 			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
-				Dr. Cornett holds a PSYPACT Authority to Practice Interjurisdictional Telepsychology (APIT), enabling her to provide remote psychological and psychoeducational evaluations to clients located in any participating state or territory — with the same standard of care regardless of geography.
+				Dr. Cornett holds PSYPACT APIT authorization, allowing remote evaluation services in participating states and territories with the same clinical standard across locations.
 			</p>
 		</section>
 
 		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-			<div class="section-shell rounded-[2rem] p-8">
+			<div class="section-shell rounded-4xl p-8">
 				<p class="eyebrow">Eligible States &amp; Territories</p>
 				<div class="mt-6 grid grid-cols-2 gap-x-6 gap-y-2 text-sm leading-7 text-(--color-muted) sm:grid-cols-3">
 					{psypactStates.map((state) => (
@@ -39,7 +39,7 @@ const psypactStates = [
 			</div>
 
 			<div class="space-y-6">
-				<div class="rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+				<div class="premium-card rounded-4xl p-8">
 					<p class="eyebrow">How Remote Evaluations Work</p>
 					<ul class="mt-4 space-y-3 text-sm leading-7 text-(--color-muted)">
 						<li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span><span>All sessions conducted via secure HIPAA-compliant video</span></li>
@@ -49,14 +49,14 @@ const psypactStates = [
 					</ul>
 				</div>
 
-				<div class="rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+				<div class="premium-card rounded-4xl p-8">
 					<p class="eyebrow">Licensure</p>
 					<p class="mt-4 text-sm leading-7 text-(--color-muted)">Dr. Cornett is licensed in Kentucky and New Mexico, and holds a PSYPACT APIT credential. This allows her to practice telepsychology in all PSYPACT-participating jurisdictions without obtaining individual state licenses.</p>
 				</div>
 			</div>
 		</section>
 
-		<section class="mx-auto mt-10 max-w-6xl rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+		<section class="cta-strip mx-auto mt-10 max-w-6xl">
 			<div class="grid gap-8 lg:grid-cols-3">
 				<div>
 					<p class="eyebrow">No Waitlist</p>
@@ -68,7 +68,7 @@ const psypactStates = [
 				</div>
 				<div>
 					<p class="eyebrow">Get Started</p>
-					<a class="mt-4 inline-flex rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-white shadow-(--shadow-brand)" href="/#contact">Check your state &amp; schedule</a>
+					<a class="mt-4 inline-flex rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-(--color-button-ink) shadow-(--shadow-brand)" href="/#contact">Start with an inquiry</a>
 				</div>
 			</div>
 		</section>

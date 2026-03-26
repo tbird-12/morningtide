@@ -16,7 +16,7 @@ const generalFaqs = [
 	},
 	{
 		q: 'Do you accept insurance?',
-		a: 'MCC is a private-pay practice and is out-of-network with health insurance. This model protects your privacy, allows the clinician to determine the scope of evaluation without insurer limitations, and ensures rapid report delivery. HSA and FSA cards are accepted, and superbills are provided for clients who wish to submit for out-of-network reimbursement.',
+		a: 'MCC is private-pay and out-of-network. This keeps evaluations private, clinically flexible, and fast. HSA/FSA cards are accepted and superbills are provided for out-of-network reimbursement requests.',
 	},
 	{
 		q: 'How much do evaluations cost?',
@@ -31,11 +31,11 @@ const generalFaqs = [
 const evaluationFaqs = [
 	{
 		q: 'How are evaluations conducted remotely?',
-		a: 'All sessions are conducted via secure, HIPAA-compliant video. Standardized testing is administered through validated telehealth platforms. Intake, testing, report delivery, and the feedback session all happen remotely.',
+		a: 'Sessions are held on secure HIPAA-compliant video platforms. Intake, testing, reporting, and feedback are all completed remotely using validated tools.',
 	},
 	{
 		q: 'What is the difference between a psychological evaluation and a psychoeducational evaluation?',
-		a: 'Psychological evaluations focus on diagnostic questions — ADHD, autism, personality disorders, mood disorders, and complex clinical presentations. Psychoeducational evaluations focus on academic and learning questions — learning disorders, dyslexia, giftedness, and academic achievement. Both produce a detailed written report with actionable recommendations.',
+		a: 'Psychological evaluations focus on diagnostic questions like ADHD, autism, and mood or personality presentations. Psychoeducational evaluations focus on learning and academic needs like dyslexia, SLD, giftedness, and achievement. Both include detailed reports with practical recommendations.',
 	},
 	{
 		q: 'How long does the testing take?',
@@ -51,11 +51,11 @@ const evaluationFaqs = [
 	},
 	{
 		q: 'Can you evaluate for more than one condition at a time?',
-		a: 'Yes. Many evaluations involve differential diagnosis — distinguishing between overlapping conditions like ADHD and anxiety, autism and social anxiety, or giftedness masking a learning disability. Dr. Cornett\u0027s training in complex presentations is well-suited for these nuanced clinical questions.',
+		a: 'Yes. Many evaluations involve differential diagnosis to separate overlapping conditions like ADHD and anxiety or autism and social anxiety.',
 	},
 	{
 		q: 'Will my report be accepted by schools or other providers?',
-		a: 'Yes. Reports are written with detailed, actionable recommendations that schools, therapists, psychiatrists, and other professionals can use directly — including language suitable for IEP and 504 planning.',
+		a: 'Yes. Reports are designed for practical use by schools and providers, including language that supports IEP and 504 planning.',
 	},
 ];
 
@@ -74,7 +74,7 @@ const logisticsFaqs = [
 	},
 	{
 		q: 'How do I get started?',
-		a: 'Use the contact form on our site to submit an inquiry. Include the referral question you are hoping the evaluation will answer, who will be using the report, and any relevant deadlines. We will follow up to discuss fit and schedule an intake.',
+		a: 'Use the contact form to share your referral question, report use, and timing needs. We will follow up to confirm fit and schedule your intake.',
 	},
 	{
 		q: 'Does Dr. Cornett provide therapy?',
@@ -87,8 +87,8 @@ const logisticsFaqs = [
 	title="Frequently Asked Questions | Morning Tide Consulting and Collective"
 	description="Answers to common questions about MCC's remote psychological and psychoeducational evaluations, pricing, insurance, PSYPACT coverage, and the evaluation process."
 >
-	<main class="px-6 py-16 lg:px-10 lg:py-20">
-		<section class="mx-auto max-w-6xl space-y-8">
+	<main class="page-main">
+		<section class="hero-shell mx-auto max-w-6xl space-y-8">
 			<p class="eyebrow">FAQ</p>
 			<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">Frequently asked questions.</h1>
 			<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
@@ -97,7 +97,7 @@ const logisticsFaqs = [
 		</section>
 
 		<section class="mx-auto mt-12 max-w-6xl space-y-10">
-			<div class="section-shell rounded-[2rem] p-8 lg:p-10">
+			<div class="section-shell rounded-4xl p-8 lg:p-10">
 				<p class="eyebrow">General</p>
 				<div class="mt-6 divide-y divide-(--color-line-soft)">
 					{generalFaqs.map((faq) => (
@@ -114,7 +114,7 @@ const logisticsFaqs = [
 				</div>
 			</div>
 
-			<div class="section-shell rounded-[2rem] p-8 lg:p-10">
+			<div class="section-shell rounded-4xl p-8 lg:p-10">
 				<p class="eyebrow">Evaluations</p>
 				<div class="mt-6 divide-y divide-(--color-line-soft)">
 					{evaluationFaqs.map((faq) => (
@@ -131,7 +131,7 @@ const logisticsFaqs = [
 				</div>
 			</div>
 
-			<div class="section-shell rounded-[2rem] p-8 lg:p-10">
+			<div class="section-shell rounded-4xl p-8 lg:p-10">
 				<p class="eyebrow">Logistics & Getting Started</p>
 				<div class="mt-6 divide-y divide-(--color-line-soft)">
 					{logisticsFaqs.map((faq) => (
@@ -149,7 +149,7 @@ const logisticsFaqs = [
 			</div>
 		</section>
 
-		<section class="mx-auto mt-10 max-w-6xl rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+		<section class="cta-strip mx-auto mt-10 max-w-6xl">
 			<div class="grid gap-8 lg:grid-cols-3">
 				<div>
 					<p class="eyebrow">Still Have Questions?</p>
@@ -161,7 +161,7 @@ const logisticsFaqs = [
 				</div>
 				<div>
 					<p class="eyebrow">Get in Touch</p>
-					<a class="mt-4 inline-flex rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-white shadow-(--shadow-brand)" href="/#contact">Submit an inquiry</a>
+					<a class="mt-4 inline-flex rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-(--color-button-ink) shadow-(--shadow-brand)" href="/#contact">Start with an inquiry</a>
 				</div>
 			</div>
 		</section>
