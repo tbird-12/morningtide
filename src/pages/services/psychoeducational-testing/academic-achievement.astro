@@ -37,12 +37,12 @@ const facts = [
 		</section>
 
 		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-2">
-			<div class="section-shell rounded-[2rem] p-8">
+			<div class="section-shell rounded-4xl p-8">
 				<p class="eyebrow">What We Assess</p>
 				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">Performance data across every core academic domain.</h2>
 				<div class="mt-6 grid gap-4">
 					{assessmentAreas.map((area) => (
-						<div class="premium-card rounded-[1.5rem] p-4">
+						<div class="premium-card rounded-3xl p-4">
 							<p class="text-sm font-semibold text-(--color-ink)">{area.title}</p>
 							<p class="mt-1 text-sm leading-6 text-(--color-muted)">{area.desc}</p>
 						</div>
@@ -51,7 +51,7 @@ const facts = [
 			</div>
 
 			<div class="space-y-6">
-				<div class="rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+				<div class="rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
 					<p class="eyebrow">Common Referral Questions</p>
 					<ul class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
 						{referralQuestions.map((item) => (
@@ -63,11 +63,11 @@ const facts = [
 					</ul>
 				</div>
 
-				<div class="rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+				<div class="rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
 					<p class="eyebrow">At a Glance</p>
 					<div class="mt-6 grid gap-4 sm:grid-cols-2">
 						{facts.map((fact) => (
-							<div class="premium-card rounded-[1.5rem] p-5">
+							<div class="premium-card rounded-3xl p-5">
 								<p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-(--color-brand)">{fact.label}</p>
 								<p class="mt-3 text-base font-semibold text-(--color-ink)">{fact.value}</p>
 							</div>
@@ -77,7 +77,7 @@ const facts = [
 			</div>
 		</section>
 
-		<section class="mx-auto mt-10 max-w-6xl rounded-[2rem] border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
+		<section class="mx-auto mt-10 max-w-6xl rounded-4xl border border-(--color-line-soft) bg-(--color-surface) p-8 shadow-(--shadow-soft)">
 			<div class="grid gap-8 lg:grid-cols-3">
 				<div>
 					<p class="eyebrow">Private-Pay Only</p>
