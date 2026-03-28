@@ -80,6 +80,14 @@ body {
         radial-gradient(at 100% 0%, var(--body-glow-muted), transparent 50%),
         var(--color-page);
     margin: 0;
+    /* Offset for fixed mobile header */
+    padding-top: 60px;
+}
+
+@media (min-width: 768px) {
+    body {
+        padding-top: 0;
+    }
 }
 
 h1, h2, h3, h4 {

@@ -22,10 +22,14 @@ const navigation = [
 	{ label: 'Education', href: '/services/ceu-trainings' },
 	
 ];
+
+// Mobile: show first 2 nav items, rest under "More"
+const mobileVisibleNav = navigation.slice(0, 2);
+const mobileMoreNav = navigation.slice(2);
 ---
 
-<header class="sticky top-0 z-40 border-b border-(--color-line-soft) bg-(--color-header-bg) backdrop-blur-xl">
-	<div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 md:px-6 lg:px-10">
+<header class="fixed md:sticky top-0 left-0 right-0 z-40 border-b border-(--color-line-soft) bg-(--color-header-bg) backdrop-blur-xl">
+	<div class="mx-auto hidden max-w-6xl items-center justify-between px-4 py-4 md:flex md:px-6 lg:px-10">
 		<a class="group flex items-center gap-4" href="/" aria-label="Morning Tide Consulting and Collective home">
 			<div class="flex h-11 w-11 items-center justify-center rounded-full border border-(--color-line) bg-(--color-surface) text-lg font-semibold text-(--color-brand) shadow-(--shadow-soft)">
 				MCC
@@ -39,20 +43,22 @@ const navigation = [
 		<nav aria-label="Primary" class="hidden items-center gap-6 md:flex">
 			{navigation.map((item) => (
 				item.children ? (
-					<div class="group relative">
+					<div class="group" data-desktop-nav-group>
 						<a class="inline-flex items-center gap-1 text-sm font-semibold text-(--color-muted) transition hover:text-(--color-ink)" href={item.href}>
 							{item.label}
 							<svg class="h-3 w-3 opacity-60 transition group-hover:rotate-180" viewBox="0 0 12 12" fill="none" aria-hidden="true">
 								<path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
 							</svg>
 						</a>
-						<div class="invisible pointer-events-none absolute left-0 top-full z-30 min-w-72 pt-3 opacity-0 transition group-hover:visible group-hover:pointer-events-auto group-hover:opacity-100">
-							<div class="rounded-3xl border border-(--color-line-soft) bg-(--color-surface) p-3 shadow-(--shadow-medium)">
-								{item.children.map((child) => (
-									<a class="block rounded-2xl px-3 py-2 text-sm font-semibold text-(--color-muted) transition hover:bg-(--color-surface-strong) hover:text-(--color-ink)" href={child.href}>
-										{child.label}
-									</a>
-								))}
+						<div class="invisible pointer-events-none absolute left-0 right-0 top-full z-50 max-h-[25vh] overflow-y-auto opacity-0 transition-all duration-300 group-hover:visible group-hover:pointer-events-auto group-hover:opacity-100">
+							<div class="border-b border-(--color-line-soft) bg-(--color-surface) py-5 shadow-(--shadow-medium)">
+								<div class="mx-auto max-w-6xl px-6 lg:px-10">
+									{item.children.map((child) => (
+										<a class="block py-2.5 text-sm font-semibold text-(--color-muted) transition hover:text-(--color-ink)" href={child.href}>
+											{child.label}
+										</a>
+									))}
+								</div>
 							</div>
 						</div>
 					</div>
@@ -96,58 +102,14 @@ const navigation = [
 		</div>
 	</div>
 
-	<div class="flex items-center justify-between border-t border-(--color-line-soft) px-4 py-3 md:hidden">
-		<p class="text-xs font-semibold uppercase tracking-[0.3em] text-(--color-brand)">MCC</p>
+	<div class="flex items-center justify-between px-4 py-3 md:hidden">
+		<a
+			class="inline-flex items-center rounded-full bg-(--color-accent) px-4 py-2 text-sm font-semibold text-(--color-button-ink) shadow-(--shadow-brand) transition hover:-translate-y-0.5"
+			href="/#contact"
+		>
+			Inquire Now
+		</a>
 		<div class="flex items-center gap-2">
-			<button
-				id="mobile-menu-toggle"
-				type="button"
-				class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-(--color-surface) text-(--color-muted) shadow-sm transition hover:text-(--color-ink) hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
-				aria-label="Open menu"
-				aria-expanded="false"
-				aria-controls="mobile-menu"
-			>
-				<svg id="icon-hamburger" class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-					<path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-				</svg>
-				<svg id="icon-close" class="hidden h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-					<path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-				</svg>
-			</button>
-		</div>
-	</div>
-
-	<div
-		id="mobile-menu"
-		class="hidden md:hidden"
-		style="background: linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 78%, transparent), var(--color-header-bg));"
-		aria-hidden="true"
-	>
-		<div class="space-y-2 px-5 pt-5 pb-5">
-			{navigation.map((item) => (
-				item.children ? (
-					<div class="rounded-2xl border border-(--color-line-soft) bg-(--color-surface) p-3 shadow-(--shadow-soft)">
-						<a class="block px-1 py-1 text-sm font-semibold text-(--color-ink)" href={item.href}>{item.label}</a>
-						<div class="mt-2 space-y-1">
-							{item.children.map((child) => (
-								<a class="block rounded-xl px-3 py-2 text-sm font-semibold text-(--color-muted) transition hover:bg-(--color-surface-strong) hover:text-(--color-ink)" href={child.href}>
-									{child.label}
-								</a>
-							))}
-						</div>
-					</div>
-				) : (
-					<a class="block rounded-2xl border border-(--color-line-soft) bg-(--color-surface) px-4 py-3 text-sm font-semibold text-(--color-ink) shadow-(--shadow-soft)" href={item.href}>
-						{item.label}
-					</a>
-				)
-			))}
-			<a class="inline-flex w-full items-center justify-center rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-(--color-button-ink) shadow-(--shadow-brand)" href="/#contact">
-				Inquire Now
-			</a>
-		</div>
-		<div class="flex items-center justify-between px-6 py-3" style="background: color-mix(in srgb, var(--color-surface) 30%, transparent);">
-			<span class="text-sm font-semibold text-(--color-muted)">Appearance</span>
 			<button
 				type="button"
 				class="theme-toggle inline-flex h-9 w-9 items-center justify-center rounded-full bg-(--color-surface) p-0 text-(--color-muted) shadow-sm transition hover:text-(--color-ink) hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
@@ -170,10 +132,91 @@ const navigation = [
 				</svg>
 				<span class="sr-only" data-theme-label>Dark mode</span>
 			</button>
+			<button
+				id="mobile-menu-toggle"
+				type="button"
+				class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-(--color-surface) text-(--color-muted) shadow-sm transition hover:text-(--color-ink) hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
+				aria-label="Open menu"
+				aria-expanded="false"
+				aria-controls="mobile-menu"
+			>
+				<svg id="icon-hamburger" class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+					<path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+				</svg>
+				<svg id="icon-close" class="hidden h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+					<path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+				</svg>
+			</button>
+		</div>
+	</div>
+
+	<div
+		id="mobile-menu"
+		class="hidden md:hidden overflow-y-auto"
+		style="background: linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 78%, transparent), var(--color-header-bg)); max-height: calc(100vh - 60px); max-height: calc(100dvh - 60px);"
+		aria-hidden="true"
+	>
+		<div class="space-y-2 px-5 pt-4 pb-4">
+			{mobileVisibleNav.map((item) => (
+				item.children ? (
+					<div class="rounded-2xl border border-(--color-line-soft) bg-(--color-surface) p-3 shadow-(--shadow-soft)">
+						<a class="block px-1 py-1 text-sm font-semibold text-(--color-ink)" href={item.href}>{item.label}</a>
+						<div class="mt-2 space-y-1">
+							{item.children.map((child) => (
+								<a class="block rounded-xl px-3 py-2 text-sm font-semibold text-(--color-muted) transition hover:bg-(--color-surface-strong) hover:text-(--color-ink)" href={child.href}>
+									{child.label}
+								</a>
+							))}
+						</div>
+					</div>
+				) : (
+					<a class="block rounded-2xl border border-(--color-line-soft) bg-(--color-surface) px-4 py-3 text-sm font-semibold text-(--color-ink) shadow-(--shadow-soft)" href={item.href}>
+						{item.label}
+					</a>
+				)
+			))}
+
+			{/* "More" collapsible section */}
+			<div class="rounded-2xl border border-(--color-line-soft) bg-(--color-surface) shadow-(--shadow-soft)">
+				<button
+					id="mobile-more-toggle"
+					type="button"
+					class="flex w-full items-center justify-between px-4 py-3 text-sm font-semibold text-(--color-ink)"
+					aria-expanded="false"
+					aria-controls="mobile-more-items"
+				>
+					More
+					<svg id="more-chevron" class="h-4 w-4 text-(--color-muted) transition-transform" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+						<path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+					</svg>
+				</button>
+				<div id="mobile-more-items" class="hidden px-3 pb-3 space-y-1">
+					{mobileMoreNav.map((item) => (
+						item.children ? (
+							<div>
+								<a class="block px-1 py-1 text-sm font-semibold text-(--color-ink)" href={item.href}>{item.label}</a>
+								<div class="mt-1 space-y-1">
+									{item.children.map((child) => (
+										<a class="block rounded-xl px-3 py-2 text-sm font-semibold text-(--color-muted) transition hover:bg-(--color-surface-strong) hover:text-(--color-ink)" href={child.href}>
+											{child.label}
+										</a>
+									))}
+								</div>
+							</div>
+						) : (
+							<a class="block rounded-xl px-3 py-2 text-sm font-semibold text-(--color-muted) transition hover:bg-(--color-surface-strong) hover:text-(--color-ink)" href={item.href}>
+								{item.label}
+							</a>
+						)
+					))}
+				</div>
+			</div>
 		</div>
 	</div>
 
 </header>
+
+<div id="nav-backdrop" class="pointer-events-none fixed inset-0 z-30 hidden backdrop-blur-sm transition-opacity duration-300" style="background: rgba(0,0,0,0.06);" aria-hidden="true"></div>
 
 <script>
 	const menuToggle = document.getElementById('mobile-menu-toggle');
@@ -188,6 +231,34 @@ const navigation = [
 			menuToggle.setAttribute('aria-expanded', String(!isClosed));
 			iconHamburger?.classList.toggle('hidden', !isClosed);
 			iconClose?.classList.toggle('hidden', isClosed);
+			// Prevent body scroll when menu is open
+			document.body.style.overflow = isClosed ? '' : 'hidden';
+		});
+	}
+
+	// Desktop nav backdrop blur
+	const desktopNavGroups = document.querySelectorAll('[data-desktop-nav-group]');
+	const navBackdrop = document.getElementById('nav-backdrop');
+
+	desktopNavGroups.forEach(group => {
+		group.addEventListener('mouseenter', () => {
+			navBackdrop?.classList.remove('hidden');
+		});
+		group.addEventListener('mouseleave', () => {
+			navBackdrop?.classList.add('hidden');
+		});
+	});
+
+	// "More" toggle in mobile menu
+	const moreToggle = document.getElementById('mobile-more-toggle');
+	const moreItems = document.getElementById('mobile-more-items');
+	const moreChevron = document.getElementById('more-chevron');
+
+	if (moreToggle && moreItems) {
+		moreToggle.addEventListener('click', () => {
+			const isHidden = moreItems.classList.toggle('hidden');
+			moreToggle.setAttribute('aria-expanded', String(!isHidden));
+			moreChevron?.classList.toggle('rotate-180', !isHidden);
 		});
 	}
 </script>
