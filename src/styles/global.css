@@ -222,3 +222,65 @@ p {
     color: var(--color-muted);
     letter-spacing: 0.02em;
 }
+
+/* --- Smooth Global Transitions --- */
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Enhanced link underline animation */
+a[class*="underline"] {
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 4px;
+    transition: text-decoration-color 300ms ease, color 200ms ease;
+}
+
+a[class*="underline"]:hover {
+    text-decoration-color: var(--color-brand);
+}
+
+/* Button press feedback */
+.btn-mild:active,
+a[class*="rounded-full"]:active {
+    transform: scale(0.97);
+}
+
+/* Focus ring for accessibility */
+:focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Smooth theme transitions (applied after initial load) */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+    transition: background-color 400ms ease, color 300ms ease, border-color 300ms ease, box-shadow 300ms ease !important;
+}
+
+/* Enhanced text rendering for display typography */
+h1, h2, h3 {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle gradient text for hero headings (opt-in) */
+.text-gradient {
+    background: linear-gradient(135deg, var(--color-ink), var(--color-brand));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Reduced motion: disable all custom animations */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

@@ -15,8 +15,10 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.1.2",
+    "@astrojs/preact": "^5.1.1",
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^6.0.6",
+    "preact": "^10.29.1",
     "tailwindcss": "^4.2.2"
   },
   "devDependencies": {

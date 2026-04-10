@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import FadeIn from '../components/FadeIn.tsx';
+import AnimatedText from '../components/AnimatedText.tsx';
 ---
 
 <Layout
@@ -10,26 +12,41 @@ import Layout from '../layouts/Layout.astro';
 		<!-- Hero -->
 		<section class="hero-shell mx-auto max-w-6xl space-y-8 lg:grid lg:grid-cols-[1fr_auto] lg:items-start lg:gap-12 lg:space-y-0">
 			<div class="space-y-8">
-				<p class="eyebrow">About the Clinician</p>
-				<h1 class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl">A clinician-led practice built on careful work and clear communication.</h1>
-				<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
-					Morning Tide is led by Dr. Heather Cornett, a licensed psychologist specializing in nuanced, often-overlooked neurodivergent presentations.
-				</p>
+				<FadeIn client:load delay={0}>
+					<p class="eyebrow">About the Clinician</p>
+				</FadeIn>
+				<AnimatedText
+					client:load
+					text="A clinician-led practice built on careful work and clear communication."
+					as="h1"
+					split="word"
+					stagger={40}
+					delay={100}
+					class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl"
+				/>
+				<FadeIn client:load delay={500}>
+					<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
+						Morning Tide is led by Dr. Heather Cornett, a licensed psychologist specializing in nuanced, often-overlooked neurodivergent presentations.
+					</p>
+				</FadeIn>
 			</div>
 			<!-- IMAGE PLACEHOLDER: Dr. Cornett headshot — replace src with actual image path -->
-			<div class="mx-auto w-56 shrink-0 overflow-hidden rounded-4xl border border-(--color-line-soft) bg-(--color-section-tint) shadow-(--shadow-soft) lg:mx-0 lg:w-64">
-				<div class="flex aspect-3/4 items-center justify-center text-center text-sm text-(--color-muted)">
-					<p>Headshot<br />image here</p>
+			<FadeIn client:load delay={300} direction="left">
+				<div class="mx-auto w-56 shrink-0 overflow-hidden rounded-4xl border border-(--color-line-soft) bg-(--color-section-tint) shadow-(--shadow-soft) lg:mx-0 lg:w-64">
+					<div class="flex aspect-3/4 items-center justify-center text-center text-sm text-(--color-muted)">
+						<p>Headshot<br />image here</p>
+					</div>
 				</div>
-			</div>
+			</FadeIn>
 		</section>
 
 		<!-- Intro & Philosophy -->
 		<section class="mx-auto mt-16 max-w-6xl space-y-10">
-			<div class="section-shell rounded-4xl p-8 lg:p-10">
-				<p class="eyebrow">Heather Cornett, Ph.D., LP</p>
-				<h2 class="mt-4 text-4xl leading-none text-(--color-ink) sm:text-5xl">A neuro-affirming approach to clarity.</h2>
-				<div class="mt-6 max-w-3xl space-y-5 text-base leading-8 text-(--color-muted)">
+			<FadeIn client:visible>
+				<div class="section-shell rounded-4xl p-8 lg:p-10">
+					<p class="eyebrow">Heather Cornett, Ph.D., LP</p>
+					<h2 class="mt-4 text-4xl leading-none text-(--color-ink) sm:text-5xl">A neuro-affirming approach to clarity.</h2>
+					<div class="mt-6 max-w-3xl space-y-5 text-base leading-8 text-(--color-muted)">
 					<p>
 						Whether you are seeking first-time answers for ADHD or Autism, or navigating a complex learning profile, Dr. Cornett provides thorough and compassionate assessment grounded in evidence.
 					</p>
@@ -43,12 +60,14 @@ import Layout from '../layouts/Layout.astro';
 						Her approach is neuroaffirming and culturally responsive, with dedicated support for high-masking, BIPOC, and LGBTQ+ clients.
 					</p>
 				</div>
-			</div>
+				</div>
+			</FadeIn>
 		</section>
 
 		<!-- Credentials & Education -->
 		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[1fr_1fr]">
-			<div class="section-shell rounded-4xl p-8">
+			<FadeIn client:visible direction="left">
+				<div class="section-shell rounded-4xl p-8">
 				<p class="eyebrow">Education & Training</p>
 				<ul class="mt-4 space-y-4 text-base leading-8 text-(--color-muted)">
 					<li>
@@ -76,8 +95,10 @@ import Layout from '../layouts/Layout.astro';
 						Three years of academic teaching experience
 					</li>
 				</ul>
-			</div>
-			<div class="premium-card rounded-4xl p-8">
+				</div>
+			</FadeIn>
+			<FadeIn client:visible direction="right" delay={150}>
+				<div class="premium-card rounded-4xl p-8">
 				<p class="eyebrow">Licensure & Authorization</p>
 				<ul class="mt-4 space-y-4 text-base leading-8 text-(--color-muted)">
 					<li>
@@ -97,15 +118,17 @@ import Layout from '../layouts/Layout.astro';
 						Maintains a small number of therapy clients alongside evaluation work
 					</li>
 				</ul>
-			</div>
+				</div>
+			</FadeIn>
 		</section>
 
 		<!-- Specialties -->
 		<section class="mx-auto mt-12 max-w-6xl space-y-6">
-			<div class="section-shell rounded-4xl p-8 lg:p-10">
-				<p class="eyebrow">Areas of Specialization</p>
-				<h2 class="mt-4 text-4xl leading-none text-(--color-ink) sm:text-5xl">Thorough evaluations for complex presentations.</h2>
-				<p class="mt-6 max-w-3xl text-base leading-8 text-(--color-muted)">
+			<FadeIn client:visible>
+				<div class="section-shell rounded-4xl p-8 lg:p-10">
+					<p class="eyebrow">Areas of Specialization</p>
+					<h2 class="mt-4 text-4xl leading-none text-(--color-ink) sm:text-5xl">Thorough evaluations for complex presentations.</h2>
+					<p class="mt-6 max-w-3xl text-base leading-8 text-(--color-muted)">
 					Dr. Cornett offers psychological evaluations for individuals aged 2 and above — with particular expertise in cases that require nuanced clinical judgment.
 				</p>
 				<div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -134,33 +157,39 @@ import Layout from '../layouts/Layout.astro';
 						<p class="mt-2 text-sm leading-6 text-(--color-muted)">Remote evaluations available to clients across 40+ participating states.</p>
 					</div>
 				</div>
-			</div>
+				</div>
+			</FadeIn>
 		</section>
 
 		<!-- Clinical Approach -->
 		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[1fr_1fr]">
-			<div class="section-shell rounded-4xl p-8">
-				<p class="eyebrow">Clinical Approach</p>
-				<h3 class="mt-4 text-3xl leading-none text-(--color-ink)">Grounded in evidence, guided by empathy.</h3>
-				<p class="mt-4 text-base leading-8 text-(--color-muted)">
-					Dr. Cornett's clinical training is rooted in Cognitive Behavioral Therapy (CBT), Dialectical Behavior Therapy (DBT) — for which she holds a dedicated certificate — and Feminist theory. She applies these evidence-based frameworks to both therapy and assessment, ensuring that every evaluation is clinically grounded and individually tailored rather than following a rigid checklist.
-				</p>
-			</div>
-			<div class="premium-card rounded-4xl p-8">
-				<p class="eyebrow">Populations Served</p>
-				<ul class="mt-4 space-y-3 text-sm leading-7 text-(--color-muted)">
-					<li>Children (ages 2+), preteens, and teens</li>
-					<li>Adults and older adults (65+)</li>
-					<li>High-masking and late-identified neurodivergent individuals</li>
-					<li>BIPOC and LGBTQ+ individuals</li>
-					<li>Families navigating complex learning and developmental profiles</li>
+			<FadeIn client:visible direction="left">
+				<div class="section-shell rounded-4xl p-8">
+					<p class="eyebrow">Clinical Approach</p>
+					<h3 class="mt-4 text-3xl leading-none text-(--color-ink)">Grounded in evidence, guided by empathy.</h3>
+					<p class="mt-4 text-base leading-8 text-(--color-muted)">
+						Dr. Cornett's clinical training is rooted in Cognitive Behavioral Therapy (CBT), Dialectical Behavior Therapy (DBT) — for which she holds a dedicated certificate — and Feminist theory. She applies these evidence-based frameworks to both therapy and assessment, ensuring that every evaluation is clinically grounded and individually tailored rather than following a rigid checklist.
+					</p>
+				</div>
+			</FadeIn>
+			<FadeIn client:visible direction="right" delay={150}>
+				<div class="premium-card rounded-4xl p-8">
+					<p class="eyebrow">Populations Served</p>
+					<ul class="mt-4 space-y-3 text-sm leading-7 text-(--color-muted)">
+						<li>Children (ages 2+), preteens, and teens</li>
+						<li>Adults and older adults (65+)</li>
+						<li>High-masking and late-identified neurodivergent individuals</li>
+						<li>BIPOC and LGBTQ+ individuals</li>
+						<li>Families navigating complex learning and developmental profiles</li>
 				</ul>
-			</div>
+				</div>
+			</FadeIn>
 		</section>
 
 		<!-- Outside the Clinic -->
 		<section class="mx-auto mt-12 max-w-6xl">
-			<div class="premium-card rounded-4xl p-8 lg:grid lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10 lg:p-10">
+			<FadeIn client:visible>
+				<div class="premium-card rounded-4xl p-8 lg:grid lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10 lg:p-10">
 				<div>
 					<p class="eyebrow">Outside the Clinic</p>
 					<p class="mt-4 max-w-3xl text-base leading-8 text-(--color-muted)">
@@ -173,7 +202,8 @@ import Layout from '../layouts/Layout.astro';
 						<p>Personal<br />photo here</p>
 					</div>
 				</div>
-			</div>
+				</div>
+			</FadeIn>
 		</section>
 	</main>
 </Layout>
