@@ -1,10 +1,9 @@
-import { useRef, useState, useEffect } from 'preact/hooks';
-import type { ComponentChildren } from 'preact';
+import { useRef, useState, useEffect, type ReactNode } from 'react';
 
 interface AnimatedCardProps {
-	children: ComponentChildren;
+	children: ReactNode;
 	href?: string;
-	class?: string;
+	className?: string;
 	/** Index for stagger delay when used in a grid */
 	index?: number;
 	/** Base stagger delay in ms */
@@ -17,7 +16,7 @@ interface AnimatedCardProps {
 export default function AnimatedCard({
 	children,
 	href,
-	class: className = '',
+	className = '',
 	index = 0,
 	stagger = 120,
 }: AnimatedCardProps) {
@@ -57,14 +56,14 @@ export default function AnimatedCard({
 
 	if (href) {
 		return (
-			<a ref={ref as any} href={href} class={baseClass} style={style}>
+			<a ref={ref as any} href={href} className={baseClass} style={style}>
 				{children}
 			</a>
 		);
 	}
 
 	return (
-		<div ref={ref as any} class={baseClass} style={style}>
+		<div ref={ref as any} className={baseClass} style={style}>
 			{children}
 		</div>
 	);

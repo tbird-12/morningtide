@@ -1,0 +1,25 @@
+/* ── Layout: Page Structure & Spacing ── */
+
+.page-main {
+    padding-bottom: clamp(4rem, 8vw, 6rem);
+}
+
+.hero-shell {
+    padding: clamp(5rem, 12vw, 10rem) 1.5rem clamp(3rem, 6vw, 5rem);
+}
+
+.section-shell {
+    padding: clamp(4rem, 10vw, 8rem) 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.stack-large {
+    display: grid;
+    gap: 6rem;
+}
+
+.stack-small {
+    display: grid;
+    gap: 1.5rem;
+}

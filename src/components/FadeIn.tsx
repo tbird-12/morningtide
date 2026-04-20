@@ -1,8 +1,7 @@
-import { useState, useEffect, useRef, useCallback } from 'preact/hooks';
-import type { ComponentChildren } from 'preact';
+import { useState, useEffect, useRef, useCallback, type ReactNode } from 'react';
 
 interface FadeInProps {
-	children: ComponentChildren;
+	children: ReactNode;
 	/** Animation variant */
 	as?: 'div' | 'section' | 'article';
 	/** Direction to animate from */
@@ -74,7 +73,7 @@ export default function FadeIn({
 	return (
 		<Tag
 			ref={ref}
-			class={className}
+			className={className}
 			style={{
 				opacity: visible ? 1 : 0,
 				transform: translate(),

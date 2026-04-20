@@ -1,0 +1,70 @@
+/* ── Theme: Design Tokens & Color Schemes ── */
+
+:root {
+    /* Light Mode: "Morning Mist" */
+    --color-page: #fdfcf9;
+    --color-surface: #ffffff;
+    --color-surface-strong: #f4f3ee;
+    --color-brand: #a3957d;
+    --color-brand-soft: #ede8df;
+    --color-accent: #7a8d83;
+    --color-accent-soft: #eef2f0;
+    --color-ink: #2d3230;
+    --color-muted: #6b7571;
+    --color-line: #e8e5dd;
+    --color-line-soft: rgba(45, 50, 48, 0.05);
+    --color-header-bg: rgba(253, 252, 249, 0.8);
+    --color-button-ink: #ffffff;
+    --color-section-tint: #f7f6f2;
+
+    /* Shadows */
+    --shadow-soft: 0 2px 15px rgba(0, 0, 0, 0.02);
+    --shadow-medium: 0 10px 40px rgba(58, 63, 60, 0.05);
+    --shadow-brand: 0 12px 30px rgba(163, 149, 125, 0.1);
+
+    --body-glow-brand: rgba(163, 149, 125, 0.04);
+    --body-glow-muted: rgba(122, 141, 131, 0.03);
+
+    /* Typography */
+    --font-body: 'Manrope', sans-serif;
+    --font-display: 'Cormorant Garamond', serif;
+}
+
+:root[data-theme='dark'] {
+    /* Dark Mode: "Soft Obsidian" */
+    --color-page: #141716;
+    --color-surface: #1c211f;
+    --color-surface-strong: #252b29;
+    --color-brand: #c5b9a5;
+    --color-brand-soft: #3a342a;
+    --color-accent: #9eb1a8;
+    --color-accent-soft: #28332f;
+    --color-ink: #f1f3f2;
+    --color-muted: #96a19c;
+    --color-line: #2a312e;
+    --color-line-soft: rgba(241, 243, 242, 0.06);
+    --color-header-bg: rgba(20, 23, 22, 0.8);
+    --color-button-ink: #141716;
+    --color-section-tint: #1e2421;
+
+    --body-glow-brand: rgba(197, 185, 165, 0.03);
+    --body-glow-muted: rgba(158, 177, 168, 0.03);
+}
+
+@theme {
+    --color-page: var(--color-page);
+    --color-ink: var(--color-ink);
+    --color-muted: var(--color-muted);
+    --color-accent: var(--color-accent);
+    --color-surface: var(--color-surface);
+    --font-display: var(--font-display);
+    --font-body: var(--font-body);
+}
+
+/* Smooth theme transitions (applied after initial load via JS) */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+    transition: background-color 400ms ease, color 300ms ease, border-color 300ms ease, box-shadow 300ms ease !important;
+}

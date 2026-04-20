@@ -170,7 +170,7 @@ const clinicianOffers = [
 				</FadeIn>
 				<div class="mt-12 grid gap-5 lg:grid-cols-4">
 					{process.map((item, i) => (
-						<AnimatedCard client:visible index={i} stagger={150} class="rounded-[1.75rem] p-6">
+						<AnimatedCard client:visible index={i} stagger={150} className="rounded-[1.75rem] p-6">
 							<p class="text-sm font-semibold uppercase tracking-[0.22em] text-(--color-brand)">{item.step}</p>
 							<h3 class="mt-4 text-3xl leading-none text-(--color-ink)">{item.title}</h3>
 							<p class="mt-4 text-sm leading-7 text-(--color-muted)">{item.text}</p>
@@ -206,9 +206,10 @@ const clinicianOffers = [
 		</section>
 
 		<!-- ⑤ CLINICIANS — Secondary audience, after client journey completes -->
-		<section class="flex snap-start items-center bg-(--color-section-tint)">
-			<FadeIn client:visible class="mx-auto max-w-6xl w-full">
-				<div class="cta-strip">
+		<section class="flex min-h-screen snap-start items-center bg-(--color-section-tint)">
+			<div class="mx-auto max-w-6xl w-full">
+				<FadeIn client:visible>
+					<div class="cta-strip">
 					<div class="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-center">
 						<div class="space-y-4">
 							<p class="eyebrow">For Clinicians</p>
@@ -227,13 +228,14 @@ const clinicianOffers = [
 							))}
 						</div>
 					</div>
-				</div>
-			</FadeIn>
+				</FadeIn>
+			</div>
 		</section>
 
 		<!-- ⑥ CONTACT — Warm, action-oriented CTA -->
 		<section id="contact" class="flex min-h-screen snap-start items-center">
-			<FadeIn client:visible class="section-shell mx-auto max-w-6xl w-full rounded-4xl px-8 py-10 sm:px-10 sm:py-12">
+			<div class="mx-auto max-w-6xl w-full">
+				<FadeIn client:visible class="section-shell rounded-4xl">
 				<div class="mx-auto max-w-3xl space-y-6 text-center">
 					<p class="eyebrow">Get Started</p>
 					<AnimatedText
@@ -260,7 +262,8 @@ const clinicianOffers = [
 						<p class="pt-2 text-xs text-(--color-muted)">MCC is a self-pay practice and is out-of-network with health insurance. HSA/FSA accepted.</p>
 					</FadeIn>
 				</div>
-			</FadeIn>
+				</FadeIn>
+			</div>
 		</section>
 	</main>
 </Layout>

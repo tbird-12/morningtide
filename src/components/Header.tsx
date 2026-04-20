@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'preact/hooks';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import ThemeToggle from './ThemeToggle';
 
 interface NavChild {
@@ -53,26 +53,26 @@ function DesktopDropdown({ item }: { item: NavItem }) {
 	}, []);
 
 	return (
-		<div ref={ref} class="relative" onMouseEnter={enter} onMouseLeave={leave}>
+		<div ref={ref} className="relative" onMouseEnter={enter} onMouseLeave={leave}>
 			<a
-				class="inline-flex items-center gap-1 text-sm font-semibold text-muted transition-colors duration-200 hover:text-ink"
+				className="inline-flex items-center gap-1 text-sm font-semibold text-muted transition-colors duration-200 hover:text-ink"
 				href={item.href}
 			>
 				{item.label}
 				<svg
-					class="h-3 w-3 opacity-60 transition-transform duration-300"
+					className="h-3 w-3 opacity-60 transition-transform duration-300"
 					style={{ transform: open ? 'rotate(180deg)' : 'rotate(0deg)' }}
 					viewBox="0 0 12 12"
 					fill="none"
 					aria-hidden="true"
 				>
-					<path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+					<path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
 				</svg>
 			</a>
 
 			{/* Dropdown panel */}
 			<div
-				class="absolute left-0 top-full z-50 min-w-[220px] pt-2"
+				className="absolute left-0 top-full z-50 min-w-[220px] pt-2"
 				style={{
 					opacity: open ? 1 : 0,
 					transform: open ? 'translateY(0)' : 'translateY(-8px)',
@@ -80,11 +80,11 @@ function DesktopDropdown({ item }: { item: NavItem }) {
 					transition: 'opacity 250ms cubic-bezier(0.16,1,0.3,1), transform 250ms cubic-bezier(0.16,1,0.3,1)',
 				}}
 			>
-				<div class="rounded-2xl border border-(--color-line-soft) bg-surface py-2 shadow-(--shadow-medium)">
+				<div className="rounded-2xl border border-(--color-line-soft) bg-surface py-2 shadow-(--shadow-medium)">
 					{item.children?.map(child => (
 						<a
 							key={child.href}
-							class="block px-5 py-2.5 text-sm font-semibold text-muted transition-colors duration-200 hover:bg-(--color-surface-strong) hover:text-ink"
+							className="block px-5 py-2.5 text-sm font-semibold text-muted transition-colors duration-200 hover:bg-(--color-surface-strong) hover:text-ink"
 							href={child.href}
 						>
 							{child.label}
@@ -121,7 +121,7 @@ function MobileNav({ open, onClose }: { open: boolean; onClose: () => void }) {
 		<>
 			{/* Backdrop */}
 			<div
-				class="fixed inset-0 z-30 backdrop-blur-sm"
+				className="fixed inset-0 z-30 backdrop-blur-sm"
 				style={{
 					background: 'rgba(0,0,0,0.06)',
 					opacity: open ? 1 : 0,
@@ -135,7 +135,7 @@ function MobileNav({ open, onClose }: { open: boolean; onClose: () => void }) {
 			{/* Panel */}
 			<div
 				ref={menuRef}
-				class="fixed left-0 right-0 top-[52px] z-40 overflow-y-auto md:hidden"
+				className="fixed left-0 right-0 top-[52px] z-40 overflow-y-auto md:hidden"
 				style={{
 					background: 'linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 78%, transparent), var(--color-header-bg))',
 					maxHeight: 'calc(100dvh - 52px)',
@@ -146,16 +146,16 @@ function MobileNav({ open, onClose }: { open: boolean; onClose: () => void }) {
 				}}
 				aria-hidden={!open}
 			>
-				<div class="space-y-2 px-5 pt-4 pb-4">
+				<div className="space-y-2 px-5 pt-4 pb-4">
 					{mobileVisibleNav.map(item =>
 						item.children ? (
-							<div key={item.href} class="rounded-2xl border border-(--color-line-soft) bg-surface p-3 shadow-(--shadow-soft)">
-								<a class="block px-1 py-1 text-sm font-semibold text-ink" href={item.href}>{item.label}</a>
-								<div class="mt-2 space-y-1">
+							<div key={item.href} className="rounded-2xl border border-(--color-line-soft) bg-surface p-3 shadow-(--shadow-soft)">
+								<a className="block px-1 py-1 text-sm font-semibold text-ink" href={item.href}>{item.label}</a>
+								<div className="mt-2 space-y-1">
 									{item.children.map(child => (
 										<a
 											key={child.href}
-											class="block rounded-xl px-3 py-2 text-sm font-semibold text-muted transition-colors duration-200 hover:bg-(--color-surface-strong) hover:text-ink"
+											className="block rounded-xl px-3 py-2 text-sm font-semibold text-muted transition-colors duration-200 hover:bg-(--color-surface-strong) hover:text-ink"
 											href={child.href}
 										>
 											{child.label}
@@ -166,7 +166,7 @@ function MobileNav({ open, onClose }: { open: boolean; onClose: () => void }) {
 						) : (
 							<a
 								key={item.href}
-								class="block rounded-2xl border border-(--color-line-soft) bg-surface px-4 py-3 text-sm font-semibold text-ink shadow-(--shadow-soft)"
+								className="block rounded-2xl border border-(--color-line-soft) bg-surface px-4 py-3 text-sm font-semibold text-ink shadow-(--shadow-soft)"
 								href={item.href}
 							>
 								{item.label}
@@ -175,22 +175,22 @@ function MobileNav({ open, onClose }: { open: boolean; onClose: () => void }) {
 					)}
 
 					{/* More collapsible */}
-					<div class="rounded-2xl border border-(--color-line-soft) bg-surface shadow-(--shadow-soft)">
+					<div className="rounded-2xl border border-(--color-line-soft) bg-surface shadow-(--shadow-soft)">
 						<button
 							type="button"
-							class="flex w-full items-center justify-between px-4 py-3 text-sm font-semibold text-ink"
+							className="flex w-full items-center justify-between px-4 py-3 text-sm font-semibold text-ink"
 							onClick={() => setMoreOpen(prev => !prev)}
 							aria-expanded={moreOpen}
 						>
 							More
 							<svg
-								class="h-4 w-4 text-muted transition-transform duration-300"
+								className="h-4 w-4 text-muted transition-transform duration-300"
 								style={{ transform: moreOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
 								viewBox="0 0 12 12"
 								fill="none"
 								aria-hidden="true"
 							>
-								<path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+								<path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
 							</svg>
 						</button>
 						<div
@@ -200,16 +200,16 @@ function MobileNav({ open, onClose }: { open: boolean; onClose: () => void }) {
 								transition: 'max-height 350ms cubic-bezier(0.16,1,0.3,1)',
 							}}
 						>
-							<div class="px-3 pb-3 space-y-1">
+							<div className="px-3 pb-3 space-y-1">
 								{mobileMoreNav.map(item =>
 									item.children ? (
 										<div key={item.href}>
-											<a class="block px-1 py-1 text-sm font-semibold text-ink" href={item.href}>{item.label}</a>
-											<div class="mt-1 space-y-1">
+											<a className="block px-1 py-1 text-sm font-semibold text-ink" href={item.href}>{item.label}</a>
+											<div className="mt-1 space-y-1">
 												{item.children.map(child => (
 													<a
 														key={child.href}
-														class="block rounded-xl px-3 py-2 text-sm font-semibold text-muted transition-colors duration-200 hover:bg-(--color-surface-strong) hover:text-ink"
+														className="block rounded-xl px-3 py-2 text-sm font-semibold text-muted transition-colors duration-200 hover:bg-(--color-surface-strong) hover:text-ink"
 														href={child.href}
 													>
 														{child.label}
@@ -220,7 +220,7 @@ function MobileNav({ open, onClose }: { open: boolean; onClose: () => void }) {
 									) : (
 										<a
 											key={item.href}
-											class="block rounded-xl px-3 py-2 text-sm font-semibold text-muted transition-colors duration-200 hover:bg-(--color-surface-strong) hover:text-ink"
+											className="block rounded-xl px-3 py-2 text-sm font-semibold text-muted transition-colors duration-200 hover:bg-(--color-surface-strong) hover:text-ink"
 											href={item.href}
 										>
 											{item.label}
@@ -243,35 +243,35 @@ export default function Header() {
 
 	return (
 		<>
-			<header class="fixed md:sticky top-0 left-0 right-0 z-40 border-b border-(--color-line-soft) bg-(--color-header-bg) backdrop-blur-xl">
+			<header className="fixed md:sticky top-0 left-0 right-0 z-40 border-b border-(--color-line-soft) bg-(--color-header-bg) backdrop-blur-xl">
 				{/* Desktop */}
-				<div class="mx-auto hidden max-w-6xl items-center justify-between px-4 py-4 md:flex md:px-6 lg:px-10">
-					<a class="group flex items-center gap-4" href="/" aria-label="Morning Tide Consulting and Collective home">
-						<div class="flex h-11 w-11 items-center justify-center rounded-full border border-(--color-line) bg-surface text-lg font-semibold text-(--color-brand) shadow-(--shadow-soft) transition-transform duration-300 group-hover:scale-105">
+				<div className="mx-auto hidden max-w-6xl items-center justify-between px-4 py-4 md:flex md:px-6 lg:px-10">
+					<a className="group flex items-center gap-4" href="/" aria-label="Morning Tide Consulting and Collective home">
+						<div className="flex h-11 w-11 items-center justify-center rounded-full border border-(--color-line) bg-surface text-lg font-semibold text-(--color-brand) shadow-(--shadow-soft) transition-transform duration-300 group-hover:scale-105">
 							MCC
 						</div>
 						<div>
-							<p class="text-[0.68rem] font-semibold uppercase tracking-[0.32em] text-(--color-brand)">Morning Tide Consulting</p>
-							<p class="text-lg font-semibold text-ink md:text-xl">&amp; Collective</p>
+							<p className="text-[0.68rem] font-semibold uppercase tracking-[0.32em] text-(--color-brand)">Morning Tide Consulting</p>
+							<p className="text-lg font-semibold text-ink md:text-xl">&amp; Collective</p>
 						</div>
 					</a>
 
-					<nav aria-label="Primary" class="hidden items-center gap-6 md:flex">
+					<nav aria-label="Primary" className="hidden items-center gap-6 md:flex">
 						{navigation.map(item =>
 							item.children ? (
 								<DesktopDropdown key={item.href} item={item} />
 							) : (
-								<a key={item.href} class="text-sm font-semibold text-muted transition-colors duration-200 hover:text-ink" href={item.href}>
+								<a key={item.href} className="text-sm font-semibold text-muted transition-colors duration-200 hover:text-ink" href={item.href}>
 									{item.label}
 								</a>
 							)
 						)}
 					</nav>
 
-					<div class="hidden items-center gap-2.5 md:flex">
+					<div className="hidden items-center gap-2.5 md:flex">
 						<ThemeToggle />
 						<a
-							class="inline-flex items-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-(--color-button-ink) shadow-(--shadow-brand) transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
+							className="inline-flex items-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-(--color-button-ink) shadow-(--shadow-brand) transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
 							href="/#contact"
 						>
 							Inquire Now
@@ -280,27 +280,27 @@ export default function Header() {
 				</div>
 
 				{/* Mobile */}
-				<div class="flex items-center justify-between px-4 py-3 md:hidden">
+				<div className="flex items-center justify-between px-4 py-3 md:hidden">
 					<a
-						class="inline-flex items-center rounded-full bg-accent px-4 py-2 text-sm font-semibold text-(--color-button-ink) shadow-(--shadow-brand) transition-all duration-300 hover:-translate-y-0.5"
+						className="inline-flex items-center rounded-full bg-accent px-4 py-2 text-sm font-semibold text-(--color-button-ink) shadow-(--shadow-brand) transition-all duration-300 hover:-translate-y-0.5"
 						href="/#contact"
 					>
 						Inquire Now
 					</a>
-					<div class="flex items-center gap-2">
+					<div className="flex items-center gap-2">
 						<ThemeToggle />
 						<button
 							type="button"
-							class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-surface text-muted shadow-sm transition-all duration-300 hover:text-ink hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
+							className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-surface text-muted shadow-sm transition-all duration-300 hover:text-ink hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
 							aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
 							aria-expanded={mobileOpen}
 							onClick={() => setMobileOpen(prev => !prev)}
 						>
 							{/* Animated hamburger → X */}
-							<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+							<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
 								<line
 									x1="3" y1="6" x2="21" y2="6"
-									stroke="currentColor" stroke-width="2" stroke-linecap="round"
+									stroke="currentColor" strokeWidth="2" strokeLinecap="round"
 									style={{
 										transform: mobileOpen ? 'rotate(45deg) translate(4px, -4px)' : 'none',
 										transformOrigin: 'center',
@@ -309,7 +309,7 @@ export default function Header() {
 								/>
 								<line
 									x1="3" y1="12" x2="21" y2="12"
-									stroke="currentColor" stroke-width="2" stroke-linecap="round"
+									stroke="currentColor" strokeWidth="2" strokeLinecap="round"
 									style={{
 										opacity: mobileOpen ? 0 : 1,
 										transition: 'opacity 200ms ease',
@@ -317,7 +317,7 @@ export default function Header() {
 								/>
 								<line
 									x1="3" y1="18" x2="21" y2="18"
-									stroke="currentColor" stroke-width="2" stroke-linecap="round"
+									stroke="currentColor" strokeWidth="2" strokeLinecap="round"
 									style={{
 										transform: mobileOpen ? 'rotate(-45deg) translate(4px, 4px)' : 'none',
 										transformOrigin: 'center',

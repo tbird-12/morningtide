@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'preact/hooks';
+import { useState, useEffect, useRef } from 'react';
 
 interface AnimatedTextProps {
 	/** Text content */
@@ -58,7 +58,7 @@ export default function AnimatedText({
 		return (
 			<Tag
 				ref={ref}
-				class={className}
+				className={className}
 				style={{
 					opacity: visible ? 1 : 0,
 					transform: visible ? 'translateY(0)' : 'translateY(20px)',
@@ -73,11 +73,11 @@ export default function AnimatedText({
 	const words = text.split(' ');
 
 	return (
-		<Tag ref={ref} class={className} aria-label={text}>
+		<Tag ref={ref} className={className} aria-label={text}>
 			{words.map((word, i) => (
 				<span
 					key={i}
-					class="inline-block"
+					className="inline-block"
 					style={{
 						opacity: visible ? 1 : 0,
 						transform: visible ? 'translateY(0)' : 'translateY(12px)',
