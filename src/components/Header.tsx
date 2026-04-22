@@ -41,7 +41,7 @@ const mobileMoreNav = navigation.slice(2);
 /* ─── Desktop Dropdown ─── */
 function DesktopDropdown({ item }: { item: NavItem }) {
 	const [open, setOpen] = useState(false);
-	const timeout = useRef<ReturnType<typeof setTimeout>>();
+	const timeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 	const ref = useRef<HTMLDivElement>(null);
 
 	const enter = useCallback(() => {
@@ -50,6 +50,10 @@ function DesktopDropdown({ item }: { item: NavItem }) {
 	}, []);
 	const leave = useCallback(() => {
 		timeout.current = setTimeout(() => setOpen(false), 180);
+	}, []);
+
+	useEffect(() => {
+		return () => clearTimeout(timeout.current);
 	}, []);
 
 	return (
@@ -72,7 +76,7 @@ function DesktopDropdown({ item }: { item: NavItem }) {
 
 			{/* Dropdown panel */}
 			<div
-				className="absolute left-0 top-full z-50 min-w-[220px] pt-2"
+				className="absolute left-0 top-full z-50 min-w-55 pt-2"
 				style={{
 					opacity: open ? 1 : 0,
 					transform: open ? 'translateY(0)' : 'translateY(-8px)',
@@ -135,7 +139,7 @@ function MobileNav({ open, onClose }: { open: boolean; onClose: () => void }) {
 			{/* Panel */}
 			<div
 				ref={menuRef}
-				className="fixed left-0 right-0 top-[52px] z-40 overflow-y-auto md:hidden"
+				className="fixed left-0 right-0 top-13 z-40 overflow-y-auto md:hidden"
 				style={{
 					background: 'linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 78%, transparent), var(--color-header-bg))',
 					maxHeight: 'calc(100dvh - 52px)',
