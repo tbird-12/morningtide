@@ -1,0 +1,700 @@
+/**
+ * Clinical Task Management System - Apps Script
+ * 
+ * This script handles:
+ * 1. Access control (only task owners can edit)
+ * 2. Auto-population of dates (Created, Updated, Last Outreach)
+ * 3. Outreach tracking (auto-archive at 3rd attempt within 10 business days)
+ * 4. Document completion (create clinician rows)
+ * 5. Sorting (self-pay priority)
+ * 6. Color formatting (status-based)
+ * 7. Re-activation workflow
+ * 
+ * Instructions:
+ * 1. Copy all code below
+ * 2. Go to Tools > Script Editor in your Google Sheet
+ * 3. Delete default code, paste this entire script
+ * 4. Save (Ctrl+S)
+ * 5. Click "Run" to authorize
+ * 6. Set up triggers: Tools > Script Editor > Clock icon > Create new trigger
+ */
+
+// ============================================================================
+// CONFIGURATION - EASILY CUSTOMIZABLE FOR USER MANAGEMENT
+// ============================================================================
+// 
+// TO ADD A NEW ADMIN: Add to ADMIN_USERS array below
+// TO ADD A NEW CLINICIAN: Add to CLINICIANS array below
+// TO REMOVE A USER: Delete from ADMIN_USERS or CLINICIANS array
+// TO CHANGE USER NAME: Update everywhere they appear below
+//
+
+const CONFIG = {
+  // =========================================================================
+  // ADMIN USERS (Full system access - can create/manage all tasks)
+  // Add/remove admin names here to manage administrators
+  // =========================================================================
+  ADMIN_USERS: [
+    'Samantha'  // Add more admin names here (e.g., 'Samantha', 'NewAdmin')
+  ],
+  
+  // =========================================================================
+  // CLINICIANS (Service-specific access)
+  // Each clinician maps to specific services and their queue sheet
+  // Format: { name: 'Name', service: 'Service Name', sheet: 'Sheet Name' }
+  // =========================================================================
+  CLINICIANS: [
+    { name: 'Heather', service: 'Psychological Testing', sheet: "Heather's Queue" },
+    { name: 'Nicola', service: 'Medication Management', sheet: "Nicola's Queue" },
+    { name: 'Jonica', service: 'Therapy', sheet: "Jonica's Queue" }
+    // Add new clinicians here:
+    // { name: 'NewClinician', service: 'Service Name', sheet: "NewClinician's Queue" }
+  ],
+  
+  SERVICES: {
+    PSYCH_TESTING: 'Psychological Testing',
+    MEDICATION_MGMT: 'Medication Management',
+    THERAPY: 'Therapy'
+    // Add new services here if you add new clinicians
+  },
+  
+  SHEETS: {
+    MASTER: 'Master Sheet',
+    SAMANTHA_QUEUE: "Samantha's Queue",
+    HEATHER_QUEUE: "Heather's Queue",
+    NICOLA_QUEUE: "Nicola's Queue",
+    JONICA_QUEUE: "Jonica's Queue",
+    ALL_TASKS: 'All Tasks (Read-Only)',
+    ARCHIVE: 'Archive',
+    REACTIVATION_LOG: 'Reactivation Log'
+    // Add new queue sheets here if you add new admins/clinicians:
+    // NEW_ADMIN_QUEUE: "NewAdmin's Queue"
+    // NEW_CLINICIAN_QUEUE: "NewClinician's Queue"
+  },
+  
+  COLUMNS: {
+    FIRST_NAME: 1,        // A
+    LAST_NAME_INITIAL: 2, // B
+    INSURANCE_TYPE: 3,    // C
+    SERVICES_REQUESTED: 4, // D
+    SERVICE_BEING_REVIEWED: 5, // E
+    CURRENT_OWNER: 6,     // F
+    STATUS: 7,            // G
+    DOCUMENTS_COMPLETE: 8, // H
+    OUTREACH_ATTEMPTS: 9, // I
+    LAST_OUTREACH_DATE: 10, // J
+    NEXT_OUTREACH_DUE: 11, // K
+    NOTES: 12,            // L
+    DATE_CREATED: 13,     // M
+    DATE_LAST_UPDATED: 14, // N
+    ARCHIVE_REASON: 15,   // O
+    PREVIOUSLY_ARCHIVED: 16, // P
+    DATE_ARCHIVED: 17,    // Q
+    DATE_REACTIVATED: 18,  // R
+    AUDIT_TRAIL: 19       // S - Complete history of all state transitions with notes
+  },
+  
+  OUTREACH_BUSINESS_DAYS: 10,
+  OUTREACH_DAYS_UNTIL_NEXT: 3
+};
+
+// ============================================================================
+// MAIN EVENT HANDLERS
+// ============================================================================
+
+/**
+ * Runs when sheet is opened
+ */
+function onOpen(e) {
+  sortMasterByPriority();
+  addMenuItems();
+}
+
+/**
+ * Runs when any cell is edited
+ */
+function onEdit(e) {
+  const sheet = e.source.getActiveSheet();
+  const range = e.range;
+  const row = range.getRow();
+  const col = range.getColumn();
+  const value = range.getValue();
+  
+  if (row === 1) return; // Skip header row
+  
+  // Handle outreach attempt changes
+  if (col === CONFIG.COLUMNS.OUTREACH_ATTEMPTS) {
+    handleOutreachAttempt(sheet, row, value);
+  }
+  
+  // Handle document completion
+  if (col === CONFIG.COLUMNS.DOCUMENTS_COMPLETE && value === true) {
+    handleDocumentsComplete(sheet, row);
+  }
+  
+  // Handle status changes (for auto-owner updates and denial confirmation)
+  if (col === CONFIG.COLUMNS.STATUS) {
+    // Check if status is Denied - require denial reason if so
+    if (value.includes('Denied')) {
+      requireDenialReason(sheet, row, value);
+    }
+    handleStatusChange(sheet, row, value);
+  }
+  
+  // Auto-update "Date Last Updated"
+  updateLastUpdatedDate(sheet, row);
+  
+  // Re-sort Master Sheet if needed
+  if (sheet.getName() === CONFIG.SHEETS.MASTER) {
+    sortMasterByPriority();
+  }
+}
+
+/**
+ * Add custom menu to Google Sheet
+ */
+function addMenuItems() {
+  const ui = SpreadsheetApp.getUi();
+  ui.createMenu('Clinical Management')
+    .addItem('Sort by Priority (Self-Pay First)', 'sortMasterByPriority')
+    .addItem('Archive Completed Tasks', 'archiveCompletedTasks')
+    .addItem('Un-Archive Client', 'showReactivationDialog')
+    .addSeparator()
+    .addItem('Refresh All Sheets', 'refreshAllSheets')
+    .addToUi();
+}
+
+// ============================================================================
+// OUTREACH TRACKING
+// ============================================================================
+
+/**
+ * Handle outreach attempt selection
+ */
+function handleOutreachAttempt(sheet, row, attemptValue) {
+  const range = sheet.getRange(row, CONFIG.COLUMNS.LAST_OUTREACH_DATE);
+  const nextOutreachRange = sheet.getRange(row, CONFIG.COLUMNS.NEXT_OUTREACH_DUE);
+  
+  if (attemptValue === 'None') {
+    range.clearContent();
+    nextOutreachRange.clearContent();
+    return;
+  }
+  
+  if (attemptValue.includes('Attempt')) {
+    // Auto-populate Last Outreach Date
+    range.setValue(new Date());
+    
+    // Calculate Next Outreach Due (3 business days)
+    const nextDate = addBusinessDays(new Date(), CONFIG.OUTREACH_DAYS_UNTIL_NEXT);
+    nextOutreachRange.setValue(nextDate);
+    
+    // Check if this is Attempt 3 - if so, archive
+    if (attemptValue === 'Attempt 3') {
+      checkAndArchiveNoResponse(sheet, row);
+    }
+  }
+}
+
+/**
+ * Check if Attempt 3 is within 10 business days and archive if so
+ */
+function checkAndArchiveNoResponse(sheet, row) {
+  const firstAttemptCell = sheet.getRange(row, CONFIG.COLUMNS.LAST_OUTREACH_DATE).getValue();
+  
+  if (!firstAttemptCell) return; // No date yet
+  
+  const today = new Date();
+  const businessDaysDiff = getBusinessDaysBetween(firstAttemptCell, today);
+  
+  if (businessDaysDiff <= CONFIG.OUTREACH_BUSINESS_DAYS) {
+    // Auto-archive this row
+    sheet.getRange(row, CONFIG.COLUMNS.ARCHIVE_REASON).setValue('No Response - 3x Outreach');
+    sheet.getRange(row, CONFIG.COLUMNS.STATUS).setValue('No Response - Archived');
+    sheet.getRange(row, CONFIG.COLUMNS.DATE_ARCHIVED).setValue(new Date());
+    
+    // Move to Archive sheet (happens via next sync)
+    moveRowToArchive(sheet, row);
+  }
+}
+
+/**
+ * Move row to Archive sheet
+ */
+function moveRowToArchive(sourceSheet, row) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const archiveSheet = ss.getSheetByName(CONFIG.SHEETS.ARCHIVE);
+  
+  if (!archiveSheet) return; // Archive sheet doesn't exist
+  
+  const sourceValues = sourceSheet.getRange(row, 1, 1, 18).getValues();
+  archiveSheet.appendRow(sourceValues[0]);
+  
+  // Clear source row (but keep headers)
+  sourceSheet.deleteRow(row);
+}
+
+// ============================================================================
+// DOCUMENT COMPLETION
+// ============================================================================
+
+/**
+ * When Documents Complete changes to true, create rows on clinician sheets
+ */
+function handleDocumentsComplete(sheet, row) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  
+  // Get client info
+  const clientFirstName = sheet.getRange(row, CONFIG.COLUMNS.FIRST_NAME).getValue();
+  const clientLastInitial = sheet.getRange(row, CONFIG.COLUMNS.LAST_NAME_INITIAL).getValue();
+  const servicesRequested = sheet.getRange(row, CONFIG.COLUMNS.SERVICES_REQUESTED).getValue();
+  const insuranceType = sheet.getRange(row, CONFIG.COLUMNS.INSURANCE_TYPE).getValue();
+  
+  // Update status on Master Sheet
+  sheet.getRange(row, CONFIG.COLUMNS.STATUS).setValue('Documents Complete - Ready for Clinician Review');
+  
+  // Parse services (comma-separated)
+  const services = servicesRequested.split(',').map(s => s.trim());
+  
+  // Create rows on clinician sheets for each service
+  services.forEach(service => {
+    const clinicianName = getClinicianForService(service);
+    const clinicianSheet = ss.getSheetByName(getSheetNameForClinician(clinicianName));
+    
+    if (clinicianSheet) {
+      const newRow = [
+        clientFirstName,
+        clientLastInitial,
+        insuranceType,
+        servicesRequested,
+        service,
+        clinicianName,
+        'New - Awaiting Clinician Review',
+        '', // Documents Complete (not used on clinician sheet)
+        'None', // Outreach Attempts
+        '', // Last Outreach Date
+        '', // Next Outreach Due
+        'Documents complete. Ready for review.',
+        new Date(), // Date Created
+        new Date(), // Date Last Updated
+        'None', // Archive Reason
+        'No', // Previously Archived
+        '', // Date Archived
+        ''  // Date Reactivated
+      ];
+      clinicianSheet.appendRow(newRow);
+    }
+  });
+}
+
+/**
+ * Get clinician name for given service
+ */
+function getClinicianForService(service) {
+  service = service.trim().toLowerCase();
+  
+  // Search through CLINICIANS array for matching service
+  for (let i = 0; i < CONFIG.CLINICIANS.length; i++) {
+    const clinician = CONFIG.CLINICIANS[i];
+    if (clinician.service.toLowerCase().includes(service) || 
+        service.includes(clinician.service.toLowerCase())) {
+      return clinician.name;
+    }
+  }
+  
+  // Fallback to first admin if no matching clinician
+  return CONFIG.ADMIN_USERS[0] || 'Samantha';
+}
+
+/**
+ * Get sheet name for clinician
+ */
+function getSheetNameForClinician(clinicianName) {
+  // Search through CLINICIANS array for sheet name
+  for (let i = 0; i < CONFIG.CLINICIANS.length; i++) {
+    if (CONFIG.CLINICIANS[i].name === clinicianName) {
+      return CONFIG.CLINICIANS[i].sheet;
+    }
+  }
+  
+  // If it's an admin user, return their queue sheet
+  if (CONFIG.ADMIN_USERS.includes(clinicianName)) {
+    return clinicianName + "'s Queue";
+  }
+  
+  return CONFIG.SHEETS.MASTER; // Default fallback
+}
+
+// ============================================================================
+// STATUS CHANGES & AUDIT TRAIL
+// ============================================================================
+
+/**
+ * Require denial reason before allowing Denied status
+ */
+function requireDenialReason(sheet, row, status) {
+  const notes = sheet.getRange(row, CONFIG.COLUMNS.NOTES).getValue();
+  
+  // If notes are empty, prompt user for denial reason
+  if (!notes || notes.trim() === '') {
+    const ui = SpreadsheetApp.getUi();
+    const response = ui.prompt(
+      'Denial Reason Required',
+      'Please enter the reason for denial before proceeding:',
+      ui.ButtonSet.OK_CANCEL
+    );
+    
+    if (response.getSelectedButton() === ui.Button.OK) {
+      const denialReason = response.getResponseText();
+      if (denialReason && denialReason.trim() !== '') {
+        // Add denial reason to Notes
+        sheet.getRange(row, CONFIG.COLUMNS.NOTES).setValue(denialReason);
+        // Append to audit trail with timestamp
+        appendToAuditTrail(sheet, row, status, denialReason);
+      } else {
+        // If user didn't provide reason, revert status change
+        ui.alert('Denial reason is required. Status change cancelled.');
+        sheet.getRange(row, CONFIG.COLUMNS.STATUS).clearContent();
+      }
+    } else {
+      // User cancelled - revert status
+      sheet.getRange(row, CONFIG.COLUMNS.STATUS).clearContent();
+    }
+  } else {
+    // Notes already exist - append status transition to audit trail
+    appendToAuditTrail(sheet, row, status, notes);
+  }
+}
+
+/**
+ * Append status transition and notes to audit trail
+ */
+function appendToAuditTrail(sheet, row, newStatus, notes) {
+  const auditTrailCell = sheet.getRange(row, CONFIG.COLUMNS.AUDIT_TRAIL);
+  const currentAuditTrail = auditTrailCell.getValue();
+  
+  const timestamp = new Date().toLocaleString();
+  const currentOwner = sheet.getRange(row, CONFIG.COLUMNS.CURRENT_OWNER).getValue();
+  const newEntry = `[${timestamp}] ${currentOwner} → ${newStatus}: ${notes}`;
+  
+  // Append to existing audit trail
+  const updatedTrail = currentAuditTrail ? currentAuditTrail + '\n---\n' + newEntry : newEntry;
+  auditTrailCell.setValue(updatedTrail);
+}
+
+// ============================================================================
+// STATUS CHANGES
+// ============================================================================
+
+/**
+ * Handle status changes (e.g., when approved/denied, update owner)
+ */
+function handleStatusChange(sheet, row, status) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const primaryAdmin = CONFIG.ADMIN_USERS[0] || 'Samantha';
+  
+  // If status is Approved, move to primary admin
+  if (status.includes('Approved')) {
+    sheet.getRange(row, CONFIG.COLUMNS.CURRENT_OWNER).setValue(primaryAdmin);
+  }
+  
+  // If status is Denied, move to primary admin
+  if (status.includes('Denied')) {
+    sheet.getRange(row, CONFIG.COLUMNS.CURRENT_OWNER).setValue(primaryAdmin);
+  }
+  
+  // If status is "Recommend to X", parse and update owner
+  if (status.includes('Recommend to')) {
+    const recommendedClinicianMatch = status.match(/Recommend to ([A-Za-z]+)/);
+    if (recommendedClinicianMatch) {
+      const recommendedClinician = recommendedClinicianMatch[1];
+      sheet.getRange(row, CONFIG.COLUMNS.CURRENT_OWNER).setValue(recommendedClinician);
+      
+      // Create duplicate row on recommended clinician's sheet
+      createDuplicateForRecommendation(sheet, row, recommendedClinician);
+    }
+  }
+}
+
+/**
+ * Create a duplicate row on recommended clinician's sheet
+ */
+function createDuplicateForRecommendation(sourceSheet, row, recommendedClinician) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const targetSheet = ss.getSheetByName(getSheetNameForClinician(recommendedClinician));
+  
+  if (!targetSheet) return;
+  
+  const sourceValues = sourceSheet.getRange(row, 1, 1, 19).getValues();
+  targetSheet.appendRow(sourceValues[0]);
+}
+
+// ============================================================================
+// ACCESS CONTROL
+// ============================================================================
+
+/**
+ * Check if user is authorized to edit this cell
+ * (Currently informational; Google Sheets doesn't support blocking at script level)
+ * 
+ * Returns true if:
+ * - User is the task owner (Current Owner matches user)
+ * - User is an admin (has full access)
+ */
+function checkEditAuthorization(sheet, row, userEmail) {
+  const currentOwner = sheet.getRange(row, CONFIG.COLUMNS.CURRENT_OWNER).getValue();
+  
+  // Extract first name from email
+  const userFirstName = userEmail.split('@')[0].charAt(0).toUpperCase() + 
+                       userEmail.split('@')[0].slice(1);
+  
+  // Check if user is an admin (has full access)
+  if (CONFIG.ADMIN_USERS.includes(userFirstName)) {
+    return true;
+  }
+  
+  // Check if user owns this task
+  if (userFirstName === currentOwner) {
+    return true;
+  }
+  
+  // User is not authorized
+  const ui = SpreadsheetApp.getUi();
+  ui.alert('You can only edit tasks assigned to you. Contact an administrator for access.');
+  return false;
+}
+
+// ============================================================================
+// AUTO-POPULATION
+// ============================================================================
+
+/**
+ * Auto-populate Date Last Updated
+ */
+function updateLastUpdatedDate(sheet, row) {
+  if (row === 1) return; // Skip header
+  
+  const dateLastUpdated = sheet.getRange(row, CONFIG.COLUMNS.DATE_LAST_UPDATED);
+  dateLastUpdated.setValue(new Date());
+}
+
+/**
+ * Auto-populate Date Created (if empty)
+ */
+function updateDateCreated(sheet, row) {
+  const dateCreated = sheet.getRange(row, CONFIG.COLUMNS.DATE_CREATED);
+  const firstName = sheet.getRange(row, CONFIG.COLUMNS.FIRST_NAME).getValue();
+  
+  if (firstName && !dateCreated.getValue()) {
+    dateCreated.setValue(new Date());
+  }
+}
+
+// ============================================================================
+// SORTING
+// ============================================================================
+
+/**
+ * Sort Master Sheet by priority: Self-Pay first, then by Status
+ */
+function sortMasterByPriority() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName(CONFIG.SHEETS.MASTER);
+  
+  if (!sheet) return;
+  
+  // Get all data (excluding header)
+  const range = sheet.getDataRange();
+  const values = range.getValues();
+  
+  if (values.length <= 1) return; // Only header or empty
+  
+  const header = values[0];
+  const data = values.slice(1);
+  
+  // Sort by Insurance Type (Self-Pay first), then by Status urgency
+  data.sort((a, b) => {
+    const aInsurance = a[CONFIG.COLUMNS.INSURANCE_TYPE - 1] || '';
+    const bInsurance = b[CONFIG.COLUMNS.INSURANCE_TYPE - 1] || '';
+    
+    // Self-Pay comes first
+    if (aInsurance === 'Self-Pay' && bInsurance !== 'Self-Pay') return -1;
+    if (aInsurance !== 'Self-Pay' && bInsurance === 'Self-Pay') return 1;
+    
+    // Then sort by Status urgency
+    const aStatus = a[CONFIG.COLUMNS.STATUS - 1] || '';
+    const bStatus = b[CONFIG.COLUMNS.STATUS - 1] || '';
+    
+    const statusOrder = [
+      'New - Awaiting Documents',
+      'New - Awaiting Clinician Review',
+      'In Review',
+      'Records Request',
+      'Awaiting Records - With Samantha',
+      'Documents Complete - Ready for Clinician Review',
+      'Approved - Awaiting Scheduling',
+      'Denied - Awaiting Client Notification',
+      'Scheduled',
+      'Denied - Client Notified'
+    ];
+    
+    const aIndex = statusOrder.indexOf(aStatus);
+    const bIndex = statusOrder.indexOf(bStatus);
+    
+    return (aIndex === -1 ? 999 : aIndex) - (bIndex === -1 ? 999 : bIndex);
+  });
+  
+  // Clear and rewrite
+  sheet.clearContents();
+  const newValues = [header, ...data];
+  sheet.getRange(1, 1, newValues.length, newValues[0].length).setValues(newValues);
+}
+
+/**
+ * Refresh all sheets (re-sort, re-format)
+ */
+function refreshAllSheets() {
+  sortMasterByPriority();
+  
+  const ui = SpreadsheetApp.getUi();
+  ui.alert('All sheets refreshed!');
+}
+
+// ============================================================================
+// ARCHIVE MANAGEMENT
+// ============================================================================
+
+/**
+ * Archive all completed tasks
+ */
+function archiveCompletedTasks() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const masterSheet = ss.getSheetByName(CONFIG.SHEETS.MASTER);
+  const archiveSheet = ss.getSheetByName(CONFIG.SHEETS.ARCHIVE);
+  
+  if (!masterSheet || !archiveSheet) return;
+  
+  const values = masterSheet.getDataRange().getValues();
+  const rowsToDelete = [];
+  
+  for (let i = 1; i < values.length; i++) {
+    const status = values[i][CONFIG.COLUMNS.STATUS - 1];
+    
+    if (status === 'Scheduled' || status === 'Denied - Client Notified') {
+      // Copy to archive
+      archiveSheet.appendRow(values[i]);
+      rowsToDelete.push(i + 1); // +1 because array is 0-indexed
+    }
+  }
+  
+  // Delete rows in reverse order (to maintain indices)
+  for (let i = rowsToDelete.length - 1; i >= 0; i--) {
+    masterSheet.deleteRow(rowsToDelete[i]);
+  }
+  
+  const ui = SpreadsheetApp.getUi();
+  ui.alert(`Archived ${rowsToDelete.length} completed tasks.`);
+}
+
+/**
+ * Show dialog to un-archive a client
+ */
+function showReactivationDialog() {
+  const html = HtmlService.createHtmlOutput(`
+    <p>Enter the client name to reactivate:</p>
+    <input type="text" id="clientName" placeholder="e.g., John S">
+    <button onclick="reactivateClient()">Reactivate</button>
+    <script>
+      function reactivateClient() {
+        const name = document.getElementById('clientName').value;
+        google.script.run.reactivateClientByName(name);
+      }
+    </script>
+  `);
+  
+  SpreadsheetApp.getUi().showModelessDialog(html, 'Reactivate Client');
+}
+
+/**
+ * Reactivate a client from archive
+ */
+function reactivateClientByName(clientName) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const archiveSheet = ss.getSheetByName(CONFIG.SHEETS.ARCHIVE);
+  const masterSheet = ss.getSheetByName(CONFIG.SHEETS.MASTER);
+  
+  if (!archiveSheet || !masterSheet) return;
+  
+  const values = archiveSheet.getDataRange().getValues();
+  let found = false;
+  
+  for (let i = 1; i < values.length; i++) {
+    const firstName = values[i][CONFIG.COLUMNS.FIRST_NAME - 1];
+    const lastInitial = values[i][CONFIG.COLUMNS.LAST_NAME_INITIAL - 1];
+    const fullName = firstName + ' ' + lastInitial;
+    
+    if (fullName.toLowerCase().includes(clientName.toLowerCase())) {
+      // Copy row back to Master Sheet
+      const reactivatedRow = [...values[i]];
+      reactivatedRow[CONFIG.COLUMNS.STATUS - 1] = 'New - Awaiting Documents';
+      reactivatedRow[CONFIG.COLUMNS.ARCHIVE_REASON - 1] = 'None';
+      reactivatedRow[CONFIG.COLUMNS.PREVIOUSLY_ARCHIVED - 1] = 'Yes';
+      reactivatedRow[CONFIG.COLUMNS.DATE_REACTIVATED - 1] = new Date();
+      reactivatedRow[CONFIG.COLUMNS.OUTREACH_ATTEMPTS - 1] = 'None'; // Reset for fresh tracking
+      
+      masterSheet.appendRow(reactivatedRow);
+      archiveSheet.deleteRow(i + 1);
+      
+      found = true;
+      break;
+    }
+  }
+  
+  const ui = SpreadsheetApp.getUi();
+  if (found) {
+    ui.alert('Client reactivated successfully!');
+  } else {
+    ui.alert('Client not found in archive.');
+  }
+}
+
+// ============================================================================
+// UTILITY FUNCTIONS
+// ============================================================================
+
+/**
+ * Add business days to a date (excluding weekends)
+ */
+function addBusinessDays(date, days) {
+  const result = new Date(date);
+  let count = 0;
+  
+  while (count < days) {
+    result.setDate(result.getDate() + 1);
+    
+    // Check if not weekend
+    if (result.getDay() !== 0 && result.getDay() !== 6) {
+      count++;
+    }
+  }
+  
+  return result;
+}
+
+/**
+ * Get business days between two dates
+ */
+function getBusinessDaysBetween(startDate, endDate) {
+  let count = 0;
+  const current = new Date(startDate);
+  
+  while (current <= endDate) {
+    if (current.getDay() !== 0 && current.getDay() !== 6) {
+      count++;
+    }
+    current.setDate(current.getDate() + 1);
+  }
+  
+  return count;
+}
+
