@@ -92,11 +92,10 @@ const logisticsFaqs = [
 >
 	<main class="page-main">
 		<section class="hero-shell mx-auto max-w-6xl space-y-8">
-			<FadeIn client:load delay={0}>
+			<FadeIn delay={0}>
 				<p class="eyebrow">FAQ</p>
 			</FadeIn>
 			<AnimatedText
-				client:load
 				text="Frequently asked questions."
 				as="h1"
 				split="word"
@@ -104,7 +103,7 @@ const logisticsFaqs = [
 				delay={100}
 				class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl"
 			/>
-			<FadeIn client:load delay={400}>
+			<FadeIn delay={400}>
 				<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
 					Answers to the most common questions about our practice, the evaluation process, pricing, and logistics.
 				</p>
@@ -112,7 +111,7 @@ const logisticsFaqs = [
 		</section>
 
 		<section class="mx-auto mt-12 max-w-6xl space-y-10">
-			<FadeIn client:visible>
+			<FadeIn>
 				<div class="section-shell rounded-4xl p-8 lg:p-10">
 					<p class="eyebrow">General</p>
 					<div class="mt-6">
@@ -121,7 +120,7 @@ const logisticsFaqs = [
 				</div>
 			</FadeIn>
 
-			<FadeIn client:visible delay={100}>
+			<FadeIn delay={100}>
 				<div class="section-shell rounded-4xl p-8 lg:p-10">
 					<p class="eyebrow">Evaluations</p>
 					<div class="mt-6">
@@ -130,7 +129,7 @@ const logisticsFaqs = [
 				</div>
 			</FadeIn>
 
-			<FadeIn client:visible delay={200}>
+			<FadeIn delay={200}>
 				<div class="section-shell rounded-4xl p-8 lg:p-10">
 					<p class="eyebrow">Logistics & Getting Started</p>
 					<div class="mt-6">
@@ -140,7 +139,7 @@ const logisticsFaqs = [
 			</FadeIn>
 		</section>
 
-		<FadeIn client:visible>
+		<FadeIn>
 			<section class="cta-strip mx-auto mt-10 max-w-6xl">
 				<div class="grid gap-8 lg:grid-cols-3">
 					<div>

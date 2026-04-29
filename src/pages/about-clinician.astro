@@ -12,11 +12,10 @@ import AnimatedText from '../components/AnimatedText.tsx';
 		<!-- Hero -->
 		<section class="hero-shell mx-auto max-w-6xl space-y-8 lg:grid lg:grid-cols-[1fr_auto] lg:items-start lg:gap-12 lg:space-y-0">
 			<div class="space-y-8">
-				<FadeIn client:load delay={0}>
+				<FadeIn delay={0}>
 					<p class="eyebrow">About the Clinician</p>
 				</FadeIn>
 				<AnimatedText
-					client:load
 					text="A clinician-led practice built on careful work and clear communication."
 					as="h1"
 					split="word"
@@ -24,14 +23,14 @@ import AnimatedText from '../components/AnimatedText.tsx';
 					delay={100}
 					class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl"
 				/>
-				<FadeIn client:load delay={500}>
+				<FadeIn delay={500}>
 					<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
 						Morning Tide is led by Dr. Heather Cornett, a licensed psychologist specializing in nuanced, often-overlooked neurodivergent presentations.
 					</p>
 				</FadeIn>
 			</div>
 			<!-- IMAGE PLACEHOLDER: Dr. Cornett headshot — replace src with actual image path -->
-			<FadeIn client:load delay={300} direction="left">
+			<FadeIn delay={300} direction="left">
 				<div class="mx-auto w-56 shrink-0 overflow-hidden rounded-4xl border border-(--color-line-soft) bg-(--color-section-tint) shadow-(--shadow-soft) lg:mx-0 lg:w-64">
 					<div class="flex aspect-3/4 items-center justify-center text-center text-sm text-(--color-muted)">
 						<p>Headshot<br />image here</p>
@@ -42,7 +41,7 @@ import AnimatedText from '../components/AnimatedText.tsx';
 
 		<!-- Intro & Philosophy -->
 		<section class="mx-auto mt-16 max-w-6xl space-y-10">
-			<FadeIn client:visible>
+			<FadeIn>
 				<div class="section-shell rounded-4xl p-8 lg:p-10">
 					<p class="eyebrow">Heather Cornett, Ph.D., LP</p>
 					<h2 class="mt-4 text-4xl leading-none text-(--color-ink) sm:text-5xl">A neuro-affirming approach to clarity.</h2>
@@ -66,7 +65,7 @@ import AnimatedText from '../components/AnimatedText.tsx';
 
 		<!-- Credentials & Education -->
 		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[1fr_1fr]">
-			<FadeIn client:visible direction="left">
+			<FadeIn direction="left">
 				<div class="section-shell rounded-4xl p-8">
 				<p class="eyebrow">Education & Training</p>
 				<ul class="mt-4 space-y-4 text-base leading-8 text-(--color-muted)">
@@ -97,7 +96,7 @@ import AnimatedText from '../components/AnimatedText.tsx';
 				</ul>
 				</div>
 			</FadeIn>
-			<FadeIn client:visible direction="right" delay={150}>
+			<FadeIn direction="right" delay={150}>
 				<div class="premium-card rounded-4xl p-8">
 				<p class="eyebrow">Licensure & Authorization</p>
 				<ul class="mt-4 space-y-4 text-base leading-8 text-(--color-muted)">
@@ -124,7 +123,7 @@ import AnimatedText from '../components/AnimatedText.tsx';
 
 		<!-- Specialties -->
 		<section class="mx-auto mt-12 max-w-6xl space-y-6">
-			<FadeIn client:visible>
+			<FadeIn>
 				<div class="section-shell rounded-4xl p-8 lg:p-10">
 					<p class="eyebrow">Areas of Specialization</p>
 					<h2 class="mt-4 text-4xl leading-none text-(--color-ink) sm:text-5xl">Thorough evaluations for complex presentations.</h2>
@@ -163,7 +162,7 @@ import AnimatedText from '../components/AnimatedText.tsx';
 
 		<!-- Clinical Approach -->
 		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[1fr_1fr]">
-			<FadeIn client:visible direction="left">
+			<FadeIn direction="left">
 				<div class="section-shell rounded-4xl p-8">
 					<p class="eyebrow">Clinical Approach</p>
 					<h3 class="mt-4 text-3xl leading-none text-(--color-ink)">Grounded in evidence, guided by empathy.</h3>
@@ -172,7 +171,7 @@ import AnimatedText from '../components/AnimatedText.tsx';
 					</p>
 				</div>
 			</FadeIn>
-			<FadeIn client:visible direction="right" delay={150}>
+			<FadeIn direction="right" delay={150}>
 				<div class="premium-card rounded-4xl p-8">
 					<p class="eyebrow">Populations Served</p>
 					<ul class="mt-4 space-y-3 text-sm leading-7 text-(--color-muted)">
@@ -188,7 +187,7 @@ import AnimatedText from '../components/AnimatedText.tsx';
 
 		<!-- Outside the Clinic -->
 		<section class="mx-auto mt-12 max-w-6xl">
-			<FadeIn client:visible>
+			<FadeIn>
 				<div class="premium-card rounded-4xl p-8 lg:grid lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10 lg:p-10">
 				<div>
 					<p class="eyebrow">Outside the Clinic</p>

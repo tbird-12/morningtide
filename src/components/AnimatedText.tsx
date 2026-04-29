@@ -1,25 +1,15 @@
-import { useState, useEffect, useRef } from 'react';
+import type { CSSProperties } from 'react';
 
 interface AnimatedTextProps {
-	/** Text content */
 	text: string;
-	/** HTML tag */
 	as?: 'h1' | 'h2' | 'h3' | 'p' | 'span';
-	/** Split by 'word' or 'line' */
 	split?: 'word' | 'none';
-	/** Stagger between words in ms */
 	stagger?: number;
-	/** Base delay */
 	delay?: number;
-	/** Duration per element */
 	duration?: number;
 	class?: string;
 }
 
-/**
- * Animates text with a word-by-word or whole fade-in entrance.
- * Uses CSS transforms for smooth 60fps animation.
- */
 export default function AnimatedText({
 	text,
 	as: Tag = 'h1',
@@ -29,41 +19,17 @@ export default function AnimatedText({
 	duration = 600,
 	class: className = '',
 }: AnimatedTextProps) {
-	const ref = useRef<HTMLElement>(null);
-	const [visible, setVisible] = useState(false);
-
-	useEffect(() => {
-		const el = ref.current;
-		if (!el) return;
-
-		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-			setVisible(true);
-			return;
-		}
-
-		const observer = new IntersectionObserver(
-			([entry]) => {
-				if (entry.isIntersecting) {
-					setVisible(true);
-					observer.unobserve(el);
-				}
-			},
-			{ threshold: 0.2 }
-		);
-		observer.observe(el);
-		return () => observer.disconnect();
-	}, []);
-
 	if (split === 'none') {
 		return (
 			<Tag
-				ref={ref}
-				className={className}
-				style={{
-					opacity: visible ? 1 : 0,
-					transform: visible ? 'translateY(0)' : 'translateY(20px)',
-					transition: `opacity ${duration}ms cubic-bezier(0.16,1,0.3,1) ${delay}ms, transform ${duration}ms cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
-				}}
+				className={`enter-fade enter-fade--up ${className}`.trim()}
+				style={
+					{
+						'--enter-delay': `${delay}ms`,
+						'--enter-duration': `${duration}ms`,
+						'--enter-distance': '18px',
+					} as CSSProperties
+				}
 			>
 				{text}
 			</Tag>
@@ -73,19 +39,22 @@ export default function AnimatedText({
 	const words = text.split(' ');
 
 	return (
-		<Tag ref={ref} className={className} aria-label={text}>
-			{words.map((word, i) => (
+		<Tag className={className} aria-label={text}>
+			{words.map((word, index) => (
 				<span
-					key={i}
-					className="inline-block"
-					style={{
-						opacity: visible ? 1 : 0,
-						transform: visible ? 'translateY(0)' : 'translateY(12px)',
-						transition: `opacity ${duration}ms cubic-bezier(0.16,1,0.3,1) ${delay + i * stagger}ms, transform ${duration}ms cubic-bezier(0.16,1,0.3,1) ${delay + i * stagger}ms`,
-					}}
+					key={`${word}-${index}`}
+					className="enter-word"
+					style={
+						{
+							'--word-delay': `${delay + index * stagger}ms`,
+							'--word-duration': `${duration}ms`,
+							'--enter-distance': '12px',
+						} as CSSProperties
+					}
 					aria-hidden="true"
 				>
-					{word}{i < words.length - 1 ? '\u00A0' : ''}
+					{word}
+					{index < words.length - 1 ? '\u00A0' : ''}
 				</span>
 			))}
 		</Tag>

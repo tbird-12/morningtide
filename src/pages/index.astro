@@ -73,25 +73,24 @@ const clinicianOffers = [
 	title="Morning Tide Consulting and Collective | Expert Remote Psychological Evaluations"
 	description="MCC offers expert self-pay psychological and psychoeducational evaluations across 40+ PSYPACT states — specializing in ADHD, Autism, learning disorders, and complex diagnostic cases. Reports within one week."
 >
-	<main class="page-main snap-y snap-mandatory">
+	<main class="page-main md:snap-y md:snap-proximity xl:snap-mandatory">
 
 		<!-- ① HERO — Identity + promise + proof -->
-		<section class="hero-shell relative flex min-h-[86vh] snap-start items-center overflow-hidden">
+		<section class="hero-shell relative flex min-h-[calc(100svh-var(--header-height-mobile))] snap-start items-center overflow-hidden md:min-h-[86vh]">
 			<div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,var(--color-brand-soft),transparent_32%),radial-gradient(circle_at_85%_12%,var(--color-accent-soft),transparent_24%)]"></div>
-			<div class="mx-auto flex max-w-4xl flex-col items-center text-center">
+			<div class="mx-auto flex w-full max-w-4xl flex-col items-center text-center">
 				<!-- IMAGE PLACEHOLDER: Hero/brand image — replace src with actual image path -->
-				<FadeIn client:load delay={0} duration={800} direction="none">
+				<FadeIn delay={0} duration={800} direction="none">
 					<div class="mb-8 w-28 overflow-hidden rounded-3xl border border-(--color-line-soft) bg-(--color-section-tint) shadow-(--shadow-soft)">
 						<div class="flex aspect-square items-center justify-center text-center text-xs text-(--color-muted)">
 							<p>Logo or<br />brand image</p>
 						</div>
 					</div>
 				</FadeIn>
-				<FadeIn client:load delay={100} duration={700}>
+				<FadeIn delay={100} duration={700}>
 					<p class="eyebrow">Morning Tide Consulting and Collective</p>
 				</FadeIn>
 				<AnimatedText
-					client:load
 					text="Expert evaluations for neurodivergent individuals, delivered remotely across 40+ states."
 					as="h1"
 					split="word"
@@ -100,19 +99,19 @@ const clinicianOffers = [
 					duration={600}
 					class="mt-8 text-wrap-balance text-5xl leading-none text-(--color-ink) sm:text-6xl lg:text-7xl"
 				/>
-				<FadeIn client:load delay={600} duration={700}>
+				<FadeIn delay={600} duration={700}>
 					<p class="mt-8 max-w-2xl text-lg leading-8 text-(--color-muted) sm:text-xl">
 						Self-pay psychological and psychoeducational evaluations for ADHD, Autism, learning differences, and diagnostic clarity — with reports typically delivered within one week.
 					</p>
 				</FadeIn>
-				<FadeIn client:load delay={800} duration={600}>
+				<FadeIn delay={800} duration={600}>
 					<div class="visual-grid mt-8 w-full max-w-3xl">
 						<p class="visual-chip">40+ PSYPACT states</p>
 						<p class="visual-chip">Report in about one week</p>
 						<p class="visual-chip">Self-pay, privacy-forward</p>
 					</div>
 				</FadeIn>
-				<FadeIn client:load delay={950} duration={600}>
+				<FadeIn delay={950} duration={600}>
 					<div class="mt-10 flex flex-wrap justify-center gap-4">
 						<a class="inline-flex items-center rounded-full bg-(--color-accent) px-6 py-3 text-sm font-semibold text-(--color-button-ink) shadow-(--shadow-brand) transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" href="#services">
 							See What We Offer
@@ -126,9 +125,9 @@ const clinicianOffers = [
 		</section>
 
 		<!-- ② SERVICES — What we offer (core evaluation types) -->
-		<section id="services" class="flex min-h-screen snap-start items-center">
-			<div class="mx-auto max-w-6xl space-y-10">
-				<FadeIn client:visible>
+		<section id="services" class="home-section snap-start">
+			<div class="mx-auto w-full max-w-6xl space-y-10 px-4 sm:px-6 lg:px-10">
+				<FadeIn>
 					<div class="max-w-3xl space-y-4">
 						<p class="eyebrow">What We Offer</p>
 						<h2 class="text-4xl leading-none text-(--color-ink) sm:text-5xl">Two evaluation tracks, one standard of depth.</h2>
@@ -139,7 +138,7 @@ const clinicianOffers = [
 				</FadeIn>
 				<div class="grid gap-6 lg:grid-cols-2">
 					{services.map((service, i) => (
-						<AnimatedCard client:visible href={service.href} index={i} className="section-shell rounded-4xl p-8 hover:-translate-y-1">
+						<AnimatedCard href={service.href} index={i} className="section-shell rounded-4xl p-8 hover:-translate-y-1">
 							<h3 class="text-4xl leading-none text-(--color-ink)">{service.title}</h3>
 							<p class="mt-5 max-w-xl text-base leading-8 text-(--color-muted)">{service.description}</p>
 							<span class="mt-8 inline-flex items-center text-sm font-semibold text-(--color-accent)">
@@ -148,7 +147,7 @@ const clinicianOffers = [
 						</AnimatedCard>
 					))}
 				</div>
-				<FadeIn client:visible delay={300}>
+				<FadeIn delay={300}>
 					<div class="flex justify-center pt-2">
 						<a class="text-sm font-semibold text-(--color-accent) underline underline-offset-4" href="/services">View all services and pricing</a>
 					</div>
@@ -157,9 +156,9 @@ const clinicianOffers = [
 		</section>
 
 		<!-- ③ PROCESS — How an evaluation works (natural next question) -->
-		<section id="process" class="flex min-h-screen snap-start items-center bg-(--color-section-tint)">
-			<div class="mx-auto max-w-6xl">
-				<FadeIn client:visible>
+		<section id="process" class="home-section snap-start bg-(--color-section-tint)">
+			<div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-10">
+				<FadeIn>
 					<div class="max-w-3xl space-y-4">
 						<p class="eyebrow">How It Works</p>
 						<h2 class="text-4xl leading-none text-(--color-ink) sm:text-5xl">Four steps from intake to answers.</h2>
@@ -170,7 +169,7 @@ const clinicianOffers = [
 				</FadeIn>
 				<div class="mt-12 grid gap-5 lg:grid-cols-4">
 					{process.map((item, i) => (
-						<AnimatedCard client:visible index={i} stagger={150} className="rounded-[1.75rem] p-6">
+						<AnimatedCard index={i} stagger={150} className="rounded-[1.75rem] p-6">
 							<p class="text-sm font-semibold uppercase tracking-[0.22em] text-(--color-brand)">{item.step}</p>
 							<h3 class="mt-4 text-3xl leading-none text-(--color-ink)">{item.title}</h3>
 							<p class="mt-4 text-sm leading-7 text-(--color-muted)">{item.text}</p>
@@ -181,9 +180,9 @@ const clinicianOffers = [
 		</section>
 
 		<!-- ④ WHY MCC — Differentiators: clinician, model, speed -->
-		<section class="flex min-h-screen snap-start items-center">
-			<div class="mx-auto max-w-6xl space-y-10">
-				<FadeIn client:visible>
+		<section class="home-section snap-start">
+			<div class="mx-auto w-full max-w-6xl space-y-10 px-4 sm:px-6 lg:px-10">
+				<FadeIn>
 					<div class="max-w-3xl space-y-4">
 						<p class="eyebrow">Why Morning Tide</p>
 						<h2 class="text-4xl leading-none text-(--color-ink) sm:text-5xl">A practice built around depth, not volume.</h2>
@@ -191,13 +190,13 @@ const clinicianOffers = [
 				</FadeIn>
 				<div class="grid gap-6 lg:grid-cols-3">
 					{differentiators.map((d, i) => (
-						<AnimatedCard client:visible index={i} stagger={140} className="rounded-[1.75rem] p-6">
+						<AnimatedCard index={i} stagger={140} className="rounded-[1.75rem] p-6">
 							<p class="eyebrow">{d.label}</p>
 							<p class="mt-4 text-base leading-8 text-(--color-muted)">{d.text}</p>
 						</AnimatedCard>
 					))}
 				</div>
-				<FadeIn client:visible delay={400}>
+				<FadeIn delay={400}>
 					<div class="flex justify-center pt-2">
 						<a class="text-sm font-semibold text-(--color-accent) underline underline-offset-4" href="/about-clinician">Meet Dr. Cornett</a>
 					</div>
@@ -206,9 +205,9 @@ const clinicianOffers = [
 		</section>
 
 		<!-- ⑤ CLINICIANS — Secondary audience, after client journey completes -->
-		<section class="flex min-h-screen snap-start items-center bg-(--color-section-tint)">
-			<div class="mx-auto max-w-6xl w-full">
-				<FadeIn client:visible>
+		<section class="home-section snap-start bg-(--color-section-tint)">
+			<div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-10">
+				<FadeIn>
 					<div class="cta-strip">
 					<div class="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-center">
 						<div class="space-y-4">
@@ -220,7 +219,7 @@ const clinicianOffers = [
 						</div>
 						<div class="grid gap-4 sm:grid-cols-2">
 							{clinicianOffers.map((offer, i) => (
-								<AnimatedCard client:visible href={offer.href} index={i} className="rounded-3xl p-6 hover:-translate-y-1">
+								<AnimatedCard href={offer.href} index={i} className="rounded-3xl p-6 hover:-translate-y-1">
 									<h3 class="text-lg font-semibold text-(--color-ink)">{offer.title}</h3>
 									<p class="mt-3 text-sm leading-7 text-(--color-muted)">{offer.description}</p>
 									<span class="mt-4 inline-flex text-sm font-semibold text-(--color-accent)">Learn more</span>
@@ -233,13 +232,12 @@ const clinicianOffers = [
 		</section>
 
 		<!-- ⑥ CONTACT — Warm, action-oriented CTA -->
-		<section id="contact" class="flex min-h-screen snap-start items-center">
-			<div class="mx-auto max-w-6xl w-full">
-				<FadeIn client:visible class="section-shell rounded-4xl">
+		<section id="contact" class="home-section snap-start">
+			<div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-10">
+				<FadeIn class="section-shell rounded-4xl">
 				<div class="mx-auto max-w-3xl space-y-6 text-center">
 					<p class="eyebrow">Get Started</p>
 					<AnimatedText
-						client:visible
 						text="Ready to get clear answers?"
 						as="h2"
 						split="word"
@@ -247,7 +245,7 @@ const clinicianOffers = [
 						delay={100}
 						class="text-4xl leading-none text-(--color-ink) sm:text-5xl"
 					/>
-					<FadeIn client:visible delay={300}>
+					<FadeIn delay={300}>
 						<p class="text-lg leading-8 text-(--color-muted)">
 							Share the questions you want the evaluation to answer, who will use the report, and any deadlines. We will follow up to confirm fit and schedule your intake.
 						</p>
@@ -269,6 +267,24 @@ const clinicianOffers = [
 </Layout>
 
 <style>
+	.home-section {
+		display: flex;
+		align-items: center;
+		padding-block: clamp(3.5rem, 8vw, 5.5rem);
+	}
+
+	@media (min-width: 768px) {
+		.home-section {
+			min-height: 85svh;
+		}
+	}
+
+	@media (min-width: 1280px) {
+		.home-section {
+			min-height: 100svh;
+		}
+	}
+
 	@media (prefers-reduced-motion: reduce) {
 		main {
 			scroll-snap-type: none;

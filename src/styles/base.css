@@ -1,10 +1,17 @@
 /* ── Base: Typography, Reset & Element Defaults ── */
 
+:root {
+    --header-height-mobile: 4.5rem;
+    --header-height-desktop: 5.5rem;
+    --header-offset: var(--header-height-mobile);
+}
+
 html {
     background: var(--color-page);
     color: var(--color-ink);
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
+    scroll-padding-top: calc(var(--header-offset) + 1rem);
 }
 
 body {
@@ -17,13 +24,21 @@ body {
         var(--color-page);
     margin: 0;
     /* Offset for fixed mobile header */
-    padding-top: 60px;
+    padding-top: var(--header-height-mobile);
 }
 
 @media (min-width: 768px) {
+    :root {
+        --header-offset: calc(var(--header-height-desktop) - 0.5rem);
+    }
+
     body {
         padding-top: 0;
     }
+}
+
+:where(main, section, article, div)[id] {
+    scroll-margin-top: calc(var(--header-offset) + 1rem);
 }
 
 h1, h2, h3, h4 {

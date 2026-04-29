@@ -28,11 +28,15 @@ const {
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<script is:inline>
 			(() => {
 				const storageKey = 'morningtide-theme';
 				const root = document.documentElement;
+				const themeColors = {
+					light: '#fdfcf9',
+					dark: '#141716',
+				};
 
 				const getStoredTheme = () => {
 					try {
@@ -46,12 +50,16 @@ const {
 				const preferredTheme = getStoredTheme() ?? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 				root.dataset.theme = preferredTheme;
 				root.style.colorScheme = preferredTheme;
+				const themeMeta = document.querySelector('meta[name="theme-color"]');
+				if (themeMeta instanceof HTMLMetaElement) {
+					themeMeta.content = themeColors[preferredTheme];
+				}
 			})();
 		</script>
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="theme-color" content="#9f7a4f" />
+		<meta name="theme-color" content="#fdfcf9" />
 		<SEO
 			title={title}
 			description={description}
@@ -64,10 +72,10 @@ const {
 		<title>{title}</title>
 	</head>
 	<body>
-		<Header client:load />
+		<Header client:load currentPath={Astro.url.pathname} />
 
 		<slot />
 
-		<Footer client:visible />
+		<Footer />
 	</body>
 </html>

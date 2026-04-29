@@ -16,6 +16,7 @@
     --color-header-bg: rgba(253, 252, 249, 0.8);
     --color-button-ink: #ffffff;
     --color-section-tint: #f7f6f2;
+    --color-overlay: rgba(28, 32, 30, 0.18);
 
     /* Shadows */
     --shadow-soft: 0 2px 15px rgba(0, 0, 0, 0.02);
@@ -46,6 +47,7 @@
     --color-header-bg: rgba(20, 23, 22, 0.8);
     --color-button-ink: #141716;
     --color-section-tint: #1e2421;
+    --color-overlay: rgba(5, 8, 7, 0.56);
 
     --body-glow-brand: rgba(197, 185, 165, 0.03);
     --body-glow-muted: rgba(158, 177, 168, 0.03);

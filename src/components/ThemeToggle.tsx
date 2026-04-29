@@ -1,6 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 
 const STORAGE_KEY = 'morningtide-theme';
+const THEME_COLORS = {
+	light: '#fdfcf9',
+	dark: '#141716',
+} as const;
 
 function getInitialTheme(): 'light' | 'dark' {
 	if (typeof window === 'undefined') return 'light';
@@ -18,6 +22,10 @@ export default function ThemeToggle() {
 		const root = document.documentElement;
 		root.dataset.theme = t;
 		root.style.colorScheme = t;
+		const themeMeta = document.querySelector('meta[name="theme-color"]');
+		if (themeMeta instanceof HTMLMetaElement) {
+			themeMeta.content = THEME_COLORS[t];
+		}
 		try { localStorage.setItem(STORAGE_KEY, t); } catch { /* noop */ }
 	}, []);
 

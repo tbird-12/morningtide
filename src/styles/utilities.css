@@ -18,11 +18,128 @@ a[class*="underline"]:hover {
     border-radius: 4px;
 }
 
+.enter-fade,
+.enter-card,
+.enter-word {
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.enter-fade {
+    animation-duration: var(--enter-duration, 700ms);
+    animation-delay: var(--enter-delay, 0ms);
+}
+
+.enter-fade--up {
+    animation-name: enter-fade-up;
+}
+
+.enter-fade--down {
+    animation-name: enter-fade-down;
+}
+
+.enter-fade--left {
+    animation-name: enter-fade-left;
+}
+
+.enter-fade--right {
+    animation-name: enter-fade-right;
+}
+
+.enter-fade--none {
+    animation-name: enter-fade-none;
+}
+
+.enter-card {
+    animation-name: enter-fade-up;
+    animation-duration: var(--enter-duration, 600ms);
+    animation-delay: var(--enter-delay, 0ms);
+}
+
+.enter-word {
+    display: inline-block;
+    animation-name: enter-word-rise;
+    animation-duration: var(--word-duration, 600ms);
+    animation-delay: var(--word-delay, 0ms);
+}
+
+@keyframes enter-fade-up {
+    from {
+        opacity: 0;
+        transform: translate3d(0, var(--enter-distance, 24px), 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes enter-fade-down {
+    from {
+        opacity: 0;
+        transform: translate3d(0, calc(var(--enter-distance, 24px) * -1), 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes enter-fade-left {
+    from {
+        opacity: 0;
+        transform: translate3d(var(--enter-distance, 24px), 0, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes enter-fade-right {
+    from {
+        opacity: 0;
+        transform: translate3d(calc(var(--enter-distance, 24px) * -1), 0, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes enter-fade-none {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes enter-word-rise {
+    from {
+        opacity: 0;
+        transform: translate3d(0, var(--enter-distance, 12px), 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
 /* Reduced motion: disable all custom animations */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+
+    .enter-fade,
+    .enter-card,
+    .enter-word {
+        animation: none !important;
+        transform: none !important;
+        opacity: 1 !important;
     }
 }
