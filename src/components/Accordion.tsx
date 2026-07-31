@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, useEffect, type ReactNode } from 'react';
+import { useState, useCallback, useRef, useEffect, useId, type ReactNode } from 'react';
 
 interface AccordionItemProps {
 	title: string;
@@ -10,6 +10,9 @@ export function AccordionItem({ title, children, defaultOpen = false }: Accordio
 	const [open, setOpen] = useState(defaultOpen);
 	const contentRef = useRef<HTMLDivElement>(null);
 	const [height, setHeight] = useState<number | undefined>(defaultOpen ? undefined : 0);
+	const uid = useId();
+	const panelId = `accordion-panel-${uid}`;
+	const triggerId = `accordion-trigger-${uid}`;
 
 	const toggle = useCallback(() => {
 		setOpen(prev => !prev);
@@ -34,10 +37,12 @@ export function AccordionItem({ title, children, defaultOpen = false }: Accordio
 	return (
 		<div className="border-b border-(--color-line-soft) last:border-b-0">
 			<button
+				id={triggerId}
 				type="button"
 				onClick={toggle}
 				className="flex w-full cursor-pointer items-start gap-3 py-5 text-left text-base font-semibold text-(--color-ink) transition-colors duration-200 hover:text-(--color-brand)"
 				aria-expanded={open}
+				aria-controls={panelId}
 			>
 				<svg
 					className="mt-1 h-4 w-4 shrink-0 text-(--color-brand) transition-transform duration-300 ease-out"
@@ -51,13 +56,15 @@ export function AccordionItem({ title, children, defaultOpen = false }: Accordio
 				<span>{title}</span>
 			</button>
 			<div
+				id={panelId}
 				ref={contentRef}
+				role="region"
+				aria-labelledby={triggerId}
 				style={{
 					height: height !== undefined ? `${height}px` : 'auto',
 					overflow: 'hidden',
 					transition: 'height 350ms cubic-bezier(0.16, 1, 0.3, 1)',
 				}}
-				aria-hidden={!open}
 			>
 				<div className="pb-5 pl-7">{children}</div>
 			</div>

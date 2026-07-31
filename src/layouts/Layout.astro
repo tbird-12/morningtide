@@ -72,6 +72,12 @@ const {
 		<title>{title}</title>
 	</head>
 	<body>
+		<a
+			href="#main-content"
+			class="skip-to-main sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-full focus:bg-(--color-accent) focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-(--color-button-ink) focus:shadow-lg focus:outline-none"
+		>
+			Skip to main content
+		</a>
 		<Header client:load currentPath={Astro.url.pathname} />
 
 		<slot />

@@ -21,18 +21,51 @@ const siteUrl = Astro.site ? new URL(Astro.site).origin : undefined;
 const pageUrl = canonical
   ? (siteUrl ? new URL(canonical, siteUrl).toString() : canonical)
   : Astro.url?.toString();
-const imageUrl = image ? (siteUrl ? new URL(image, siteUrl).toString() : image) : undefined;
+const DEFAULT_OG_IMAGE = '/og-default.png';
+const imageUrl = image
+  ? (siteUrl ? new URL(image, siteUrl).toString() : image)
+  : (siteUrl ? new URL(DEFAULT_OG_IMAGE, siteUrl).toString() : undefined);
 const robots = noindex ? 'noindex, nofollow' : 'index, follow';
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Morning Tide Consulting and Collective',
+  alternateName: 'MCC',
+  description: 'Expert self-pay psychological and psychoeducational evaluations, clinician consultations, and CEU trainings delivered remotely across 40+ PSYPACT states.',
+  url: siteUrl ?? 'https://morningtideconsulting.com',
+  email: 'info@morningtideconsulting.com',
+  areaServed: 'United States',
+  serviceType: ['Psychological Evaluation', 'Psychoeducational Evaluation', 'Clinician Consultation', 'Continuing Education'],
+  founder: {
+    '@type': 'Person',
+    name: 'Heather Cornett',
+    honorificPrefix: 'Dr.',
+    honorificSuffix: 'Ph.D., LP',
+    jobTitle: 'Licensed Psychologist',
+  },
+  priceRange: '$$',
+};
 ---
 
 <meta name="description" content={description} />
 <meta name="robots" content={robots} />
 {pageUrl && <link rel="canonical" href={pageUrl} />}
 
+<!-- Open Graph -->
 <meta property="og:type" content={type} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 {pageUrl && <meta property="og:url" content={pageUrl} />}
 {imageUrl && <meta property="og:image" content={imageUrl} />}
 <meta property="og:site_name" content="Morning Tide Consulting and Collective" />
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+{imageUrl && <meta name="twitter:image" content={imageUrl} />}
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
 

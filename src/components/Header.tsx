@@ -103,7 +103,7 @@ function DesktopDropdown({ item, currentPath }: { item: NavItem; currentPath: st
 					transition: 'opacity 250ms cubic-bezier(0.16,1,0.3,1), transform 250ms cubic-bezier(0.16,1,0.3,1)',
 				}}
 			>
-				<div className="rounded-2xl border border-(--color-line-soft) bg-surface py-2 shadow-(--shadow-medium)" role="menu">
+				<div className="rounded-2xl border border-(--color-line-soft) bg-surface py-2 shadow-(--shadow-medium)" role="menu" aria-label={`${item.label} navigation`}>
 					{item.children?.map(child => (
 						<a
 							key={child.href}
@@ -123,17 +123,52 @@ function DesktopDropdown({ item, currentPath }: { item: NavItem; currentPath: st
 
 /* ─── Mobile Menu ─── */
 function MobileNav({ currentPath, open, onClose }: { currentPath: string; open: boolean; onClose: () => void }) {
+	const panelRef = useRef<HTMLDivElement>(null);
+	const triggerRef = useRef<HTMLButtonElement | null>(null);
+
 	// Lock body scroll when open
 	useEffect(() => {
 		document.body.style.overflow = open ? 'hidden' : '';
 		return () => { document.body.style.overflow = ''; };
 	}, [open]);
 
-	// Close on Escape
+	// Move focus into panel when opened; return focus to trigger when closed
+	useEffect(() => {
+		if (open) {
+			// Capture the element that had focus before opening
+			triggerRef.current = document.activeElement as HTMLButtonElement;
+			const firstFocusable = panelRef.current?.querySelector<HTMLElement>(
+				'a[href], button:not([disabled])'
+			);
+			firstFocusable?.focus();
+		} else if (triggerRef.current) {
+			triggerRef.current.focus();
+		}
+	}, [open]);
+
+	// Close on Escape + trap Tab within panel
 	useEffect(() => {
 		if (!open) return;
 		const handler = (e: KeyboardEvent) => {
-			if (e.key === 'Escape') onClose();
+			if (e.key === 'Escape') {
+				onClose();
+				return;
+			}
+			if (e.key === 'Tab' && panelRef.current) {
+				const focusable = Array.from(
+					panelRef.current.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')
+				).filter(el => el.offsetParent !== null);
+				if (focusable.length === 0) return;
+				const first = focusable[0];
+				const last = focusable[focusable.length - 1];
+				if (e.shiftKey && document.activeElement === first) {
+					e.preventDefault();
+					last.focus();
+				} else if (!e.shiftKey && document.activeElement === last) {
+					e.preventDefault();
+					first.focus();
+				}
+			}
 		};
 		window.addEventListener('keydown', handler);
 		return () => window.removeEventListener('keydown', handler);
@@ -157,6 +192,10 @@ function MobileNav({ currentPath, open, onClose }: { currentPath: string; open: 
 			{/* Panel */}
 			<div
 				id="mobile-navigation"
+				ref={panelRef}
+				role="dialog"
+				aria-label="Navigation menu"
+				aria-modal="true"
 				className="fixed left-0 right-0 z-40 overflow-y-auto md:hidden"
 				style={{
 					background: 'linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 78%, transparent), var(--color-header-bg))',
