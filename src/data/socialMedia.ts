@@ -40,14 +40,14 @@ export const socialMedia: SocialLink[] = [
 	},
 	{
 		label: 'Morningtide on Facebook',
-		href: 'https://facebook.com/placeholder',
+		href: 'https://facebook.com/people/Morningtide-Consulting-and-Collective/61588504391741/',
 		platform: 'facebook',
 		ariaLabel: 'Follow Morningtide Consulting on Facebook',
 	},
 ];
 
 export const contactInfo: ContactInfo = {
-	email: 'morningtidecc@gmail.com',
+	email: 'info@morningtidecc.com',
 	phone: '+16067662809',
 	phoneDisplay: '+1 (606) 766-2809',
 	location: 'Remote',
