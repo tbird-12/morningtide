@@ -17,26 +17,50 @@ const {
   type = 'website',
 } = Astro.props;
 
-const siteUrl = Astro.site ? new URL(Astro.site).origin : undefined;
+const siteUrl = Astro.site ? new URL(Astro.site).origin : 'https://morningtideconsulting.com';
 const pageUrl = canonical
-  ? (siteUrl ? new URL(canonical, siteUrl).toString() : canonical)
+  ? new URL(canonical, siteUrl).toString()
   : Astro.url?.toString();
+const pathname = Astro.url?.pathname ?? '/';
 const DEFAULT_OG_IMAGE = '/og-default.png';
 const imageUrl = image
-  ? (siteUrl ? new URL(image, siteUrl).toString() : image)
-  : (siteUrl ? new URL(DEFAULT_OG_IMAGE, siteUrl).toString() : undefined);
+  ? new URL(image, siteUrl).toString()
+  : new URL(DEFAULT_OG_IMAGE, siteUrl).toString();
 const robots = noindex ? 'noindex, nofollow' : 'index, follow';
 
 const orgSchema = {
   '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  name: 'Morning Tide Consulting and Collective',
+  '@type': ['ProfessionalService', 'EducationalOrganization'],
+  name: 'Morningtide Consulting and Collective',
   alternateName: 'MCC',
-  description: 'Expert self-pay psychological and psychoeducational evaluations, clinician consultations, and CEU trainings delivered remotely across 40+ PSYPACT states.',
-  url: siteUrl ?? 'https://morningtideconsulting.com',
+  description: 'Consulting and continuing education for mental health professionals.',
+  url: siteUrl,
   email: 'info@morningtideconsulting.com',
-  areaServed: 'United States',
-  serviceType: ['Psychological Evaluation', 'Psychoeducational Evaluation', 'Clinician Consultation', 'Continuing Education'],
+  sameAs: [
+    'https://www.linkedin.com/company/morning-tide-consulting',
+    'https://twitter.com/morningtideMCC',
+  ],
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      contactType: 'customer service',
+      email: 'info@morningtideconsulting.com',
+      availableLanguage: 'English',
+    },
+  ],
+  knowsAbout: [
+    'Clinician Consulting',
+    'Continuing Education',
+    'CEU Trainings',
+    'ADHD Assessment',
+    'Autism Evaluation',
+    'PSYPACT Supervision',
+  ],
+  serviceType: [
+    'Clinician Consulting',
+    'Continuing Education',
+    'CEU Trainings',
+  ],
   founder: {
     '@type': 'Person',
     name: 'Heather Cornett',
@@ -46,26 +70,57 @@ const orgSchema = {
   },
   priceRange: '$$',
 };
+
+const faqSchema = pathname.startsWith('/faq')
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'What is MCC?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Morningtide Consulting and Collective (MCC) offers practice consulting and continuing education for mental health clinicians.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Who leads MCC?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Dr. Heather Cornett, Ph.D., LP, a licensed psychologist, former assistant professor, and multi-state practice owner.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'What services does MCC offer?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'MCC offers practice consulting (billing, credentialing, PSYPACT navigation) and continuing education trainings on ADHD and autism assessment.',
+          },
+        },
+      ],
+    }
+  : undefined;
 ---
 
 <meta name="description" content={description} />
 <meta name="robots" content={robots} />
 {pageUrl && <link rel="canonical" href={pageUrl} />}
 
-<!-- Open Graph -->
 <meta property="og:type" content={type} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 {pageUrl && <meta property="og:url" content={pageUrl} />}
 {imageUrl && <meta property="og:image" content={imageUrl} />}
-<meta property="og:site_name" content="Morning Tide Consulting and Collective" />
+<meta property="og:site_name" content="Morningtide Consulting and Collective" />
 
-<!-- Twitter / X Card -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 {imageUrl && <meta name="twitter:image" content={imageUrl} />}
 
-<!-- JSON-LD Structured Data -->
 <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+{faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
 

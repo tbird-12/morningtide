@@ -11,7 +11,7 @@ html {
     color: var(--color-ink);
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
-    scroll-padding-top: calc(var(--header-offset) + 1rem);
+    scroll-padding-top: calc(var(--header-offset) + env(safe-area-inset-top, 0px) + 1rem);
 }
 
 body {
@@ -23,8 +23,7 @@ body {
         radial-gradient(at 100% 0%, var(--body-glow-muted), transparent 50%),
         var(--color-page);
     margin: 0;
-    /* Offset for fixed mobile header */
-    padding-top: var(--header-height-mobile);
+    padding-top: calc(var(--header-height-mobile) + env(safe-area-inset-top, 0px));
 }
 
 @media (min-width: 768px) {
@@ -38,7 +37,7 @@ body {
 }
 
 :where(main, section, article, div)[id] {
-    scroll-margin-top: calc(var(--header-offset) + 1rem);
+    scroll-margin-top: calc(var(--header-offset) + env(safe-area-inset-top, 0px) + 1rem);
 }
 
 h1, h2, h3, h4 {
@@ -69,4 +68,13 @@ p {
 
 * {
     -webkit-tap-highlight-color: transparent;
+}
+
+:where(a, button, input, select, textarea, summary) {
+    touch-action: manipulation;
+}
+
+:where(a, button, input, select, textarea, summary):focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
 }

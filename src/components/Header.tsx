@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback, type FocusEvent } from 'react';
+import { ChevronDown, Mail, Menu, X } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
 interface NavChild {
@@ -13,26 +14,17 @@ interface NavItem {
 }
 
 const navigation: NavItem[] = [
+	{ label: 'Consulting', href: '/services/billing-and-credentialing-consultation' },
+	{ label: 'Education', href: '/services/ceu-trainings' },
+	{ label: 'Pricing', href: '/pricing' },
 	{
 		label: 'About',
-		href: '/about-clinician',
+		href: '/about',
 		children: [
-			{ label: 'Clinician', href: '/about-clinician' },
+			{ label: 'About Dr. Cornett', href: '/about' },
 			{ label: 'FAQ', href: '/faq' },
-			{ label: 'Investment', href: '/services/investment' },
-			{ label: 'Locations', href: '/locations' },
 		],
 	},
-	{
-		label: 'Evaluations',
-		href: '/services',
-		children: [
-			{ label: 'Psychological Evaluations', href: '/services/psychological-evaluations' },
-			{ label: 'Psychoeducational Evaluations', href: '/services/psychoeducational-testing' },
-		],
-	},
-	{ label: 'Consultations', href: '/services/billing-and-credentialing-consultation' },
-	{ label: 'Education', href: '/services/ceu-trainings' },
 ];
 
 const isActivePath = (currentPath: string, href: string) =>
@@ -41,14 +33,6 @@ const isActivePath = (currentPath: string, href: string) =>
 const isItemActive = (currentPath: string, item: NavItem) =>
 	isActivePath(currentPath, item.href) || item.children?.some((child) => isActivePath(currentPath, child.href)) || false;
 
-const getMobileLinks = (item: NavItem) => {
-	if (!item.children) return [];
-	return item.children.some((child) => child.href === item.href)
-		? item.children
-		: [{ label: `All ${item.label}`, href: item.href }, ...item.children];
-};
-
-/* ─── Desktop Dropdown ─── */
 function DesktopDropdown({ item, currentPath }: { item: NavItem; currentPath: string }) {
 	const [open, setOpen] = useState(false);
 	const timeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
@@ -58,6 +42,7 @@ function DesktopDropdown({ item, currentPath }: { item: NavItem; currentPath: st
 		clearTimeout(timeout.current);
 		setOpen(true);
 	}, []);
+
 	const leave = useCallback(() => {
 		timeout.current = setTimeout(() => setOpen(false), 180);
 	}, []);
@@ -75,27 +60,22 @@ function DesktopDropdown({ item, currentPath }: { item: NavItem; currentPath: st
 	return (
 		<div className="relative" onMouseEnter={enter} onMouseLeave={leave} onFocus={enter} onBlur={handleBlur}>
 			<a
-				className={`inline-flex items-center gap-1 text-sm font-semibold transition-colors duration-200 hover:text-ink ${active ? 'text-ink' : 'text-muted'}`}
+				className={`inline-flex min-h-11 items-center gap-1.5 px-1 text-sm font-semibold transition-colors duration-200 hover:text-(--color-ink) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand) ${active ? 'text-(--color-ink)' : 'text-(--color-muted)'}`}
 				href={item.href}
 				aria-expanded={open}
 				aria-haspopup="menu"
 				aria-current={isActivePath(currentPath, item.href) ? 'page' : undefined}
 			>
 				{item.label}
-				<svg
-					className="h-3 w-3 opacity-60 transition-transform duration-300"
+				<ChevronDown
+					className="h-4 w-4 opacity-70 transition-transform duration-300"
 					style={{ transform: open ? 'rotate(180deg)' : 'rotate(0deg)' }}
-					viewBox="0 0 12 12"
-					fill="none"
 					aria-hidden="true"
-				>
-					<path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-				</svg>
+				/>
 			</a>
 
-			{/* Dropdown panel */}
 			<div
-				className="absolute left-0 top-full z-50 min-w-55 pt-2"
+				className="absolute left-0 top-full z-50 min-w-60 pt-2"
 				style={{
 					opacity: open ? 1 : 0,
 					transform: open ? 'translateY(0)' : 'translateY(-8px)',
@@ -103,11 +83,11 @@ function DesktopDropdown({ item, currentPath }: { item: NavItem; currentPath: st
 					transition: 'opacity 250ms cubic-bezier(0.16,1,0.3,1), transform 250ms cubic-bezier(0.16,1,0.3,1)',
 				}}
 			>
-				<div className="rounded-2xl border border-(--color-line-soft) bg-surface py-2 shadow-(--shadow-medium)" role="menu" aria-label={`${item.label} navigation`}>
-					{item.children?.map(child => (
+				<div className="rounded-2xl border border-(--color-line-soft) bg-(--color-surface) py-2 shadow-(--shadow-medium)" role="menu" aria-label={`${item.label} navigation`}>
+					{item.children?.map((child) => (
 						<a
 							key={child.href}
-							className={`block px-5 py-2.5 text-sm font-semibold transition-colors duration-200 hover:bg-(--color-surface-strong) hover:text-ink ${isActivePath(currentPath, child.href) ? 'text-ink' : 'text-muted'}`}
+							className={`block min-h-11 px-5 py-3 text-sm font-semibold transition-colors duration-200 hover:bg-(--color-surface-strong) hover:text-(--color-ink) focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-(--color-brand) ${isActivePath(currentPath, child.href) ? 'text-(--color-ink)' : 'text-(--color-muted)'}`}
 							href={child.href}
 							role="menuitem"
 							aria-current={isActivePath(currentPath, child.href) ? 'page' : undefined}
@@ -121,32 +101,27 @@ function DesktopDropdown({ item, currentPath }: { item: NavItem; currentPath: st
 	);
 }
 
-/* ─── Mobile Menu ─── */
 function MobileNav({ currentPath, open, onClose }: { currentPath: string; open: boolean; onClose: () => void }) {
 	const panelRef = useRef<HTMLDivElement>(null);
 	const triggerRef = useRef<HTMLButtonElement | null>(null);
 
-	// Lock body scroll when open
 	useEffect(() => {
 		document.body.style.overflow = open ? 'hidden' : '';
-		return () => { document.body.style.overflow = ''; };
+		return () => {
+			document.body.style.overflow = '';
+		};
 	}, [open]);
 
-	// Move focus into panel when opened; return focus to trigger when closed
 	useEffect(() => {
 		if (open) {
-			// Capture the element that had focus before opening
 			triggerRef.current = document.activeElement as HTMLButtonElement;
-			const firstFocusable = panelRef.current?.querySelector<HTMLElement>(
-				'a[href], button:not([disabled])'
-			);
+			const firstFocusable = panelRef.current?.querySelector<HTMLElement>('a[href], button:not([disabled])');
 			firstFocusable?.focus();
 		} else if (triggerRef.current) {
 			triggerRef.current.focus();
 		}
 	}, [open]);
 
-	// Close on Escape + trap Tab within panel
 	useEffect(() => {
 		if (!open) return;
 		const handler = (e: KeyboardEvent) => {
@@ -154,10 +129,11 @@ function MobileNav({ currentPath, open, onClose }: { currentPath: string; open: 
 				onClose();
 				return;
 			}
+
 			if (e.key === 'Tab' && panelRef.current) {
 				const focusable = Array.from(
-					panelRef.current.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')
-				).filter(el => el.offsetParent !== null);
+					panelRef.current.querySelectorAll<HTMLElement>('a[href], button:not([disabled])'),
+				).filter((el) => el.offsetParent !== null);
 				if (focusable.length === 0) return;
 				const first = focusable[0];
 				const last = focusable[focusable.length - 1];
@@ -170,13 +146,13 @@ function MobileNav({ currentPath, open, onClose }: { currentPath: string; open: 
 				}
 			}
 		};
+
 		window.addEventListener('keydown', handler);
 		return () => window.removeEventListener('keydown', handler);
 	}, [open, onClose]);
 
 	return (
 		<>
-			{/* Backdrop */}
 			<div
 				className="fixed inset-0 z-30 backdrop-blur-sm"
 				style={{
@@ -189,7 +165,6 @@ function MobileNav({ currentPath, open, onClose }: { currentPath: string; open: 
 				aria-hidden="true"
 			/>
 
-			{/* Panel */}
 			<div
 				id="mobile-navigation"
 				ref={panelRef}
@@ -210,24 +185,33 @@ function MobileNav({ currentPath, open, onClose }: { currentPath: string; open: 
 			>
 				<div className="space-y-3 px-4 pt-4 pb-5">
 					<a
-						className="inline-flex w-full items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-semibold text-(--color-button-ink) shadow-(--shadow-brand) transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+						className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-(--color-button-ink) shadow-(--shadow-brand) transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
 						href="/#contact"
 						onClick={onClose}
 					>
-						Inquire Now
+						Book a Consultation
+					</a>
+
+					<a
+						className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-(--color-line-soft) bg-(--color-surface) px-5 py-3 text-sm font-semibold text-(--color-ink) shadow-(--shadow-soft) transition-all duration-300 hover:-translate-y-0.5 hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
+						href="mailto:info@morningtideconsulting.com"
+						onClick={onClose}
+					>
+						<Mail className="h-4 w-4" aria-hidden="true" />
+						info@morningtideconsulting.com
 					</a>
 
 					{navigation.map((item) =>
 						item.children ? (
-							<div key={item.href} className="rounded-2xl border border-(--color-line-soft) bg-surface p-3 shadow-(--shadow-soft)">
+							<div key={item.href} className="rounded-2xl border border-(--color-line-soft) bg-(--color-surface) p-3 shadow-(--shadow-soft)">
 								<p className="px-1 pb-2 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-(--color-brand)">
 									{item.label}
 								</p>
 								<div className="space-y-1">
-									{getMobileLinks(item).map((child) => (
+									{item.children.map((child) => (
 										<a
 											key={child.href}
-											className={`block rounded-xl px-3 py-2.5 text-sm font-semibold transition-colors duration-200 hover:bg-(--color-surface-strong) hover:text-ink ${isActivePath(currentPath, child.href) ? 'bg-(--color-surface-strong) text-ink' : 'text-muted'}`}
+											className={`block min-h-11 rounded-xl px-3 py-3 text-sm font-semibold transition-colors duration-200 hover:bg-(--color-surface-strong) hover:text-(--color-ink) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand) ${isActivePath(currentPath, child.href) ? 'bg-(--color-surface-strong) text-(--color-ink)' : 'text-(--color-muted)'}`}
 											href={child.href}
 											onClick={onClose}
 											aria-current={isActivePath(currentPath, child.href) ? 'page' : undefined}
@@ -240,7 +224,7 @@ function MobileNav({ currentPath, open, onClose }: { currentPath: string; open: 
 						) : (
 							<a
 								key={item.href}
-								className={`block rounded-2xl border border-(--color-line-soft) bg-surface px-4 py-3 text-sm font-semibold shadow-(--shadow-soft) ${isActivePath(currentPath, item.href) ? 'text-ink' : 'text-muted'}`}
+								className={`block min-h-11 rounded-2xl border border-(--color-line-soft) bg-(--color-surface) px-4 py-3 text-sm font-semibold shadow-(--shadow-soft) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand) ${isActivePath(currentPath, item.href) ? 'text-(--color-ink)' : 'text-(--color-muted)'}`}
 								href={item.href}
 								onClick={onClose}
 								aria-current={isActivePath(currentPath, item.href) ? 'page' : undefined}
@@ -255,108 +239,77 @@ function MobileNav({ currentPath, open, onClose }: { currentPath: string; open: 
 	);
 }
 
-/* ─── Header (exported) ─── */
 export default function Header({ currentPath }: { currentPath: string }) {
 	const [mobileOpen, setMobileOpen] = useState(false);
 	const closeMobile = useCallback(() => setMobileOpen(false), []);
 
 	return (
 		<>
-			<header className="fixed md:sticky top-0 left-0 right-0 z-40 border-b border-(--color-line-soft) bg-(--color-header-bg) backdrop-blur-xl">
-				{/* Desktop */}
-				<div className="mx-auto hidden max-w-6xl items-center justify-between px-4 py-4 md:flex md:px-6 lg:px-10">
-					<a className="group flex items-center gap-4" href="/" aria-label="Morning Tide Consulting and Collective home">
-						<div className="flex h-11 w-11 items-center justify-center rounded-full border border-(--color-line) bg-surface text-lg font-semibold text-(--color-brand) shadow-(--shadow-soft) transition-transform duration-300 group-hover:scale-105">
+			<header className="fixed top-0 left-0 right-0 z-40 border-b border-(--color-line-soft) bg-(--color-header-bg) backdrop-blur-xl md:sticky">
+				<div className="mx-auto hidden max-w-6xl items-center justify-between gap-6 px-4 py-4 md:flex md:px-6 lg:px-10">
+					<a className="group flex items-center gap-4" href="/" aria-label="Morningtide Consulting and Collective home">
+						<div className="flex h-11 w-11 items-center justify-center rounded-full border border-(--color-line) bg-(--color-surface) text-lg font-semibold text-(--color-brand) shadow-(--shadow-soft) transition-transform duration-300 group-hover:scale-105">
 							MCC
 						</div>
 						<div>
-							<p className="text-[0.68rem] font-semibold uppercase tracking-[0.32em] text-(--color-brand)">Morning Tide Consulting</p>
-							<p className="text-lg font-semibold text-ink md:text-xl">&amp; Collective</p>
+							<p className="text-[0.68rem] font-semibold uppercase tracking-[0.32em] text-(--color-brand)">Morningtide Consulting</p>
+							<p className="text-lg font-semibold text-(--color-ink) md:text-xl">&amp; Collective</p>
 						</div>
 					</a>
 
-					<nav aria-label="Primary" className="hidden items-center gap-6 md:flex">
-						{navigation.map(item =>
+					<nav aria-label="Primary" className="hidden items-center gap-5 md:flex">
+						{navigation.map((item) =>
 							item.children ? (
 								<DesktopDropdown key={item.href} item={item} currentPath={currentPath} />
 							) : (
 								<a
 									key={item.href}
-									className={`text-sm font-semibold transition-colors duration-200 hover:text-ink ${isActivePath(currentPath, item.href) ? 'text-ink' : 'text-muted'}`}
+									className={`inline-flex min-h-11 items-center px-1 text-sm font-semibold transition-colors duration-200 hover:text-(--color-ink) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand) ${isActivePath(currentPath, item.href) ? 'text-(--color-ink)' : 'text-(--color-muted)'}`}
 									href={item.href}
 									aria-current={isActivePath(currentPath, item.href) ? 'page' : undefined}
 								>
 									{item.label}
 								</a>
-							)
+							),
 						)}
 					</nav>
 
 					<div className="hidden items-center gap-2.5 md:flex">
 						<ThemeToggle />
 						<a
-							className="inline-flex items-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-(--color-button-ink) shadow-(--shadow-brand) transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
+							className="inline-flex min-h-11 items-center rounded-full bg-(--color-accent) px-5 py-2.5 text-sm font-semibold text-(--color-button-ink) shadow-(--shadow-brand) transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
 							href="/#contact"
 						>
-							Inquire Now
+							Book a Consultation
 						</a>
 					</div>
 				</div>
 
-				{/* Mobile */}
 				<div className="flex items-center justify-between gap-3 px-4 py-3 md:hidden">
 					<a
 						className="group flex min-w-0 items-center gap-3"
 						href="/"
-						aria-label="Morning Tide Consulting and Collective home"
+						aria-label="Morningtide Consulting and Collective home"
 					>
-						<div className="flex h-10 w-10 items-center justify-center rounded-full border border-(--color-line) bg-surface text-sm font-semibold text-(--color-brand) shadow-(--shadow-soft)">
+						<div className="flex h-10 w-10 items-center justify-center rounded-full border border-(--color-line) bg-(--color-surface) text-sm font-semibold text-(--color-brand) shadow-(--shadow-soft)">
 							MCC
 						</div>
 						<div className="min-w-0">
-							<p className="text-[0.56rem] font-semibold uppercase tracking-[0.24em] text-(--color-brand)">Morning Tide</p>
-							<p className="truncate text-sm font-semibold text-ink">&amp; Collective</p>
+							<p className="text-[0.56rem] font-semibold uppercase tracking-[0.24em] text-(--color-brand)">Morningtide</p>
+							<p className="truncate text-sm font-semibold text-(--color-ink)">&amp; Collective</p>
 						</div>
 					</a>
 					<div className="flex shrink-0 items-center gap-2">
 						<ThemeToggle />
 						<button
 							type="button"
-							className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-surface text-muted shadow-sm transition-all duration-300 hover:text-ink hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
+							className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full bg-(--color-surface) text-(--color-muted) shadow-sm transition-all duration-300 hover:text-(--color-ink) hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
 							aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
 							aria-expanded={mobileOpen}
 							aria-controls="mobile-navigation"
-							onClick={() => setMobileOpen(prev => !prev)}
+							onClick={() => setMobileOpen((prev) => !prev)}
 						>
-							{/* Animated hamburger → X */}
-							<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-								<line
-									x1="3" y1="6" x2="21" y2="6"
-									stroke="currentColor" strokeWidth="2" strokeLinecap="round"
-									style={{
-										transform: mobileOpen ? 'rotate(45deg) translate(4px, -4px)' : 'none',
-										transformOrigin: 'center',
-										transition: 'transform 300ms cubic-bezier(0.16,1,0.3,1)',
-									}}
-								/>
-								<line
-									x1="3" y1="12" x2="21" y2="12"
-									stroke="currentColor" strokeWidth="2" strokeLinecap="round"
-									style={{
-										opacity: mobileOpen ? 0 : 1,
-										transition: 'opacity 200ms ease',
-									}}
-								/>
-								<line
-									x1="3" y1="18" x2="21" y2="18"
-									stroke="currentColor" strokeWidth="2" strokeLinecap="round"
-									style={{
-										transform: mobileOpen ? 'rotate(-45deg) translate(4px, 4px)' : 'none',
-										transformOrigin: 'center',
-										transition: 'transform 300ms cubic-bezier(0.16,1,0.3,1)',
-									}}
-								/>
-							</svg>
+							{mobileOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
 						</button>
 					</div>
 				</div>
@@ -366,3 +319,4 @@ export default function Header({ currentPath }: { currentPath: string }) {
 		</>
 	);
 }
+

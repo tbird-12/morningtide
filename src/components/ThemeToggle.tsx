@@ -54,7 +54,7 @@ export default function ThemeToggle() {
 		<button
 			type="button"
 			onClick={toggle}
-			className="theme-toggle group relative inline-flex h-9 w-9 items-center justify-center rounded-full bg-surface p-0 text-muted shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:text-ink hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
+			className="theme-toggle group relative inline-flex min-h-11 min-w-11 items-center justify-center rounded-full bg-(--color-surface) p-0 text-(--color-muted) shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:text-(--color-ink) hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
 			aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
 			aria-pressed={isDark}
 		>
@@ -96,3 +96,4 @@ export default function ThemeToggle() {
 		</button>
 	);
 }
+

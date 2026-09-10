@@ -17,7 +17,6 @@
     border-color: var(--color-line);
 }
 
-/* Standalone / linkable cards get a more pronounced lift */
 a.premium-card:hover {
     transform: translateY(-8px);
 }
@@ -55,6 +54,7 @@ a.premium-card:hover {
 .btn-mild {
     display: inline-flex;
     align-items: center;
+    min-height: 44px;
     padding: 1rem 2.5rem;
     border-radius: 100px;
     background: var(--color-accent);
@@ -96,7 +96,10 @@ a[class*="rounded-full"]:active {
 .visual-chip {
     display: inline-flex;
     align-items: center;
-    padding: 0.5rem 1.25rem;
+    gap: 0.5rem;
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.625rem 1.25rem;
     border-radius: 100px;
     background: var(--color-surface);
     border: 1px solid var(--color-line-soft);
@@ -104,4 +107,13 @@ a[class*="rounded-full"]:active {
     font-weight: 500;
     color: var(--color-muted);
     letter-spacing: 0.02em;
+}
+
+@media (hover: none) {
+    .premium-card:hover,
+    a.premium-card:hover,
+    .btn-mild:hover {
+        transform: none;
+        box-shadow: var(--shadow-soft);
+    }
 }

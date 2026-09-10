@@ -40,7 +40,7 @@ export function AccordionItem({ title, children, defaultOpen = false }: Accordio
 				id={triggerId}
 				type="button"
 				onClick={toggle}
-				className="flex w-full cursor-pointer items-start gap-3 py-5 text-left text-base font-semibold text-(--color-ink) transition-colors duration-200 hover:text-(--color-brand)"
+				className="flex min-h-11 w-full cursor-pointer items-start gap-3 py-5 text-left text-base font-semibold text-ink transition-colors duration-200 hover:text-(--color-brand) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
 				aria-expanded={open}
 				aria-controls={panelId}
 			>
@@ -81,9 +81,10 @@ export default function Accordion({ items }: AccordionProps) {
 		<div>
 			{items.map((item, i) => (
 				<AccordionItem key={i} title={item.q}>
-				<p className="text-sm leading-7 text-(--color-muted)">{item.a}</p>
+				<p className="text-sm leading-7 text-muted">{item.a}</p>
 				</AccordionItem>
 			))}
 		</div>
 	);
 }
+

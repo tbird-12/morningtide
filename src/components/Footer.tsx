@@ -1,73 +1,164 @@
 import type { JSX } from 'react';
+import { Mail, Phone, MapPin } from 'lucide-react';
+import createLucideIcon from 'lucide-react/dist/esm/createLucideIcon.mjs';
 import FadeIn from './FadeIn';
 
+const BrandX = createLucideIcon('brand-x', [
+	['path', { d: 'M5 5l14 14', key: 'x-1' }],
+	['path', { d: 'M19 5 9 15', key: 'x-2' }],
+	['path', { d: 'M15 19l4-4', key: 'x-3' }],
+	['path', { d: 'M5 19 13 11', key: 'x-4' }],
+]);
+
+const BrandLinkedin = createLucideIcon('brand-linkedin', [
+	['rect', { x: '4', y: '4', width: '16', height: '16', rx: '3', key: 'li-1' }],
+	['path', { d: 'M8 10v6', key: 'li-2' }],
+	['path', { d: 'M12 16v-3a2 2 0 0 1 4 0v3', key: 'li-3' }],
+	['path', { d: 'M12 10v6', key: 'li-4' }],
+	['circle', { cx: '8', cy: '8', r: '1', key: 'li-5' }],
+]);
+
 const services = [
-	{ label: 'Psychological Evaluations', href: '/services/psychological-evaluations' },
-	{ label: 'Psychoeducational Testing', href: '/services/psychoeducational-testing' },
-	{ label: 'Clinician Consultations', href: '/services/billing-and-credentialing-consultation' },
+	{ label: 'Consulting', href: '/services/billing-and-credentialing-consultation' },
 	{ label: 'CEU Trainings', href: '/services/ceu-trainings' },
-	{ label: 'Investment', href: '/services/investment' },
+	{ label: 'Pricing', href: '/pricing' },
 ];
 
 const practice = [
-	{ label: 'About Dr. Cornett', href: '/about-clinician' },
+	{ label: 'About Dr. Cornett', href: '/about' },
 	{ label: 'FAQ', href: '/faq' },
-	{ label: 'Locations', href: '/locations' },
-	{ label: 'All Services', href: '/services' },
-	{ label: 'Contact / Inquire', href: '/#contact' },
+	{ label: 'For Clinicians', href: '/services/ceu-trainings' },
+];
+
+const contact = [
+	{ label: 'Email', href: 'mailto:info@morningtidecc.com', icon: Mail },
+	{ label: 'Phone', href: 'tel:+1-555-0123', icon: Phone },
+	{ label: 'Remote', href: '#', icon: MapPin, isStatic: true },
+];
+
+const socialLinks = [
+	{
+		label: 'Morningtide on X',
+		href: 'https://twitter.com/morningtideCC',
+		icon: BrandX,
+	},
+	{
+		label: 'Morningtide on LinkedIn',
+		href: 'https://www.linkedin.com/company/morning-tide-consulting',
+		icon: BrandLinkedin,
+	},
 ];
 
 const year = new Date().getFullYear();
 
 export default function Footer(): JSX.Element {
 	return (
-		<footer className="border-t border-(--color-line-soft) bg-surface">
+		<footer className="border-t border-line-soft bg-surface">
 			<FadeIn threshold={0.1} duration={800}>
-				<div className="mx-auto grid w-full max-w-6xl gap-10 px-6 py-12 lg:grid-cols-[1.2fr_0.9fr_0.9fr] lg:px-10">
+				<div className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 py-12 lg:px-10">
+					{/* Logo / Branding Section */}
 					<div className="space-y-4">
-						<p className="text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-(--color-brand)">
-							Morning Tide Consulting and Collective
-						</p>
-						<h2 className="text-3xl leading-none text-ink">
-							Evaluation, consultation, and education — all under one practice.
-						</h2>
+						<h2 className="text-2xl font-bold leading-none text-ink">Morningtide</h2>
 						<p className="max-w-md text-base leading-7 text-muted">
-							Comprehensive psychological and psychoeducational evaluations for clients who value depth, clarity, and timely results.
+							Consulting and continuing education for mental health clinicians.
 						</p>
 					</div>
 
-					<nav aria-label="Services" className="space-y-3">
-						<p className="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-(--color-brand)">Services</p>
-						{services.map(link => (
-							<a
-								key={link.href}
-								className="block text-sm font-semibold text-muted transition-all duration-200 hover:text-ink hover:translate-x-1"
-								href={link.href}
-							>
-								{link.label}
-							</a>
-						))}
-					</nav>
+					{/* Four-Column Navigation Grid */}
+					<div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+						{/* Services */}
+						<nav aria-label="Services" className="space-y-3">
+							<p className="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-brand">
+								Services
+							</p>
+							{services.map((link) => (
+								<a
+									key={link.href}
+									className="block py-2 text-sm font-semibold text-muted transition-all duration-200 hover:translate-x-1 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+									href={link.href}
+								>
+									{link.label}
+								</a>
+							))}
+						</nav>
 
-					<nav aria-label="Practice" className="space-y-3">
-						<p className="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-(--color-brand)">Practice</p>
-						{practice.map(link => (
+						{/* Practice */}
+						<nav aria-label="Practice" className="space-y-3">
+							<p className="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-brand">
+								Practice
+							</p>
+							{practice.map((link) => (
+								<a
+									key={link.href}
+									className="block py-2 text-sm font-semibold text-muted transition-all duration-200 hover:translate-x-1 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+									href={link.href}
+								>
+									{link.label}
+								</a>
+							))}
 							<a
-								key={link.href}
-								className="block text-sm font-semibold text-muted transition-all duration-200 hover:text-ink hover:translate-x-1"
-								href={link.href}
+								className="inline-flex items-center gap-1 py-2 text-sm font-semibold text-accent underline underline-offset-4 transition-colors duration-200 hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+								href="https://twilightpsychology.com"
+								target="_blank"
+								rel="noopener noreferrer"
 							>
-								{link.label}
+								Clinical Services
 							</a>
-						))}
-					</nav>
+						</nav>
+
+						{/* Contact */}
+						<nav aria-label="Contact" className="space-y-3">
+							<p className="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-brand">
+								Contact
+							</p>
+							{contact.map(({ label, href, icon: Icon, isStatic }) => (
+								<a
+									key={label}
+									className="flex items-center gap-2 py-2 text-sm font-semibold text-muted transition-all duration-200 hover:translate-x-1 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+									href={href}
+									{...(isStatic ? { onClick: (e: React.MouseEvent<HTMLAnchorElement>) => e.preventDefault() } : {})}
+									{...(href.startsWith('mailto') || href.startsWith('tel') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+								>
+									<Icon className="h-4 w-4" aria-hidden="true" />
+									<span>{label}</span>
+								</a>
+							))}
+						</nav>
+
+						{/* Social Media */}
+						<div className="space-y-3">
+							<p className="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-brand">
+								Follow
+							</p>
+							<div className="flex items-center gap-3">
+								{socialLinks.map(({ label, href, icon: Icon }) => (
+									<a
+										key={href}
+										className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line-soft bg-surface text-muted shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:text-ink hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+										href={href}
+										aria-label={label}
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										<Icon className="h-4 w-4" aria-hidden="true" />
+									</a>
+								))}
+							</div>
+							<p className="text-xs leading-5 text-muted">
+								info@morningtidecc.com
+							</p>
+						</div>
+					</div>
 				</div>
 			</FadeIn>
-			<div className="border-t border-(--color-line-soft)">
+
+			{/* Copyright */}
+			<div className="border-t border-line-soft">
 				<p className="mx-auto max-w-6xl px-6 py-5 text-xs text-muted lg:px-10">
-					© {year} Morning Tide Consulting and Collective. All rights reserved.
+					© {year} Morningtide Consulting and Collective. All rights reserved.
 				</p>
 			</div>
 		</footer>
 	);
 }
+

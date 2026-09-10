@@ -1,266 +1,185 @@
 ---
+import { BookOpen, Briefcase, ExternalLink, GraduationCap } from 'lucide-react';
 import Layout from '../layouts/Layout.astro';
 import FadeIn from '../components/FadeIn.tsx';
 import AnimatedText from '../components/AnimatedText.tsx';
 import AnimatedCard from '../components/AnimatedCard.tsx';
 
-const services = [
+const serviceCards = [
 	{
-		title: 'Psychological Evaluations',
-		description: 'ADHD, Autism, personality disorders, diagnostic clarification, and complex clinical presentations — built for high-masking and late-identified individuals.',
-		href: '/services/psychological-evaluations',
+		title: 'Consulting for clinicians',
+		description: 'Practical support for billing, credentialing, PSYPACT questions, and the day-to-day operations that keep a practice sustainable.',
+		href: '/services/billing-and-credentialing-consultation',
+		icon: Briefcase,
 	},
 	{
-		title: 'Psychoeducational Evaluations',
-		description: 'Dyslexia, learning disorders, giftedness, twice-exceptional profiles, and academic achievement — with school-ready recommendations on a rapid timeline.',
-		href: '/services/psychoeducational-testing',
-	},
-];
-
-const process = [
-	{
-		step: '01',
-		title: 'Clinical Intake',
-		text: 'We review your referral question, developmental history, and relevant records to shape the evaluation.',
-	},
-	{
-		step: '02',
-		title: 'Comprehensive Testing',
-		text: 'A tailored battery using gold-standard tools like ADOS-2, MIGDAS-2, CPTs, and cognitive measures.',
-	},
-	{
-		step: '03',
-		title: 'Integrated Report',
-		text: 'Findings are synthesized into a detailed report with clinical interpretation and actionable recommendations.',
-	},
-	{
-		step: '04',
-		title: 'Feedback Session',
-		text: 'A dedicated session to review results, answer questions, and align on clear next steps.',
+		title: 'CEU trainings',
+		description: 'Continuing education on ADHD, autism, and assessment methodology designed for immediate use in real clinical work.',
+		href: '/services/ceu-trainings',
+		icon: BookOpen,
 	},
 ];
 
 const differentiators = [
 	{
-		label: 'One Clinician, Start to Finish',
-		text: 'Every evaluation is personally conducted by Dr. Heather Cornett — a licensed psychologist specializing in neurodivergent and complex diagnostic presentations.',
+		title: 'Grounded in Active Practice',
+		description: 'Advice and trainings are shaped by the realities of running a real multi-state practice, not a theoretical model.',
 	},
 	{
-		label: 'Private-Pay by Design',
-		text: 'Self-pay means evaluation scope is driven by clinical need, not insurer approval. Sensitive diagnostic information stays between you and your evaluator.',
+		title: 'Direct, Practical Guidance',
+		description: 'No fluff — just clear answers on billing, credentialing, PSYPACT, and the operational questions clinicians actually face.',
 	},
 	{
-		label: 'Reports in About One Week',
-		text: 'Polished, in-depth reports are delivered days after testing — not the months-long waits common with insurance-based practices.',
+		title: 'CEUs That Transfer',
+		description: 'Trainings are built for immediate clinical application so what you learn is useful the next time you see a client.',
 	},
 ];
 
-const clinicianOffers = [
-	{
-		title: 'Consultations',
-		description: 'Hands-on guidance for billing, credentialing, paneling strategy, and the operational side of running a sustainable practice.',
-		href: '/services/billing-and-credentialing-consultation',
-	},
-	{
-		title: 'Continuing Education',
-		description: 'Practice-grounded CEU trainings in ADHD assessment, autism evaluation, and testing methodology for agencies and clinicians.',
-		href: '/services/ceu-trainings',
-	},
+const heroChips = [
+	{ label: 'Practice Consulting', icon: Briefcase },
+	{ label: 'CEU Trainings', icon: GraduationCap },
 ];
 ---
 
 <Layout
-	title="Morning Tide Consulting and Collective | Expert Remote Psychological Evaluations"
-	description="MCC offers expert self-pay psychological and psychoeducational evaluations across 40+ PSYPACT states — specializing in ADHD, Autism, learning disorders, and complex diagnostic cases. Reports within one week."
+	title="Morningtide Consulting and Collective | Consulting and CEU trainings for clinicians"
+	description="Consulting and continuing education for mental health professionals."
 >
-	<main id="main-content" class="page-main md:snap-y md:snap-proximity xl:snap-mandatory">
-
-		<!-- ① HERO — Identity + promise + proof -->
-		<section class="hero-shell relative flex min-h-[calc(100svh-var(--header-height-mobile))] snap-start items-center overflow-hidden md:min-h-[86vh]">
+	<main id="main-content" class="page-main">
+		<section class="hero-shell relative overflow-hidden">
 			<div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,var(--color-brand-soft),transparent_32%),radial-gradient(circle_at_85%_12%,var(--color-accent-soft),transparent_24%)]"></div>
-			<div class="mx-auto flex w-full max-w-4xl flex-col items-center text-center">
-				<!-- IMAGE PLACEHOLDER: Hero/brand image — replace src with actual image path -->
-				<FadeIn delay={0} duration={800} direction="none">
-					<div class="mb-8 w-28 overflow-hidden rounded-3xl border border-(--color-line-soft) bg-(--color-section-tint) shadow-(--shadow-soft)">
-						<div class="flex aspect-square items-center justify-center text-center text-xs text-(--color-muted)">
-							<p>Logo or<br />brand image</p>
-						</div>
-					</div>
-				</FadeIn>
-				<FadeIn delay={100} duration={700}>
-					<p class="eyebrow">Morning Tide Consulting and Collective</p>
+			<div class="mx-auto flex max-w-5xl flex-col items-center text-center">
+				<!-- Hero image placeholder: when added, use fetchpriority="high" on the primary hero image. -->
+				<FadeIn delay={0} duration={800}>
+					<p class="eyebrow">Morningtide Consulting and Collective</p>
 				</FadeIn>
 				<AnimatedText
-					text="Expert evaluations for neurodivergent individuals, delivered remotely across 40+ states."
+					text="Consulting and continuing education for mental health professionals."
 					as="h1"
 					split="word"
 					stagger={40}
-					delay={250}
+					delay={150}
 					duration={600}
-					class="mt-8 text-wrap-balance text-5xl leading-none text-(--color-ink) sm:text-6xl lg:text-7xl"
+					class="mt-6 max-w-4xl text-wrap-balance text-5xl leading-none text-(--color-ink) sm:text-6xl lg:text-7xl"
 				/>
-				<FadeIn delay={600} duration={700}>
-					<p class="mt-8 max-w-2xl text-lg leading-8 text-(--color-muted) sm:text-xl">
-						Self-pay psychological and psychoeducational evaluations for ADHD, Autism, learning differences, and diagnostic clarity — with reports typically delivered within one week.
+				<FadeIn delay={500}>
+					<p class="mt-8 max-w-3xl text-lg leading-8 text-(--color-muted) sm:text-xl">
+						Practical support for billing, credentialing, PSYPACT navigation, and continuing education designed for real clinical work.
 					</p>
 				</FadeIn>
-				<FadeIn delay={800} duration={600}>
+				<FadeIn delay={700}>
 					<div class="visual-grid mt-8 w-full max-w-3xl">
-						<p class="visual-chip">40+ PSYPACT states</p>
-						<p class="visual-chip">Report in about one week</p>
-						<p class="visual-chip">Self-pay, privacy-forward</p>
+						{heroChips.map(({ label, icon: Icon }) => (
+							<p class="visual-chip">
+								<Icon className="h-4 w-4" aria-hidden="true" />
+								<span>{label}</span>
+							</p>
+						))}
 					</div>
 				</FadeIn>
-				<FadeIn delay={950} duration={600}>
+				<FadeIn delay={900}>
 					<div class="mt-10 flex flex-wrap justify-center gap-4">
-						<a class="inline-flex items-center rounded-full bg-(--color-accent) px-6 py-3 text-sm font-semibold text-(--color-button-ink) shadow-(--shadow-brand) transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" href="#services">
-							See What We Offer
+						<a class="inline-flex min-h-11 items-center rounded-full bg-(--color-accent) px-6 py-3 text-sm font-semibold text-(--color-button-ink) shadow-(--shadow-brand) transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)" href="/#contact">
+							Book a Consultation
 						</a>
-						<a class="inline-flex items-center rounded-full border border-(--color-line) bg-(--color-surface) px-6 py-3 text-sm font-semibold text-(--color-ink) transition-all duration-300 hover:-translate-y-0.5 hover:shadow" href="#process">
-							How It Works
+						<a class="inline-flex min-h-11 items-center rounded-full border border-(--color-line) bg-(--color-surface) px-6 py-3 text-sm font-semibold text-(--color-ink) transition-all duration-300 hover:-translate-y-0.5 hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)" href="/services/ceu-trainings">
+							View CEU Trainings
 						</a>
 					</div>
 				</FadeIn>
 			</div>
 		</section>
 
-		<!-- ② SERVICES — What we offer (core evaluation types) -->
-		<section id="services" class="home-section snap-start">
+		<section class="home-section">
 			<div class="mx-auto w-full max-w-6xl space-y-10 px-4 sm:px-6 lg:px-10">
 				<FadeIn>
 					<div class="max-w-3xl space-y-4">
-						<p class="eyebrow">What We Offer</p>
-						<h2 class="text-4xl leading-none text-(--color-ink) sm:text-5xl">Two evaluation tracks, one standard of depth.</h2>
+						<p class="eyebrow">Primary Services</p>
+						<h2 class="text-4xl leading-none text-(--color-ink) sm:text-5xl">What Morningtide Leads With</h2>
 						<p class="text-lg leading-8 text-(--color-muted)">
-							Every assessment is personally conducted by Dr. Heather Cornett, with a focus on nuanced neurodivergent and complex diagnostic presentations.
+							Morningtide is built first for clinician-facing work: strategic consulting and continuing education that support better care and stronger operations.
 						</p>
 					</div>
 				</FadeIn>
 				<div class="grid gap-6 lg:grid-cols-2">
-					{services.map((service, i) => (
-						<AnimatedCard href={service.href} index={i} className="section-shell rounded-4xl p-8 hover:-translate-y-1">
-							<h3 class="text-4xl leading-none text-(--color-ink)">{service.title}</h3>
-							<p class="mt-5 max-w-xl text-base leading-8 text-(--color-muted)">{service.description}</p>
-							<span class="mt-8 inline-flex items-center text-sm font-semibold text-(--color-accent)">
-								Learn more about {service.title.toLowerCase()}
-							</span>
-						</AnimatedCard>
-					))}
+					{serviceCards.map((service, i) => {
+						const Icon = service.icon;
+						return (
+							<AnimatedCard href={service.href} index={i} className="section-shell rounded-4xl p-8 hover:-translate-y-1">
+								<div class="flex items-center gap-3">
+									<div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-(--color-section-tint) text-(--color-brand)">
+										<Icon className="h-5 w-5" aria-hidden="true" />
+									</div>
+									<h3 class="mb-0 text-3xl leading-none text-(--color-ink)">{service.title}</h3>
+								</div>
+								<p class="mt-5 max-w-xl text-base leading-8 text-(--color-muted)">{service.description}</p>
+								<span class="mt-8 inline-flex items-center text-sm font-semibold text-(--color-accent)">
+									Learn more
+								</span>
+							</AnimatedCard>
+						);
+					})}
 				</div>
-				<FadeIn delay={300}>
-					<div class="flex justify-center pt-2">
-						<a class="text-sm font-semibold text-(--color-accent) underline underline-offset-4" href="/services">View all services and pricing</a>
-					</div>
-				</FadeIn>
 			</div>
 		</section>
 
-		<!-- ③ PROCESS — How an evaluation works (natural next question) -->
-		<section id="process" class="home-section snap-start bg-(--color-section-tint)">
+		<section class="home-section bg-(--color-section-tint)">
 			<div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-10">
-				<FadeIn>
-					<div class="max-w-3xl space-y-4">
-						<p class="eyebrow">How It Works</p>
-						<h2 class="text-4xl leading-none text-(--color-ink) sm:text-5xl">Four steps from intake to answers.</h2>
-						<p class="text-lg leading-8 text-(--color-muted)">
-							Every evaluation follows the same structured process so you know exactly what to expect.
-						</p>
-					</div>
+				<FadeIn class="section-shell rounded-4xl">
+					<p class="eyebrow">Meet Dr. Cornett</p>
+					<p class="mt-6 max-w-4xl text-base leading-8 text-(--color-muted)">
+						Led by Dr. Heather Cornett, Ph.D., LP — licensed psychologist and practice operations expert. <a class="inline-flex items-center gap-1 font-semibold text-(--color-accent) underline underline-offset-4 transition-colors duration-200 hover:text-(--color-brand) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)" href="/about">Learn more</a>
+					</p>
 				</FadeIn>
-				<div class="mt-12 grid gap-5 lg:grid-cols-4">
-					{process.map((item, i) => (
-						<AnimatedCard index={i} stagger={150} className="rounded-[1.75rem] p-6">
-							<p class="text-sm font-semibold uppercase tracking-[0.22em] text-(--color-brand)">{item.step}</p>
-							<h3 class="mt-4 text-3xl leading-none text-(--color-ink)">{item.title}</h3>
-							<p class="mt-4 text-sm leading-7 text-(--color-muted)">{item.text}</p>
-						</AnimatedCard>
-					))}
-				</div>
 			</div>
 		</section>
 
-		<!-- ④ WHY MCC — Differentiators: clinician, model, speed -->
-		<section class="home-section snap-start">
+		<section class="home-section">
 			<div class="mx-auto w-full max-w-6xl space-y-10 px-4 sm:px-6 lg:px-10">
 				<FadeIn>
 					<div class="max-w-3xl space-y-4">
-						<p class="eyebrow">Why Morning Tide</p>
-						<h2 class="text-4xl leading-none text-(--color-ink) sm:text-5xl">A practice built around depth, not volume.</h2>
+						<p class="eyebrow">Why MCC</p>
+						<h2 class="text-4xl leading-none text-(--color-ink) sm:text-5xl">Built for Clinicians Who Want Useful Answers</h2>
 					</div>
 				</FadeIn>
 				<div class="grid gap-6 lg:grid-cols-3">
-					{differentiators.map((d, i) => (
+					{differentiators.map((item, i) => (
 						<AnimatedCard index={i} stagger={140} className="rounded-[1.75rem] p-6">
-							<p class="eyebrow">{d.label}</p>
-							<p class="mt-4 text-base leading-8 text-(--color-muted)">{d.text}</p>
+							<h3 class="mb-0 text-2xl leading-tight text-(--color-ink)">{item.title}</h3>
+							<p class="mt-4 text-base leading-8 text-(--color-muted)">{item.description}</p>
 						</AnimatedCard>
 					))}
 				</div>
-				<FadeIn delay={400}>
-					<div class="flex justify-center pt-2">
-						<a class="text-sm font-semibold text-(--color-accent) underline underline-offset-4" href="/about-clinician">Meet Dr. Cornett</a>
-					</div>
-				</FadeIn>
 			</div>
 		</section>
 
-		<!-- ⑤ CLINICIANS — Secondary audience, after client journey completes -->
-		<section class="home-section snap-start bg-(--color-section-tint)">
-			<div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-10">
-				<FadeIn>
-					<div class="cta-strip">
-					<div class="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-center">
-						<div class="space-y-4">
-							<p class="eyebrow">For Clinicians</p>
-							<h2 class="text-4xl leading-none text-(--color-ink) sm:text-5xl">Consulting and continuing education for fellow clinicians.</h2>
-							<p class="text-base leading-8 text-(--color-muted)">
-								MCC also supports clinicians with practical guidance and training grounded in real-world practice operating a multi-state evaluation practice.
-							</p>
-						</div>
-						<div class="grid gap-4 sm:grid-cols-2">
-							{clinicianOffers.map((offer, i) => (
-								<AnimatedCard href={offer.href} index={i} className="rounded-3xl p-6 hover:-translate-y-1">
-									<h3 class="text-lg font-semibold text-(--color-ink)">{offer.title}</h3>
-									<p class="mt-3 text-sm leading-7 text-(--color-muted)">{offer.description}</p>
-									<span class="mt-4 inline-flex text-sm font-semibold text-(--color-accent)">Learn more about {offer.title.toLowerCase()}</span>
-								</AnimatedCard>
-							))}
-						</div>
-					</div>
-					</div>
-				</FadeIn>
-			</div>
-		</section>
-
-		<!-- ⑥ CONTACT — Warm, action-oriented CTA -->
-		<section id="contact" class="home-section snap-start">
+		<section id="contact" class="home-section">
 			<div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-10">
 				<FadeIn class="section-shell rounded-4xl">
-				<div class="mx-auto max-w-3xl space-y-6 text-center">
-					<p class="eyebrow">Get Started</p>
-					<AnimatedText
-						text="Ready to get clear answers?"
-						as="h2"
-						split="word"
-						stagger={60}
-						delay={100}
-						class="text-4xl leading-none text-(--color-ink) sm:text-5xl"
-					/>
-					<FadeIn delay={300}>
-						<p class="text-lg leading-8 text-(--color-muted)">
-							Share the questions you want the evaluation to answer, who will use the report, and any deadlines. We will follow up to confirm fit and schedule your intake.
-						</p>
-						<div class="flex flex-wrap justify-center gap-4 pt-4">
-							<a class="inline-flex items-center rounded-full bg-(--color-accent) px-6 py-3 text-sm font-semibold text-(--color-button-ink) shadow-(--shadow-brand) transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" href="mailto:info@morningtideconsulting.com">
-								Start with an inquiry
-							</a>
-							<a class="inline-flex items-center rounded-full border border-(--color-line) bg-(--color-surface) px-6 py-3 text-sm font-semibold text-(--color-ink) transition-all duration-300 hover:-translate-y-0.5 hover:shadow" href="/services/investment">
-								View pricing
-							</a>
-						</div>
-						<p class="pt-2 text-xs text-(--color-muted)">MCC is a self-pay practice and is out-of-network with health insurance. HSA/FSA accepted.</p>
-					</FadeIn>
-				</div>
+					<div class="mx-auto max-w-3xl space-y-6 text-center">
+						<p class="eyebrow">Ready to work together?</p>
+						<AnimatedText
+							text="Let’s talk about your consulting or training needs."
+							as="h2"
+							split="word"
+							stagger={60}
+							delay={100}
+							class="text-4xl leading-none text-(--color-ink) sm:text-5xl"
+						/>
+						<FadeIn delay={300}>
+							<p class="text-lg leading-8 text-(--color-muted)">
+								Reach out with your consulting questions, training goals, or practice needs, and we’ll follow up to find the right next step.
+							</p>
+							<div class="flex flex-wrap justify-center gap-4 pt-4">
+								<a class="inline-flex min-h-11 items-center rounded-full bg-(--color-accent) px-6 py-3 text-sm font-semibold text-(--color-button-ink) shadow-(--shadow-brand) transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)" href="mailto:info@morningtideconsulting.com">
+									Start an inquiry
+								</a>
+								<a class="inline-flex min-h-11 items-center rounded-full border border-(--color-line) bg-(--color-surface) px-6 py-3 text-sm font-semibold text-(--color-ink) transition-all duration-300 hover:-translate-y-0.5 hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)" href="/services">
+									Browse services
+								</a>
+							</div>
+						</FadeIn>
+					</div>
 				</FadeIn>
 			</div>
 		</section>
@@ -269,26 +188,7 @@ const clinicianOffers = [
 
 <style>
 	.home-section {
-		display: flex;
-		align-items: center;
 		padding-block: clamp(3.5rem, 8vw, 5.5rem);
 	}
-
-	@media (min-width: 768px) {
-		.home-section {
-			min-height: 85svh;
-		}
-	}
-
-	@media (min-width: 1280px) {
-		.home-section {
-			min-height: 100svh;
-		}
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		main {
-			scroll-snap-type: none;
-		}
-	}
 </style>
+

@@ -15,8 +15,8 @@ interface Props {
 }
 
 const {
-	title = 'Morning Tide Consulting and Collective',
-	description = 'Expert psychological and psychoeducational evaluations, clinician consultations, and CEU trainings delivered with depth, clarity, and polish.',
+	title = 'Morningtide',
+	description = 'Consulting and continuing education for mental health professionals. Morningtide — consulting and CEU trainings for clinicians.',
 	canonical,
 	image,
 	noindex = false,
@@ -28,7 +28,11 @@ const {
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta property="og:locale" content="en_US" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<script is:inline>
 			(() => {
 				const storageKey = 'morningtide-theme';
@@ -58,6 +62,7 @@ const {
 		</script>
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="theme-color" content="#fdfcf9" />
 		<SEO
@@ -85,3 +90,4 @@ const {
 		<Footer />
 	</body>
 </html>
+

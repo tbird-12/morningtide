@@ -1,0 +1,149 @@
+---
+import { ExternalLink } from 'lucide-react';
+import Layout from '../layouts/Layout.astro';
+import FadeIn from '../components/FadeIn.tsx';
+import AnimatedText from '../components/AnimatedText.tsx';
+import AnimatedCard from '../components/AnimatedCard.tsx';
+
+const credentials = [
+	'Ph.D. in Counseling Psychology',
+	'Licensed Psychologist (LP) in Kentucky and New Mexico',
+	'PSYPACT Supervisor Credentials',
+	'Former Assistant Professor, Departments of Psychology',
+	'Over a decade of clinical practice experience',
+];
+
+const highlights = [
+	{
+		title: 'Grounded in Practice',
+		description: 'Built consulting and training on the real systems, timelines, and challenges that clinicians face running sustainable practices.',
+	},
+	{
+		title: 'Teaching Experience',
+		description: 'Former university faculty with expertise in course development, continuing education delivery, and training clinicians across multiple levels.',
+	},
+	{
+		title: 'Evidence-Based Approach',
+		description: 'Consulting and training integrate current research, neuro-affirming frameworks, and best practices refined through active clinical work.',
+	},
+];
+
+const populationsServed = [
+	'Solo practitioners and group practices',
+	'Community mental health agencies',
+	'Graduate training programs and clinicians in training',
+	'Multi-state and telehealth practices',
+	'Clinicians transitioning from settings to private practice',
+];
+---
+
+<Layout
+	title="About Dr. Heather Cornett | Morningtide Consulting and Collective"
+	description="Learn about Dr. Heather Cornett, licensed psychologist and founder of Morningtide Consulting. Education, experience, and approach to practice consulting and continuing education."
+>
+	<main id="main-content" class="page-main">
+		<section class="hero-shell mx-auto max-w-6xl space-y-8">
+			<FadeIn delay={0}>
+				<p class="eyebrow">About Dr. Heather Cornett</p>
+			</FadeIn>
+			<AnimatedText
+				text="Licensed psychologist, educator, and practice operations expert."
+				as="h1"
+				split="word"
+				stagger={50}
+				delay={100}
+				class="max-w-4xl text-5xl leading-none text-ink sm:text-6xl"
+			/>
+			<FadeIn delay={400}>
+				<p class="max-w-3xl text-lg leading-8 text-muted">
+					Dr. Cornett brings over a decade of clinical experience, university teaching background, and hands-on practice operations expertise to consulting and continuing education for mental health clinicians.
+				</p>
+			</FadeIn>
+		</section>
+
+		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[1fr_0.95fr]">
+			<FadeIn class="section-shell rounded-4xl p-8">
+				<p class="eyebrow">Education & Licensing</p>
+				<h2 class="mt-4 text-4xl leading-none text-ink">Credentials Grounded in Clinical and Academic Training</h2>
+				<ul class="mt-6 space-y-3 text-sm leading-7 text-muted">
+					{credentials.map((item) => (
+						<li class="flex gap-3">
+							<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span>
+							<span>{item}</span>
+						</li>
+					))}
+				</ul>
+			</FadeIn>
+
+			<FadeIn delay={100} class="premium-card rounded-4xl p-8">
+				<p class="eyebrow">Professional Background</p>
+				<h3 class="mt-4 text-2xl leading-tight text-ink">From University to Practice</h3>
+				<p class="mt-4 text-base leading-8 text-muted">
+					Dr. Cornett served as an Assistant Professor in Departments of Psychology, teaching graduate and postdoctoral students in assessment, psychopathology, and child psychology. During this time, she maintained a clinical practice and developed expertise in designing and delivering continuing education.
+				</p>
+				<p class="mt-4 text-base leading-8 text-muted">
+					She transitioned to a full-time multi-state private practice, where she refined operational systems for billing, credentialing, PSYPACT navigation, and telehealth logistics — knowledge she now brings to consulting work with other clinicians and organizations.
+				</p>
+			</FadeIn>
+		</section>
+
+		<section class="mx-auto mt-12 max-w-6xl space-y-10">
+			<FadeIn>
+				<div class="max-w-3xl space-y-4">
+					<p class="eyebrow">Approach to Consulting and Training</p>
+					<h2 class="text-4xl leading-none text-ink sm:text-5xl">Practical, Evidence-Based, and Grounded in Real Work</h2>
+				</div>
+			</FadeIn>
+			<div class="grid gap-6 lg:grid-cols-3">
+				{highlights.map((item, i) => (
+					<AnimatedCard index={i} stagger={140} className="rounded-[1.75rem] p-6">
+						<h3 class="mb-0 text-2xl leading-tight text-ink">{item.title}</h3>
+						<p class="mt-4 text-base leading-8 text-muted">{item.description}</p>
+					</AnimatedCard>
+				))}
+			</div>
+		</section>
+
+		<section class="mx-auto mt-12 max-w-6xl space-y-8">
+			<FadeIn>
+				<div class="section-shell rounded-4xl p-8 lg:p-10">
+					<p class="eyebrow">Populations and Settings</p>
+					<h2 class="mt-4 text-4xl leading-none text-ink">Who Dr. Cornett Works With</h2>
+					<ul class="mt-6 grid gap-4 sm:grid-cols-2">
+						{populationsServed.map((item) => (
+							<li class="flex gap-3 text-sm leading-7 text-muted">
+								<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span>
+								<span>{item}</span>
+							</li>
+						))}
+					</ul>
+				</div>
+			</FadeIn>
+		</section>
+
+		<section class="mx-auto mt-12 max-w-6xl space-y-8">
+			<FadeIn>
+				<div class="section-shell rounded-4xl p-8 lg:p-10">
+					<p class="eyebrow">Beyond the Consulting Room</p>
+					<h2 class="mt-4 text-4xl leading-none text-ink sm:text-5xl">When Not Consulting or Teaching</h2>
+					<p class="mt-6 text-lg leading-8 text-muted">
+						Dr. Cornett is an avid reader, hiker, and board game enthusiast. She splits her time between Minnesota and the Pacific Northwest, where she enjoys access to outdoor spaces and a strong community of clinicians and mental health advocates.
+					</p>
+				</div>
+			</FadeIn>
+		</section>
+
+		<section class="mx-auto mt-12 max-w-6xl space-y-8">
+			<FadeIn>
+				<div class="section-shell rounded-4xl p-8 lg:p-10 border-2 border-(--color-brand)">
+					<p class="eyebrow">Clinical Services</p>
+					<h2 class="mt-4 text-2xl leading-tight text-ink">Looking for Evaluations or Therapy?</h2>
+					<p class="mt-4 text-base leading-8 text-muted">
+						For clinical and therapeutic services, including remote psychological and psychoeducational evaluations, visit <a class="inline-flex items-center gap-1 font-semibold text-accent underline underline-offset-4 transition-colors duration-200 hover:text-(--color-brand) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)" href="https://twilightpsychology.com" target="_blank" rel="noopener noreferrer">Twilight Psychology <ExternalLink className="h-4 w-4" aria-hidden="true" /></a>.
+					</p>
+				</div>
+			</FadeIn>
+		</section>
+	</main>
+</Layout>
+
