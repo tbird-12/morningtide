@@ -3,6 +3,8 @@ import { Mail, Phone, MapPin } from 'lucide-react';
 import createLucideIcon from 'lucide-react/dist/esm/createLucideIcon.mjs';
 import FadeIn from './FadeIn';
 import { socialMedia, contactInfo, logoConfig, clinicalServicesUrl } from '../data/socialMedia';
+import logoLight from '../assets/logo-light.jpg';
+import logoDark from '../assets/logo-dark.jpg';
 
 const BrandX = createLucideIcon('brand-x', [
 	['path', { d: 'M5 5l14 14', key: 'x-1' }],
@@ -57,14 +59,14 @@ export default function Footer(): JSX.Element {
 				<div className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 py-12 lg:px-10">
 					{/* Logo / Branding Section */}
 					<div className="flex items-start gap-8">
-						<figure className="h-28 w-28 flex-shrink-0 overflow-hidden shadow-medium">
+						<figure className="h-28 w-28 shrink-0 overflow-hidden shadow-medium">
 							<picture>
 								<source
 									media="(prefers-color-scheme: dark)"
-									srcSet={logoConfig.darkMode}
+									srcSet={logoDark.src}
 								/>
 								<img
-									src={logoConfig.lightMode}
+									src={logoLight.src}
 									alt={logoConfig.alt}
 									className="h-full w-full object-cover"
 									loading="lazy"

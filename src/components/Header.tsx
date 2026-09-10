@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef, useCallback, type FocusEvent } from 'react';
 import { ChevronDown, Mail, Menu, X } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
-import { contactInfo, logoConfig } from '../data';
+import { contactInfo } from '../data';
+import logoLight from '../assets/logo-light.jpg';
+import logoDark from '../assets/logo-dark.jpg';
 
 interface NavChild {
 	label: string;
@@ -15,9 +17,6 @@ interface NavItem {
 }
 
 const navigation: NavItem[] = [
-	{ label: 'Consulting', href: '/services/billing-and-credentialing-consultation' },
-	{ label: 'Education', href: '/services/ceu-trainings' },
-	{ label: 'Pricing', href: '/pricing' },
 	{
 		label: 'About',
 		href: '/about',
@@ -26,6 +25,9 @@ const navigation: NavItem[] = [
 			{ label: 'FAQ', href: '/faq' },
 		],
 	},
+	{ label: 'Consulting', href: '/services/billing-and-credentialing-consultation' },
+	{ label: 'Education', href: '/services/ceu-trainings' },
+	{ label: 'Pricing', href: '/pricing' },
 ];
 
 const isActivePath = (currentPath: string, href: string) =>
@@ -254,14 +256,14 @@ export default function Header({ currentPath }: { currentPath: string }) {
 							<picture>
 								<source
 									media="(prefers-color-scheme: dark)"
-									srcSet={logoConfig.darkMode}
+									srcSet={logoDark.src}
 								/>
 								<img
-									src={logoConfig.lightMode}
-									alt={logoConfig.alt}
+									src={logoLight.src}
+									alt="Morningtide Consulting and Collective Logo"
 									className="h-full w-full object-cover"
 									loading="eager"
-									fetchpriority="high"
+									fetchPriority="high"
 								/>
 							</picture>
 						</figure>
@@ -301,18 +303,18 @@ export default function Header({ currentPath }: { currentPath: string }) {
 						href="/"
 						aria-label="Morningtide Consulting and Collective home"
 					>
-						<figure className="h-12 w-12 overflow-hidden shadow-soft">
+						<figure className="h-16 w-16 overflow-hidden shadow-soft">
 							<picture>
 								<source
 									media="(prefers-color-scheme: dark)"
-									srcSet={logoConfig.darkMode}
+									srcSet={logoDark.src}
 								/>
 								<img
-									src={logoConfig.lightMode}
-									alt={logoConfig.alt}
+									src={logoLight.src}
+									alt="Morningtide Consulting and Collective Logo"
 									className="h-full w-full object-cover"
 									loading="eager"
-									fetchpriority="high"
+									fetchPriority="high"
 								/>
 							</picture>
 						</figure>

@@ -55,8 +55,8 @@ export const contactInfo: ContactInfo = {
 };
 
 export const logoConfig: LogoConfig = {
-	lightMode: '/src/assets/logo-light.jpg',
-	darkMode: '/src/assets/logo-dark.jpg',
+	lightMode: 'logo-light.jpg',
+	darkMode: 'logo-dark.jpg',
 	alt: 'Morningtide Consulting and Collective Logo',
 };
 
