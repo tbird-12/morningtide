@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback, type FocusEvent } from 'react';
 import { ChevronDown, Mail, Menu, X } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import { contactInfo, logoConfig } from '../data';
 
 interface NavChild {
 	label: string;
@@ -171,15 +172,16 @@ function MobileNav({ currentPath, open, onClose }: { currentPath: string; open: 
 				role="dialog"
 				aria-label="Navigation menu"
 				aria-modal="true"
-				className="fixed left-0 right-0 z-40 overflow-y-auto md:hidden"
+				className="fixed left-0 right-0 z-40 overflow-y-auto border-b border-line-soft md:hidden"
 				style={{
-					background: 'linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 78%, transparent), var(--color-header-bg))',
+					background: 'var(--color-surface)',
 					top: 'var(--header-height-mobile)',
 					maxHeight: 'calc(100dvh - var(--header-height-mobile))',
 					opacity: open ? 1 : 0,
 					transform: open ? 'translateY(0)' : 'translateY(-12px)',
 					pointerEvents: open ? 'auto' : 'none',
 					transition: 'opacity 300ms cubic-bezier(0.16,1,0.3,1), transform 300ms cubic-bezier(0.16,1,0.3,1)',
+					boxShadow: open ? 'var(--shadow-medium)' : 'none',
 				}}
 				aria-hidden={!open}
 			>
@@ -194,11 +196,11 @@ function MobileNav({ currentPath, open, onClose }: { currentPath: string; open: 
 
 					<a
 						className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-line-soft bg-surface px-5 py-3 text-sm font-semibold text-ink shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-						href="mailto:info@morningtideconsulting.com"
+						href={`mailto:${contactInfo.email}`}
 						onClick={onClose}
 					>
 						<Mail className="h-4 w-4" aria-hidden="true" />
-						info@morningtideconsulting.com
+						{contactInfo.email}
 					</a>
 
 					{navigation.map((item) =>
@@ -247,14 +249,22 @@ export default function Header({ currentPath }: { currentPath: string }) {
 		<>
 			<header className="fixed top-0 left-0 right-0 z-40 border-b border-line-soft bg-header-bg backdrop-blur-xl md:sticky">
 				<div className="mx-auto hidden max-w-6xl items-center justify-between gap-6 px-4 py-4 md:flex md:px-6 lg:px-10">
-					<a className="group flex items-center gap-4" href="/" aria-label="Morningtide Consulting and Collective home">
-						<div className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-surface text-lg font-semibold text-brand shadow-soft transition-transform duration-300 group-hover:scale-105">
-							MCC
-						</div>
-						<div>
-							<p className="text-[0.68rem] font-semibold uppercase tracking-[0.32em] text-brand">Morningtide Consulting</p>
-							<p className="text-lg font-semibold text-ink md:text-xl">&amp; Collective</p>
-						</div>
+					<a className="group flex items-center gap-6" href="/" aria-label="Morningtide Consulting and Collective home">
+						<figure className="h-16 w-16 overflow-hidden shadow-medium transition-transform duration-300 group-hover:scale-110">
+							<picture>
+								<source
+									media="(prefers-color-scheme: dark)"
+									srcSet={logoConfig.darkMode}
+								/>
+								<img
+									src={logoConfig.lightMode}
+									alt={logoConfig.alt}
+									className="h-full w-full object-cover"
+									loading="eager"
+									fetchpriority="high"
+								/>
+							</picture>
+						</figure>
 					</a>
 
 					<nav aria-label="Primary" className="hidden items-center gap-5 md:flex">
@@ -291,9 +301,21 @@ export default function Header({ currentPath }: { currentPath: string }) {
 						href="/"
 						aria-label="Morningtide Consulting and Collective home"
 					>
-						<div className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-surface text-sm font-semibold text-brand shadow-soft">
-							MCC
-						</div>
+						<figure className="h-12 w-12 overflow-hidden shadow-soft">
+							<picture>
+								<source
+									media="(prefers-color-scheme: dark)"
+									srcSet={logoConfig.darkMode}
+								/>
+								<img
+									src={logoConfig.lightMode}
+									alt={logoConfig.alt}
+									className="h-full w-full object-cover"
+									loading="eager"
+									fetchpriority="high"
+								/>
+							</picture>
+						</figure>
 						<div className="min-w-0">
 							<p className="text-[0.56rem] font-semibold uppercase tracking-[0.24em] text-brand">Morningtide</p>
 							<p className="truncate text-sm font-semibold text-ink">&amp; Collective</p>

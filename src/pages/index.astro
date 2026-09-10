@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import FadeIn from '../components/FadeIn.tsx';
 import AnimatedText from '../components/AnimatedText.tsx';
 import AnimatedCard from '../components/AnimatedCard.tsx';
+import { contactInfo } from '../data';
 
 const serviceCards = [
 	{
@@ -34,11 +35,6 @@ const differentiators = [
 		description: 'Trainings are built for immediate clinical application so what you learn is useful the next time you see a client.',
 	},
 ];
-
-const heroChips = [
-	{ label: 'Practice Consulting', icon: Briefcase },
-	{ label: 'CEU Trainings', icon: GraduationCap },
-];
 ---
 
 <Layout
@@ -49,7 +45,6 @@ const heroChips = [
 		<section class="hero-shell relative overflow-hidden">
 			<div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,var(--color-brand-soft),transparent_32%),radial-gradient(circle_at_85%_12%,var(--color-accent-soft),transparent_24%)]"></div>
 			<div class="mx-auto flex max-w-5xl flex-col items-center text-center">
-				<!-- Hero image placeholder: when added, use fetchpriority="high" on the primary hero image. -->
 				<FadeIn delay={0} duration={800}>
 					<p class="eyebrow">Morningtide Consulting and Collective</p>
 				</FadeIn>
@@ -66,16 +61,6 @@ const heroChips = [
 					<p class="mt-8 max-w-3xl text-lg leading-8 text-muted sm:text-xl">
 						Practical support for billing, credentialing, PSYPACT navigation, and continuing education designed for real clinical work.
 					</p>
-				</FadeIn>
-				<FadeIn delay={700}>
-					<div class="visual-grid mt-8 w-full max-w-3xl">
-						{heroChips.map(({ label, icon: Icon }) => (
-							<p class="visual-chip">
-								<Icon className="h-4 w-4" aria-hidden="true" />
-								<span>{label}</span>
-							</p>
-						))}
-					</div>
 				</FadeIn>
 				<FadeIn delay={900}>
 					<div class="mt-10 flex flex-wrap justify-center gap-4">
@@ -171,7 +156,7 @@ const heroChips = [
 								Reach out with your consulting questions, training goals, or practice needs, and we’ll follow up to find the right next step.
 							</p>
 							<div class="flex flex-wrap justify-center gap-4 pt-4">
-								<a class="inline-flex min-h-11 items-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-button-ink shadow-brand transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href="mailto:info@morningtideconsulting.com">
+								<a class="inline-flex min-h-11 items-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-button-ink shadow-brand transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href={`mailto:${contactInfo.email}`}>
 									Start an inquiry
 								</a>
 								<a class="inline-flex min-h-11 items-center rounded-full border border-line bg-surface px-6 py-3 text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href="/services">

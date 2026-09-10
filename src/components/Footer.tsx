@@ -2,6 +2,7 @@ import type { JSX } from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import createLucideIcon from 'lucide-react/dist/esm/createLucideIcon.mjs';
 import FadeIn from './FadeIn';
+import { socialMedia, contactInfo, logoConfig, clinicalServicesUrl } from '../data/socialMedia';
 
 const BrandX = createLucideIcon('brand-x', [
 	['path', { d: 'M5 5l14 14', key: 'x-1' }],
@@ -18,6 +19,17 @@ const BrandLinkedin = createLucideIcon('brand-linkedin', [
 	['circle', { cx: '8', cy: '8', r: '1', key: 'li-5' }],
 ]);
 
+const BrandFacebook = createLucideIcon('brand-facebook', [
+	['path', { d: 'M18 2h-3a6 6 0 0 0 -6 6v3H7v4h2v8h4v-8h3l1-4h-4V8a2 2 0 0 1 2 -2h1z', key: 'fb-1' }],
+]);
+
+// Map platform names to icons
+const iconMap: Record<string, typeof BrandX> = {
+	twitter: BrandX,
+	linkedin: BrandLinkedin,
+	facebook: BrandFacebook,
+};
+
 const services = [
 	{ label: 'Consulting', href: '/services/billing-and-credentialing-consultation' },
 	{ label: 'CEU Trainings', href: '/services/ceu-trainings' },
@@ -31,22 +43,9 @@ const practice = [
 ];
 
 const contact = [
-	{ label: 'Email', href: 'mailto:info@morningtidecc.com', icon: Mail },
-	{ label: 'Phone', href: 'tel:+1-555-0123', icon: Phone },
+	{ label: 'Email', href: `mailto:${contactInfo.email}`, icon: Mail },
+	{ label: 'Phone', href: `tel:${contactInfo.phone}`, icon: Phone },
 	{ label: 'Remote', href: '#', icon: MapPin, isStatic: true },
-];
-
-const socialLinks = [
-	{
-		label: 'Morningtide on X',
-		href: 'https://twitter.com/morningtideCC',
-		icon: BrandX,
-	},
-	{
-		label: 'Morningtide on LinkedIn',
-		href: 'https://www.linkedin.com/company/morning-tide-consulting',
-		icon: BrandLinkedin,
-	},
 ];
 
 const year = new Date().getFullYear();
@@ -57,11 +56,27 @@ export default function Footer(): JSX.Element {
 			<FadeIn threshold={0.1} duration={800}>
 				<div className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 py-12 lg:px-10">
 					{/* Logo / Branding Section */}
-					<div className="space-y-4">
-						<h2 className="text-2xl font-bold leading-none text-ink">Morningtide</h2>
-						<p className="max-w-md text-base leading-7 text-muted">
-							Consulting and continuing education for mental health clinicians.
-						</p>
+					<div className="flex items-start gap-8">
+						<figure className="h-28 w-28 flex-shrink-0 overflow-hidden shadow-medium">
+							<picture>
+								<source
+									media="(prefers-color-scheme: dark)"
+									srcSet={logoConfig.darkMode}
+								/>
+								<img
+									src={logoConfig.lightMode}
+									alt={logoConfig.alt}
+									className="h-full w-full object-cover"
+									loading="lazy"
+								/>
+							</picture>
+						</figure>
+						<div className="space-y-4 pt-1">
+							<h2 className="text-3xl font-bold leading-none text-ink">Morningtide Consulting and Collective</h2>
+							<p className="max-w-md text-base leading-7 text-muted">
+								Consulting and continuing education for mental health clinicians.
+							</p>
+						</div>
 					</div>
 
 					{/* Four-Column Navigation Grid */}
@@ -98,7 +113,7 @@ export default function Footer(): JSX.Element {
 							))}
 							<a
 								className="inline-flex items-center gap-1 py-2 text-sm font-semibold text-accent underline underline-offset-4 transition-colors duration-200 hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-								href="https://twilightpsychology.com"
+								href={clinicalServicesUrl}
 								target="_blank"
 								rel="noopener noreferrer"
 							>
@@ -131,21 +146,24 @@ export default function Footer(): JSX.Element {
 								Follow
 							</p>
 							<div className="flex items-center gap-3">
-								{socialLinks.map(({ label, href, icon: Icon }) => (
-									<a
-										key={href}
-										className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line-soft bg-surface text-muted shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:text-ink hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-										href={href}
-										aria-label={label}
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										<Icon className="h-4 w-4" aria-hidden="true" />
-									</a>
-								))}
+								{socialMedia.map(({ label, href, platform }) => {
+									const Icon = iconMap[platform];
+									return (
+										<a
+											key={href}
+											className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line-soft bg-surface text-muted shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:text-ink hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+											href={href}
+											aria-label={label}
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											<Icon className="h-4 w-4" aria-hidden="true" />
+										</a>
+									);
+								})}
 							</div>
 							<p className="text-xs leading-5 text-muted">
-								info@morningtidecc.com
+								{contactInfo.email}
 							</p>
 						</div>
 					</div>
