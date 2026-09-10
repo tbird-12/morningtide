@@ -60,7 +60,7 @@ function DesktopDropdown({ item, currentPath }: { item: NavItem; currentPath: st
 	return (
 		<div className="relative" onMouseEnter={enter} onMouseLeave={leave} onFocus={enter} onBlur={handleBlur}>
 			<a
-				className={`inline-flex min-h-11 items-center gap-1.5 px-1 text-sm font-semibold transition-colors duration-200 hover:text-(--color-ink) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand) ${active ? 'text-(--color-ink)' : 'text-(--color-muted)'}`}
+				className={`inline-flex min-h-11 items-center gap-1.5 px-1 text-sm font-semibold transition-colors duration-200 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${active ? 'text-ink' : 'text-muted'}`}
 				href={item.href}
 				aria-expanded={open}
 				aria-haspopup="menu"
@@ -83,11 +83,11 @@ function DesktopDropdown({ item, currentPath }: { item: NavItem; currentPath: st
 					transition: 'opacity 250ms cubic-bezier(0.16,1,0.3,1), transform 250ms cubic-bezier(0.16,1,0.3,1)',
 				}}
 			>
-				<div className="rounded-2xl border border-(--color-line-soft) bg-(--color-surface) py-2 shadow-(--shadow-medium)" role="menu" aria-label={`${item.label} navigation`}>
+				<div className="rounded-2xl border border-line-soft bg-surface py-2 shadow-medium" role="menu" aria-label={`${item.label} navigation`}>
 					{item.children?.map((child) => (
 						<a
 							key={child.href}
-							className={`block min-h-11 px-5 py-3 text-sm font-semibold transition-colors duration-200 hover:bg-(--color-surface-strong) hover:text-(--color-ink) focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-(--color-brand) ${isActivePath(currentPath, child.href) ? 'text-(--color-ink)' : 'text-(--color-muted)'}`}
+							className={`block min-h-11 px-5 py-3 text-sm font-semibold transition-colors duration-200 hover:bg-surface-strong hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${isActivePath(currentPath, child.href) ? 'text-ink' : 'text-muted'}`}
 							href={child.href}
 							role="menuitem"
 							aria-current={isActivePath(currentPath, child.href) ? 'page' : undefined}
@@ -185,7 +185,7 @@ function MobileNav({ currentPath, open, onClose }: { currentPath: string; open: 
 			>
 				<div className="space-y-3 px-4 pt-4 pb-5">
 					<a
-						className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-(--color-button-ink) shadow-(--shadow-brand) transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
+						className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-semibold text-button-ink shadow-brand transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
 						href="/#contact"
 						onClick={onClose}
 					>
@@ -193,7 +193,7 @@ function MobileNav({ currentPath, open, onClose }: { currentPath: string; open: 
 					</a>
 
 					<a
-						className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-(--color-line-soft) bg-(--color-surface) px-5 py-3 text-sm font-semibold text-(--color-ink) shadow-(--shadow-soft) transition-all duration-300 hover:-translate-y-0.5 hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
+						className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-line-soft bg-surface px-5 py-3 text-sm font-semibold text-ink shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
 						href="mailto:info@morningtideconsulting.com"
 						onClick={onClose}
 					>
@@ -203,15 +203,15 @@ function MobileNav({ currentPath, open, onClose }: { currentPath: string; open: 
 
 					{navigation.map((item) =>
 						item.children ? (
-							<div key={item.href} className="rounded-2xl border border-(--color-line-soft) bg-(--color-surface) p-3 shadow-(--shadow-soft)">
-								<p className="px-1 pb-2 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-(--color-brand)">
+							<div key={item.href} className="rounded-2xl border border-line-soft bg-surface p-3 shadow-soft">
+								<p className="px-1 pb-2 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-brand">
 									{item.label}
 								</p>
 								<div className="space-y-1">
 									{item.children.map((child) => (
 										<a
 											key={child.href}
-											className={`block min-h-11 rounded-xl px-3 py-3 text-sm font-semibold transition-colors duration-200 hover:bg-(--color-surface-strong) hover:text-(--color-ink) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand) ${isActivePath(currentPath, child.href) ? 'bg-(--color-surface-strong) text-(--color-ink)' : 'text-(--color-muted)'}`}
+											className={`block min-h-11 rounded-xl px-3 py-3 text-sm font-semibold transition-colors duration-200 hover:bg-surface-strong hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${isActivePath(currentPath, child.href) ? 'bg-surface-strong text-ink' : 'text-muted'}`}
 											href={child.href}
 											onClick={onClose}
 											aria-current={isActivePath(currentPath, child.href) ? 'page' : undefined}
@@ -224,7 +224,7 @@ function MobileNav({ currentPath, open, onClose }: { currentPath: string; open: 
 						) : (
 							<a
 								key={item.href}
-								className={`block min-h-11 rounded-2xl border border-(--color-line-soft) bg-(--color-surface) px-4 py-3 text-sm font-semibold shadow-(--shadow-soft) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand) ${isActivePath(currentPath, item.href) ? 'text-(--color-ink)' : 'text-(--color-muted)'}`}
+								className={`block min-h-11 rounded-2xl border border-line-soft bg-surface px-4 py-3 text-sm font-semibold shadow-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${isActivePath(currentPath, item.href) ? 'text-ink' : 'text-muted'}`}
 								href={item.href}
 								onClick={onClose}
 								aria-current={isActivePath(currentPath, item.href) ? 'page' : undefined}
@@ -245,15 +245,15 @@ export default function Header({ currentPath }: { currentPath: string }) {
 
 	return (
 		<>
-			<header className="fixed top-0 left-0 right-0 z-40 border-b border-(--color-line-soft) bg-(--color-header-bg) backdrop-blur-xl md:sticky">
+			<header className="fixed top-0 left-0 right-0 z-40 border-b border-line-soft bg-header-bg backdrop-blur-xl md:sticky">
 				<div className="mx-auto hidden max-w-6xl items-center justify-between gap-6 px-4 py-4 md:flex md:px-6 lg:px-10">
 					<a className="group flex items-center gap-4" href="/" aria-label="Morningtide Consulting and Collective home">
-						<div className="flex h-11 w-11 items-center justify-center rounded-full border border-(--color-line) bg-(--color-surface) text-lg font-semibold text-(--color-brand) shadow-(--shadow-soft) transition-transform duration-300 group-hover:scale-105">
+						<div className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-surface text-lg font-semibold text-brand shadow-soft transition-transform duration-300 group-hover:scale-105">
 							MCC
 						</div>
 						<div>
-							<p className="text-[0.68rem] font-semibold uppercase tracking-[0.32em] text-(--color-brand)">Morningtide Consulting</p>
-							<p className="text-lg font-semibold text-(--color-ink) md:text-xl">&amp; Collective</p>
+							<p className="text-[0.68rem] font-semibold uppercase tracking-[0.32em] text-brand">Morningtide Consulting</p>
+							<p className="text-lg font-semibold text-ink md:text-xl">&amp; Collective</p>
 						</div>
 					</a>
 
@@ -264,7 +264,7 @@ export default function Header({ currentPath }: { currentPath: string }) {
 							) : (
 								<a
 									key={item.href}
-									className={`inline-flex min-h-11 items-center px-1 text-sm font-semibold transition-colors duration-200 hover:text-(--color-ink) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand) ${isActivePath(currentPath, item.href) ? 'text-(--color-ink)' : 'text-(--color-muted)'}`}
+									className={`inline-flex min-h-11 items-center px-1 text-sm font-semibold transition-colors duration-200 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${isActivePath(currentPath, item.href) ? 'text-ink' : 'text-muted'}`}
 									href={item.href}
 									aria-current={isActivePath(currentPath, item.href) ? 'page' : undefined}
 								>
@@ -277,7 +277,7 @@ export default function Header({ currentPath }: { currentPath: string }) {
 					<div className="hidden items-center gap-2.5 md:flex">
 						<ThemeToggle />
 						<a
-							className="inline-flex min-h-11 items-center rounded-full bg-(--color-accent) px-5 py-2.5 text-sm font-semibold text-(--color-button-ink) shadow-(--shadow-brand) transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
+							className="inline-flex min-h-11 items-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-button-ink shadow-brand transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
 							href="/#contact"
 						>
 							Book a Consultation
@@ -291,19 +291,19 @@ export default function Header({ currentPath }: { currentPath: string }) {
 						href="/"
 						aria-label="Morningtide Consulting and Collective home"
 					>
-						<div className="flex h-10 w-10 items-center justify-center rounded-full border border-(--color-line) bg-(--color-surface) text-sm font-semibold text-(--color-brand) shadow-(--shadow-soft)">
+						<div className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-surface text-sm font-semibold text-brand shadow-soft">
 							MCC
 						</div>
 						<div className="min-w-0">
-							<p className="text-[0.56rem] font-semibold uppercase tracking-[0.24em] text-(--color-brand)">Morningtide</p>
-							<p className="truncate text-sm font-semibold text-(--color-ink)">&amp; Collective</p>
+							<p className="text-[0.56rem] font-semibold uppercase tracking-[0.24em] text-brand">Morningtide</p>
+							<p className="truncate text-sm font-semibold text-ink">&amp; Collective</p>
 						</div>
 					</a>
 					<div className="flex shrink-0 items-center gap-2">
 						<ThemeToggle />
 						<button
 							type="button"
-							className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full bg-(--color-surface) text-(--color-muted) shadow-sm transition-all duration-300 hover:text-(--color-ink) hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)"
+							className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full bg-surface text-muted shadow-sm transition-all duration-300 hover:text-ink hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
 							aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
 							aria-expanded={mobileOpen}
 							aria-controls="mobile-navigation"

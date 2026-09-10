@@ -57,10 +57,10 @@ const pricingCards = [
 				split="word"
 				stagger={50}
 				delay={100}
-				class="max-w-4xl text-5xl leading-none text-(--color-ink) sm:text-6xl"
+				class="max-w-4xl text-5xl leading-none text-ink sm:text-6xl"
 			/>
 			<FadeIn delay={400}>
-				<p class="max-w-3xl text-lg leading-8 text-(--color-muted)">
+				<p class="max-w-3xl text-lg leading-8 text-muted">
 					Morningtide offers two core services: strategic consulting for practice operations and continuing education trainings designed for immediate clinical application.
 				</p>
 			</FadeIn>
@@ -69,18 +69,18 @@ const pricingCards = [
 		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[1fr_0.95fr]">
 			<FadeIn class="section-shell rounded-4xl p-8">
 				<div class="flex items-center gap-3">
-					<div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-(--color-section-tint) text-(--color-brand)">
+					<div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-section-tint text-brand">
 						<Briefcase className="h-5 w-5" aria-hidden="true" />
 					</div>
-					<h2 class="mb-0 text-4xl leading-none text-(--color-ink)">Consulting Services</h2>
+					<h2 class="mb-0 text-4xl leading-none text-ink">Consulting Services</h2>
 				</div>
-				<p class="mt-6 text-base leading-8 text-(--color-muted)">
+				<p class="mt-6 text-base leading-8 text-muted">
 					Direct, practical guidance from someone running a multi-state practice. Consulting covers everything from billing workflows to PSYPACT logistics.
 				</p>
-				<ul class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
+				<ul class="mt-6 space-y-3 text-sm leading-7 text-muted">
 					{consultingTopics.map((item) => (
 						<li class="flex gap-3">
-							<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span>
+							<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-brand"></span>
 							<span>{item}</span>
 						</li>
 					))}
@@ -90,22 +90,22 @@ const pricingCards = [
 			<FadeIn delay={100} class="premium-card rounded-4xl p-8">
 				<p class="eyebrow">Consulting Details</p>
 				<div class="mt-6 space-y-4">
-					<div class="rounded-3xl border border-(--color-line-soft) bg-(--color-section-tint) p-4">
-						<p class="text-sm font-semibold text-(--color-brand)">Format</p>
-						<p class="mt-2 text-base font-semibold text-(--color-ink)">Virtual secure video</p>
+					<div class="rounded-3xl border border-line-soft bg-section-tint p-4">
+						<p class="text-sm font-semibold text-brand">Format</p>
+						<p class="mt-2 text-base font-semibold text-ink">Virtual secure video</p>
 					</div>
-					<div class="rounded-3xl border border-(--color-line-soft) bg-(--color-section-tint) p-4">
-						<p class="text-sm font-semibold text-(--color-brand)">For Whom</p>
-						<p class="mt-2 text-base font-semibold text-(--color-ink)">All clinician types</p>
+					<div class="rounded-3xl border border-line-soft bg-section-tint p-4">
+						<p class="text-sm font-semibold text-brand">For Whom</p>
+						<p class="mt-2 text-base font-semibold text-ink">All clinician types</p>
 					</div>
-					<div class="rounded-3xl border border-(--color-line-soft) bg-(--color-section-tint) p-4">
-						<p class="text-sm font-semibold text-(--color-brand)">Duration</p>
-						<p class="mt-2 text-base font-semibold text-(--color-ink)">Tailored to needs</p>
+					<div class="rounded-3xl border border-line-soft bg-section-tint p-4">
+						<p class="text-sm font-semibold text-brand">Duration</p>
+						<p class="mt-2 text-base font-semibold text-ink">Tailored to needs</p>
 					</div>
 				</div>
-				<div class="mt-6 rounded-4xl border border-(--color-line-soft) bg-(--color-section-tint) p-5">
-					<p class="text-sm font-semibold text-(--color-ink)">Every Consultation is Unique</p>
-					<p class="mt-2 text-sm leading-6 text-(--color-muted)">Consultations are customized to your specific challenge — whether credentialing, billing efficiency, transitioning to private-pay, or building new service lines.</p>
+				<div class="mt-6 rounded-4xl border border-line-soft bg-section-tint p-5">
+					<p class="text-sm font-semibold text-ink">Every Consultation is Unique</p>
+					<p class="mt-2 text-sm leading-6 text-muted">Consultations are customized to your specific challenge — whether credentialing, billing efficiency, transitioning to private-pay, or building new service lines.</p>
 				</div>
 			</FadeIn>
 		</section>
@@ -113,23 +113,23 @@ const pricingCards = [
 		<section class="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-[0.95fr_1.05fr]">
 			<FadeIn delay={100} class="premium-card rounded-4xl p-8">
 				<p class="eyebrow">CEU Trainings</p>
-				<h2 class="mt-4 text-4xl leading-none text-(--color-ink)">Continuing Education Grounded in Real Clinical Work</h2>
-				<p class="mt-5 text-base leading-8 text-(--color-muted)">
+				<h2 class="mt-4 text-4xl leading-none text-ink">Continuing Education Grounded in Real Clinical Work</h2>
+				<p class="mt-5 text-base leading-8 text-muted">
 					Trainings are built from active clinical practice. Expect depth in assessment tools, diagnostic reasoning, differential diagnosis, and immediate clinical application.
 				</p>
-				<div class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
-					<p class="font-semibold text-(--color-ink)">Current trainings:</p>
+				<div class="mt-6 space-y-3 text-sm leading-7 text-muted">
+					<p class="font-semibold text-ink">Current trainings:</p>
 					<ul class="space-y-2">
 						<li class="flex gap-3">
-							<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span>
+							<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-brand"></span>
 							<span>ADHD Assessment Training</span>
 						</li>
 						<li class="flex gap-3">
-							<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span>
+							<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-brand"></span>
 							<span>Autism Evaluation Training</span>
 						</li>
 						<li class="flex gap-3">
-							<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span>
+							<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-brand"></span>
 							<span>Custom topics available</span>
 						</li>
 					</ul>
@@ -138,22 +138,22 @@ const pricingCards = [
 
 			<FadeIn class="section-shell rounded-4xl p-8">
 				<div class="flex items-center gap-3">
-					<div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-(--color-section-tint) text-(--color-brand)">
+					<div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-section-tint text-brand">
 						<BookOpen className="h-5 w-5" aria-hidden="true" />
 					</div>
-					<h3 class="mb-0 text-2xl leading-none text-(--color-ink)">What's Included</h3>
+					<h3 class="mb-0 text-2xl leading-none text-ink">What's Included</h3>
 				</div>
-				<ul class="mt-6 space-y-3 text-sm leading-7 text-(--color-muted)">
+				<ul class="mt-6 space-y-3 text-sm leading-7 text-muted">
 					{ceuIncludes.map((item) => (
 						<li class="flex gap-3">
-							<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span>
+							<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-brand"></span>
 							<span>{item}</span>
 						</li>
 					))}
 				</ul>
-				<div class="mt-6 rounded-4xl border border-(--color-line-soft) bg-(--color-section-tint) p-5">
-					<p class="text-sm font-semibold text-(--color-ink)">Formats Available</p>
-					<p class="mt-2 text-sm leading-6 text-(--color-muted)">Live virtual sessions, on-site workshops for organizations, and custom training engagements for group practices and agencies.</p>
+				<div class="mt-6 rounded-4xl border border-line-soft bg-section-tint p-5">
+					<p class="text-sm font-semibold text-ink">Formats Available</p>
+					<p class="mt-2 text-sm leading-6 text-muted">Live virtual sessions, on-site workshops for organizations, and custom training engagements for group practices and agencies.</p>
 				</div>
 			</FadeIn>
 		</section>
@@ -162,8 +162,8 @@ const pricingCards = [
 			<FadeIn>
 				<div class="max-w-3xl space-y-4">
 					<p class="eyebrow">Investment & Pricing</p>
-					<h2 class="text-4xl leading-none text-(--color-ink) sm:text-5xl">Flexible Options to Fit Your Needs</h2>
-					<p class="text-lg leading-8 text-(--color-muted)">
+					<h2 class="text-4xl leading-none text-ink sm:text-5xl">Flexible Options to Fit Your Needs</h2>
+					<p class="text-lg leading-8 text-muted">
 						Pricing is tailored to the scope of work and audience size. Payment plans are available for larger projects.
 					</p>
 				</div>
@@ -173,24 +173,24 @@ const pricingCards = [
 					<AnimatedCard href="/#contact" index={i} className="section-shell rounded-4xl p-8 hover:-translate-y-1">
 						<div class="flex items-start justify-between">
 							<div>
-								<h3 class="mb-0 text-3xl leading-none text-(--color-ink)">{card.title}</h3>
-								<p class="mt-2 text-base leading-8 text-(--color-muted)">{card.description}</p>
+								<h3 class="mb-0 text-3xl leading-none text-ink">{card.title}</h3>
+								<p class="mt-2 text-base leading-8 text-muted">{card.description}</p>
 							</div>
 						</div>
 						<div class="mt-6 space-y-2">
 							{card.details.map((detail) => (
-								<p class="flex items-center gap-2 text-sm text-(--color-muted)">
-									<span class="h-1.5 w-1.5 rounded-full bg-(--color-brand)"></span>
+								<p class="flex items-center gap-2 text-sm text-muted">
+									<span class="h-1.5 w-1.5 rounded-full bg-brand"></span>
 									{detail}
 								</p>
 							))}
 						</div>
-						<div class="mt-6 border-t border-(--color-line-soft) pt-6">
-							<p class="text-sm font-semibold text-(--color-brand)">Investment</p>
-							<p class="mt-2 text-2xl font-bold text-(--color-ink)">{card.price}</p>
-							<p class="mt-3 text-xs text-(--color-muted)">Reach out for detailed pricing</p>
+						<div class="mt-6 border-t border-line-soft pt-6">
+							<p class="text-sm font-semibold text-brand">Investment</p>
+							<p class="mt-2 text-2xl font-bold text-ink">{card.price}</p>
+							<p class="mt-3 text-xs text-muted">Reach out for detailed pricing</p>
 						</div>
-						<span class="mt-6 inline-flex items-center text-sm font-semibold text-(--color-accent)">
+						<span class="mt-6 inline-flex items-center text-sm font-semibold text-accent">
 							{card.cta}
 						</span>
 					</AnimatedCard>
@@ -202,15 +202,15 @@ const pricingCards = [
 			<div class="grid gap-8 lg:grid-cols-3">
 				<div>
 					<p class="eyebrow">Flexible Payment</p>
-					<p class="mt-4 text-base leading-8 text-(--color-muted)">Payment plans available for larger consulting engagements and organization-wide trainings. Credit cards, Zelle, and Venmo accepted.</p>
+					<p class="mt-4 text-base leading-8 text-muted">Payment plans available for larger consulting engagements and organization-wide trainings. Credit cards, Zelle, and Venmo accepted.</p>
 				</div>
 				<div>
 					<p class="eyebrow">Custom Solutions</p>
-					<p class="mt-4 text-base leading-8 text-(--color-muted)">Don't see a service that fits? Contact us to discuss your specific needs, and we can develop a customized program.</p>
+					<p class="mt-4 text-base leading-8 text-muted">Don't see a service that fits? Contact us to discuss your specific needs, and we can develop a customized program.</p>
 				</div>
 				<div>
 					<p class="eyebrow">Next Step</p>
-					<a class="mt-4 inline-flex rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-(--color-button-ink) shadow-(--shadow-brand) transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" href="/#contact">Schedule a consultation</a>
+					<a class="mt-4 inline-flex rounded-full bg-accent px-5 py-3 text-sm font-semibold text-button-ink shadow-shadow-brand transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" href="/#contact">Schedule a consultation</a>
 				</div>
 			</div>
 		</section>

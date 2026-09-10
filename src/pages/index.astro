@@ -60,10 +60,10 @@ const heroChips = [
 					stagger={40}
 					delay={150}
 					duration={600}
-					class="mt-6 max-w-4xl text-wrap-balance text-5xl leading-none text-(--color-ink) sm:text-6xl lg:text-7xl"
+					class="mt-6 max-w-4xl text-wrap-balance text-5xl leading-none text-ink sm:text-6xl lg:text-7xl"
 				/>
 				<FadeIn delay={500}>
-					<p class="mt-8 max-w-3xl text-lg leading-8 text-(--color-muted) sm:text-xl">
+					<p class="mt-8 max-w-3xl text-lg leading-8 text-muted sm:text-xl">
 						Practical support for billing, credentialing, PSYPACT navigation, and continuing education designed for real clinical work.
 					</p>
 				</FadeIn>
@@ -79,10 +79,10 @@ const heroChips = [
 				</FadeIn>
 				<FadeIn delay={900}>
 					<div class="mt-10 flex flex-wrap justify-center gap-4">
-						<a class="inline-flex min-h-11 items-center rounded-full bg-(--color-accent) px-6 py-3 text-sm font-semibold text-(--color-button-ink) shadow-(--shadow-brand) transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)" href="/#contact">
+						<a class="inline-flex min-h-11 items-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-button-ink shadow-brand transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href="/#contact">
 							Book a Consultation
 						</a>
-						<a class="inline-flex min-h-11 items-center rounded-full border border-(--color-line) bg-(--color-surface) px-6 py-3 text-sm font-semibold text-(--color-ink) transition-all duration-300 hover:-translate-y-0.5 hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)" href="/services/ceu-trainings">
+						<a class="inline-flex min-h-11 items-center rounded-full border border-line bg-surface px-6 py-3 text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href="/services/ceu-trainings">
 							View CEU Trainings
 						</a>
 					</div>
@@ -95,8 +95,8 @@ const heroChips = [
 				<FadeIn>
 					<div class="max-w-3xl space-y-4">
 						<p class="eyebrow">Primary Services</p>
-						<h2 class="text-4xl leading-none text-(--color-ink) sm:text-5xl">What Morningtide Leads With</h2>
-						<p class="text-lg leading-8 text-(--color-muted)">
+						<h2 class="text-4xl leading-none text-ink sm:text-5xl">What Morningtide Leads With</h2>
+						<p class="text-lg leading-8 text-muted">
 							Morningtide is built first for clinician-facing work: strategic consulting and continuing education that support better care and stronger operations.
 						</p>
 					</div>
@@ -107,13 +107,13 @@ const heroChips = [
 						return (
 							<AnimatedCard href={service.href} index={i} className="section-shell rounded-4xl p-8 hover:-translate-y-1">
 								<div class="flex items-center gap-3">
-									<div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-(--color-section-tint) text-(--color-brand)">
+									<div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-section-tint text-brand">
 										<Icon className="h-5 w-5" aria-hidden="true" />
 									</div>
-									<h3 class="mb-0 text-3xl leading-none text-(--color-ink)">{service.title}</h3>
+									<h3 class="mb-0 text-3xl leading-none text-ink">{service.title}</h3>
 								</div>
-								<p class="mt-5 max-w-xl text-base leading-8 text-(--color-muted)">{service.description}</p>
-								<span class="mt-8 inline-flex items-center text-sm font-semibold text-(--color-accent)">
+								<p class="mt-5 max-w-xl text-base leading-8 text-muted">{service.description}</p>
+								<span class="mt-8 inline-flex items-center text-sm font-semibold text-accent">
 									Learn more
 								</span>
 							</AnimatedCard>
@@ -123,12 +123,12 @@ const heroChips = [
 			</div>
 		</section>
 
-		<section class="home-section bg-(--color-section-tint)">
+		<section class="home-section bg-section-tint">
 			<div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-10">
 				<FadeIn class="section-shell rounded-4xl">
 					<p class="eyebrow">Meet Dr. Cornett</p>
-					<p class="mt-6 max-w-4xl text-base leading-8 text-(--color-muted)">
-						Led by Dr. Heather Cornett, Ph.D., LP — licensed psychologist and practice operations expert. <a class="inline-flex items-center gap-1 font-semibold text-(--color-accent) underline underline-offset-4 transition-colors duration-200 hover:text-(--color-brand) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)" href="/about">Learn more</a>
+					<p class="mt-6 max-w-4xl text-base leading-8 text-muted">
+						Led by Dr. Heather Cornett, Ph.D., LP — licensed psychologist and practice operations expert. <a class="inline-flex items-center gap-1 font-semibold text-accent underline underline-offset-4 transition-colors duration-200 hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href="/about">Learn more</a>
 					</p>
 				</FadeIn>
 			</div>
@@ -139,14 +139,14 @@ const heroChips = [
 				<FadeIn>
 					<div class="max-w-3xl space-y-4">
 						<p class="eyebrow">Why MCC</p>
-						<h2 class="text-4xl leading-none text-(--color-ink) sm:text-5xl">Built for Clinicians Who Want Useful Answers</h2>
+						<h2 class="text-4xl leading-none text-ink sm:text-5xl">Built for Clinicians Who Want Useful Answers</h2>
 					</div>
 				</FadeIn>
 				<div class="grid gap-6 lg:grid-cols-3">
 					{differentiators.map((item, i) => (
 						<AnimatedCard index={i} stagger={140} className="rounded-[1.75rem] p-6">
-							<h3 class="mb-0 text-2xl leading-tight text-(--color-ink)">{item.title}</h3>
-							<p class="mt-4 text-base leading-8 text-(--color-muted)">{item.description}</p>
+							<h3 class="mb-0 text-2xl leading-tight text-ink">{item.title}</h3>
+							<p class="mt-4 text-base leading-8 text-muted">{item.description}</p>
 						</AnimatedCard>
 					))}
 				</div>
@@ -164,17 +164,17 @@ const heroChips = [
 							split="word"
 							stagger={60}
 							delay={100}
-							class="text-4xl leading-none text-(--color-ink) sm:text-5xl"
+							class="text-4xl leading-none text-ink sm:text-5xl"
 						/>
 						<FadeIn delay={300}>
-							<p class="text-lg leading-8 text-(--color-muted)">
+							<p class="text-lg leading-8 text-muted">
 								Reach out with your consulting questions, training goals, or practice needs, and we’ll follow up to find the right next step.
 							</p>
 							<div class="flex flex-wrap justify-center gap-4 pt-4">
-								<a class="inline-flex min-h-11 items-center rounded-full bg-(--color-accent) px-6 py-3 text-sm font-semibold text-(--color-button-ink) shadow-(--shadow-brand) transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)" href="mailto:info@morningtideconsulting.com">
+								<a class="inline-flex min-h-11 items-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-button-ink shadow-brand transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href="mailto:info@morningtideconsulting.com">
 									Start an inquiry
 								</a>
-								<a class="inline-flex min-h-11 items-center rounded-full border border-(--color-line) bg-(--color-surface) px-6 py-3 text-sm font-semibold text-(--color-ink) transition-all duration-300 hover:-translate-y-0.5 hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)" href="/services">
+								<a class="inline-flex min-h-11 items-center rounded-full border border-line bg-surface px-6 py-3 text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href="/services">
 									Browse services
 								</a>
 							</div>
