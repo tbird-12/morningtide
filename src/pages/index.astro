@@ -1,9 +1,10 @@
 ---
-import { BookOpen, Briefcase, ExternalLink, GraduationCap } from 'lucide-react';
+import { BookOpen, Briefcase, GraduationCap, Shield, MapPin } from 'lucide-react';
 import Layout from '../layouts/Layout.astro';
 import FadeIn from '../components/FadeIn.tsx';
 import AnimatedText from '../components/AnimatedText.tsx';
 import AnimatedCard from '../components/AnimatedCard.tsx';
+import ContactForm from '../components/ContactForm.tsx';
 import { contactInfo } from '../data';
 
 const serviceCards = [
@@ -34,6 +35,13 @@ const differentiators = [
 		title: 'CEUs That Transfer',
 		description: 'Trainings are built for immediate clinical application so what you learn is useful the next time you see a client.',
 	},
+];
+
+const trustCredentials = [
+	{ icon: GraduationCap, label: 'Ph.D., Licensed Psychologist' },
+	{ icon: Shield, label: 'PSYPACT Authorized' },
+	{ icon: MapPin, label: 'Licensed in KY & NM' },
+	{ icon: Briefcase, label: '10+ Years Clinical Practice' },
 ];
 ---
 
@@ -72,6 +80,18 @@ const differentiators = [
 						</a>
 					</div>
 				</FadeIn>
+
+					<!-- Trust credentials bar -->
+					<FadeIn delay={1100}>
+						<div class="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 border-t border-line-soft pt-8">
+							{trustCredentials.map(({ icon: Icon, label }) => (
+								<div class="flex items-center gap-2 text-xs font-semibold text-muted">
+									<Icon className="h-4 w-4 shrink-0 text-brand" aria-hidden="true" />
+									<span>{label}</span>
+								</div>
+							))}
+						</div>
+					</FadeIn>
 			</div>
 		</section>
 
@@ -113,7 +133,7 @@ const differentiators = [
 				<FadeIn class="section-shell rounded-4xl">
 					<p class="eyebrow">Meet Dr. Cornett</p>
 					<p class="mt-6 max-w-4xl text-base leading-8 text-muted">
-						Led by Dr. Heather Cornett, Ph.D., LP — licensed psychologist and practice operations expert. <a class="inline-flex items-center gap-1 font-semibold text-accent underline underline-offset-4 transition-colors duration-200 hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href="/about">Learn more</a>
+						Led by Dr. Heather Cornett, Ph.D., LP — licensed psychologist and practice operations expert. <a class="inline-flex items-center gap-1 font-semibold text-accent-text underline underline-offset-4 transition-colors duration-200 hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href="/about">Learn more</a>
 					</p>
 				</FadeIn>
 			</div>
@@ -141,29 +161,41 @@ const differentiators = [
 		<section id="contact" class="home-section">
 			<div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-10">
 				<FadeIn class="section-shell rounded-4xl">
-					<div class="mx-auto max-w-3xl space-y-6 text-center">
-						<p class="eyebrow">Ready to work together?</p>
-						<AnimatedText
-							text="Let’s talk about your consulting or training needs."
-							as="h2"
-							split="word"
-							stagger={60}
-							delay={100}
-							class="text-4xl leading-none text-ink sm:text-5xl"
-						/>
-						<FadeIn delay={300}>
-							<p class="text-lg leading-8 text-muted">
-								Reach out with your consulting questions, training goals, or practice needs, and we’ll follow up to find the right next step.
-							</p>
-							<div class="flex flex-wrap justify-center gap-4 pt-4">
-								<a class="inline-flex min-h-11 items-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-button-ink shadow-brand transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href={`mailto:${contactInfo.email}`}>
-									Start an inquiry
-								</a>
-								<a class="inline-flex min-h-11 items-center rounded-full border border-line bg-surface px-6 py-3 text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href="/services">
-									Browse services
-								</a>
+					<div class="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
+						<!-- Left: value prop + contact info -->
+						<div class="space-y-6">
+							<div class="space-y-4">
+								<p class="eyebrow">Ready to work together?</p>
+								<h2 class="text-4xl leading-none text-ink sm:text-5xl">Let's talk about your practice needs.</h2>
+								<p class="text-base leading-8 text-muted">
+									Whether you need consulting on billing, credentialing, or PSYPACT — or you're interested in a CEU training — reach out and we'll figure out the right next step together.
+								</p>
 							</div>
-						</FadeIn>
+
+							<div class="space-y-3 pt-2">
+								<div class="flex items-center gap-3 text-sm font-semibold text-muted">
+									<svg class="h-4 w-4 shrink-0 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+									<a href={`mailto:${contactInfo.email}`} class="hover:text-ink transition-colors">{contactInfo.email}</a>
+								</div>
+								<div class="flex items-center gap-3 text-sm font-semibold text-muted">
+									<svg class="h-4 w-4 shrink-0 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.81-.81a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg>
+									<a href={`tel:${contactInfo.phone}`} class="hover:text-ink transition-colors">{contactInfo.phoneDisplay}</a>
+								</div>
+								<div class="flex items-center gap-3 text-sm font-semibold text-muted">
+									<svg class="h-4 w-4 shrink-0 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+									<span>Remote / Virtual Sessions</span>
+								</div>
+								<div class="flex items-center gap-3 text-sm font-semibold text-muted">
+									<svg class="h-4 w-4 shrink-0 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+									<span>Response within 1–2 business days</span>
+								</div>
+							</div>
+						</div>
+
+						<!-- Right: contact form island -->
+						<div class="rounded-3xl border border-line-soft bg-surface p-6 shadow-medium sm:p-8">
+							<ContactForm client:visible />
+						</div>
 					</div>
 				</FadeIn>
 			</div>

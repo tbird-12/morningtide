@@ -9,6 +9,7 @@
     --color-brand-soft: #ede8df;
     --color-accent: #7a8d83;
     --color-accent-soft: #eef2f0;
+    --color-accent-text: #4e6b61; /* WCAG AA compliant on white (5.9:1) */
     --color-ink: #2d3230;
     --color-muted: #6b7571;
     --color-line: #e8e5dd;
@@ -40,6 +41,7 @@
     --color-brand-soft: #3a342a;
     --color-accent: #9eb1a8;
     --color-accent-soft: #28332f;
+    --color-accent-text: #b8cfc9; /* WCAG AA compliant on dark surface (#1c211f, 4.6:1) */
     --color-ink: #f1f3f2;
     --color-muted: #96a19c;
     --color-line: #2a312e;

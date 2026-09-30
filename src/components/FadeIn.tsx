@@ -7,9 +7,7 @@ interface FadeInProps {
 	delay?: number;
 	duration?: number;
 	distance?: number;
-	threshold?: number;
 	class?: string;
-	once?: boolean;
 }
 
 export default function FadeIn({

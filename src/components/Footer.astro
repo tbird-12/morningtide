@@ -1,0 +1,161 @@
+---
+import { socialMedia, contactInfo, logoConfig, clinicalServicesUrl } from '../data/socialMedia';
+import logoLight from '../assets/logo-light.jpg';
+import logoDark from '../assets/logo-dark.jpg';
+
+const services = [
+	{ label: 'Consulting', href: '/services/billing-and-credentialing-consultation' },
+	{ label: 'CEU Trainings', href: '/services/ceu-trainings' },
+	{ label: 'Pricing', href: '/pricing' },
+];
+
+const practice = [
+	{ label: 'About Dr. Cornett', href: '/about' },
+	{ label: 'FAQ', href: '/faq' },
+];
+
+const year = new Date().getFullYear();
+
+// Inline SVG paths per platform — avoids brittle createLucideIcon deep import
+const socialIcons: Record<string, string> = {
+	twitter: '<path d="M5 5l14 14"/><path d="M19 5 9 15"/><path d="M15 19l4-4"/><path d="M5 19 13 11"/>',
+	linkedin: '<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 10v6"/><path d="M12 16v-3a2 2 0 0 1 4 0v3"/><path d="M12 10v6"/><circle cx="8" cy="8" r="1"/>',
+	facebook: '<path d="M18 2h-3a6 6 0 0 0-6 6v3H7v4h2v8h4v-8h3l1-4h-4V8a2 2 0 0 1 2-2h1z"/>',
+	instagram: '<rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>',
+};
+---
+
+<footer class="border-t border-line-soft bg-surface">
+	<div
+		class="enter-fade enter-fade--up mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 py-12 lg:px-10"
+		style="--enter-delay: 0ms; --enter-duration: 800ms;"
+	>
+		<!-- Logo + Brand description -->
+		<div class="flex items-start gap-8">
+			<figure class="h-28 w-28 shrink-0 overflow-hidden shadow-medium">
+				<picture>
+					<source media="(prefers-color-scheme: dark)" srcset={logoDark.src} />
+					<img
+						src={logoLight.src}
+						alt={logoConfig.alt}
+						class="h-full w-full object-cover"
+						loading="lazy"
+						width="112"
+						height="112"
+					/>
+				</picture>
+			</figure>
+			<div class="space-y-4 pt-1">
+				<h2 class="text-3xl font-bold leading-none text-ink">Morningtide Consulting and Collective</h2>
+				<p class="max-w-md text-base leading-7 text-muted">
+					Consulting and continuing education for mental health clinicians.
+				</p>
+			</div>
+		</div>
+
+		<!-- Four-column navigation grid -->
+		<div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+			<!-- Services -->
+			<nav aria-label="Services" class="space-y-3">
+				<p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-brand">Services</p>
+				{services.map(link => (
+					<a
+						href={link.href}
+						class="block py-2 text-sm font-semibold text-muted transition-all duration-200 hover:translate-x-1 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+					>
+						{link.label}
+					</a>
+				))}
+			</nav>
+
+			<!-- Practice -->
+			<nav aria-label="Practice" class="space-y-3">
+				<p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-brand">Practice</p>
+				{practice.map(link => (
+					<a
+						href={link.href}
+						class="block py-2 text-sm font-semibold text-muted transition-all duration-200 hover:translate-x-1 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+					>
+						{link.label}
+					</a>
+				))}
+				<a
+					href={clinicalServicesUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="inline-flex items-center gap-1 py-2 text-sm font-semibold text-accent-text underline underline-offset-4 transition-colors duration-200 hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+				>
+					Clinical Services
+					<svg
+						class="h-3 w-3"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						aria-hidden="true"
+					>
+						<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+						<polyline points="15 3 21 3 21 9"/>
+						<line x1="10" y1="14" x2="21" y2="3"/>
+					</svg>
+				</a>
+			</nav>
+
+			<!-- Contact -->
+			<nav aria-label="Contact" class="space-y-3">
+				<p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-brand">Contact</p>
+				<a
+					href={`mailto:${contactInfo.email}`}
+					class="block py-2 text-sm font-semibold text-muted transition-all duration-200 hover:translate-x-1 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+				>
+					{contactInfo.email}
+				</a>
+				<a
+					href={`tel:${contactInfo.phone}`}
+					class="block py-2 text-sm font-semibold text-muted transition-all duration-200 hover:translate-x-1 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+				>
+					{contactInfo.phoneDisplay}
+				</a>
+				<p class="py-2 text-sm font-semibold text-muted">{contactInfo.locationDisplay}</p>
+			</nav>
+
+			<!-- Social -->
+			<div class="space-y-3">
+				<p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-brand">Follow</p>
+				<div class="flex items-center gap-3">
+					{socialMedia.map(social => (
+						<a
+							href={social.href}
+							aria-label={social.ariaLabel}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line-soft bg-surface text-muted shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:text-ink hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+						>
+							<svg
+								class="h-4 w-4"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								aria-hidden="true"
+								set:html={socialIcons[social.platform] ?? ''}
+							/>
+						</a>
+					))}
+				</div>
+				<p class="text-xs leading-5 text-muted">{contactInfo.email}</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Copyright bar -->
+	<div class="border-t border-line-soft">
+		<p class="mx-auto max-w-6xl px-6 py-5 text-xs text-muted lg:px-10">
+			&copy; {year} Morningtide Consulting and Collective. All rights reserved.
+		</p>
+	</div>
+</footer>
