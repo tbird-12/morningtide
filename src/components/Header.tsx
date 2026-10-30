@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { Mail, Menu, X } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import { contactInfo } from '../data';
 import logoLight from '../assets/logo-light.jpg';
 
@@ -74,12 +74,12 @@ function MobileNav({ currentPath, open, onClose }: { currentPath: string; open: 
 	return (
 		<>
 			<div
-				className="fixed inset-0 z-30 backdrop-blur-sm"
+				className="fixed inset-0 z-40 backdrop-blur-md md:hidden"
 				style={{
-					background: 'var(--color-overlay)',
+					background: 'linear-gradient(180deg, rgba(7, 8, 13, 0.74) 0%, rgba(7, 8, 13, 0.9) 100%)',
 					opacity: open ? 1 : 0,
 					pointerEvents: open ? 'auto' : 'none',
-					transition: 'opacity 300ms ease',
+					transition: 'opacity 320ms cubic-bezier(0.16,1,0.3,1)',
 				}}
 				onClick={onClose}
 				aria-hidden="true"
@@ -91,48 +91,62 @@ function MobileNav({ currentPath, open, onClose }: { currentPath: string; open: 
 				role="dialog"
 				aria-label="Navigation menu"
 				aria-modal="true"
-				className="fixed left-0 right-0 z-40 overflow-y-auto border-b border-line-soft md:hidden"
+				className="fixed right-3 bottom-3 left-3 z-50 overflow-hidden rounded-3xl border border-white/10 bg-[#0b0d15]/95 ring-1 ring-inset ring-white/10 backdrop-blur-2xl md:hidden"
 				style={{
-					background: 'var(--color-surface)',
-					top: 'var(--header-height-mobile)',
-					maxHeight: 'calc(100dvh - var(--header-height-mobile))',
+					top: 'calc(var(--header-height-mobile) + env(safe-area-inset-top, 0px) + 0.5rem)',
 					opacity: open ? 1 : 0,
-					transform: open ? 'translateY(0)' : 'translateY(-12px)',
+					transform: open ? 'translateY(0) scale(1)' : 'translateY(-16px) scale(0.985)',
 					pointerEvents: open ? 'auto' : 'none',
-					transition: 'opacity 300ms cubic-bezier(0.16,1,0.3,1), transform 300ms cubic-bezier(0.16,1,0.3,1)',
-					boxShadow: open ? 'var(--shadow-medium)' : 'none',
+					transition: 'opacity 320ms cubic-bezier(0.16,1,0.3,1), transform 320ms cubic-bezier(0.16,1,0.3,1)',
+					boxShadow: open ? '0 34px 82px rgba(12, 10, 24, 0.65)' : 'none',
 				}}
 				aria-hidden={!open}
 			>
-				<div className="space-y-3 px-4 pt-4 pb-5">
-					<a
-						className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-semibold text-button-ink shadow-brand transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-						href="/#contact"
-						onClick={onClose}
-					>
-						Book a Consultation
-					</a>
+				<div className="flex h-full flex-col">
+					<div className="border-b border-white/10 px-5 pt-5 pb-4">
+						<p className="text-[0.64rem] font-semibold uppercase tracking-[0.2em] text-brand/80">Navigation</p>
+						<p className="mt-2 text-lg font-semibold text-ink">Explore Morningtide</p>
+					</div>
 
-					<a
-						className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-line-soft bg-surface px-5 py-3 text-sm font-semibold text-ink shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-						href={`mailto:${contactInfo.email}`}
-						onClick={onClose}
-					>
-						<Mail className="h-4 w-4" aria-hidden="true" />
-						{contactInfo.email}
-					</a>
+					<div className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
+						{navigation.map((item) => (
+							<a
+								key={item.href}
+								className={`flex min-h-12 items-center justify-between rounded-2xl border px-4 py-3 text-sm font-semibold shadow-soft transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${
+									isActivePath(currentPath, item.href)
+										? 'border-brand/35 bg-white/[0.05] text-ink'
+										: 'border-white/10 bg-white/[0.02] text-muted hover:border-white/20 hover:text-ink'
+								}`}
+								href={item.href}
+								onClick={onClose}
+								aria-current={isActivePath(currentPath, item.href) ? 'page' : undefined}
+							>
+								<span>{item.label}</span>
+								<span aria-hidden="true" className="text-base text-brand/75">
+									→
+								</span>
+							</a>
+						))}
+					</div>
 
-					{navigation.map((item) => (
+					<div className="space-y-3 border-t border-white/10 px-4 pt-4 pb-5">
 						<a
-							key={item.href}
-							className={`block min-h-11 rounded-2xl border border-line-soft bg-surface px-4 py-3 text-sm font-semibold shadow-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${isActivePath(currentPath, item.href) ? 'text-ink' : 'text-muted'}`}
-							href={item.href}
+							className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-semibold text-button-ink shadow-brand transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+							href="/#contact"
 							onClick={onClose}
-							aria-current={isActivePath(currentPath, item.href) ? 'page' : undefined}
 						>
-							{item.label}
+							Book a Consultation
 						</a>
-					))}
+
+						<a
+							className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-line-soft bg-surface px-5 py-3 text-sm font-semibold text-ink shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+							href={`mailto:${contactInfo.email}`}
+							onClick={onClose}
+						>
+							<Mail className="h-4 w-4" aria-hidden="true" />
+							{contactInfo.email}
+						</a>
+					</div>
 				</div>
 			</div>
 		</>
@@ -145,7 +159,7 @@ export default function Header({ currentPath }: { currentPath: string }) {
 
 	return (
 		<>
-			<header className="fixed top-0 left-0 right-0 z-40 border-b border-line-soft bg-header-bg backdrop-blur-xl md:sticky">
+			<header className="fixed top-0 left-0 right-0 z-[60] border-b border-line-soft bg-header-bg backdrop-blur-xl md:sticky">
 				<div className="mx-auto hidden max-w-7xl px-4 py-4 md:block md:px-6 lg:px-8">
 					<div className="rounded-full border border-white/10 bg-[#0d0d13]/80 p-2 shadow-[0_20px_80px_rgba(138,92,246,0.22)] ring-1 ring-inset ring-white/5 backdrop-blur-2xl">
 						<div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4">
@@ -201,37 +215,53 @@ export default function Header({ currentPath }: { currentPath: string }) {
 					</div>
 				</div>
 
-				<div className="flex items-center justify-between gap-3 px-4 py-3 md:hidden">
-					<a
-						className="group flex min-w-0 items-center gap-3"
-						href="/"
-						aria-label="Morningtide Consulting and Collective home"
-					>
-						<figure className="h-16 w-16 overflow-hidden shadow-soft">
-							<img
-								src={logoLight.src}
-								alt="Morningtide Consulting and Collective Logo"
-								className="h-full w-full object-cover"
-								loading="eager"
-								fetchPriority="high"
-							/>
-						</figure>
-						<div className="min-w-0">
-							<p className="text-[0.56rem] font-semibold uppercase tracking-[0.24em] text-brand">Morningtide</p>
-							<p className="truncate text-sm font-semibold text-ink">&amp; Collective</p>
+				<div className="md:hidden">
+					<div className="flex h-[calc(var(--header-height-mobile)+env(safe-area-inset-top,0px))] items-end px-3 pb-2">
+						<div className="flex h-[calc(var(--header-height-mobile)-0.5rem)] w-full items-center justify-between rounded-3xl border border-white/10 bg-[#0d1019]/90 px-3 shadow-[0_18px_45px_rgba(11,8,24,0.45)] ring-1 ring-inset ring-white/10 backdrop-blur-2xl">
+							<a
+								className="group flex min-w-0 items-center gap-3"
+								href="/"
+								aria-label="Morningtide Consulting and Collective home"
+							>
+								<figure className="h-11 w-11 overflow-hidden rounded-2xl border border-white/15 shadow-soft">
+									<img
+										src={logoLight.src}
+										alt="Morningtide Consulting and Collective Logo"
+										className="h-full w-full object-cover"
+										loading="eager"
+										fetchPriority="high"
+									/>
+								</figure>
+								<div className="min-w-0">
+									<p className="text-[0.56rem] font-semibold uppercase tracking-[0.24em] text-brand">Morningtide</p>
+									<p className="truncate text-sm font-semibold text-ink">&amp; Collective</p>
+								</div>
+							</a>
+
+							<div>
+								<button
+									type="button"
+									className="inline-flex min-h-11 min-w-[5.25rem] items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 text-xs font-semibold uppercase tracking-[0.14em] text-ink transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+									aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+									aria-expanded={mobileOpen}
+									aria-controls="mobile-navigation"
+									onClick={() => setMobileOpen((prev) => !prev)}
+								>
+									<span className="relative h-4 w-4">
+										<span
+											className={`absolute top-[2px] left-0 h-[2px] w-4 rounded-full bg-current transition-all duration-300 ${mobileOpen ? 'translate-y-[5px] rotate-45' : ''}`}
+										/>
+										<span
+											className={`absolute top-[7px] left-0 h-[2px] w-4 rounded-full bg-current transition-all duration-300 ${mobileOpen ? 'opacity-0' : ''}`}
+										/>
+										<span
+											className={`absolute top-[12px] left-0 h-[2px] w-4 rounded-full bg-current transition-all duration-300 ${mobileOpen ? '-translate-y-[5px] -rotate-45' : ''}`}
+										/>
+									</span>
+									Menu
+								</button>
+							</div>
 						</div>
-					</a>
-					<div className="flex shrink-0 items-center gap-2">
-						<button
-							type="button"
-							className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full bg-surface text-muted shadow-sm transition-all duration-300 hover:text-ink hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-							aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-							aria-expanded={mobileOpen}
-							aria-controls="mobile-navigation"
-							onClick={() => setMobileOpen((prev) => !prev)}
-						>
-							{mobileOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
-						</button>
 					</div>
 				</div>
 			</header>
