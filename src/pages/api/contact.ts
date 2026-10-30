@@ -2,6 +2,12 @@ import type { APIRoute } from 'astro';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+export const GET: APIRoute = () =>
+	new Response(JSON.stringify({ ok: true, message: 'Contact API is available.' }), {
+		status: 200,
+		headers: { 'Content-Type': 'application/json' },
+	});
+
 export const POST: APIRoute = async ({ request }) => {
 	const json = (body: object, status = 200) =>
 		new Response(JSON.stringify(body), {

@@ -25,8 +25,10 @@ const navigation: NavItem[] = [
 	},
 	{ label: 'Consulting', href: '/services/billing-and-credentialing-consultation' },
 	{ label: 'Education', href: '/services/ceu-trainings' },
-	{ label: 'Pricing', href: '/pricing' },
 ];
+
+const leftNavigation = navigation.slice(0, 2);
+const rightNavigation = navigation.slice(2);
 
 const isActivePath = (currentPath: string, href: string) =>
 	currentPath === href || (href !== '/' && currentPath.startsWith(`${href}/`));
@@ -61,7 +63,7 @@ function DesktopDropdown({ item, currentPath }: { item: NavItem; currentPath: st
 	return (
 		<div className="relative" onMouseEnter={enter} onMouseLeave={leave} onFocus={enter} onBlur={handleBlur}>
 			<a
-				className={`inline-flex min-h-11 items-center gap-1.5 px-1 text-sm font-semibold transition-colors duration-200 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${active ? 'text-ink' : 'text-muted'}`}
+				className={`inline-flex min-h-11 items-center gap-1.5 rounded-full border border-transparent bg-white/[0.015] px-3 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-muted transition-all duration-200 hover:border-white/10 hover:bg-white/[0.03] hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${active ? 'border-white/10 bg-white/[0.04] text-ink' : ''}`}
 				href={item.href}
 				aria-expanded={open}
 				aria-haspopup="menu"
@@ -69,14 +71,14 @@ function DesktopDropdown({ item, currentPath }: { item: NavItem; currentPath: st
 			>
 				{item.label}
 				<ChevronDown
-					className="h-4 w-4 opacity-70 transition-transform duration-300"
+					className="h-3.5 w-3.5 opacity-80 transition-transform duration-300"
 					style={{ transform: open ? 'rotate(180deg)' : 'rotate(0deg)' }}
 					aria-hidden="true"
 				/>
 			</a>
 
 			<div
-				className="absolute left-0 top-full z-50 min-w-60 pt-2"
+				className="absolute left-0 top-full z-50 min-w-60 pt-3"
 				style={{
 					opacity: open ? 1 : 0,
 					transform: open ? 'translateY(0)' : 'translateY(-8px)',
@@ -84,11 +86,11 @@ function DesktopDropdown({ item, currentPath }: { item: NavItem; currentPath: st
 					transition: 'opacity 250ms cubic-bezier(0.16,1,0.3,1), transform 250ms cubic-bezier(0.16,1,0.3,1)',
 				}}
 			>
-				<div className="rounded-2xl border border-line-soft bg-surface py-2 shadow-medium" role="menu" aria-label={`${item.label} navigation`}>
+				<div className="rounded-2xl border border-white/10 bg-[#111117]/95 py-2 shadow-[0_20px_60px_rgba(17,17,23,0.9)] backdrop-blur-xl" role="menu" aria-label={`${item.label} navigation`}>
 					{item.children?.map((child) => (
 						<a
 							key={child.href}
-							className={`block min-h-11 px-5 py-3 text-sm font-semibold transition-colors duration-200 hover:bg-surface-strong hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${isActivePath(currentPath, child.href) ? 'text-ink' : 'text-muted'}`}
+							className={`block min-h-11 px-5 py-3 text-sm font-semibold transition-colors duration-200 hover:bg-white/[0.04] hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${isActivePath(currentPath, child.href) ? 'text-ink' : 'text-muted'}`}
 							href={child.href}
 							role="menuitem"
 							aria-current={isActivePath(currentPath, child.href) ? 'page' : undefined}
@@ -248,43 +250,66 @@ export default function Header({ currentPath }: { currentPath: string }) {
 	return (
 		<>
 			<header className="fixed top-0 left-0 right-0 z-40 border-b border-line-soft bg-header-bg backdrop-blur-xl md:sticky">
-				<div className="mx-auto hidden max-w-6xl items-center justify-between gap-6 px-4 py-4 md:flex md:px-6 lg:px-10">
-					<a className="group flex items-center gap-6" href="/" aria-label="Morningtide Consulting and Collective home">
-						<figure className="h-16 w-16 overflow-hidden shadow-medium transition-transform duration-300 group-hover:scale-110">
-							<img
-								src={logoLight.src}
-								alt="Morningtide Consulting and Collective Logo"
-								className="h-full w-full object-cover"
-								loading="eager"
-								fetchPriority="high"
-							/>
-						</figure>
-					</a>
+				<div className="mx-auto hidden max-w-7xl px-4 py-4 md:block md:px-6 lg:px-8">
+					<div className="rounded-full border border-white/10 bg-[#0d0d13]/80 p-2 shadow-[0_20px_80px_rgba(138,92,246,0.22)] ring-1 ring-inset ring-white/5 backdrop-blur-2xl">
+						<div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4">
+							<nav aria-label="Primary" className="flex items-center justify-start gap-2.5 pl-2">
+								{leftNavigation.map((item) =>
+									item.children ? (
+										<DesktopDropdown key={item.href} item={item} currentPath={currentPath} />
+									) : (
+										<a
+											key={item.href}
+											className={`inline-flex min-h-11 items-center rounded-full border border-transparent px-3 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] transition-all duration-200 hover:border-white/10 hover:bg-white/[0.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${isActivePath(currentPath, item.href) ? 'border-white/10 bg-white/[0.04] text-ink' : 'text-muted'}`}
+											href={item.href}
+											aria-current={isActivePath(currentPath, item.href) ? 'page' : undefined}
+										>
+											{item.label}
+										</a>
+									),
+								)}
+							</nav>
 
-					<nav aria-label="Primary" className="hidden items-center gap-5 md:flex">
-						{navigation.map((item) =>
-							item.children ? (
-								<DesktopDropdown key={item.href} item={item} currentPath={currentPath} />
-							) : (
+							<a
+								className="group relative flex h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-[#121218] p-2 shadow-[0_0_35px_rgba(167,139,250,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_45px_rgba(167,139,250,0.45)]"
+								href="/"
+								aria-label="Morningtide Consulting and Collective home"
+							>
+								<span className="absolute inset-0 rounded-full bg-[radial-gradient(circle,_rgba(167,139,250,0.45),_rgba(167,139,250,0.12)_32%,_transparent_70%)] opacity-90 group-hover:opacity-100" />
+								<figure className="relative h-full w-full overflow-hidden rounded-full border border-white/10 bg-black/20">
+									<img
+										src={logoLight.src}
+										alt="Morningtide Consulting and Collective Logo"
+										className="h-full w-full object-cover"
+										loading="eager"
+										fetchPriority="high"
+									/>
+								</figure>
+							</a>
+
+							<nav aria-label="Secondary" className="flex items-center justify-end gap-2.5 pr-2">
+								{rightNavigation.map((item) =>
+									item.children ? (
+										<DesktopDropdown key={item.href} item={item} currentPath={currentPath} />
+									) : (
+										<a
+											key={item.href}
+											className={`inline-flex min-h-11 items-center rounded-full border border-transparent px-3 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] transition-all duration-200 hover:border-white/10 hover:bg-white/[0.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${isActivePath(currentPath, item.href) ? 'border-white/10 bg-white/[0.04] text-ink' : 'text-muted'}`}
+											href={item.href}
+											aria-current={isActivePath(currentPath, item.href) ? 'page' : undefined}
+										>
+											{item.label}
+										</a>
+									)
+								)}
 								<a
-									key={item.href}
-									className={`inline-flex min-h-11 items-center px-1 text-sm font-semibold transition-colors duration-200 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${isActivePath(currentPath, item.href) ? 'text-ink' : 'text-muted'}`}
-									href={item.href}
-									aria-current={isActivePath(currentPath, item.href) ? 'page' : undefined}
+									className="inline-flex min-h-11 items-center rounded-full bg-[linear-gradient(135deg,#a78bfa_0%,#d8b4fe_100%)] px-4 py-2.5 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[#120f1d] shadow-[0_12px_30px_rgba(167,139,250,0.4)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_36px_rgba(167,139,250,0.5)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+									href="/#contact"
 								>
-									{item.label}
+									Book a Consultation
 								</a>
-							),
-						)}
-					</nav>
-
-					<div className="hidden items-center gap-2.5 md:flex">
-						<a
-							className="inline-flex min-h-11 items-center rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-button-ink shadow-brand transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-							href="/#contact"
-						>
-							Book a Consultation
-						</a>
+							</nav>
+						</div>
 					</div>
 				</div>
 
