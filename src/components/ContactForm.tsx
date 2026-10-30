@@ -224,7 +224,7 @@ export default function ContactForm() {
 			</div>
 
 			{status === 'error' && (
-				<p role="alert" className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:bg-red-950 dark:text-red-300 dark:border-red-800">
+				<p role="alert" className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
 					Something went wrong. Please email us directly at{' '}
 					<a href={`mailto:${CONTACT_EMAIL}`} className="underline">
 						{CONTACT_EMAIL}

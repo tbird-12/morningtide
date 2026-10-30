@@ -1,7 +1,6 @@
 ---
 import { socialMedia, contactInfo, logoConfig, clinicalServicesUrl } from '../data/socialMedia';
 import logoLight from '../assets/logo-light.jpg';
-import logoDark from '../assets/logo-dark.jpg';
 
 const services = [
 	{ label: 'Consulting', href: '/services/billing-and-credentialing-consultation' },
@@ -33,17 +32,14 @@ const socialIcons: Record<string, string> = {
 		<!-- Logo + Brand description -->
 		<div class="flex items-start gap-8">
 			<figure class="h-28 w-28 shrink-0 overflow-hidden shadow-medium">
-				<picture>
-					<source media="(prefers-color-scheme: dark)" srcset={logoDark.src} />
-					<img
-						src={logoLight.src}
-						alt={logoConfig.alt}
-						class="h-full w-full object-cover"
-						loading="lazy"
-						width="112"
-						height="112"
-					/>
-				</picture>
+				<img
+					src={logoLight.src}
+					alt={logoConfig.alt}
+					class="h-full w-full object-cover"
+					loading="lazy"
+					width="112"
+					height="112"
+				/>
 			</figure>
 			<div class="space-y-4 pt-1">
 				<h2 class="text-3xl font-bold leading-none text-ink">Morningtide Consulting and Collective</h2>

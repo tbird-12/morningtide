@@ -20,9 +20,8 @@ export interface ContactInfo {
 }
 
 export interface LogoConfig {
-	lightMode: string;
-	darkMode: string;
 	alt: string;
+	src: string;
 }
 
 export const socialMedia: SocialLink[] = [
@@ -55,9 +54,8 @@ export const contactInfo: ContactInfo = {
 };
 
 export const logoConfig: LogoConfig = {
-	lightMode: 'logo-light.jpg',
-	darkMode: 'logo-dark.jpg',
 	alt: 'Morningtide Consulting and Collective Logo',
+	src: 'logo-light.jpg',
 };
 
 export const clinicalServicesUrl = 'https://twilightpsychology.com';

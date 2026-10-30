@@ -1,58 +1,53 @@
-/* ── Theme: Design Tokens & Color Schemes ── */
+/* ── Theme: Clinical Provider Portal ── */
+/* Single, unified theme optimized for healthcare provider comfort and trust */
 
 :root {
-    /* Light Mode: "Morning Mist" */
-    --color-page: #fdfcf9;
-    --color-surface: #ffffff;
-    --color-surface-strong: #f4f3ee;
-    --color-brand: #a3957d;
-    --color-brand-soft: #ede8df;
-    --color-accent: #7a8d83;
-    --color-accent-soft: #eef2f0;
-    --color-accent-text: #4e6b61; /* WCAG AA compliant on white (5.9:1) */
-    --color-ink: #2d3230;
-    --color-muted: #6b7571;
-    --color-line: #e8e5dd;
-    --color-line-soft: rgba(45, 50, 48, 0.05);
-    --color-header-bg: rgba(253, 252, 249, 0.8);
+    /* Clinical Provider Palette: Warm, Soothing, Professional */
+    
+    /* Primary Background - Warm Cream (reduces eye strain) */
+    --color-page: #f5f1eb;
+    
+    /* Secondary Surface - Soft Sage (calming, clinical trust) */
+    --color-surface: #b8c9b8;
+    --color-surface-strong: #a8b89c;
+    
+    /* Primary Action - Warm Terracotta (approachable, not alarmist) */
+    --color-brand: #c97a5c;
+    --color-brand-soft: #e8d4c8;
+    
+    /* Accent - Blush Sand (subtle highlight, borders, hover states) */
+    --color-accent: #d9c9bd;
+    --color-accent-soft: #ede8e3;
+    --color-accent-text: #8b7355; /* WCAG AA compliant on cream (5.8:1) */
+    
+    /* Typography - Deep Charcoal (high contrast) */
+    --color-ink: #3e3e3e;
+    --color-muted: #6b6b6b;
+    --color-line: #d9c9bd;
+    --color-line-soft: rgba(62, 62, 62, 0.08);
+    
+    /* Header & Overlays */
+    --color-header-bg: rgba(245, 241, 235, 0.95);
     --color-button-ink: #ffffff;
-    --color-section-tint: #f7f6f2;
-    --color-overlay: rgba(28, 32, 30, 0.18);
+    --color-section-tint: #ede8e3;
+    --color-overlay: rgba(62, 62, 62, 0.12);
+
+    /* Status Colors (soft, healthcare-appropriate) */
+    --color-success: #a8b89c;
+    --color-warning: #e8b4a0;
+    --color-error: #d99b94;
 
     /* Shadows */
-    --shadow-soft: 0 2px 15px rgba(0, 0, 0, 0.02);
-    --shadow-medium: 0 10px 40px rgba(58, 63, 60, 0.05);
-    --shadow-brand: 0 12px 30px rgba(163, 149, 125, 0.1);
+    --shadow-soft: 0 2px 15px rgba(0, 0, 0, 0.04);
+    --shadow-medium: 0 10px 40px rgba(62, 62, 62, 0.08);
+    --shadow-brand: 0 12px 30px rgba(201, 122, 92, 0.12);
 
-    --body-glow-brand: rgba(163, 149, 125, 0.04);
-    --body-glow-muted: rgba(122, 141, 131, 0.03);
+    --body-glow-brand: rgba(201, 122, 92, 0.05);
+    --body-glow-accent: rgba(217, 201, 189, 0.04);
 
     /* Typography */
     --font-body: 'Manrope', sans-serif;
     --font-display: 'Cormorant Garamond', serif;
-}
-
-:root[data-theme='dark'] {
-    /* Dark Mode: "Soft Obsidian" */
-    --color-page: #141716;
-    --color-surface: #1c211f;
-    --color-surface-strong: #252b29;
-    --color-brand: #c5b9a5;
-    --color-brand-soft: #3a342a;
-    --color-accent: #9eb1a8;
-    --color-accent-soft: #28332f;
-    --color-accent-text: #b8cfc9; /* WCAG AA compliant on dark surface (#1c211f, 4.6:1) */
-    --color-ink: #f1f3f2;
-    --color-muted: #96a19c;
-    --color-line: #2a312e;
-    --color-line-soft: rgba(241, 243, 242, 0.06);
-    --color-header-bg: rgba(20, 23, 22, 0.8);
-    --color-button-ink: #141716;
-    --color-section-tint: #1e2421;
-    --color-overlay: rgba(5, 8, 7, 0.56);
-
-    --body-glow-brand: rgba(197, 185, 165, 0.03);
-    --body-glow-muted: rgba(158, 177, 168, 0.03);
 }
 
 @theme {
@@ -63,12 +58,4 @@
     --color-surface: var(--color-surface);
     --font-display: var(--font-display);
     --font-body: var(--font-body);
-}
-
-/* Smooth theme transitions (applied after initial load via JS) */
-html.theme-transitioning,
-html.theme-transitioning *,
-html.theme-transitioning *::before,
-html.theme-transitioning *::after {
-    transition: background-color 400ms ease, color 300ms ease, border-color 300ms ease, box-shadow 300ms ease !important;
 }

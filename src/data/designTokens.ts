@@ -1,51 +1,43 @@
 /**
  * Design Tokens: Standardized CSS values and design system configuration
+ * Clinical Provider Portal — Single unified theme
  */
 
 export const designTokens = {
-	// Color System
+	// Color System - Clinical Provider Palette
 	colors: {
-		light: {
-			page: '#fdfcf9',
-			surface: '#ffffff',
-			surfaceStrong: '#f4f3ee',
-			brand: '#a3957d',
-			brandSoft: '#ede8df',
-			accent: '#7a8d83',
-			accentSoft: '#eef2f0',
-			ink: '#2d3230',
-			muted: '#6b7571',
-			line: '#e8e5dd',
-			lineSoft: 'rgba(45, 50, 48, 0.05)',
-			headerBg: 'rgba(253, 252, 249, 0.8)',
-			buttonInk: '#ffffff',
-			sectionTint: '#f7f6f2',
-			overlay: 'rgba(28, 32, 30, 0.18)',
-		},
-		dark: {
-			page: '#141716',
-			surface: '#1c211f',
-			surfaceStrong: '#252b29',
-			brand: '#c5b9a5',
-			brandSoft: '#3a342a',
-			accent: '#9eb1a8',
-			accentSoft: '#28332f',
-			ink: '#f1f3f2',
-			muted: '#96a19c',
-			line: '#2a312e',
-			lineSoft: 'rgba(241, 243, 242, 0.06)',
-			headerBg: 'rgba(20, 23, 22, 0.8)',
-			buttonInk: '#141716',
-			sectionTint: '#1e2421',
-			overlay: 'rgba(5, 8, 7, 0.56)',
-		},
+		// Primary Background - Warm Cream
+		page: '#f5f1eb',
+		// Secondary Surface - Soft Sage
+		surface: '#b8c9b8',
+		surfaceStrong: '#a8b89c',
+		// Primary Action - Warm Terracotta
+		brand: '#c97a5c',
+		brandSoft: '#e8d4c8',
+		// Accent - Blush Sand
+		accent: '#d9c9bd',
+		accentSoft: '#ede8e3',
+		accentText: '#8b7355',
+		// Typography - Deep Charcoal
+		ink: '#3e3e3e',
+		muted: '#6b6b6b',
+		line: '#d9c9bd',
+		lineSoft: 'rgba(62, 62, 62, 0.08)',
+		headerBg: 'rgba(245, 241, 235, 0.95)',
+		buttonInk: '#ffffff',
+		sectionTint: '#ede8e3',
+		overlay: 'rgba(62, 62, 62, 0.12)',
+		// Status Colors
+		success: '#a8b89c',
+		warning: '#e8b4a0',
+		error: '#d99b94',
 	},
 
 	// Shadows
 	shadows: {
-		soft: '0 2px 15px rgba(0, 0, 0, 0.02)',
-		medium: '0 10px 40px rgba(58, 63, 60, 0.05)',
-		brand: '0 12px 30px rgba(163, 149, 125, 0.1)',
+		soft: '0 2px 15px rgba(0, 0, 0, 0.04)',
+		medium: '0 10px 40px rgba(62, 62, 62, 0.08)',
+		brand: '0 12px 30px rgba(201, 122, 92, 0.12)',
 	},
 
 	// Typography

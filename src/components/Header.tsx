@@ -1,9 +1,7 @@
 import { useState, useEffect, useRef, useCallback, type FocusEvent } from 'react';
 import { ChevronDown, Mail, Menu, X } from 'lucide-react';
-import ThemeToggle from './ThemeToggle';
 import { contactInfo } from '../data';
 import logoLight from '../assets/logo-light.jpg';
-import logoDark from '../assets/logo-dark.jpg';
 
 interface NavChild {
 	label: string;
@@ -253,19 +251,13 @@ export default function Header({ currentPath }: { currentPath: string }) {
 				<div className="mx-auto hidden max-w-6xl items-center justify-between gap-6 px-4 py-4 md:flex md:px-6 lg:px-10">
 					<a className="group flex items-center gap-6" href="/" aria-label="Morningtide Consulting and Collective home">
 						<figure className="h-16 w-16 overflow-hidden shadow-medium transition-transform duration-300 group-hover:scale-110">
-							<picture>
-								<source
-									media="(prefers-color-scheme: dark)"
-									srcSet={logoDark.src}
-								/>
-								<img
-									src={logoLight.src}
-									alt="Morningtide Consulting and Collective Logo"
-									className="h-full w-full object-cover"
-									loading="eager"
-									fetchPriority="high"
-								/>
-							</picture>
+							<img
+								src={logoLight.src}
+								alt="Morningtide Consulting and Collective Logo"
+								className="h-full w-full object-cover"
+								loading="eager"
+								fetchPriority="high"
+							/>
 						</figure>
 					</a>
 
@@ -287,9 +279,8 @@ export default function Header({ currentPath }: { currentPath: string }) {
 					</nav>
 
 					<div className="hidden items-center gap-2.5 md:flex">
-						<ThemeToggle />
 						<a
-							className="inline-flex min-h-11 items-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-button-ink shadow-brand transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+							className="inline-flex min-h-11 items-center rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-button-ink shadow-brand transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
 							href="/#contact"
 						>
 							Book a Consultation
@@ -304,19 +295,13 @@ export default function Header({ currentPath }: { currentPath: string }) {
 						aria-label="Morningtide Consulting and Collective home"
 					>
 						<figure className="h-16 w-16 overflow-hidden shadow-soft">
-							<picture>
-								<source
-									media="(prefers-color-scheme: dark)"
-									srcSet={logoDark.src}
-								/>
-								<img
-									src={logoLight.src}
-									alt="Morningtide Consulting and Collective Logo"
-									className="h-full w-full object-cover"
-									loading="eager"
-									fetchPriority="high"
-								/>
-							</picture>
+							<img
+								src={logoLight.src}
+								alt="Morningtide Consulting and Collective Logo"
+								className="h-full w-full object-cover"
+								loading="eager"
+								fetchPriority="high"
+							/>
 						</figure>
 						<div className="min-w-0">
 							<p className="text-[0.56rem] font-semibold uppercase tracking-[0.24em] text-brand">Morningtide</p>
@@ -324,7 +309,6 @@ export default function Header({ currentPath }: { currentPath: string }) {
 						</div>
 					</a>
 					<div className="flex shrink-0 items-center gap-2">
-						<ThemeToggle />
 						<button
 							type="button"
 							className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full bg-surface text-muted shadow-sm transition-all duration-300 hover:text-ink hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
