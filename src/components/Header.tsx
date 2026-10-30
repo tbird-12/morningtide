@@ -91,9 +91,11 @@ function MobileNav({ currentPath, open, onClose }: { currentPath: string; open: 
 				role="dialog"
 				aria-label="Navigation menu"
 				aria-modal="true"
-				className="fixed right-3 bottom-3 left-3 z-50 overflow-hidden rounded-3xl border border-white/10 bg-[#0b0d15]/95 ring-1 ring-inset ring-white/10 backdrop-blur-2xl md:hidden"
+				className="fixed z-50 max-h-[calc(100vh-var(--header-height-mobile)-env(safe-area-inset-top,0px)-1.5rem)] overflow-hidden rounded-3xl border border-white/10 bg-[#0b0d15]/95 ring-1 ring-inset ring-white/10 backdrop-blur-2xl md:hidden"
 				style={{
 					top: 'calc(var(--header-height-mobile) + env(safe-area-inset-top, 0px) + 0.5rem)',
+					left: '0.75rem',
+					right: '0.75rem',
 					opacity: open ? 1 : 0,
 					transform: open ? 'translateY(0) scale(1)' : 'translateY(-16px) scale(0.985)',
 					pointerEvents: open ? 'auto' : 'none',
