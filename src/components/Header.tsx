@@ -248,15 +248,15 @@ export default function Header({ currentPath }: { currentPath: string }) {
 									aria-controls="mobile-navigation"
 									onClick={() => setMobileOpen((prev) => !prev)}
 								>
-									<span className="relative h-4 w-4">
+									<span className="relative inline-flex h-4 w-4 flex-col items-center justify-center gap-1">
 										<span
-											className={`absolute top-8 left-0 h-8 w-4 rounded-full bg-current transition-all duration-300 ${mobileOpen ? 'translate-y-20 rotate-45' : ''}`}
+											className={`h-0.5 w-4 rounded-full bg-current transition-all duration-300 ${mobileOpen ? 'translate-y-1.5 rotate-45' : ''}`}
 										/>
 										<span
-											className={`absolute top-28 left-0 h-8 w-4 rounded-full bg-current transition-all duration-300 ${mobileOpen ? 'opacity-0' : ''}`}
+											className={`h-0.5 w-4 rounded-full bg-current transition-all duration-300 ${mobileOpen ? 'opacity-0' : ''}`}
 										/>
 										<span
-											className={`absolute top-48 left-0 h-8 w-4 rounded-full bg-current transition-all duration-300 ${mobileOpen ? '-translate-y-20 -rotate-45' : ''}`}
+											className={`h-0.5 w-4 rounded-full bg-current transition-all duration-300 ${mobileOpen ? '-translate-y-1.5 -rotate-45' : ''}`}
 										/>
 									</span>
 									Menu
