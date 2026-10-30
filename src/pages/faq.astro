@@ -7,7 +7,7 @@ import AnimatedText from '../components/AnimatedText.tsx';
 const generalFaqs = [
 	{
 		q: 'What is MCC?',
-		a: 'Morningtide Consulting and Collective (MCC) offers practice consulting and continuing education for mental health clinicians, founded by Dr. Heather Cornett, Ph.D., LP.',
+		a: 'Morningtide Consulting and Collective (MCC) supports clinicians with practice consulting and continuing education, founded by Dr. Heather Cornett, Ph.D., LP.',
 	},
 	{
 		q: 'Who leads MCC?',
@@ -52,11 +52,26 @@ const gettingStartedFaqs = [
 		a: 'Credit and debit cards, Zelle, and Venmo. Payment plans available for larger consulting engagements.',
 	},
 ];
+
+const pricingFaqs = [
+	{
+		q: 'How is consulting priced?',
+		a: 'Consulting is priced by scope, complexity, and support format. Most clinicians start with a targeted consultation and expand only if needed.',
+	},
+	{
+		q: 'How are CEU trainings priced?',
+		a: 'CEU training pricing is based on audience size, format (virtual or on-site), and customization level. We provide a quote after reviewing your training goals.',
+	},
+	{
+		q: 'Do you offer payment plans?',
+		a: 'Yes. Payment plans are available for larger consulting projects and organizational training engagements.',
+	},
+];
 ---
 
 <Layout
 	title="Frequently Asked Questions | Morningtide Consulting and Collective"
-	description="Answers to common questions about MCC's consulting services, CEU trainings, practice operations guidance, and continuing education for clinicians."
+	description="Clinician-focused answers about consulting services, CEU trainings, and pricing at Morningtide Consulting and Collective."
 >
 	<main id="main-content" class="page-main">
 		<section class="hero-shell mx-auto max-w-6xl space-y-8">
@@ -73,7 +88,7 @@ const gettingStartedFaqs = [
 			/>
 			<FadeIn delay={400}>
 				<p class="max-w-3xl text-lg leading-8 text-muted">
-					Answers to the most common questions about our practice, the evaluation process, pricing, and logistics.
+					Clinician-focused answers about consulting, CEU trainings, pricing, and next steps.
 				</p>
 			</FadeIn>
 		</section>
@@ -105,6 +120,15 @@ const gettingStartedFaqs = [
 					</div>
 				</div>
 			</FadeIn>
+
+			<FadeIn delay={250}>
+				<div class="premium-card rounded-4xl p-8 lg:p-10">
+					<p class="eyebrow">Pricing</p>
+					<div class="mt-6">
+						<Accordion client:visible items={pricingFaqs} />
+					</div>
+				</div>
+			</FadeIn>
 		</section>
 
 		<FadeIn>
@@ -127,4 +151,3 @@ const gettingStartedFaqs = [
 		</FadeIn>
 	</main>
 </Layout>
-

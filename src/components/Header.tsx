@@ -1,30 +1,18 @@
-import { useState, useEffect, useRef, useCallback, type FocusEvent } from 'react';
-import { ChevronDown, Mail, Menu, X } from 'lucide-react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { Mail, Menu, X } from 'lucide-react';
 import { contactInfo } from '../data';
 import logoLight from '../assets/logo-light.jpg';
-
-interface NavChild {
-	label: string;
-	href: string;
-}
 
 interface NavItem {
 	label: string;
 	href: string;
-	children?: NavChild[];
 }
 
 const navigation: NavItem[] = [
-	{
-		label: 'About',
-		href: '/about',
-		children: [
-			{ label: 'About Dr. Cornett', href: '/about' },
-			{ label: 'FAQ', href: '/faq' },
-		],
-	},
-	{ label: 'Consulting', href: '/services/billing-and-credentialing-consultation' },
+	{ label: 'Consulting', href: '/consulting' },
 	{ label: 'Education', href: '/services/ceu-trainings' },
+	{ label: 'FAQ & Pricing', href: '/faq' },
+	{ label: 'Meet Heather', href: '/about' },
 ];
 
 const leftNavigation = navigation.slice(0, 2);
@@ -32,77 +20,6 @@ const rightNavigation = navigation.slice(2);
 
 const isActivePath = (currentPath: string, href: string) =>
 	currentPath === href || (href !== '/' && currentPath.startsWith(`${href}/`));
-
-const isItemActive = (currentPath: string, item: NavItem) =>
-	isActivePath(currentPath, item.href) || item.children?.some((child) => isActivePath(currentPath, child.href)) || false;
-
-function DesktopDropdown({ item, currentPath }: { item: NavItem; currentPath: string }) {
-	const [open, setOpen] = useState(false);
-	const timeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-	const active = isItemActive(currentPath, item);
-
-	const enter = useCallback(() => {
-		clearTimeout(timeout.current);
-		setOpen(true);
-	}, []);
-
-	const leave = useCallback(() => {
-		timeout.current = setTimeout(() => setOpen(false), 180);
-	}, []);
-
-	useEffect(() => {
-		return () => clearTimeout(timeout.current);
-	}, []);
-
-	const handleBlur = useCallback((event: FocusEvent<HTMLDivElement>) => {
-		if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-			setOpen(false);
-		}
-	}, []);
-
-	return (
-		<div className="relative" onMouseEnter={enter} onMouseLeave={leave} onFocus={enter} onBlur={handleBlur}>
-			<a
-				className={`inline-flex min-h-11 items-center gap-1.5 rounded-full border border-transparent bg-white/[0.015] px-3 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-muted transition-all duration-200 hover:border-white/10 hover:bg-white/[0.03] hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${active ? 'border-white/10 bg-white/[0.04] text-ink' : ''}`}
-				href={item.href}
-				aria-expanded={open}
-				aria-haspopup="menu"
-				aria-current={isActivePath(currentPath, item.href) ? 'page' : undefined}
-			>
-				{item.label}
-				<ChevronDown
-					className="h-3.5 w-3.5 opacity-80 transition-transform duration-300"
-					style={{ transform: open ? 'rotate(180deg)' : 'rotate(0deg)' }}
-					aria-hidden="true"
-				/>
-			</a>
-
-			<div
-				className="absolute left-0 top-full z-50 min-w-60 pt-3"
-				style={{
-					opacity: open ? 1 : 0,
-					transform: open ? 'translateY(0)' : 'translateY(-8px)',
-					pointerEvents: open ? 'auto' : 'none',
-					transition: 'opacity 250ms cubic-bezier(0.16,1,0.3,1), transform 250ms cubic-bezier(0.16,1,0.3,1)',
-				}}
-			>
-				<div className="rounded-2xl border border-white/10 bg-[#111117]/95 py-2 shadow-[0_20px_60px_rgba(17,17,23,0.9)] backdrop-blur-xl" role="menu" aria-label={`${item.label} navigation`}>
-					{item.children?.map((child) => (
-						<a
-							key={child.href}
-							className={`block min-h-11 px-5 py-3 text-sm font-semibold transition-colors duration-200 hover:bg-white/[0.04] hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${isActivePath(currentPath, child.href) ? 'text-ink' : 'text-muted'}`}
-							href={child.href}
-							role="menuitem"
-							aria-current={isActivePath(currentPath, child.href) ? 'page' : undefined}
-						>
-							{child.label}
-						</a>
-					))}
-				</div>
-			</div>
-		</div>
-	);
-}
 
 function MobileNav({ currentPath, open, onClose }: { currentPath: string; open: boolean; onClose: () => void }) {
 	const panelRef = useRef<HTMLDivElement>(null);
@@ -205,38 +122,17 @@ function MobileNav({ currentPath, open, onClose }: { currentPath: string; open: 
 						{contactInfo.email}
 					</a>
 
-					{navigation.map((item) =>
-						item.children ? (
-							<div key={item.href} className="rounded-2xl border border-line-soft bg-surface p-3 shadow-soft">
-								<p className="px-1 pb-2 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-brand">
-									{item.label}
-								</p>
-								<div className="space-y-1">
-									{item.children.map((child) => (
-										<a
-											key={child.href}
-											className={`block min-h-11 rounded-xl px-3 py-3 text-sm font-semibold transition-colors duration-200 hover:bg-surface-strong hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${isActivePath(currentPath, child.href) ? 'bg-surface-strong text-ink' : 'text-muted'}`}
-											href={child.href}
-											onClick={onClose}
-											aria-current={isActivePath(currentPath, child.href) ? 'page' : undefined}
-										>
-											{child.label}
-										</a>
-									))}
-								</div>
-							</div>
-						) : (
-							<a
-								key={item.href}
-								className={`block min-h-11 rounded-2xl border border-line-soft bg-surface px-4 py-3 text-sm font-semibold shadow-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${isActivePath(currentPath, item.href) ? 'text-ink' : 'text-muted'}`}
-								href={item.href}
-								onClick={onClose}
-								aria-current={isActivePath(currentPath, item.href) ? 'page' : undefined}
-							>
-								{item.label}
-							</a>
-						),
-					)}
+					{navigation.map((item) => (
+						<a
+							key={item.href}
+							className={`block min-h-11 rounded-2xl border border-line-soft bg-surface px-4 py-3 text-sm font-semibold shadow-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${isActivePath(currentPath, item.href) ? 'text-ink' : 'text-muted'}`}
+							href={item.href}
+							onClick={onClose}
+							aria-current={isActivePath(currentPath, item.href) ? 'page' : undefined}
+						>
+							{item.label}
+						</a>
+					))}
 				</div>
 			</div>
 		</>
@@ -254,20 +150,16 @@ export default function Header({ currentPath }: { currentPath: string }) {
 					<div className="rounded-full border border-white/10 bg-[#0d0d13]/80 p-2 shadow-[0_20px_80px_rgba(138,92,246,0.22)] ring-1 ring-inset ring-white/5 backdrop-blur-2xl">
 						<div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4">
 							<nav aria-label="Primary" className="flex items-center justify-start gap-2.5 pl-2">
-								{leftNavigation.map((item) =>
-									item.children ? (
-										<DesktopDropdown key={item.href} item={item} currentPath={currentPath} />
-									) : (
-										<a
-											key={item.href}
-											className={`inline-flex min-h-11 items-center rounded-full border border-transparent px-3 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] transition-all duration-200 hover:border-white/10 hover:bg-white/[0.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${isActivePath(currentPath, item.href) ? 'border-white/10 bg-white/[0.04] text-ink' : 'text-muted'}`}
-											href={item.href}
-											aria-current={isActivePath(currentPath, item.href) ? 'page' : undefined}
-										>
-											{item.label}
-										</a>
-									),
-								)}
+								{leftNavigation.map((item) => (
+									<a
+										key={item.href}
+										className={`inline-flex min-h-11 items-center rounded-full border border-transparent px-3 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] transition-all duration-200 hover:border-white/10 hover:bg-white/[0.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${isActivePath(currentPath, item.href) ? 'border-white/10 bg-white/[0.04] text-ink' : 'text-muted'}`}
+										href={item.href}
+										aria-current={isActivePath(currentPath, item.href) ? 'page' : undefined}
+									>
+										{item.label}
+									</a>
+								))}
 							</nav>
 
 							<a
@@ -288,20 +180,16 @@ export default function Header({ currentPath }: { currentPath: string }) {
 							</a>
 
 							<nav aria-label="Secondary" className="flex items-center justify-end gap-2.5 pr-2">
-								{rightNavigation.map((item) =>
-									item.children ? (
-										<DesktopDropdown key={item.href} item={item} currentPath={currentPath} />
-									) : (
-										<a
-											key={item.href}
-											className={`inline-flex min-h-11 items-center rounded-full border border-transparent px-3 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] transition-all duration-200 hover:border-white/10 hover:bg-white/[0.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${isActivePath(currentPath, item.href) ? 'border-white/10 bg-white/[0.04] text-ink' : 'text-muted'}`}
-											href={item.href}
-											aria-current={isActivePath(currentPath, item.href) ? 'page' : undefined}
-										>
-											{item.label}
-										</a>
-									)
-								)}
+								{rightNavigation.map((item) => (
+									<a
+										key={item.href}
+										className={`inline-flex min-h-11 items-center rounded-full border border-transparent px-3 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] transition-all duration-200 hover:border-white/10 hover:bg-white/[0.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${isActivePath(currentPath, item.href) ? 'border-white/10 bg-white/[0.04] text-ink' : 'text-muted'}`}
+										href={item.href}
+										aria-current={isActivePath(currentPath, item.href) ? 'page' : undefined}
+									>
+										{item.label}
+									</a>
+								))}
 								<a
 									className="inline-flex min-h-11 items-center rounded-full bg-[linear-gradient(135deg,#a78bfa_0%,#d8b4fe_100%)] px-4 py-2.5 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[#120f1d] shadow-[0_12px_30px_rgba(167,139,250,0.4)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_36px_rgba(167,139,250,0.5)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
 									href="/#contact"
@@ -352,4 +240,3 @@ export default function Header({ currentPath }: { currentPath: string }) {
 		</>
 	);
 }
-

@@ -101,6 +101,14 @@ const faqSchema = pathname.startsWith('/faq')
             text: 'MCC offers practice consulting (billing, credentialing, PSYPACT navigation) and continuing education trainings on ADHD and autism assessment.',
           },
         },
+        {
+          '@type': 'Question',
+          name: 'How is pricing determined?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Pricing is tailored to scope, audience size, and format. Consulting and CEU trainings are quoted based on each clinician or organization\'s needs.',
+          },
+        },
       ],
     }
   : undefined;
@@ -124,4 +132,3 @@ const faqSchema = pathname.startsWith('/faq')
 
 <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
 {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
-
