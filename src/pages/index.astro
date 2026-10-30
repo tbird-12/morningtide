@@ -41,7 +41,7 @@ const trustCredentials = [
 	{ icon: GraduationCap, label: 'Ph.D., Licensed Psychologist' },
 	{ icon: Shield, label: 'PSYPACT Authorized' },
 	{ icon: MapPin, label: 'Licensed in KY & NM' },
-	{ icon: Briefcase, label: '10+ Years Clinical Practice' },
+	{ icon: Briefcase, label: '8+ Years Clinical Practice' },
 ];
 ---
 
@@ -98,7 +98,7 @@ const trustCredentials = [
 		<section class="home-section">
 			<div class="mx-auto w-full max-w-6xl space-y-10 px-4 sm:px-6 lg:px-10">
 				<FadeIn>
-					<div class="max-w-3xl space-y-4">
+					<div class="section-rail max-w-3xl space-y-4">
 						<p class="eyebrow">Primary Services</p>
 						<h2 class="text-4xl leading-none text-ink sm:text-5xl">Why Choose Morningtide Consulting</h2>
 						<p class="text-lg leading-8 text-muted">
@@ -110,7 +110,7 @@ const trustCredentials = [
 					{serviceCards.map((service, i) => {
 						const Icon = service.icon;
 						return (
-							<AnimatedCard href={service.href} index={i} className="section-shell rounded-4xl p-8 hover:-translate-y-1">
+							<AnimatedCard href={service.href} index={i} className="section-shell service-card rounded-4xl p-8 hover:-translate-y-1">
 								<div class="flex items-center gap-3">
 									<div class="brand-icon-wrap">
 										<Icon className="h-5 w-5" aria-hidden="true" />
@@ -133,7 +133,7 @@ const trustCredentials = [
 				<FadeIn class="section-shell rounded-4xl">
 					<p class="eyebrow">Meet Dr. Cornett</p>
 					<p class="mt-6 max-w-4xl text-base leading-8 text-muted">
-						Led by Dr. Heather Cornett, Ph.D., LP — licensed psychologist and practice operations expert. <a class="inline-flex items-center gap-1 font-semibold text-accent-text underline underline-offset-4 transition-colors duration-200 hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href="/about">Learn more</a>
+						Led by Dr. Heather Cornett, Ph.D., LP, licensed psychologist and practice operations expert. <a class="inline-flex items-center gap-1 font-semibold text-accent-text underline underline-offset-4 transition-colors duration-200 hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href="/about">Learn more</a>
 					</p>
 				</FadeIn>
 			</div>
@@ -142,14 +142,14 @@ const trustCredentials = [
 		<section class="home-section">
 			<div class="mx-auto w-full max-w-6xl space-y-10 px-4 sm:px-6 lg:px-10">
 				<FadeIn>
-					<div class="max-w-3xl space-y-4">
+					<div class="section-rail max-w-3xl space-y-4">
 						<p class="eyebrow">Why MCC</p>
 						<h2 class="text-4xl leading-none text-ink sm:text-5xl">Built for Clinicians Who Want Useful Answers</h2>
 					</div>
 				</FadeIn>
 				<div class="grid gap-6 lg:grid-cols-3">
 					{differentiators.map((item, i) => (
-						<AnimatedCard index={i} stagger={140} className="rounded-[1.75rem] p-6">
+						<AnimatedCard index={i} stagger={140} className="differentiator-card rounded-[1.75rem] p-6">
 							<h3 class="mb-0 text-2xl leading-tight text-ink">{item.title}</h3>
 							<p class="mt-4 text-base leading-8 text-muted">{item.description}</p>
 						</AnimatedCard>
@@ -206,5 +206,81 @@ const trustCredentials = [
 <style>
 	.home-section {
 		padding-block: clamp(3.5rem, 8vw, 5.5rem);
+	}
+
+	.section-rail {
+		position: relative;
+		padding-top: 1.25rem;
+	}
+
+	.section-rail::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: min(9rem, 35vw);
+		height: 2px;
+		border-radius: 999px;
+		background: linear-gradient(90deg, rgba(167, 139, 250, 0.18), rgba(167, 139, 250, 1), rgba(167, 139, 250, 0.18));
+		background-size: 220% 100%;
+		animation: railShift 8s ease-in-out infinite;
+	}
+
+	.service-card {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.service-card::before {
+		content: '';
+		position: absolute;
+		inset: 0 auto auto 0;
+		height: 2px;
+		width: 100%;
+		border-radius: 999px;
+		background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.95), transparent);
+		background-size: 200% 100%;
+		animation: railShift 10s linear infinite;
+	}
+
+	.differentiator-card {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.differentiator-card::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		pointer-events: none;
+		background: linear-gradient(120deg, transparent 30%, rgba(167, 139, 250, 0.12) 50%, transparent 70%);
+		transform: translateX(-140%);
+		animation: sheen 9s ease-in-out infinite;
+	}
+
+	@keyframes railShift {
+		to {
+			background-position: 220% 0;
+		}
+	}
+
+	@keyframes sheen {
+		0%,
+		40%,
+		100% {
+			transform: translateX(-140%);
+		}
+		60% {
+			transform: translateX(140%);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.section-rail::before,
+		.service-card::before,
+		.differentiator-card::after {
+			animation: none !important;
+		}
 	}
 </style>

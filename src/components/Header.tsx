@@ -114,8 +114,8 @@ function MobileNav({ currentPath, open, onClose }: { currentPath: string; open: 
 								key={item.href}
 								className={`flex min-h-12 items-center justify-between rounded-2xl border px-4 py-3 text-sm font-semibold shadow-soft transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${
 									isActivePath(currentPath, item.href)
-										? 'border-brand/35 bg-white/[0.05] text-ink'
-										: 'border-white/10 bg-white/[0.02] text-muted hover:border-white/20 hover:text-ink'
+										? 'border-brand/35 bg-white/5 text-ink'
+										: 'border-white/10 bg-white/2 text-muted hover:border-white/20 hover:text-ink'
 								}`}
 								href={item.href}
 								onClick={onClose}
@@ -159,7 +159,7 @@ export default function Header({ currentPath }: { currentPath: string }) {
 
 	return (
 		<>
-			<header className="fixed top-0 left-0 right-0 z-[60] border-b border-line-soft bg-header-bg backdrop-blur-xl md:sticky">
+			<header className="fixed top-0 left-0 right-0 z-60 border-b border-line-soft bg-header-bg backdrop-blur-xl md:sticky">
 				<div className="mx-auto hidden max-w-7xl px-4 py-4 md:block md:px-6 lg:px-8">
 					<div className="rounded-full border border-white/10 bg-[#0d0d13]/80 p-2 shadow-[0_20px_80px_rgba(138,92,246,0.22)] ring-1 ring-inset ring-white/5 backdrop-blur-2xl">
 						<div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4">
@@ -167,7 +167,7 @@ export default function Header({ currentPath }: { currentPath: string }) {
 								{leftNavigation.map((item) => (
 									<a
 										key={item.href}
-										className={`inline-flex min-h-11 items-center rounded-full border border-transparent px-3 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] transition-all duration-200 hover:border-white/10 hover:bg-white/[0.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${isActivePath(currentPath, item.href) ? 'border-white/10 bg-white/[0.04] text-ink' : 'text-muted'}`}
+										className={`inline-flex min-h-11 items-center rounded-full border border-transparent px-3 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] transition-all duration-200 hover:border-white/10 hover:bg-white/3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${isActivePath(currentPath, item.href) ? 'border-white/10 bg-white/4 text-ink' : 'text-muted'}`}
 										href={item.href}
 										aria-current={isActivePath(currentPath, item.href) ? 'page' : undefined}
 									>
@@ -181,7 +181,7 @@ export default function Header({ currentPath }: { currentPath: string }) {
 								href="/"
 								aria-label="Morningtide Consulting and Collective home"
 							>
-								<span className="absolute inset-0 rounded-full bg-[radial-gradient(circle,_rgba(167,139,250,0.45),_rgba(167,139,250,0.12)_32%,_transparent_70%)] opacity-90 group-hover:opacity-100" />
+								<span className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(167,139,250,0.45),rgba(167,139,250,0.12)_32%,transparent_70%)] opacity-90 group-hover:opacity-100" />
 								<figure className="relative h-full w-full overflow-hidden rounded-full border border-white/10 bg-black/20">
 									<img
 										src={logoLight.src}
@@ -197,7 +197,7 @@ export default function Header({ currentPath }: { currentPath: string }) {
 								{rightNavigation.map((item) => (
 									<a
 										key={item.href}
-										className={`inline-flex min-h-11 items-center rounded-full border border-transparent px-3 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] transition-all duration-200 hover:border-white/10 hover:bg-white/[0.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${isActivePath(currentPath, item.href) ? 'border-white/10 bg-white/[0.04] text-ink' : 'text-muted'}`}
+										className={`inline-flex min-h-11 items-center rounded-full border border-transparent px-3 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] transition-all duration-200 hover:border-white/10 hover:bg-white/3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${isActivePath(currentPath, item.href) ? 'border-white/10 bg-white/4 text-ink' : 'text-muted'}`}
 										href={item.href}
 										aria-current={isActivePath(currentPath, item.href) ? 'page' : undefined}
 									>
@@ -233,15 +233,14 @@ export default function Header({ currentPath }: { currentPath: string }) {
 									/>
 								</figure>
 								<div className="min-w-0">
-									<p className="text-[0.56rem] font-semibold uppercase tracking-[0.24em] text-brand">Morningtide</p>
-									<p className="truncate text-sm font-semibold text-ink">&amp; Collective</p>
+									<p className="text-base font-black uppercase tracking-[0.22em] text-ink">MCC</p>
 								</div>
 							</a>
 
 							<div>
 								<button
 									type="button"
-									className="inline-flex min-h-11 min-w-[5.25rem] items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 text-xs font-semibold uppercase tracking-[0.14em] text-ink transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+										className="inline-flex min-h-11 min-w-21 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/3 px-3 text-xs font-semibold uppercase tracking-[0.14em] text-ink transition-all duration-300 hover:border-white/20 hover:bg-white/6 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
 									aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
 									aria-expanded={mobileOpen}
 									aria-controls="mobile-navigation"
@@ -249,13 +248,13 @@ export default function Header({ currentPath }: { currentPath: string }) {
 								>
 									<span className="relative h-4 w-4">
 										<span
-											className={`absolute top-[2px] left-0 h-[2px] w-4 rounded-full bg-current transition-all duration-300 ${mobileOpen ? 'translate-y-[5px] rotate-45' : ''}`}
+											className={`absolute top-8 left-0 h-8 w-4 rounded-full bg-current transition-all duration-300 ${mobileOpen ? 'translate-y-20 rotate-45' : ''}`}
 										/>
 										<span
-											className={`absolute top-[7px] left-0 h-[2px] w-4 rounded-full bg-current transition-all duration-300 ${mobileOpen ? 'opacity-0' : ''}`}
+											className={`absolute top-28 left-0 h-8 w-4 rounded-full bg-current transition-all duration-300 ${mobileOpen ? 'opacity-0' : ''}`}
 										/>
 										<span
-											className={`absolute top-[12px] left-0 h-[2px] w-4 rounded-full bg-current transition-all duration-300 ${mobileOpen ? '-translate-y-[5px] -rotate-45' : ''}`}
+											className={`absolute top-48 left-0 h-8 w-4 rounded-full bg-current transition-all duration-300 ${mobileOpen ? '-translate-y-20 -rotate-45' : ''}`}
 										/>
 									</span>
 									Menu
