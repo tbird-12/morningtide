@@ -1,48 +1,44 @@
 /**
  * Design Tokens: Standardized CSS values and design system configuration
- * Clinical Provider Portal — Single unified theme
+ * Midnight Iris — Dark Premium Design System
  */
 
 export const designTokens = {
-	// Color System - Clinical Provider Palette
+	// Color System - Midnight Iris Palette
 	colors: {
-		// Primary Background - Warm Cream
-		page: '#f5f1eb',
-		// Secondary Surface - Soft Sage
-		surface: '#b8c9b8',
-		surfaceStrong: '#a8b89c',
-		// Primary Action - Warm Terracotta
-		brand: '#c97a5c',
-		brandSoft: '#e8d4c8',
-		// Accent - Blush Sand
-		accent: '#d9c9bd',
-		accentSoft: '#ede8e3',
-		accentText: '#8b7355',
-		// Typography - Deep Charcoal
-		ink: '#3e3e3e',
-		muted: '#6b6b6b',
-		line: '#d9c9bd',
-		lineSoft: 'rgba(62, 62, 62, 0.08)',
-		headerBg: 'rgba(245, 241, 235, 0.95)',
-		buttonInk: '#ffffff',
-		sectionTint: '#ede8e3',
-		overlay: 'rgba(62, 62, 62, 0.12)',
-		// Status Colors
-		success: '#a8b89c',
-		warning: '#e8b4a0',
-		error: '#d99b94',
+		// Primary Background - Near Black
+		page: '#09090b',
+		// Secondary Surface - Dark Zinc
+		surface: '#18181b',
+		surfaceStrong: '#27272a',
+		// Primary Action - Violet
+		brand: '#a78bfa',
+		brandSoft: 'rgba(167, 139, 250, 0.1)',
+		// Accent - Violet (same as brand)
+		accent: '#a78bfa',
+		accentSoft: 'rgba(167, 139, 250, 0.06)',
+		accentText: '#c4b5fd',
+		// Typography
+		ink: '#fafafa',
+		muted: '#a1a1aa',
+		line: '#3f3f46',
+		lineSoft: 'rgba(250, 250, 250, 0.06)',
+		headerBg: 'rgba(9, 9, 11, 0.85)',
+		buttonInk: '#09090b',
+		sectionTint: '#141417',
+		overlay: 'rgba(0, 0, 0, 0.7)',
 	},
 
 	// Shadows
 	shadows: {
-		soft: '0 2px 15px rgba(0, 0, 0, 0.04)',
-		medium: '0 10px 40px rgba(62, 62, 62, 0.08)',
-		brand: '0 12px 30px rgba(201, 122, 92, 0.12)',
+		soft: '0 2px 20px rgba(0, 0, 0, 0.4)',
+		medium: '0 12px 60px rgba(0, 0, 0, 0.6)',
+		brand: '0 8px 32px rgba(167, 139, 250, 0.25)',
 	},
 
 	// Typography
 	typography: {
-		fontBody: "'Manrope', sans-serif",
+		fontBody: "'Inter', 'Manrope', sans-serif",
 		fontDisplay: "'Cormorant Garamond', serif",
 	},
 

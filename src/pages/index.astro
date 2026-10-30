@@ -51,7 +51,7 @@ const trustCredentials = [
 >
 	<main id="main-content" class="page-main">
 		<section class="hero-shell relative overflow-hidden">
-			<div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,var(--color-brand-soft),transparent_32%),radial-gradient(circle_at_85%_12%,var(--color-accent-soft),transparent_24%)]"></div>
+			<div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_90%_60%_at_50%_-15%,rgba(167,139,250,0.18),transparent),radial-gradient(ellipse_50%_35%_at_5%_0%,rgba(139,92,246,0.12),transparent),radial-gradient(ellipse_50%_35%_at_95%_5%,rgba(167,139,250,0.09),transparent)]"></div>
 			<div class="mx-auto flex max-w-5xl flex-col items-center text-center">
 				<FadeIn delay={0} duration={800}>
 					<p class="eyebrow">Morningtide Consulting and Collective</p>
@@ -112,7 +112,7 @@ const trustCredentials = [
 						return (
 							<AnimatedCard href={service.href} index={i} className="section-shell rounded-4xl p-8 hover:-translate-y-1">
 								<div class="flex items-center gap-3">
-									<div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-section-tint text-brand">
+									<div class="brand-icon-wrap">
 										<Icon className="h-5 w-5" aria-hidden="true" />
 									</div>
 									<h3 class="mb-0 text-3xl leading-none text-ink">{service.title}</h3>
@@ -160,7 +160,7 @@ const trustCredentials = [
 
 		<section id="contact" class="home-section">
 			<div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-10">
-				<FadeIn class="section-shell rounded-4xl">
+				<FadeIn class="premium-card rounded-4xl">
 					<div class="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
 						<!-- Left: value prop + contact info -->
 						<div class="space-y-6">

@@ -1,49 +1,61 @@
-/* ── Components: Reusable UI Patterns ── */
+/* ── Components: Modern Dark UI Patterns ── */
 
-/* ─ Cards ─ */
+/* ─ Cards — Glassmorphism inspired ─ */
 
 .premium-card {
-    padding: 3rem;
-    border-radius: 2rem;
-    background: var(--color-surface);
-    border: 1px solid var(--color-line-soft);
-    box-shadow: var(--shadow-soft);
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    background: linear-gradient(135deg, rgba(24, 24, 27, 0.9) 0%, rgba(24, 24, 27, 0.7) 100%);
+    border: 1px solid rgba(250, 250, 250, 0.06);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .premium-card:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-medium);
-    border-color: var(--color-line);
+    border-color: rgba(167, 139, 250, 0.15);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(167, 139, 250, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 a.premium-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
 }
 
 .cta-strip {
-    padding: 3rem;
-    border-radius: 2rem;
-    background: var(--color-surface);
-    border: 1px solid var(--color-line-soft);
-    box-shadow: var(--shadow-soft);
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    background: linear-gradient(135deg, rgba(24, 24, 27, 0.9), rgba(24, 24, 27, 0.7));
+    border: 1px solid rgba(250, 250, 250, 0.06);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 /* ─ Typography Components ─ */
 
 .eyebrow {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     font-family: var(--font-body);
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.2em;
     color: var(--color-brand);
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 1.5rem;
+    height: 1px;
+    background: var(--color-brand);
+    opacity: 0.6;
 }
 
 .text-gradient {
-    background: linear-gradient(135deg, var(--color-ink), var(--color-brand));
+    background: linear-gradient(135deg, var(--color-ink) 40%, var(--color-brand));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -55,24 +67,27 @@ a.premium-card:hover {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    padding: 1rem 2.5rem;
+    padding: 0.875rem 2rem;
     border-radius: 100px;
-    background: var(--color-accent);
-    color: white;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    transition: all 0.3s ease;
+    background: var(--color-brand);
+    color: var(--color-button-ink);
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.01em;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     border: 1px solid transparent;
+    box-shadow: 0 4px 16px rgba(167, 139, 250, 0.2);
 }
 
 .btn-mild:hover {
-    background: transparent;
-    border-color: var(--color-accent);
-    color: var(--color-accent);
-    box-shadow: var(--shadow-brand);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(167, 139, 250, 0.35);
 }
 
-.btn-mild:active,
+.btn-mild:active {
+    transform: scale(0.97);
+}
+
 a[class*="rounded-full"]:active {
     transform: scale(0.97);
 }
@@ -101,12 +116,26 @@ a[class*="rounded-full"]:active {
     min-width: 44px;
     padding: 0.625rem 1.25rem;
     border-radius: 100px;
-    background: var(--color-surface);
-    border: 1px solid var(--color-line-soft);
+    background: rgba(24, 24, 27, 0.8);
+    border: 1px solid rgba(250, 250, 250, 0.07);
     font-size: 0.8125rem;
     font-weight: 500;
     color: var(--color-muted);
     letter-spacing: 0.02em;
+    backdrop-filter: blur(8px);
+}
+
+/* ─ Glow effect for brand icon containers ─ */
+.brand-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 0.75rem;
+    background: rgba(167, 139, 250, 0.1);
+    border: 1px solid rgba(167, 139, 250, 0.15);
+    color: var(--color-brand);
 }
 
 @media (hover: none) {
@@ -114,6 +143,6 @@ a[class*="rounded-full"]:active {
     a.premium-card:hover,
     .btn-mild:hover {
         transform: none;
-        box-shadow: var(--shadow-soft);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.04);
     }
 }
