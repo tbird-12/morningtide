@@ -1,15 +1,6 @@
 import type { APIRoute } from 'astro';
-
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-function escapeHtml(str: string): string {
-	return str
-		.replace(/&/g, '&amp;')
-		.replace(/</g, '&lt;')
-		.replace(/>/g, '&gt;')
-		.replace(/"/g, '&quot;')
-		.replace(/'/g, '&#39;');
-}
+import { escapeHtml } from '../../utils/html';
+import { EMAIL_REGEX } from '../../utils/validation';
 
 export const GET: APIRoute = () =>
 	new Response(JSON.stringify({ ok: true, message: 'Contact API is available.' }), {
