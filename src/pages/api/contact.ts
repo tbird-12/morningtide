@@ -2,6 +2,15 @@ import type { APIRoute } from 'astro';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+function escapeHtml(str: string): string {
+	return str
+		.replace(/&/g, '&amp;')
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;')
+		.replace(/'/g, '&#39;');
+}
+
 export const GET: APIRoute = () =>
 	new Response(JSON.stringify({ ok: true, message: 'Contact API is available.' }), {
 		status: 200,
@@ -46,18 +55,24 @@ export const POST: APIRoute = async ({ request }) => {
 			other: 'Other',
 		};
 
+		const safeName = escapeHtml(name);
+		const safeEmail = escapeHtml(email);
+		const safePractice = escapeHtml(practice);
+		const safeMessage = escapeHtml(message);
+		const safeServiceLabel = escapeHtml(serviceLabel[service] ?? service);
+
 		const html = `
 <div style="font-family:sans-serif;max-width:600px;color:#2d3230">
   <h2 style="color:#a3957d;margin-bottom:8px">New Inquiry — Morningtide MCC</h2>
   <hr style="border:none;border-top:1px solid #e8e5dd;margin-bottom:24px"/>
   <table style="border-collapse:collapse;width:100%">
-    <tr><td style="padding:8px 0;color:#6b7571;font-size:13px;width:140px">Name</td><td style="padding:8px 0;font-weight:600">${name}</td></tr>
-    <tr><td style="padding:8px 0;color:#6b7571;font-size:13px">Reply-to</td><td style="padding:8px 0"><a href="mailto:${email}">${email}</a></td></tr>
-    ${practice ? `<tr><td style="padding:8px 0;color:#6b7571;font-size:13px">Practice</td><td style="padding:8px 0">${practice}</td></tr>` : ''}
-    ${service ? `<tr><td style="padding:8px 0;color:#6b7571;font-size:13px">Interested in</td><td style="padding:8px 0">${serviceLabel[service] ?? service}</td></tr>` : ''}
+    <tr><td style="padding:8px 0;color:#6b7571;font-size:13px;width:140px">Name</td><td style="padding:8px 0;font-weight:600">${safeName}</td></tr>
+    <tr><td style="padding:8px 0;color:#6b7571;font-size:13px">Reply-to</td><td style="padding:8px 0"><a href="mailto:${safeEmail}">${safeEmail}</a></td></tr>
+    ${safePractice ? `<tr><td style="padding:8px 0;color:#6b7571;font-size:13px">Practice</td><td style="padding:8px 0">${safePractice}</td></tr>` : ''}
+    ${service ? `<tr><td style="padding:8px 0;color:#6b7571;font-size:13px">Interested in</td><td style="padding:8px 0">${safeServiceLabel}</td></tr>` : ''}
   </table>
   <hr style="border:none;border-top:1px solid #e8e5dd;margin:16px 0"/>
-  <p style="white-space:pre-wrap;line-height:1.6">${message}</p>
+  <p style="white-space:pre-wrap;line-height:1.6">${safeMessage}</p>
 </div>`.trim();
 
 		const res = await fetch('https://api.resend.com/emails', {

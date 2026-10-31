@@ -21,7 +21,10 @@ head -30 README.md
 | No PHI | `rg "SSN\|\d{3}-\d{2}-\d{4}" src/` | Zero matches |
 | Analytics opt-in | `grep -r "gtag\|ga_id" src/` | Only conditional loads via env var |
 | HTTPS external links | `rg 'href="http://' src/` | Zero matches (except internal) |
-| Tracking policy | Check FAQs/about for privacy notice | Clear explanation |
+| Email escaping in API | `rg 'escapeHtml' src/pages/api/contact.ts` | All 5 user fields escaped |
+| Security middleware | `Get-Content src/middleware.ts` | CSP + X-Frame + nosniff headers present |
+| Domain consistency | `rg 'morningtideconsulting' src/ public/` | Zero matches |
+| Correct email address | `rg 'morningtideconsulting.com' src/` | Zero matches — must be `morningtidecc.com` |
 
 **Findings Template:**
 ```
@@ -41,9 +44,11 @@ head -30 README.md
 | Main ID | `rg '<main[^>]*id="main-content"' src/` | All pages have it |
 | Image dimensions | `rg '<img[^>]*>' src/ \| grep -v 'width='` | Zero matches |
 | Lazy load below fold | `rg 'loading="lazy"' src/` | Present on appropriate images |
-| Font display | `rg 'font-display' src/` | `font-display: swap` or preload |
+| Font loading method | `rg '@import url' src/styles/` | **Zero matches** — use HTML `<link>` only |
+| Font preload crossorigin | `rg 'preload.*crossorigin' src/layouts/` | Present on Google Fonts preload |
 | Client directives | `rg 'client:load' src/` | Only Header (above fold) |
-| Unused deps | `npm ls` | No warnings |
+| Public assets exist | `Get-ChildItem public -Recurse` | Every path referenced in src/ exists |
+| CTA button classes | Check all `bg-accent` `<a>` buttons | Include `min-h-11 transition-all hover:-translate-y-0.5 focus-visible:outline-*` |
 
 **Findings Template:**
 ```
@@ -68,6 +73,8 @@ head -30 README.md
 | Link text | `rg '<a[^>]*>(click here\|read more)<' src/` | Zero vague links |
 | Alt text | `rg '<img[^>]*>' src/ \| grep -v 'alt='` | Zero matches (all images have alt) |
 | Reduced motion | Check components | `prefers-reduced-motion` respected |
+| Form aria-label | `rg '<form' src/` | All forms have `aria-label` |
+| Status alerts | `rg 'role="alert"' src/` | Error/success states present |
 
 **Findings Template:**
 ```
@@ -87,12 +94,14 @@ head -30 README.md
 |-------|---------|----------|
 | Meta description | `rg 'name="description"' src/` | Per page, 150–160 chars |
 | OG tags | `rg 'og:title\|og:description' src/` | All 5 OG tags present |
-| Twitter card | `rg 'twitter:card\|twitter:title' src/` | All 4 Twitter tags present |
+| OG image dimensions | `rg 'og:image:width\|og:image:height' src/` | Present alongside og:image |
+| Twitter card | `rg 'twitter:card\|twitter:title' src/` | Conditional: summary vs summary_large_image |
 | JSON-LD schema | `rg 'application/ld+json' src/` | Schema present (Organization/ProfessionalService) |
 | Canonical | `rg 'rel="canonical"' src/` | Every page has one |
 | Internal links | Manual review | All routable, no dead links |
 | External links | `rg 'href="https://' src/ \| grep -v 'rel='` | HTTPS + proper rel |
 | Sitemap | `ls public/sitemap.xml` or check `astro.config` | Present or auto-generated |
+| Domain consistency | `rg 'morningtideconsulting' src/ public/` | **Zero matches** |
 
 **Findings Template:**
 ```
@@ -100,7 +109,7 @@ head -30 README.md
 |----|----------|---------|-----|
 | S1 | ✅ FIXED | Twitter Card tags added | Done |
 | S2 | ✅ FIXED | JSON-LD ProfessionalService schema added | Done |
-| S3 | ✅ FIXED | OG default image fallback added | Awaiting /public/og-default.png |
+| S3 | ✅ FIXED | Removed broken `/og-default.png` fallback; og:image now conditional | Done |
 | S4 | ✅ FIXED | Missing closing div in index.astro | Done |
 ```
 
@@ -223,7 +232,7 @@ const panelId = `accordion-panel-${uid}`;
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "Morning Tide Consulting and Collective",
-  "url": "https://morningtideconsulting.com"
+  "url": "https://morningtidecc.com"
 }
 </script>
 ```

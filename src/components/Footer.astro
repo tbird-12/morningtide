@@ -16,7 +16,7 @@ const year = new Date().getFullYear();
 
 // Inline SVG paths per platform — avoids brittle createLucideIcon deep import
 const socialIcons: Record<string, string> = {
-	twitter: '<path d="M5 5l14 14"/><path d="M19 5 9 15"/><path d="M15 19l4-4"/><path d="M5 19 13 11"/>',
+	twitter: '<path d="M18 6L6 18M6 6l12 12"/>',
 	linkedin: '<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 10v6"/><path d="M12 16v-3a2 2 0 0 1 4 0v3"/><path d="M12 10v6"/><circle cx="8" cy="8" r="1"/>',
 	facebook: '<path d="M18 2h-3a6 6 0 0 0-6 6v3H7v4h2v8h4v-8h3l1-4h-4V8a2 2 0 0 1 2-2h1z"/>',
 	instagram: '<rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>',
@@ -30,7 +30,7 @@ const socialIcons: Record<string, string> = {
 	>
 		<!-- Logo + Brand description -->
 		<div class="flex items-start gap-8">
-			<figure class="h-28 w-28 shrink-0 overflow-hidden shadow-medium">
+			<figure class="h-28 w-28 shrink-0 overflow-hidden rounded-full shadow-medium">
 				<img
 					src={logoLight.src}
 					alt={logoConfig.alt}

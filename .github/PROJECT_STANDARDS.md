@@ -135,10 +135,20 @@ src/
 - Use `.env.example` as a template (with placeholder values only)
 - Sensitive config goes in deployment environment variables
 
+### User Input Sanitization
+- **Always escape HTML** before interpolating user input into email bodies or rendered HTML
+- The `escapeHtml()` helper in `src/pages/api/contact.ts` must wrap every user-supplied string before HTML interpolation
+- Validate on both client (UX) and server (security) — never rely on client-side only
+
+### Security Headers
+- All HTTP security headers (CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy) live exclusively in `src/middleware.ts`
+- When adding a new CDN domain (script, style, font, image), update the corresponding CSP directive in middleware at the same time
+- Never set per-page headers; use the middleware
+
 ### Third-Party Scripts
 - All analytics/tracking must be opt-in (via environment variable)
 - External links use HTTPS + `rel="noopener noreferrer"`
-- Sanitize user input before rendering (if applicable)
+- Never add a `<script src="...">` without adding its domain to `script-src` in the CSP
 
 ### Data Privacy
 - No PHI (Protected Health Information) hardcoded

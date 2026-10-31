@@ -110,7 +110,7 @@ export default function ContactForm() {
 	}
 
 	return (
-		<form onSubmit={handleSubmit} noValidate className="space-y-4">
+		<form onSubmit={handleSubmit} noValidate className="space-y-4" aria-label="Contact inquiry form">
 			{/* Name + Email */}
 			<div className="grid gap-4 sm:grid-cols-2">
 				<div>
@@ -224,7 +224,7 @@ export default function ContactForm() {
 			</div>
 
 			{status === 'error' && (
-				<p role="alert" className="rounded-2xl border border-red-900/50 bg-red-950/40 px-4 py-3 text-sm text-red-300">
+					<p role="alert" aria-live="assertive" className="rounded-2xl border border-red-900/50 bg-red-950/40 px-4 py-3 text-sm text-red-300">
 					Something went wrong. Please email us directly at{' '}
 					<a href={`mailto:${CONTACT_EMAIL}`} className="underline">
 						{CONTACT_EMAIL}
