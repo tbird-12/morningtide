@@ -1,5 +1,5 @@
 ---
-import { BookOpen, Briefcase, GraduationCap, Shield, MapPin } from 'lucide-react';
+import { BookOpen, Briefcase, GraduationCap, Shield, MapPin, Tag, HelpCircle, ExternalLink } from 'lucide-react';
 import Layout from '../layouts/Layout.astro';
 import FadeIn from '../components/FadeIn.tsx';
 import AnimatedText from '../components/AnimatedText.tsx';
@@ -7,49 +7,87 @@ import AnimatedCard from '../components/AnimatedCard.tsx';
 import ContactForm from '../components/ContactForm.tsx';
 import { contactInfo } from '../data';
 
+const trustCredentials = [
+	{ icon: GraduationCap, label: 'Ph.D., Licensed Psychologist' },
+	{ icon: Shield, label: 'PSYPACT Authorized' },
+	{ icon: MapPin, label: 'Licensed in KY & NM' },
+	{ icon: Briefcase, label: '10+ Years Practice' },
+];
+
+const credentials = [
+	'Ph.D. in Counseling Psychology',
+	'Licensed Psychologist (LP) — Kentucky & New Mexico',
+	'PSYPACT Supervisor Credentials',
+	'Former Assistant Professor, Departments of Psychology',
+	'Over a decade of active clinical practice',
+];
+
 const serviceCards = [
 	{
-		title: 'Consulting for clinicians',
-		description: 'Practical support for billing, credentialing, PSYPACT questions, and the day-to-day operations that keep a practice sustainable.',
+		title: 'Practice Consulting',
+		description: 'Direct operational support on billing workflows, credentialing strategy, PSYPACT navigation, and the practice systems that actually sustain a clinical business.',
 		href: '/consulting',
 		icon: Briefcase,
+		cta: 'Explore consulting',
 	},
 	{
-		title: 'CEU trainings',
-		description: 'Continuing education on ADHD, autism, and assessment methodology designed for immediate use in real clinical work.',
+		title: 'CEU Trainings',
+		description: 'Continuing education on ADHD and autism assessment — designed for immediate clinical application so what you learn is useful the next time you see a client.',
 		href: '/services/ceu-trainings',
 		icon: BookOpen,
+		cta: 'Browse trainings',
 	},
 ];
 
 const differentiators = [
 	{
 		title: 'Grounded in Active Practice',
-		description: 'Advice and trainings are shaped by the realities of running a real multi-state practice, not a theoretical model.',
+		description: 'Advice shaped by the real systems and challenges of running a multi-state practice — not a theoretical model.',
 	},
 	{
-		title: 'Direct, Practical Guidance',
-		description: 'No fluff — just clear answers on billing, credentialing, PSYPACT, and the operational questions clinicians actually face.',
+		title: 'Direct, No-Fluff Guidance',
+		description: 'Clear answers on billing, credentialing, PSYPACT, and the operational questions clinicians actually face.',
 	},
 	{
 		title: 'CEUs That Transfer',
-		description: 'Trainings are built for immediate clinical application so what you learn is useful the next time you see a client.',
+		description: 'Trainings built for immediate clinical application — useful the next time you see a client.',
 	},
 ];
 
-const trustCredentials = [
-	{ icon: GraduationCap, label: 'Ph.D., Licensed Psychologist' },
-	{ icon: Shield, label: 'PSYPACT Authorized' },
-	{ icon: MapPin, label: 'Licensed in KY & NM' },
-	{ icon: Briefcase, label: '8+ Years Clinical Practice' },
+const populations = [
+	'Solo practitioners and group practices',
+	'Clinicians transitioning to private pay',
+	'Multi-state and telehealth practices',
+	'Clinicians building a testing arm',
+	'Community mental health agencies',
+	'Graduate training programs',
+];
+
+const resourceCards = [
+	{
+		icon: Tag,
+		title: 'Pricing',
+		description: 'Transparent information on consulting rates, CEU training costs, and payment options.',
+		href: '/pricing',
+		cta: 'View pricing',
+	},
+	{
+		icon: HelpCircle,
+		title: 'FAQ',
+		description: 'Answers to common questions about consulting, CEU trainings, format, and how to get started.',
+		href: '/faq',
+		cta: 'Read the FAQ',
+	},
 ];
 ---
 
 <Layout
-	title="Morningtide Consulting and Collective | Consulting and CEU trainings for clinicians"
-	description="Consulting and continuing education for mental health professionals."
+	title="Practice Consulting and CEU Trainings for Clinicians | Morningtide Consulting and Collective"
+	description="Starting or growing a private practice is hard. Morningtide helps clinicians navigate billing, credentialing, PSYPACT, and continuing education — led by Dr. Heather Cornett, licensed psychologist."
 >
 	<main id="main-content" class="page-main">
+
+		<!-- ── HERO ── -->
 		<section class="hero-shell relative overflow-hidden">
 			<div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_90%_60%_at_50%_-15%,rgba(167,139,250,0.18),transparent),radial-gradient(ellipse_50%_35%_at_5%_0%,rgba(139,92,246,0.12),transparent),radial-gradient(ellipse_50%_35%_at_95%_5%,rgba(167,139,250,0.09),transparent)]"></div>
 			<div class="mx-auto flex max-w-5xl flex-col items-center text-center">
@@ -57,60 +95,115 @@ const trustCredentials = [
 					<p class="eyebrow">Morningtide Consulting and Collective</p>
 				</FadeIn>
 				<AnimatedText
-					text="Consulting and continuing education for mental health professionals."
+					text="Private practice is hard. You don't have to figure it out alone."
 					as="h1"
 					split="word"
-					stagger={40}
+					stagger={35}
 					delay={150}
 					duration={600}
-					class="mt-6 max-w-4xl text-wrap-balance text-5xl leading-none text-ink sm:text-6xl lg:text-7xl"
+					class="mt-6 max-w-4xl text-wrap-balance text-5xl leading-[1.08] text-ink sm:text-6xl lg:text-7xl"
 				/>
-				<FadeIn delay={500}>
+				<FadeIn delay={600}>
 					<p class="mt-8 max-w-3xl text-lg leading-8 text-muted sm:text-xl">
-						Practical support for billing, credentialing, PSYPACT navigation, and continuing education designed for real clinical work.
+						Billing systems, credentialing, PSYPACT, practice operations — new clinicians hit all of it at once with no roadmap. Morningtide exists to change that, with direct guidance from someone who has built and run it herself.
 					</p>
 				</FadeIn>
-				<FadeIn delay={900}>
+				<FadeIn delay={950}>
 					<div class="mt-10 flex flex-wrap justify-center gap-4">
-						<a class="inline-flex min-h-11 items-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-button-ink shadow-brand transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href="/#contact">
-							Book a Consultation
+						<a class="inline-flex min-h-11 items-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-button-ink shadow-brand transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href="#contact">
+							Get Guidance
 						</a>
-						<a class="inline-flex min-h-11 items-center rounded-full border border-line bg-surface px-6 py-3 text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href="/services/ceu-trainings">
-							View CEU Trainings
+						<a class="inline-flex min-h-11 items-center rounded-full border border-line bg-surface px-6 py-3 text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href="#about">
+							Meet Heather
 						</a>
 					</div>
 				</FadeIn>
-
-					<!-- Trust credentials bar -->
-					<FadeIn delay={1100}>
-						<div class="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 border-t border-line-soft pt-8">
-							{trustCredentials.map(({ icon: Icon, label }) => (
-								<div class="flex items-center gap-2 text-xs font-semibold text-muted">
-									<Icon className="h-4 w-4 shrink-0 text-brand" aria-hidden="true" />
-									<span>{label}</span>
-								</div>
-							))}
-						</div>
-					</FadeIn>
+				<FadeIn delay={1150}>
+					<div class="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 border-t border-line-soft pt-8">
+						{trustCredentials.map(({ icon: Icon, label }) => (
+							<div class="flex items-center gap-2 text-xs font-semibold text-muted">
+								<Icon className="h-4 w-4 shrink-0 text-brand" aria-hidden="true" />
+								<span>{label}</span>
+							</div>
+						))}
+					</div>
+				</FadeIn>
 			</div>
 		</section>
 
-		<section class="home-section">
+		<!-- ── ABOUT ── -->
+		<section id="about" class="home-section bg-section-tint" aria-labelledby="about-heading">
+			<div class="mx-auto grid max-w-6xl gap-6 px-4 sm:px-6 lg:grid-cols-[1fr_1.1fr] lg:px-10">
+				<FadeIn class="premium-card rounded-4xl p-8">
+					<p class="eyebrow">Meet Dr. Heather Cornett</p>
+					<h2 id="about-heading" class="mt-4 text-4xl leading-none text-ink">The Guidance Comes From Someone Who Has Done It</h2>
+					<ul class="mt-6 space-y-3 text-sm leading-7 text-muted">
+						{credentials.map((item) => (
+							<li class="flex gap-3">
+								<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span>
+								<span>{item}</span>
+							</li>
+						))}
+					</ul>
+				</FadeIn>
+
+				<FadeIn delay={120} class="premium-card rounded-4xl p-8">
+					<p class="eyebrow">Her Background</p>
+					<h3 class="mt-4 text-2xl leading-tight text-ink">From University Faculty to Multi-State Practice</h3>
+					<p class="mt-4 text-base leading-8 text-muted">
+						Dr. Cornett served as an Assistant Professor in Departments of Psychology, teaching graduate and postdoctoral students in assessment, psychopathology, and child psychology — while maintaining an active clinical practice throughout.
+					</p>
+					<p class="mt-4 text-base leading-8 text-muted">
+						She later transitioned to a full-time multi-state private practice, building operational systems for billing, credentialing, PSYPACT navigation, and telehealth logistics from the ground up. That hands-on experience now drives her consulting and training work with other clinicians.
+					</p>
+					<p class="mt-6 text-sm text-muted">
+						For clinical services including psychological evaluations, visit
+						<a
+							class="inline-flex items-center gap-1 font-semibold text-accent-text underline underline-offset-4 transition-colors duration-200 hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+							href="https://twilightpsychology.com"
+							target="_blank"
+							rel="noopener noreferrer"
+						>Twilight Psychology <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" /></a>.
+					</p>
+				</FadeIn>
+			</div>
+		</section>
+
+		<!-- ── WHO SHE HELPS ── -->
+		<section class="home-section" aria-labelledby="clients-heading">
+			<div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-10">
+				<FadeIn>
+					<p class="eyebrow">Who She Helps</p>
+					<h2 id="clients-heading" class="max-w-2xl text-4xl leading-none text-ink sm:text-5xl">Clinicians at Every Stage</h2>
+					<p class="mt-4 mb-8 max-w-2xl text-base leading-8 text-muted">
+						From brand-new providers navigating their first credentialing application to seasoned practitioners untangling a billing mess or expanding into multi-state work.
+					</p>
+				</FadeIn>
+				<FadeIn delay={200}>
+					<div class="visual-grid">
+						{populations.map((item) => (
+							<span class="visual-chip">{item}</span>
+						))}
+					</div>
+				</FadeIn>
+			</div>
+		</section>
+
+		<!-- ── SERVICES ── -->
+		<section id="services" class="home-section bg-section-tint" aria-labelledby="services-heading">
 			<div class="mx-auto w-full max-w-6xl space-y-10 px-4 sm:px-6 lg:px-10">
 				<FadeIn>
-					<div>
-						<p class="eyebrow">Primary Services</p>
-						<h2 class="text-4xl leading-none text-ink sm:text-5xl">Why Choose Morningtide Consulting</h2>
-						<p class="text-lg leading-8 text-muted">
-							Morningtide is built first for clinician-facing work: strategic consulting and continuing education that support better care and stronger operations.
-						</p>
-					</div>
+					<p class="eyebrow">What Heather Offers</p>
+					<h2 id="services-heading" class="text-4xl leading-none text-ink sm:text-5xl">Two Ways to Work Together</h2>
+					<p class="mt-4 max-w-2xl text-base leading-8 text-muted">
+						Consulting and continuing education that connect directly to the realities of clinical practice.
+					</p>
 				</FadeIn>
 				<div class="grid gap-6 lg:grid-cols-2">
 					{serviceCards.map((service, i) => {
 						const Icon = service.icon;
 						return (
-							<AnimatedCard href={service.href} index={i} className="section-shell service-card rounded-4xl p-8 hover:-translate-y-1">
+							<AnimatedCard href={service.href} index={i} className="service-card rounded-4xl p-8 hover:-translate-y-1">
 								<div class="flex items-center gap-3">
 									<div class="brand-icon-wrap">
 										<Icon className="h-5 w-5" aria-hidden="true" />
@@ -118,8 +211,8 @@ const trustCredentials = [
 									<h3 class="mb-0 text-3xl leading-none text-ink">{service.title}</h3>
 								</div>
 								<p class="mt-5 max-w-xl text-base leading-8 text-muted">{service.description}</p>
-								<span class="mt-8 inline-flex items-center text-sm font-semibold text-accent">
-									Learn more
+								<span class="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-accent">
+									{service.cta}
 								</span>
 							</AnimatedCard>
 						);
@@ -128,24 +221,12 @@ const trustCredentials = [
 			</div>
 		</section>
 
-		<section class="home-section bg-section-tint">
-			<div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-10">
-				<FadeIn class="section-shell rounded-4xl">
-					<p class="eyebrow">Meet Dr. Cornett</p>
-					<p class="mt-6 max-w-4xl text-base leading-8 text-muted">
-						Led by Dr. Heather Cornett, Ph.D., LP, licensed psychologist and practice operations expert. <a class="inline-flex items-center gap-1 font-semibold text-accent-text underline underline-offset-4 transition-colors duration-200 hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href="/about">Learn more</a>
-					</p>
-				</FadeIn>
-			</div>
-		</section>
-
-		<section class="home-section">
+		<!-- ── WHY HEATHER ── -->
+		<section class="home-section" aria-labelledby="why-heading">
 			<div class="mx-auto w-full max-w-6xl space-y-10 px-4 sm:px-6 lg:px-10">
 				<FadeIn>
-					<div>
-						<p class="eyebrow">Why MCC</p>
-						<h2 class="text-4xl leading-none text-ink sm:text-5xl">Built for Clinicians Who Want Useful Answers</h2>
-					</div>
+					<p class="eyebrow">Why Clinicians Choose Heather</p>
+					<h2 id="why-heading" class="text-4xl leading-none text-ink sm:text-5xl">Built for Clinicians Who Want Useful Answers</h2>
 				</FadeIn>
 				<div class="grid gap-6 lg:grid-cols-3">
 					{differentiators.map((item, i) => (
@@ -158,20 +239,48 @@ const trustCredentials = [
 			</div>
 		</section>
 
+		<!-- ── RESOURCES: PRICING + FAQ ── -->
+		<section class="home-section bg-section-tint" aria-label="Resources">
+			<div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-10">
+				<FadeIn>
+					<p class="eyebrow">Before You Reach Out</p>
+					<h2 class="text-4xl leading-none text-ink sm:text-5xl mb-10">Pricing &amp; FAQ</h2>
+				</FadeIn>
+				<div class="grid gap-6 lg:grid-cols-2">
+					{resourceCards.map((card, i) => {
+						const Icon = card.icon;
+						return (
+							<AnimatedCard href={card.href} index={i} stagger={120} className="rounded-4xl p-8">
+								<div class="flex items-center gap-3 mb-4">
+									<div class="brand-icon-wrap">
+										<Icon className="h-5 w-5" aria-hidden="true" />
+									</div>
+									<h3 class="mb-0 text-2xl leading-none text-ink">{card.title}</h3>
+								</div>
+								<p class="text-base leading-8 text-muted">{card.description}</p>
+								<span class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent">
+									{card.cta}
+								</span>
+							</AnimatedCard>
+						);
+					})}
+				</div>
+			</div>
+		</section>
+
+		<!-- ── CONTACT ── -->
 		<section id="contact" class="home-section">
 			<div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-10">
 				<FadeIn class="premium-card rounded-4xl">
 					<div class="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
-						<!-- Left: value prop + contact info -->
 						<div class="space-y-6">
 							<div class="space-y-4">
 								<p class="eyebrow">Ready to work together?</p>
 								<h2 class="text-4xl leading-none text-ink sm:text-5xl">Let's talk about your practice needs.</h2>
 								<p class="text-base leading-8 text-muted">
-									Whether you need consulting on billing, credentialing, or PSYPACT — or you're interested in a CEU training — reach out and we'll figure out the right next step together.
+									Whether you need consulting on billing, credentialing, or PSYPACT — or you're interested in a CEU training — reach out and Heather will follow up to discuss the right next step.
 								</p>
 							</div>
-
 							<div class="space-y-3 pt-2">
 								<div class="flex items-center gap-3 text-sm font-semibold text-muted">
 									<svg class="h-4 w-4 shrink-0 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
@@ -191,8 +300,6 @@ const trustCredentials = [
 								</div>
 							</div>
 						</div>
-
-						<!-- Right: contact form island -->
 						<div class="rounded-3xl border border-line-soft bg-surface p-6 shadow-medium sm:p-8">
 							<ContactForm client:visible />
 						</div>

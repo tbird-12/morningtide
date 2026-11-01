@@ -52,21 +52,6 @@ const gettingStartedFaqs = [
 		a: 'Credit and debit cards, Zelle, and Venmo. Payment plans available for larger consulting engagements.',
 	},
 ];
-
-const pricingFaqs = [
-	{
-		q: 'How is consulting priced?',
-		a: 'Consulting is priced by scope, complexity, and support format. Most clinicians start with a targeted consultation and expand only if needed.',
-	},
-	{
-		q: 'How are CEU trainings priced?',
-		a: 'CEU training pricing is based on audience size, format (virtual or on-site), and customization level. We provide a quote after reviewing your training goals.',
-	},
-	{
-		q: 'Do you offer payment plans?',
-		a: 'Yes. Payment plans are available for larger consulting projects and organizational training engagements.',
-	},
-];
 ---
 
 <Layout
@@ -122,11 +107,12 @@ const pricingFaqs = [
 			</FadeIn>
 
 			<FadeIn delay={250}>
-				<div class="premium-card rounded-4xl p-8 lg:p-10">
+				<div class="premium-card rounded-4xl p-8 lg:p-10 border border-(--color-brand)/20">
 					<p class="eyebrow">Pricing</p>
-					<div class="mt-6">
-						<Accordion client:visible items={pricingFaqs} />
-					</div>
+					<p class="mt-2 text-base leading-8 text-muted">
+						Consulting is scoped to your situation; CEU training pricing depends on audience size and format. For a full breakdown of how pricing works and payment options, see the
+						<a class="font-semibold text-accent-text underline underline-offset-4 transition-colors duration-200 hover:text-(--color-brand) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)" href="/pricing">Pricing page</a>.
+					</p>
 				</div>
 			</FadeIn>
 		</section>

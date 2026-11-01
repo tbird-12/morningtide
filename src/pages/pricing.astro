@@ -1,0 +1,179 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FadeIn from '../components/FadeIn.tsx';
+import AnimatedText from '../components/AnimatedText.tsx';
+import AnimatedCard from '../components/AnimatedCard.tsx';
+
+const consultingDetails = [
+	{ label: 'Format', value: 'Virtual via secure video' },
+	{ label: 'Booking', value: 'By inquiry — tailored to scope' },
+	{ label: 'Payment', value: 'Credit/debit, Zelle, Venmo' },
+	{ label: 'Plans', value: 'Available for larger engagements' },
+];
+
+const ceuDetails = [
+	{ label: 'Format', value: 'Virtual or on-site' },
+	{ label: 'Pricing', value: 'Quoted after reviewing your goals' },
+	{ label: 'Audience', value: 'Individual, group, or organization' },
+	{ label: 'Custom', value: 'Tailored programs available' },
+];
+
+const consultingServices = [
+	'Billing workflows and denial management',
+	'Credentialing and paneling strategy',
+	'PSYPACT navigation and multi-state logistics',
+	'Practice systems: intake, scheduling, consent',
+	'Transitioning to private pay or hybrid models',
+	'Building and operationalizing a testing arm',
+];
+---
+
+<Layout
+	title="Pricing | Morningtide Consulting and Collective"
+	description="Transparent pricing for practice consulting and CEU trainings at Morningtide Consulting and Collective. Consulting priced by scope; CEU trainings quoted by audience and format."
+>
+	<main id="main-content" class="page-main">
+		<section class="hero-shell mx-auto max-w-6xl space-y-8">
+			<FadeIn delay={0}>
+				<p class="eyebrow">Pricing</p>
+			</FadeIn>
+			<AnimatedText
+				text="Transparent Pricing for Consulting and CEU Trainings"
+				as="h1"
+				split="word"
+				stagger={40}
+				delay={100}
+				class="max-w-4xl text-5xl leading-none text-ink sm:text-6xl"
+			/>
+			<FadeIn delay={400}>
+				<p class="max-w-3xl text-lg leading-8 text-muted">
+					Consulting is scoped to your specific situation. CEU training pricing depends on audience, format, and customization. Here is how both work.
+				</p>
+			</FadeIn>
+		</section>
+
+		<!-- CONSULTING PRICING -->
+		<section class="mx-auto mt-12 max-w-6xl space-y-6 px-4 sm:px-6 lg:px-10" aria-labelledby="consulting-pricing-heading">
+			<FadeIn>
+				<p class="eyebrow">Practice Consulting</p>
+				<h2 id="consulting-pricing-heading" class="text-4xl leading-none text-ink sm:text-5xl">Priced by Scope and Complexity</h2>
+				<p class="mt-4 max-w-2xl text-base leading-8 text-muted">
+					Most clinicians start with a targeted consultation focused on a specific bottleneck — billing, credentialing strategy, PSYPACT setup, or practice systems. Scope and format determine cost; no cookie-cutter packages.
+				</p>
+			</FadeIn>
+
+			<div class="grid gap-6 lg:grid-cols-[1.1fr_1fr]">
+				<FadeIn class="premium-card rounded-4xl p-8">
+					<p class="eyebrow">What's Covered</p>
+					<ul class="mt-2 space-y-3 text-sm leading-7 text-muted">
+						{consultingServices.map((item) => (
+							<li class="flex gap-3">
+								<span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"></span>
+								<span>{item}</span>
+							</li>
+						))}
+					</ul>
+				</FadeIn>
+
+				<FadeIn delay={100} class="premium-card rounded-4xl p-8">
+					<p class="eyebrow">Consultation Details</p>
+					<div class="mt-2 grid gap-4 sm:grid-cols-2">
+						{consultingDetails.map((fact) => (
+							<div class="rounded-2xl border border-(--color-line-soft) bg-(--color-section-tint) p-5">
+								<p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-(--color-brand)">{fact.label}</p>
+								<p class="mt-2 text-base font-semibold text-ink">{fact.value}</p>
+							</div>
+						))}
+					</div>
+					<div class="mt-5 rounded-2xl border border-(--color-line-soft) bg-(--color-section-tint) p-5">
+						<p class="text-sm font-semibold text-ink">Tailored to You</p>
+						<p class="mt-2 text-sm leading-6 text-muted">Consultations are structured around your specific bottleneck. Expand only if needed — no pressure to commit to more than fits your situation.</p>
+					</div>
+				</FadeIn>
+			</div>
+		</section>
+
+		<!-- CEU PRICING -->
+		<section class="mx-auto mt-14 max-w-6xl space-y-6 px-4 sm:px-6 lg:px-10" aria-labelledby="ceu-pricing-heading">
+			<FadeIn>
+				<p class="eyebrow">CEU Trainings</p>
+				<h2 id="ceu-pricing-heading" class="text-4xl leading-none text-ink sm:text-5xl">Quoted After Reviewing Your Goals</h2>
+				<p class="mt-4 max-w-2xl text-base leading-8 text-muted">
+					CEU training pricing is based on audience size, delivery format (virtual or on-site), and the level of customization required. Reach out with your training goals and we'll provide a quote.
+				</p>
+			</FadeIn>
+
+			<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+				{ceuDetails.map((fact, i) => (
+					<AnimatedCard index={i} stagger={80} className="rounded-3xl p-6">
+						<p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-(--color-brand)">{fact.label}</p>
+						<p class="mt-3 text-base font-semibold text-ink">{fact.value}</p>
+					</AnimatedCard>
+				))}
+			</div>
+
+			<FadeIn delay={200}>
+				<div class="premium-card rounded-4xl p-8">
+					<p class="eyebrow">Available Trainings</p>
+					<div class="mt-4 grid gap-6 sm:grid-cols-2">
+						<div>
+							<h3 class="text-xl font-semibold text-ink">ADHD Assessment</h3>
+							<p class="mt-2 text-sm leading-7 text-muted">A deep dive into evidence-based ADHD evaluation methodology for clinicians working with children, adolescents, and adults. Includes current diagnostic frameworks and practical tools for immediate clinical use.</p>
+						</div>
+						<div>
+							<h3 class="text-xl font-semibold text-ink">Autism Testing & Evaluation</h3>
+							<p class="mt-2 text-sm leading-7 text-muted">Covers autism assessment methodology, neuro-affirming frameworks, and practical application across the lifespan. Designed for clinicians who want to expand or refine their diagnostic toolkit.</p>
+						</div>
+					</div>
+					<div class="mt-6 border-t border-(--color-line-soft) pt-6">
+						<p class="text-sm text-muted">Trainings can be tailored for organizations, group practices, or graduate programs. <a class="font-semibold text-accent-text underline underline-offset-4 transition-colors duration-200 hover:text-(--color-brand) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)" href="/services/ceu-trainings">Learn more about CEU trainings →</a></p>
+					</div>
+				</div>
+			</FadeIn>
+		</section>
+
+		<!-- PAYMENT -->
+		<section class="mx-auto mt-14 max-w-6xl px-4 sm:px-6 lg:px-10">
+			<FadeIn>
+				<div class="premium-card rounded-4xl p-8 lg:p-10">
+					<p class="eyebrow">Payment</p>
+					<h2 class="mt-2 text-3xl leading-tight text-ink">Payment Options and Plans</h2>
+					<div class="mt-6 grid gap-6 sm:grid-cols-3">
+						<div>
+							<p class="text-sm font-semibold text-ink">Accepted Methods</p>
+							<p class="mt-2 text-sm leading-6 text-muted">Credit and debit cards, Zelle, and Venmo. All major cards accepted.</p>
+						</div>
+						<div>
+							<p class="text-sm font-semibold text-ink">Payment Plans</p>
+							<p class="mt-2 text-sm leading-6 text-muted">Available for larger consulting projects and organizational training engagements. Discussed during scoping.</p>
+						</div>
+						<div>
+							<p class="text-sm font-semibold text-ink">Invoicing</p>
+							<p class="mt-2 text-sm leading-6 text-muted">Invoices issued prior to or at time of service. Organization and agency billing accommodated by arrangement.</p>
+						</div>
+					</div>
+				</div>
+			</FadeIn>
+		</section>
+
+		<!-- CTA STRIP -->
+		<FadeIn>
+			<section class="cta-strip mx-auto mt-10 max-w-6xl px-4 sm:px-6 lg:px-10">
+				<div class="grid gap-8 lg:grid-cols-3">
+					<div>
+						<p class="eyebrow">Have Questions?</p>
+						<p class="mt-4 text-base leading-8 text-muted">Check the <a class="font-semibold text-accent-text underline underline-offset-4 hover:text-(--color-brand) transition-colors" href="/faq">FAQ</a> for answers about format, scope, and what to expect before reaching out.</p>
+					</div>
+					<div>
+						<p class="eyebrow">Ready to Scope a Project?</p>
+						<p class="mt-4 text-base leading-8 text-muted">Share what you are working on and Heather will follow up to discuss the right scope and format for your situation.</p>
+					</div>
+					<div>
+						<p class="eyebrow">Get in Touch</p>
+						<a class="mt-4 inline-flex min-h-11 items-center rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-(--color-button-ink) shadow-(--shadow-brand) transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand)" href="/#contact">Start with an inquiry</a>
+					</div>
+				</div>
+			</section>
+		</FadeIn>
+	</main>
+</Layout>

@@ -11,8 +11,8 @@ interface NavItem {
 const navigation: NavItem[] = [
 	{ label: 'Consulting', href: '/consulting' },
 	{ label: 'Education', href: '/services/ceu-trainings' },
-	{ label: 'FAQ & Pricing', href: '/faq' },
-	{ label: 'Meet Heather', href: '/about' },
+	{ label: 'FAQ', href: '/faq' },
+	{ label: 'Pricing', href: '/pricing' },
 ];
 
 const leftNavigation = navigation.slice(0, 2);
